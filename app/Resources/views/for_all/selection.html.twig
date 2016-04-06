@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }} Selection Page {% endblock %}
 {% block body %}
-    <h1>hello word</h1>
+    <h1>hello word</h1>{{ dump(wedding) }}
+    <a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}">test </a>
 {% endblock %}

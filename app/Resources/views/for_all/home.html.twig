@@ -3,4 +3,5 @@
 {% block body %}
     {{ parent() }}
     <h1>Home child start here</h1>
+    <a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}">test 1</a>
 {% endblock %}

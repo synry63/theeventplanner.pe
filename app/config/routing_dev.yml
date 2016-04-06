@@ -13,17 +13,12 @@ _errors:
 _main:
     resource: routing.yml
 
-selection_start:
-    path:      /
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/selection.html.twig
 # start homes pages
-wedding_start:
-    path:      /wedding/
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/home.html.twig
+#wedding_start:
+#    path:      /wedding/
+#    defaults:
+#              _controller: FrameworkBundle:Template:template
+#              template:    for_all/home.html.twig
 party_start:
     path:      /party/
     defaults:
@@ -39,45 +34,3 @@ dinner_start:
     defaults:
               _controller: FrameworkBundle:Template:template
               template:    for_all/home.html.twig
-# start proveedores list
-proveedores_list_wedding_start:
-    path:      /wedding/proveedores/{slug}
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/proveedores-list.html.twig
-proveedores_list_party_start:
-    path:      /party/proveedores/{slug}
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/proveedores-list.html.twig
-proveedores_list_kids_start:
-    path:      /kids/proveedores/{slug}
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/proveedores-list.html.twig
-proveedores_list_dinner_start:
-    path:      /dinner/proveedores/{slug}
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/proveedores-list.html.twig
-# start proveedores detail
-proveedores_detail_wedding_start:
-    path:      /wedding/proveedores/{category}/{slug}
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/proveedores-detail.html.twig
-proveedores_detail_party_start:
-    path:      /party/proveedores/{category}/{slug}
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/proveedores-detail.html.twig
-proveedores_detail_kids_start:
-    path:      /kids/proveedores/{category}/{slug}
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/proveedores-detail.html.twig
-proveedores_detail_dinner_start:
-    path:      /dinner/proveedores/{category}/{slug}
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/proveedores-detail.html.twig

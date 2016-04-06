@@ -1,5 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="menu">menu</div>
+    <div class="menu">Inicio</div>
+    <div class="menu">Proveedores
+        <ul>
+            {{ render(controller(
+            'AppBundle:Default:menu_content'
+            )) }}
+
+        </ul>
+    </div>
 {% endblock %}
