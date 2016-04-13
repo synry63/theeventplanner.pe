@@ -1,0 +1,36 @@
+{% extends 'wedding/layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+
+    <h1>{{ dump(proveedores) }}</h1>
+    {{ dump(categorias_hijos[0]) }}
+
+    <form action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" method="get" class="form_sort" id="myForm">
+        <span class="manage_title">Sort by:</span>
+        <select class="select_styled white_select" id="sort_list" name="sort">
+            <option value="p.id">id</option>
+            <option value="p.nombre">nombre</option>
+        </select>
+        <select class="select_styled white_select" id="sort_list" name="direction">
+            <option value="desc">desc</option>
+            <option value="asc">asc</option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+    {#<table>
+        <tr>
+             sorting of properties based on query components
+            <th {% if proveedores.isSorted('p.nombre') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(proveedores, 'Nombre', 'p.nombre',{'direction': 'desc'}) }} </th>
+            <th> {{ knp_pagination_sortable(proveedores, 'Country A-Z', 'country', {'sort': 'country', 'direction': 'desc'}) }} </th>
+            <th{% if proveedores.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(proveedores, 'Title', 'a.title') }}</th>
+            <th>{{ knp_pagination_sortable(proveedores, 'Release', ['a.date', 'a.time']) }}</th>
+        </tr>
+    </table>#}
+
+ {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(proveedores) }}
+    </div>
+
+{% endblock %}

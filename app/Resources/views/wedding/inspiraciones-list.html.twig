@@ -1,0 +1,11 @@
+{% extends 'wedding/layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <h1>fdfsd</h1>
+    {{ dump(inspiraciones) }}
+
+    <div class="navigation">
+        {{ knp_pagination_render(inspiraciones) }}
+    </div>
+{% endblock %}
