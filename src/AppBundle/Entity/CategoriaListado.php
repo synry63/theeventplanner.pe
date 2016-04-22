@@ -192,7 +192,6 @@ class CategoriaListado
     }
 
 
-
     public function __construct() {
         $this->proveedores = new ArrayCollection();
         $this->children = new ArrayCollection();

@@ -10,9 +10,14 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProveedorRepository")
+ * @Vich\Uploadable
  * @ORM\Table(name="proveedores")
  */
 class Proveedor
@@ -25,48 +30,67 @@ class Proveedor
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string",nullable=true, length=100)
      */
     private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $telefono;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="proveedor_logo", fileNameProperty="logo")
+     * @Assert\NotBlank()
+     * @var File
+     */
+    private $logoFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
     private $logo;
+
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $banner;
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $web;
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $email;
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $direccion;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string",nullable=true, length=255)
      */
     private $googlemap;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string",nullable=true, length=100)
      */
     private $slug;
 
@@ -76,8 +100,14 @@ class Proveedor
     private $productos;
 
     /**
+     * @ORM\OneToMany(targetEntity="Foto", mappedBy="proveedor")
+     **/
+    private $fotos;
+
+    /**
      * @ORM\ManyToMany(targetEntity="CategoriaListado", inversedBy="proveedores")
      * @ORM\JoinTable(name="proveedores_categorias_listado")
+     *
      */
     private $categoriasListado;
 
@@ -86,13 +116,65 @@ class Proveedor
      */
     private $comentariosProveedor;
 
-
+    public $code;
 
 
     public function __construct() {
         $this->comentariosProveedor = new ArrayCollection();
         $this->productos = new ArrayCollection();
         $this->categoriasListado = new ArrayCollection();
+    }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Product
+     */
+    public function setLogoFile(File $image = null)
+    {
+        $this->logoFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getLogoFile()
+    {
+        return $this->logoFile;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return Product
+     */
+    public function setLogo($imageName)
+    {
+        $this->logo = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
 
 
@@ -208,21 +290,6 @@ class Proveedor
         return $this->id;
     }
 
-    /**
-     * @param mixed $logo
-     */
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLogo()
-    {
-        return $this->logo;
-    }
 
     /**
      * @param mixed $nombre
@@ -304,7 +371,20 @@ class Proveedor
         return $this->web;
     }
 
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        //var_dump($this->categoriasListado);
+        if(count($this->categoriasListado)==0){
+            $context->buildViolation('Can\'t be empty')
+                ->atPath('categoriasListado')
+                ->addViolation();
+        }
 
 
+
+    }
 
 }

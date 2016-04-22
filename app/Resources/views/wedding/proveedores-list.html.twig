@@ -1,6 +1,6 @@
-{% extends 'wedding/layout.html.twig' %}
+{% extends 'FOSUserBundle::layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     {{ parent() }}
 
     <h1>{{ dump(proveedores) }}</h1>
@@ -28,9 +28,10 @@
         </tr>
     </table>#}
 
- {# display navigation #}
+ {#display navigation#}
     <div class="navigation">
         {{ knp_pagination_render(proveedores) }}
     </div>
+
 
 {% endblock %}

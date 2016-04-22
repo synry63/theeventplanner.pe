@@ -39,13 +39,44 @@ class ProveedorRepository extends EntityRepository
      * @param $cate
      * @return mixed
      */
-    public function getProveedoresByCategory($cate){
+    public function getProveedoresByCategory($main_categoria,$cate){
+
+        $parameters = array(
+            'cate' => $cate,
+        //    'main_cate' => $main_categoria
+        );
+        /*$subquery = $this->createQueryBuilder('p')
+            ->join('p.categoriasListado','c')
+            ->where('c = :main_cate')
+            ->setParameter('main_cate', $main_categoria)
+            ->getDQL();
+*/
 
         $qb = $this->createQueryBuilder('p')
-            ->join('p.categoriasListado','c')
-            ->where('c = :cate')
-            ->setParameter('cate', $cate);
+            ->select('p as proveedor, COUNT(cl) as counter')
+            ->join('p.categoriasListado','cl')
+            ->where('cl = :cate')
+            ->orWhere('cl = :main_cate')
+            ->addGroupBy('p')
+            ->having('counter >= 2')
+            ->setParameters(array(
+                'cate' => $cate,
+                'main_cate' => $main_categoria,
+            ));
         $query = $qb->getQuery();
+        /*$data = $query->getResult();
+        $out = array();
+        foreach ($data as $pro){
+            foreach ($pro->getCategoriasListado() as $one_cate){
+                if($one_cate->getSlug()==$cate->getSlug()){
+                    $out[] = $pro;
+                    break;
+                }
+            }
+        }*/
+
+        //var_dump($out);
+        //exit;
 
         return $query;
     }

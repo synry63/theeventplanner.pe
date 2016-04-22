@@ -1,5 +1,11 @@
-{% extends 'base.html.twig' %}
+{#
+{% extends 'FOSUserBundle::layout.html.twig' %}
 
-{% block body %}
+{% block fos_user_content %}
     {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
+{% endblock %}
+#}
+{% extends 'FOSUserBundle::layout.html.twig' %}
+{% block stylesheets %}
+    <link href="{{ asset('css/wedding.css') }}" rel="stylesheet" />
 {% endblock %}

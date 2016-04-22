@@ -7,14 +7,16 @@
  */
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="usuarios")
  */
-class User
+class User extends BaseUser
 {
 
     /**
@@ -22,19 +24,144 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected  $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=64,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $nombres;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Please enter your lastnames.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=64,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $apellidos;
+
+    /**
+     * @ORM\Column(type="string", length=8)
+     *
+     * @Assert\NotBlank(message="Please enter your DNI.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=8,
+     *     max=8,
+     *     minMessage="Must be exactly 8.",
+     *     maxMessage="Must be exactly 8.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $dni;
+
+
 
     /**
      * @ORM\OneToMany(targetEntity="ComentarioProveedor", mappedBy="user")
      */
-    private $comentarios_proveedor;
+    private $comentariosProveedor;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ComentarioInspiracion", mappedBy="user")
+     */
+    private $comentariosInspiracion;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FotoUserGusta", mappedBy="user")
+     */
+    private $fotos;
+
+    /**
+     * @param mixed $fotos
+     */
+    public function setFotos($fotos)
+    {
+        $this->fotos = $fotos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFotos()
+    {
+        return $this->fotos;
+    }
+
+
+
+    /**
+     * @param mixed $dni
+     */
+    public function setDni($dni)
+    {
+        $this->dni = $dni;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDni()
+    {
+        return $this->dni;
+    }
+
+
+
+    /**
+     * @param mixed $apellidos
+     */
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+
+    /**
+     * @param mixed $comentariosInspiracion
+     */
+    public function setComentariosInspiracion($comentariosInspiracion)
+    {
+        $this->comentariosInspiracion = $comentariosInspiracion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComentariosInspiracion()
+    {
+        return $this->comentariosInspiracion;
+    }
+
+
 
     /**
      * @param mixed $comentarios_proveedor
      */
     public function setComentariosProveedor($comentarios_proveedor)
     {
-        $this->comentarios_proveedor = $comentarios_proveedor;
+        $this->comentariosProveedor = $comentarios_proveedor;
     }
 
     /**
@@ -42,8 +169,26 @@ class User
      */
     public function getComentariosProveedor()
     {
-        return $this->comentarios_proveedor;
+        return $this->comentariosProveedor;
     }
+
+    /**
+     * @param mixed $nombres
+     */
+    public function setNombres($nombres)
+    {
+        $this->nombres = $nombres;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombres()
+    {
+        return $this->nombres;
+    }
+
+
 
     /**
      * @return mixed
@@ -56,7 +201,10 @@ class User
 
 
     public function __construct() {
-        $this->comentarios_proveedor = new ArrayCollection();
+        parent::__construct();
+        $this->comentariosProveedor = new ArrayCollection();
+        $this->comentariosInspiracion = new ArrayCollection();
+        $this->fotos = new ArrayCollection();
     }
 
 }

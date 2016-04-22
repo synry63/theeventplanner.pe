@@ -1,0 +1,7 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+    {{ parent() }}
+    {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
+    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+{% endblock content %}

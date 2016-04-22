@@ -21,9 +21,43 @@ class Builder implements ContainerAwareInterface
     public  function testMenu(FactoryInterface $factory, array $options){
         $menu = $factory->createItem('root');
 
-        $menu->addChild('Home', array('route' => 'wedding_start'));
+        $menu->addChild('Home', array('route' => 'wedding_start',
+                'routeParameters' => array('slug_site' => 'wedding')
+        ));
 
         $menu->addChild('About Me', array('route' => 'wedding_contactenos'));
+
+        return $menu;
+    }
+    public function menuProfile(FactoryInterface $factory, array $options){
+        $menu = $factory->createItem('root');
+        $menu->addChild('about-me',array(
+                'route' => 'fos_user_profile_show',
+                'label' => 'Mis datos',
+            )
+        );
+        $menu->addChild('change-data',array(
+                'route' => 'fos_user_profile_edit',
+                'label' => 'Cambiar mis datos',
+            )
+        );
+        $menu->addChild('change-password',array(
+                'route' => 'fos_user_change_password',
+                'label' => 'Cambiar mi contraseña',
+            )
+        );
+
+        $menu->addChild('show-comments',array(
+                'route' => 'show_user_comments',
+                'label' => 'Mis Comentarios',
+            )
+        );
+        $menu->addChild('show-favoritos',array(
+                'route' => 'show_user_favoritos',
+                'label' => 'Mis Favoritos',
+            )
+        );
+
 
         return $menu;
     }
@@ -34,19 +68,30 @@ class Builder implements ContainerAwareInterface
 
         //$uri = $this->container->get('router')->generate('wedding_start');
         $menu->addChild('home',array(
-            'route' => 'wedding_start',
+            'route' => 'site_start',
             'label' => 'Inicio',
+            'routeParameters' => array('slug_site' => 'wedding')
+
         )
         );
-        $menu->addChild('Proveedores');
-        $menu['Proveedores']->setUri('#');
+        $menu->addChild('proveedores',array(
+                'route' => 'site_categorias',
+                'label' => 'Proveedores',
+                'routeParameters' => array('slug_site' => 'wedding')
+            )
+        );
+        //$menu->addChild('Proveedores');
+        //$menu['Proveedores']->setUri('#');
+
+
         $menu->addChild('Inspiraciones');
         $menu['Inspiraciones']->setUri('#');
 
         //$uri = $this->container->get('router')->generate('wedding_contactenos');
         $menu->addChild('contactenos',array(
-                'route' => 'wedding_contactenos',
+                'route' => 'site_contactenos',
                 'label' => 'Contactenos',
+                'routeParameters' => array('slug_site' => 'wedding')
             )
         );
         $menu['Inspiraciones']->addChild(
@@ -59,9 +104,8 @@ class Builder implements ContainerAwareInterface
             'Noticias',array('route' => 'inspiraciones_type','routeParameters' => array('slug_type' => 'noticias')
         ));
 
-        //$CategoriaListadoRepo = $em->getRepository('AppBundle:CategoriaListado');
-        //$weddingParentCategoria = $CategoriaListadoRepo->findOneBy(array('slug' => 'wedding'));
-        $children_categories =  $em->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('wedding');//$weddingParentCategoria->getChildren();
+
+        /*$children_categories =  $em->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('wedding');//$weddingParentCategoria->getChildren();
 
         foreach ($children_categories as $a_child) {
             //$uri = $this->container->get('router')->generate('proveedores_category',array('slug_category'=>$a_child->getSlug()));
@@ -72,33 +116,9 @@ class Builder implements ContainerAwareInterface
                 )
             );
 
-        }
-
-        //$menu->addChild($test[0]->getNombre(), array('route' => 'wedding_start'));
-
-        /*$proveedores = $proveedorRepo->findAll();
+        }*/
 
 
-
-        $menu->addChild('Proveedores');
-        $menu['Proveedores']->setUri('#');*/
-
-        // access services from the container!
-        /*$em = $this->container->get('doctrine')->getManager();
-        // findMostRecent and Blog are just imaginary examples
-        $blog = $em->getRepository('AppBundle:Blog')->findMostRecent();
-
-        $menu->addChild('Latest Blog Post', array(
-            'route' => 'blog_show',
-            'routeParameters' => array('id' => $blog->getId())
-        ));
-
-        // create another menu item
-        $menu->addChild('About Me', array('route' => 'about'));
-        // you can also add sub level's to your menu's as follows
-        $menu['About Me']->addChild('Edit profile', array('route' => 'edit_profile'));*/
-
-        // ... add more children
 
         return $menu;
     }

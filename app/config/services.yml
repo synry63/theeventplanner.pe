@@ -4,6 +4,22 @@ parameters:
 #    parameter_name: value
 
 services:
+  app.form.registration:
+          class: AppBundle\Form\Type\RegistrationType
+          tags:
+              - { name: form.type, alias: app_user_registration }
+  app.user.profile:
+          class: AppBundle\Form\Type\ProfileType
+          tags:
+              - { name: form.type, alias: app_user_profile }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+
+  app.user.login:
+          class: AppBundle\EventListener\LoginListener
+          arguments: [@service_container]
+          tags:
+              - { name: kernel.event_subscriber }
+

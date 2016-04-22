@@ -1,0 +1,11 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+    {{ parent() }}
+    {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
+    {% for foto in fotos_proveedor_favoritas %}
+        {{ dump(foto) }}
+    {% endfor %}
+
+
+{% endblock content %}

@@ -1,6 +1,6 @@
-{% extends 'wedding/layout.html.twig' %}
+{% extends 'FOSUserBundle::layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     {{ parent() }}
 
     {% for label, flashes in app.session.flashbag.all %}

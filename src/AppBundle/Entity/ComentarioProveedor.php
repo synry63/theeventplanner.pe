@@ -8,9 +8,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ComentarioProveedorRepository")
  * @ORM\Table(name="comentarios_proveedores")
  */
 class ComentarioProveedor
@@ -27,7 +27,10 @@ class ComentarioProveedor
     private $proveedor;
 
 
-    /** @ORM\Column(type="integer") **/
+
+    /** @ORM\Column(type="integer")
+     *  @Assert\NotBlank()
+     **/
     private $nota;
 
     /**
@@ -100,5 +103,7 @@ class ComentarioProveedor
     }
 
 
+    public function __construct() {
 
+    }
 }

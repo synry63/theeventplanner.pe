@@ -19,18 +19,24 @@ _main:
 #    defaults:
 #              _controller: FrameworkBundle:Template:template
 #              template:    for_all/home.html.twig
-party_start:
-    path:      /party/
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/home.html.twig
-kids_start:
-    path:      /kids/
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/home.html.twig
-dinner_start:
-    path:      /dinner/
-    defaults:
-              _controller: FrameworkBundle:Template:template
-              template:    for_all/home.html.twig
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+my_login:
+    path:      /login
+    defaults:  { _controller: MyUserBundle:Security:login, _method: POST GET }
+
+my_login_check:
+    path:      /login_check
+    defaults:  { _controller: MyUserBundle:Security:check, _method: POST }
+#wedding_login:
+#    path:      /wedding/login
+#    defaults:  { _controller: MyUserBundle:Security:login, _method: POST GET }
+
+#wedding_login_check:
+#    path:      /wedding/login_check
+#    defaults:  { _controller: MyUserBundle:Security:check, _method: POST }
+
+#dinner_login:
+#    path:      /dinner/login
+#    defaults:  { _controller: MyUserBundle:Security:login, _method: POST }
