@@ -2,6 +2,8 @@
 
 {% block content %}
     {{ parent() }}
+    <img src="{{ vich_uploader_asset(proveedor, 'logoFile')|imagine_filter('my_thumb') }}" alt="{{ proveedor.logo }}" />
+
     {{ dump(proveedor.comentariosProveedor) }}
 
 

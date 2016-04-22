@@ -69,8 +69,8 @@ vich_uploader:
     db_driver: orm # or mongodb or propel or phpcr
     mappings:
             proveedor_logo:
-                uri_prefix:         /images/proveedores
-                upload_destination: %kernel.root_dir%/../web/images/proveedores
+                uri_prefix:         /images/proveedores/logo
+                upload_destination: %kernel.root_dir%/../web/images/proveedores/logo
                 namer:              vich_uploader.namer_uniqid
 
 fos_user:
