@@ -9,6 +9,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -29,7 +30,7 @@ class Foto
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="proveedor_logo", fileNameProperty="img")
+     * @Vich\UploadableField(mapping="proveedor_image", fileNameProperty="img")
      * @Assert\NotBlank()
      * @var File
      */
@@ -132,6 +133,15 @@ class Foto
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getImg()
+    {
+        return $this->img;
+    }
+
 
 
 }

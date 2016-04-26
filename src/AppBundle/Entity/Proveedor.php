@@ -372,6 +372,23 @@ class Proveedor
     }
 
     /**
+     * @param mixed $fotos
+     */
+    public function setFotos($fotos)
+    {
+        $this->fotos = $fotos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFotos()
+    {
+        return $this->fotos;
+    }
+
+
+    /**
      * @Assert\Callback
      */
     public function validate(ExecutionContextInterface $context)
