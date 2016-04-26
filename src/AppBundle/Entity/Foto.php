@@ -9,9 +9,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FotoRepository")
+ * @Vich\Uploadable
  * @ORM\Table(name="fotos")
  */
 class Foto
@@ -24,19 +27,26 @@ class Foto
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="proveedor_logo", fileNameProperty="img")
+     * @Assert\NotBlank()
+     * @var File
      */
-    private $img_small;
+    private $imgFile;
+
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $img_large;
+    private $img;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
      */
-    private $img_thumb;
+    private $updatedAt;
 
     /**
     @ORM\ManyToOne(targetEntity="Proveedor",inversedBy="fotos")
@@ -100,51 +110,27 @@ class Foto
     }
 
     /**
-     * @param mixed $img_large
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Product
      */
-    public function setImgLarge($img_large)
+    public function setImg(File $image = null)
     {
-        $this->img_large = $img_large;
-    }
+        $this->img = $image;
 
-    /**
-     * @return mixed
-     */
-    public function getImgLarge()
-    {
-        return $this->img_large;
-    }
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
 
-    /**
-     * @param mixed $img_small
-     */
-    public function setImgSmall($img_small)
-    {
-        $this->img_small = $img_small;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImgSmall()
-    {
-        return $this->img_small;
-    }
-
-    /**
-     * @param mixed $img_thumb
-     */
-    public function setImgThumb($img_thumb)
-    {
-        $this->img_thumb = $img_thumb;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImgThumb()
-    {
-        return $this->img_thumb;
+        return $this;
     }
 
 

@@ -29,6 +29,9 @@ my_login:
 my_login_check:
     path:      /login_check
     defaults:  { _controller: MyUserBundle:Security:check, _method: POST }
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
 #wedding_login:
 #    path:      /wedding/login
 #    defaults:  { _controller: MyUserBundle:Security:login, _method: POST GET }
