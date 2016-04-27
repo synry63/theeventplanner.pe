@@ -1,0 +1,108 @@
+@font-face {
+    font-family: "Bebas Neue";
+    src: url(../fonts/BebasNeue_Regular.otf);
+}
+
+img
+{
+	display: block;
+	margin: 0;
+}
+
+
+.content_slider
+{
+	width: 100%;
+	overflow: hidden;
+}
+
+.gallery_content
+{
+	overflow: hidden;
+	margin-left: -180px;
+	font-family: "Bebas Neue";
+    font-weight: 500;
+}
+
+.gallery_item
+{
+	/*box-shadow: -2px -2px 20px rgba(0,0,0,.7);*/
+    box-sizing: border-box;
+	float: left;
+	overflow: hidden;
+	vertical-align: top;
+	margin-left: -2px;
+	-webkit-transition: width 500ms;
+	-moz-transition: width 500ms;
+	-o-transition: width 500ms;
+	transition: width 500ms;
+	-webkit-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+	-moz-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+	-ms-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+	transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+}
+
+.gallery_item img
+{
+	position: relative;
+	-webkit-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+	-moz-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+	-ms-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+	transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+}
+
+.gallery_item h1,.gallery_item a{
+    opacity: 0;
+    transition: all 1s;
+}
+.gallery_item:hover h1, .gallery_item:hover a{
+    opacity: 1;
+}
+
+
+.tittle_cat h1
+{
+    -webkit-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    -moz-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    -ms-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    position: absolute;
+    z-index: 100;
+    color: #fff;
+    font-size: 60px;
+    left: 220px;
+    top: 100px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+}
+
+.tittle_cat a
+{
+    -webkit-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    -moz-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    -ms-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    text-decoration: none;
+    border: solid 2px #fff;
+    padding: 5px;
+    width: 80px;
+    text-align: center;
+    position: absolute;
+    z-index: 200;
+    color: #fff;
+    font-size: 25px;
+    left: 240px;
+    top: 160px;
+}
+
+.sello img{
+    position: absolute;
+    z-index: 200;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, 0%);
+    filter: grayscale(100%);
+
+}
+

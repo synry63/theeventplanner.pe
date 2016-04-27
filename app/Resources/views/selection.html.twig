@@ -1,6 +1,48 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }} Selection Page {% endblock %}
 {% block body %}
-    <h1>hello word</h1>
-    <a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}">test </a>
+    <div class="content_slider">
+
+        <div class="gallery_content">
+            <div class="sello">
+                <img src="{{ asset('images/logo_sello.png') }}" alt="The event Planner">
+            </div>
+            <div class="gallery_item">
+                <div class="tittle_cat">
+                    <h1>Weedings</h1>
+                    <a href="{{ path('site_start', {'slug_site': 'wedding'}) }}">Ver más</a>
+                </div>
+
+                <img src="{{ asset('images/weddings3.jpg') }}" data-title="Weddings"/>
+            </div>
+            <div class="gallery_item">
+                <div class="tittle_cat">
+                <h1>Kids</h1>
+                <a href="{{ path('site_start', {'slug_site': 'kids'}) }}">Ver más</a>
+                </div>
+                <img src="{{ asset('images/kids2.jpg') }}" data-title="Kids"/>
+            </div>
+            <div class="gallery_item">
+                <div class="tittle_cat">
+                <h1>Party</h1>
+                <a href="{{ path('site_start', {'slug_site': 'party'}) }}">Ver más</a>
+                </div>
+                <img src="{{ asset('images/party.jpg') }}" data-title="Party"/>
+            </div>
+            <div class="gallery_item">
+                <div class="tittle_cat">
+                <h1>Dinner</h1>
+                <a href="{{ path('site_start', {'slug_site': 'dinner'}) }}">Ver más</a>
+                </div>
+                <img src="{{ asset('images/dinner2.jpg') }}" data-title="Dinner"/>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 {% endblock %}

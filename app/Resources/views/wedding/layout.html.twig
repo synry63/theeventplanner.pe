@@ -6,6 +6,12 @@
 {% endblock %}
 #}
 {% extends 'FOSUserBundle::layout.html.twig' %}
+{% block body %}
+    {% block main_title %}{% endblock %}
+    {{ parent() }}
+{% endblock %}
+
 {% block stylesheets %}
     <link href="{{ asset('css/wedding.css') }}" rel="stylesheet" />
 {% endblock %}
+
