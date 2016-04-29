@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "OpenSans-Bold";
+    src: url(../fonts/OpenSans-Bold.ttf);
+}
+@font-face {
+    font-family: "OpenSans-Regular";
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+@font-face {
+    font-family: "OpenSans-Light";
+    src: url(../fonts/OpenSans-Light.ttf);
+}
+
+.wrapper{
+    font-family: "OpenSans-Regular", serif;
+    font-size: 15px;
+    width: 1170px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.tittle_weddings{
+    text-align: center;
+}
+
+.tittle_weddings img{
+    width: 800px;
+}
+
+.header li{
+    display: inline-block;
+    padding: 0 25px;
+    font-family: "OpenSans-Light", serif;
+    text-transform: uppercase;
+}
+.header li a{
+    color: #cacaca;
+}
+
+.login{
+    float: right;
+    text-transform: uppercase;
+}
+.login a{
+    color: #35b3b4;
+    padding: 0 10px;
+}

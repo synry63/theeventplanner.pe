@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: "Bebas Neue";
     src: url(../fonts/BebasNeue_Regular.otf);
@@ -5,50 +6,50 @@
 
 img
 {
-	display: block;
-	margin: 0;
+    display: block;
+    margin: 0;
 }
 
 
 .content_slider
 {
-	width: 100%;
-	overflow: hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 .gallery_content
 {
-	overflow: hidden;
-	margin-left: -180px;
-	font-family: "Bebas Neue";
+    overflow: hidden;
+    margin-left: -180px;
+    font-family: "Bebas Neue";
     font-weight: 500;
 }
 
 .gallery_item
 {
-	/*box-shadow: -2px -2px 20px rgba(0,0,0,.7);*/
+    /*box-shadow: -2px -2px 20px rgba(0,0,0,.7);*/
     box-sizing: border-box;
-	float: left;
-	overflow: hidden;
-	vertical-align: top;
-	margin-left: -2px;
-	-webkit-transition: width 500ms;
-	-moz-transition: width 500ms;
-	-o-transition: width 500ms;
-	transition: width 500ms;
-	-webkit-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
-	-moz-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
-	-ms-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
-	transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+    float: left;
+    overflow: hidden;
+    vertical-align: top;
+    margin-left: -2px;
+    -webkit-transition: width 500ms;
+    -moz-transition: width 500ms;
+    -o-transition: width 500ms;
+    transition: width 500ms;
+    -webkit-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+    -moz-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+    -ms-transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
+    transform: translate3d(0, 0, 0) skew(-20deg, 0deg);
 }
 
 .gallery_item img
 {
-	position: relative;
-	-webkit-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
-	-moz-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
-	-ms-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
-	transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    position: relative;
+    -webkit-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    -moz-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    -ms-transform: translate3d(0, 0, 0) skew(20deg, 0deg);
+    transform: translate3d(0, 0, 0) skew(20deg, 0deg);
 }
 
 .gallery_item h1,.gallery_item a{
@@ -102,7 +103,78 @@ img
     left: 50%;
     width: 100%;
     transform: translate(-50%, 0%);
-    filter: grayscale(100%);
-
 }
+.content_slider_resp{
+    display: none;
+}
+
+@media only screen and (max-device-width : 667px) {
+
+    .content_slider{
+        display: none;
+    }
+    .content_slider_resp{
+        display: block;
+        font-family: "Bebas Neue";
+    }
+
+
+    .test{
+        display: block;
+        height: 450px;
+        padding: 10px;
+        text-align: center;
+        position: relative;
+
+    }
+    .test h1{
+        color: #fff;
+        font-size: 100px;
+        z-index: 200;
+        position: absolute;
+        bottom:90px;
+        right: 30px;
+        text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    }
+
+    .test:nth-child(2){
+        margin-top: 340px;
+        background: url("../images/weddings3.jpg") no-repeat center;
+        background-size: cover;
+    }
+    .test:nth-child(3){
+        background: url("../images/kids2.jpg") no-repeat center;
+        background-size: cover;
+    }
+    .test:nth-child(4){
+        background: url("../images/party.jpg") no-repeat center;
+        background-size: cover;
+    }
+    .test:nth-child(5){
+        background: url("../images/dinner2.jpg") no-repeat center;
+        background-size: cover;
+    }
+
+    .sello_top_resp{
+        width: 100%;
+        z-index: 200;
+        position: absolute;
+        top:0;
+    }
+    .sello_top_resp img{
+        width: 100%;
+    }
+
+    .sello_resp{
+        width: 100%;
+        position: absolute;
+        z-index: 300;
+        margin: -200px auto;
+    }
+    .sello_resp img{
+        width: 100%;
+    }
+}
+
+
 

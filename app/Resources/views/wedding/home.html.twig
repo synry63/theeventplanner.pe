@@ -1,11 +1,19 @@
 {% extends 'wedding/layout.html.twig' %}
 {% block main_title %}
-    ddd
+    <div class="tittle_weddings">
+        <img src="{{ asset('images/weddings_tittle.png') }}" alt="Weedings Tittle">
+    </div>
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+
     <h1>Home child start here2</h1>
+
+    <div>
+
+
+    </div>
     {{ dump(mejores_proveedores) }}
     <a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}">test 1</a>
 

@@ -1,8 +1,10 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+    <div class="wrapper">
 
-        <div>
+
+        <div class="login">
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
                 <a href="{{ path('fos_user_security_logout') }}">
@@ -27,7 +29,14 @@
 
         <div>
             {% block content %}
-                {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
+
+                <nav class="header">
+                    {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
+                </nav>
+
             {% endblock content %}
         </div>
+
+    </div>
+
 {% endblock body %}
