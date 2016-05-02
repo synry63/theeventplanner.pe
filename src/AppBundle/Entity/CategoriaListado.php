@@ -40,16 +40,13 @@ class CategoriaListado
     private $proveedores;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CategoriaListado", mappedBy="children")
+     * @ORM\ManyToOne(targetEntity="CategoriaListado", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
-    private $parents;
+    private $parent;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CategoriaListado", inversedBy="parents")
-     * @ORM\JoinTable(name="categorias",
-     *               joinColumns={@ORM\JoinColumn(name="parent_categoria_id", referencedColumnName="id")},
-     *               inverseJoinColumns={@ORM\JoinColumn(name="child_categoria_id", referencedColumnName="id")}
-     * )
+     * @ORM\OneToMany(targetEntity="CategoriaListado", mappedBy="parent")
      */
     private $children;
 
@@ -76,6 +73,8 @@ class CategoriaListado
      */
     public function getChildren()
     {
+
+
         return $this->children;
     }
 
@@ -144,19 +143,19 @@ class CategoriaListado
     }
 
     /**
-     * @param mixed $parents
+     * @param mixed $parent
      */
-    public function setParents($parents)
+    public function setParent($parent)
     {
-        $this->parents = $parents;
+        $this->parent = $parent;
     }
 
     /**
      * @return mixed
      */
-    public function getParents()
+    public function getParent()
     {
-        return $this->parents;
+        return $this->parent;
     }
 
     /**
@@ -195,7 +194,6 @@ class CategoriaListado
     public function __construct() {
         $this->proveedores = new ArrayCollection();
         $this->children = new ArrayCollection();
-        $this->parents = new ArrayCollection();
     }
 
 

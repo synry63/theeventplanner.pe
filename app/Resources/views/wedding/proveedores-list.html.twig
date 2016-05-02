@@ -4,7 +4,7 @@
     {{ parent() }}
 
     <h1>{{ dump(proveedores) }}</h1>
-    {{ dump(categorias_hijos[0]) }}
+    {{ dump(categorias_hijos) }}
 
     <form action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" method="get" class="form_sort" id="myForm">
         <span class="manage_title">Sort by:</span>

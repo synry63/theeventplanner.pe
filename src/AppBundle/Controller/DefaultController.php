@@ -35,6 +35,8 @@ class DefaultController extends Controller
     {
 
 
+
+
         $best_proveedores = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getBestProveedores($slug_site);
 
         $best_fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getBestFotos($slug_site);

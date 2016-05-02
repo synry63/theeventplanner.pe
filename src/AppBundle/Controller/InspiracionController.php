@@ -14,6 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 class InspiracionController extends Controller
 {
 
+    public function inspiracionesStartAction(){
+
+    }
+
     /**
      * @Route("/inspiraciones/{slug_type}/{page}",name="inspiraciones_type", defaults={"page" = 1}, requirements={
      *     "page": "\d+"

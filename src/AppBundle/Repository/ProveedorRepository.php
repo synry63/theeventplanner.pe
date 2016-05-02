@@ -20,6 +20,8 @@ class ProveedorRepository extends EntityRepository
 
         $em = $this->getEntityManager();
 
+
+
         $qb = $em->createQueryBuilder();
         $qb->select('p as proveedor,avg(cp.nota) as mymoy')
             ->from('AppBundle\Entity\Proveedor', 'p')

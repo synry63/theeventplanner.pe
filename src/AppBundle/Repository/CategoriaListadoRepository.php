@@ -19,6 +19,15 @@ class CategoriaListadoRepository extends EntityRepository
 
         return $weddingParentCategoria->getChildren();
     }
+    function getCategoriasChildrenManaged($categoria_parent){
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.parent = :cate_parent')
+            ->setParameter('cate_parent', $categoria_parent);
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
     /*function getCategoriasStructured(){
         $qb = $this->createQueryBuilder('c')
             ->where('i.type = :type')

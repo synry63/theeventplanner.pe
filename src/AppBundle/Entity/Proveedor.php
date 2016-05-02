@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
@@ -20,7 +21,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @Vich\Uploadable
  * @ORM\Table(name="proveedores")
  */
-class Proveedor
+class Proveedor implements UserInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -35,6 +36,26 @@ class Proveedor
     private $nombre;
 
     /**
+     * @ORM\Column(type="string", length=25, unique=true)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $password;
+
+    /**
+     *
+     */
+    private $plainPassword;
+
+    /**
+     * @ORM\Column(type="string", length=60, unique=true)
+     */
+    private $email;
+
+    /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $telefono;
@@ -42,8 +63,8 @@ class Proveedor
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="proveedor_logo", fileNameProperty="logo")
      * @Assert\NotBlank()
+     * @Vich\UploadableField(mapping="proveedor_logo", fileNameProperty="logo")
      * @var File
      */
     private $logoFile;
@@ -70,14 +91,24 @@ class Proveedor
      * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $web;
-    /**
-     * @ORM\Column(type="string",nullable=true, length=64)
-     */
-    private $email;
+
     /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $direccion;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    private $departamente;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    private $distrito;
+
+
+
 
     /**
      * @ORM\Column(type="text",nullable=true)
@@ -115,11 +146,89 @@ class Proveedor
      * @ORM\OneToMany(targetEntity="ComentarioProveedor", mappedBy="proveedor")
      */
     private $comentariosProveedor;
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
 
-    public $code;
+    /**
+     * @return mixed
+     */
+    public function getBanner()
+    {
+        return $this->banner;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDepartamente()
+    {
+        return $this->departamente;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDistrito()
+    {
+        return $this->distrito;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
 
 
     public function __construct() {
+        $this->isActive = true;
         $this->comentariosProveedor = new ArrayCollection();
         $this->productos = new ArrayCollection();
         $this->categoriasListado = new ArrayCollection();
@@ -386,8 +495,30 @@ class Proveedor
     {
         return $this->fotos;
     }
+    public function check_categorias_with($cates_total){
+        $this->code = array();
+        //var_dump($cates_total[0]->getNombre());
+        foreach ($cates_total as $key=>$cate){
+            $this->code[] = $cate->getNombre();
+            //$this->code[] = $cate;
+        }
+        //var_dump($this->code);
 
+    }
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+    public function getRoles()
+    {
+        return array('ROLE_PROVEEDOR');
+    }
+    public function eraseCredentials()
+    {
 
+    }
     /**
      * @Assert\Callback
      */
@@ -395,7 +526,7 @@ class Proveedor
     {
         //var_dump($this->categoriasListado);
         if(count($this->categoriasListado)==0){
-            $context->buildViolation('Can\'t be empty')
+            $context->buildViolation('Selecione un listado como minimo')
                 ->atPath('categoriasListado')
                 ->addViolation();
         }

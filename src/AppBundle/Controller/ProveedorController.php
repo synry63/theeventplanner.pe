@@ -25,27 +25,41 @@ class ProveedorController extends Controller
     {
 
         $proveedor = new Proveedor();
+        //$categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findAll();
 
-        $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'wedding'));
-        $out = array();
-        $out['wedding'] = $categoria->getChildren();
 
-//,array('data' => $categoria->getChildren()
+        //$proveedor->test($categoria);
+        $in = array();
+        $categorias = array();
+        // weddings
+        $categoria_wdding = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'wedding'));
+        $in['wedding'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_wdding);
+        // dinners
+        $categoria_dinner = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'dinner'));
+        $in['dinner'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_dinner);
+        // kids
+        $categoria_kids = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'kids'));
+        $in['kids'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_kids);
+        // party
+        $categoria_party = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'party'));
+        $in['party'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_party);
 
-        $form = $this->createForm(ProveedorType::class, $proveedor);
+        $form = $this->createForm(new ProveedorType($in), $proveedor);
 
         $form->handleRequest($request);
 
 
-        if ($form->isValid()) {
-            $data = $form->getData();
-            //var_dump($data->code);
-            //exit;
+        if ($form->isSubmitted() && $form->isValid()) {
+            //$data = $form->getData();
+            // 3) Encode the password (you could also do this via Doctrine listener)
+            $password = $this->get('security.password_encoder')
+                ->encodePassword($proveedor, $proveedor->getPlainPassword());
+            $proveedor->setPassword($password);
+
+            // 4) save the User!
             $em = $this->getDoctrine()->getManager();
             $em->persist($proveedor);
             $em->flush();
-            var_dump('here');
-            exit;
         }
 
         return $this->render(
@@ -64,6 +78,7 @@ class ProveedorController extends Controller
      */
     public function proveedoresAction($slug_site,$slug_category,$page)
     {
+
 
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_category));
         $main_categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));

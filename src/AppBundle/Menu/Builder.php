@@ -94,7 +94,7 @@ class Builder implements ContainerAwareInterface
                 'routeParameters' => array('slug_site' => 'wedding')
             )
         );
-        $menu['Inspiraciones']->addChild(
+        /*$menu['Inspiraciones']->addChild(
             'Fotos',array('route' => 'inspiraciones_type','routeParameters' => array('slug_type' => 'fotos')
         ));
         $menu['Inspiraciones']->addChild(
@@ -102,7 +102,7 @@ class Builder implements ContainerAwareInterface
         ));
         $menu['Inspiraciones']->addChild(
             'Noticias',array('route' => 'inspiraciones_type','routeParameters' => array('slug_type' => 'noticias')
-        ));
+        ));*/
 
 
         /*$children_categories =  $em->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('wedding');//$weddingParentCategoria->getChildren();
