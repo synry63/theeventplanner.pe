@@ -10,13 +10,8 @@
     font-family: "OpenSans-Light";
     src: url(../fonts/OpenSans-Light.ttf);
 }
-
-.wrapper{
-    font-family: "OpenSans-Regular", serif;
-    font-size: 15px;
-    width: 1170px;
-    margin: 0 auto;
-    padding: 10px;
+body{
+    overflow-x: hidden;
 }
 .tittle_weddings{
     text-align: center;
@@ -28,19 +23,76 @@
 
 .header li{
     display: inline-block;
-    padding: 0 25px;
     font-family: "OpenSans-Light", serif;
     text-transform: uppercase;
 }
 .header li a{
-    color: #cacaca;
+    color: rgba(0,0,0,.5);
 }
 
-.login{
-    float: right;
-    text-transform: uppercase;
-}
-.login a{
+.wedding-login li a{
     color: #35b3b4;
-    padding: 0 10px;
+}
+
+.descripcion{
+    font-family: "OpenSans-Light", serif;
+    padding: 10px;
+    color:rgba(0,0,0,.5);
+}
+.navbar-default{
+    background: none;
+    box-shadow: none;
+    border:none;
+}
+
+.slick_wedding div img{
+    /*width: 250px;*/
+    margin: 0 auto;
+}
+.footer{
+    font-family: "OpenSans-Light";
+    height: 140px;
+    padding: 20px;
+    background: #edeae6;
+    text-align: center;
+}
+.footer li{
+    display:inline-block;
+    text-align: center;
+    margin: 20px 5px;
+}
+.footer li a i{
+    width:25px;
+}
+.footer li a{
+    color: rgba(0,0,0,.5);
+    background: #fff;
+    font-size: 25px;
+    padding: 10px 15px;
+    border-radius: 100px;
+    transition: all .5s;
+}
+.footer li a:hover{
+    color: #6cf0da;
+}
+@media only screen and (max-width:700px){
+
+    .tittle_weddings img{
+        width: 100%;
+    }
+    .header li{
+        width: 100%;
+    }
+    .footer li a i{
+        width:20px;
+    }
+    .footer li a{
+        color: rgba(0,0,0,.5);
+        background: #fff;
+        font-size: 20px;
+        padding: 10px 15px;
+        border-radius: 100px;
+        transition: all .5s;
+    }
+
 }

@@ -1,21 +1,82 @@
 {% extends 'wedding/layout.html.twig' %}
 {% block main_title %}
-    <div class="tittle_weddings">
-        <img src="{{ asset('images/weddings_tittle.png') }}" alt="Weedings Tittle">
+
+    <div class="container">
+        <div class="row">
+            <div class="tittle_weddings">
+                <img src="{{ asset('images/weddings_tittle.png') }}" alt="Weedings Tittle">
+            </div>
+        </div>
     </div>
+
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
-
-    <h1>Home child start here2</h1>
-
-    <div>
-
-
+    <div class="container-fluid">
+        <div class="row">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <img src="{{ asset('images/banner.jpg') }}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('images/banner.jpg') }}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('images/banner.jpg') }}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('images/banner.jpg') }}" />
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    {{ dump(mejores_proveedores) }}
-    <a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}">test 1</a>
+
+    <div class="container text-center descripcion">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
+    </div>
+
+
+    <!--
+    <div class="container-fluid">
+        <div class="slick_wedding">
+
+            <div><img src="{{ asset('images/proveedores/logo/logo1.jpg') }}" alt=""></div>
+            <div><img src="{{ asset('images/proveedores/logo/logo2.jpg') }}" alt=""></div>
+            <div><img src="{{ asset('images/proveedores/logo/logo3.jpg') }}" alt=""></div>
+            <div><img src="{{ asset('images/proveedores/logo/logo4.jpg') }}" alt=""></div>
+            <div><img src="{{ asset('images/proveedores/logo/logo5.jpg') }}" alt=""></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="slick_wedding">
+            <div><img src="{{ asset('images/proveedores/fotos/foto1.jpg') }}" alt=""></div>
+            <div><img src="{{ asset('images/proveedores/fotos/foto2.jpg') }}" alt=""></div>
+            <div><img src="{{ asset('images/proveedores/fotos/foto3.jpg') }}" alt=""></div>
+            <div><img src="{{ asset('images/proveedores/fotos/foto4.jpg') }}" alt=""></div>
+            <div><img src="{{ asset('images/proveedores/fotos/foto5.jpg') }}" alt=""></div>
+        </div>
+    </div>-->
+
+    <div class="container-fluid">
+        <div class="slick_wedding">
+            {% for p in mejores_proveedores %}
+                <img src="{{ vich_uploader_asset(p.proveedor, 'logoFile')|imagine_filter('thumb') }}" alt="{{ p.proveedor.nombre }}" />
+            {% endfor %}
+
+        </div>
+    </div>
+
 
     {{ dump(mejores_fotos) }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 {% endblock %}

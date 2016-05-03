@@ -9,11 +9,25 @@
 {% block body %}
     {% block main_title %}{% endblock %}
     {{ parent() }}
+
+{% endblock %}
+
+{% block footer %}
+    {{ include('comun_includes/footer.html.twig')}}
 {% endblock %}
 
 {% block stylesheets %}
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 {% endblock %}
+
+
 

@@ -1,4 +1,16 @@
 {% extends 'wedding/layout.html.twig' %}
+{% block main_title %}
+
+    <div class="container">
+        <div class="row">
+            <div class="tittle_weddings">
+                <img src="{{ asset('images/proveedores_tittle.png') }}" alt="Proveedores Tittle">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
 {% block content %}
     {{ parent() }}
     {{ dump(categorias[0]) }}
