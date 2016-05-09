@@ -39,14 +39,15 @@ class Inspiracion
     private $nombre;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=100)
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
      */
-    private $img_small;
-
+    private $addedAt;
     /**
      * @ORM\Column(type="string",nullable=true, length=100)
      */
-    private $img_large;
+    private $imgLarge;
 
     /**
      * @ORM\Column(type="text",nullable=true,)
@@ -56,12 +57,12 @@ class Inspiracion
     /**
      * @ORM\Column(type="string",nullable=true, length=100)
      */
-    private $music_path;
+    private $musicPath;
 
     /**
      * @ORM\Column(type="string",nullable=true, length=100)
      */
-    private $video_path;
+    private $videoPath;
 
     /**
      * @ORM\OneToMany(targetEntity="ComentarioInspiracion", mappedBy="inspiracion")
@@ -103,11 +104,11 @@ class Inspiracion
     }
 
     /**
-     * @param mixed $img_large
+     * @param mixed $imgLarge
      */
-    public function setImgLarge($img_large)
+    public function setImgLarge($imgLarge)
     {
-        $this->img_large = $img_large;
+        $this->imgLarge = $imgLarge;
     }
 
     /**
@@ -115,40 +116,10 @@ class Inspiracion
      */
     public function getImgLarge()
     {
-        return $this->img_large;
+        return $this->imgLarge;
     }
 
-    /**
-     * @param mixed $img_small
-     */
-    public function setImgSmall($img_small)
-    {
-        $this->img_small = $img_small;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getImgSmall()
-    {
-        return $this->img_small;
-    }
-
-    /**
-     * @param mixed $music_path
-     */
-    public function setMusicPath($music_path)
-    {
-        $this->music_path = $music_path;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMusicPath()
-    {
-        return $this->music_path;
-    }
 
     /**
      * @param mixed $nombre
@@ -199,11 +170,27 @@ class Inspiracion
     }
 
     /**
-     * @param mixed $video_path
+     * @param mixed $musicPath
      */
-    public function setVideoPath($video_path)
+    public function setMusicPath($musicPath)
     {
-        $this->video_path = $video_path;
+        $this->musicPath = $musicPath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMusicPath()
+    {
+        return $this->musicPath;
+    }
+
+    /**
+     * @param mixed $videoPath
+     */
+    public function setVideoPath($videoPath)
+    {
+        $this->videoPath = $videoPath;
     }
 
     /**
@@ -211,8 +198,10 @@ class Inspiracion
      */
     public function getVideoPath()
     {
-        return $this->video_path;
+        return $this->videoPath;
     }
+
+
 
 
 }

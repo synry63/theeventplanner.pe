@@ -16,7 +16,7 @@ class ProveedorRepository extends EntityRepository
      * @param int $limit
      * @return mixed
      */
-    public function getBestProveedores($slug_parent_category,$limit = 5){
+    public function getBestProveedores($parent_category,$limit = 5){
 
         $em = $this->getEntityManager();
 
@@ -27,9 +27,9 @@ class ProveedorRepository extends EntityRepository
             ->from('AppBundle\Entity\Proveedor', 'p')
             ->join('p.comentariosProveedor','cp')
             ->join('p.categoriasListado','cl')
-            ->where('cl.slug = :slug')
+            ->where('cl.parent = :cate')
             ->setMaxResults( $limit )
-            ->setParameter('slug', $slug_parent_category);
+            ->setParameter('cate', $parent_category);
         $qb->addOrderBy('mymoy', 'DESC');
         $qb->addGroupBy('p');
         $query = $qb->getQuery();

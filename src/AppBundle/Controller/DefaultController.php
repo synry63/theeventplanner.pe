@@ -35,11 +35,11 @@ class DefaultController extends Controller
     {
 
 
+        $categoria_wedding = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
 
+        $best_proveedores = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getBestProveedores($categoria_wedding);
 
-        $best_proveedores = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getBestProveedores($slug_site);
-
-        $best_fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getBestFotos($slug_site);
+        $best_fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getBestFotos($categoria_wedding);
 
         $best_inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->getBestInspiraciones();
 

@@ -17,8 +17,8 @@ class FotoRepository extends EntityRepository
      * @param int $limit
      * @return mixed
      */
-    public function getBestFotos($slug,$limit = 5){
-        $qb = $this->createQueryBuilder('f')
+    public function getBestFotos($parent_category,$limit = 5){
+        /*$qb = $this->createQueryBuilder('f')
              ->select('f as foto, count(fu.foto) as number')
              ->join('f.users','fu')
              ->join('f.proveedor','fp')
@@ -27,6 +27,20 @@ class FotoRepository extends EntityRepository
              ->setMaxResults( $limit )
              ->setParameter('slug',$slug);
         $qb->addGroupBy('fu.foto');
+        $qb->addOrderBy('number', 'DESC');
+        $query = $qb->getQuery();
+        return $query->getResult();*/
+
+        $qb = $this->createQueryBuilder('f')
+            ->select('f as foto, count(fu.foto) as number')
+            ->join('f.users','fu')
+            ->join('f.proveedor','fp')
+            ->join('fp.categoriasListado','cl')
+            ->where('cl.parent = :cate')
+            ->setMaxResults( $limit )
+            ->setParameter('cate',$parent_category);
+        $qb->addGroupBy('foto');
+        $qb->addGroupBy('cl');
         $qb->addOrderBy('number', 'DESC');
         $query = $qb->getQuery();
         return $query->getResult();

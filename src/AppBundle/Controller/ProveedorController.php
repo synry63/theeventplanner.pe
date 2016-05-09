@@ -18,6 +18,42 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProveedorController extends Controller
 {
+
+    private  function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text))
+        {
+            return 'n-a';
+        }
+
+        return $text;
+    }
+    /**
+     * @Route("/negocio/registrar/validacion", name="register_validacion_negocio")
+     */
+    public function registerValidAction(Request $request){
+        return $this->render(
+            'temp.html.twig'
+        );
+    }
     /**
      * @Route("/negocio/registrar", name="register_negocio_start")
      */
@@ -52,14 +88,17 @@ class ProveedorController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             //$data = $form->getData();
             // 3) Encode the password (you could also do this via Doctrine listener)
+            $proveedor->setSlug($this->slugify($proveedor->getNombre()));
             $password = $this->get('security.password_encoder')
                 ->encodePassword($proveedor, $proveedor->getPlainPassword());
             $proveedor->setPassword($password);
 
-            // 4) save the User!
+            // 4) save the Proveedor !
             $em = $this->getDoctrine()->getManager();
             $em->persist($proveedor);
             $em->flush();
+
+            return $this->redirectToRoute('register_validacion_negocio');
         }
 
         return $this->render(

@@ -37,7 +37,7 @@ class ProveedorType extends AbstractType
         $builder->add('description');
         $builder->add('nombre');
         $builder->add('direccion');
-        $builder->add('departamente');
+        $builder->add('departamento');
         $builder->add('distrito');
         $builder->add('telefono');
         $builder->add('email', EmailType::class);

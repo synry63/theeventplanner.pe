@@ -13,9 +13,41 @@ use Symfony\Component\HttpFoundation\Request;
 
 class InspiracionController extends Controller
 {
-
+    /**
+     * @Route("/{slug_site}/inspiraciones/",name="inspiraciones_start",requirements={
+     *      "slug_site": "wedding|dinner|kids|party"
+     *
+     * })
+     */
     public function inspiracionesStartAction(){
+        return $this->render(
+            'wedding/inspiraciones-categorias.html.twig'
+        );
+    }
 
+    /**
+     * @Route("/{slug_site}/inspiraciones/fotos",name="inspiraciones_fotos",requirements={
+     *      "slug_site": "wedding|dinner|kids|party"
+     *
+     * })
+     */
+    public function inspiracionesFotosAction(){
+
+        return $this->render(
+            'wedding/inspiraciones-fotos.html.twig'
+        );
+    }
+    /**
+     * @Route("/{slug_site}/inspiraciones/musica",name="inspiraciones_music",requirements={
+     *      "slug_site": "wedding|dinner|kids|party"
+     *
+     * })
+     */
+    public function inspiracionesMusicAction(){
+
+        return $this->render(
+            'wedding/inspiraciones-music.html.twig'
+        );
     }
 
     /**

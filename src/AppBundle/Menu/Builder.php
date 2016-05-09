@@ -64,6 +64,7 @@ class Builder implements ContainerAwareInterface
     public function mainMenuWedding(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
         $em = $this->container->get('doctrine')->getManager();
 
         //$uri = $this->container->get('router')->generate('wedding_start');
@@ -84,8 +85,14 @@ class Builder implements ContainerAwareInterface
         //$menu['Proveedores']->setUri('#');
 
 
-        $menu->addChild('Inspiraciones');
-        $menu['Inspiraciones']->setUri('#');
+        $menu->addChild('inspiraciones',array(
+        'route' => 'inspiraciones_start',
+        'label' => 'Inspiraciones',
+        'routeParameters' => array('slug_site' => 'wedding'),
+
+            )
+        );
+        $menu['inspiraciones']->setLinkAttribute('class', 'external-link');
 
         //$uri = $this->container->get('router')->generate('wedding_contactenos');
         $menu->addChild('contactenos',array(

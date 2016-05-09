@@ -7,7 +7,9 @@
     {{ dump(proveedor.comentariosProveedor) }}
 
 
-    <img src="{{ vich_uploader_asset(proveedor.fotos[0], 'imgFile')|imagine_filter('thumb') }}" />
+    {#
+        <img src="{{ vich_uploader_asset(proveedor.fotos[0], 'imgFile')|imagine_filter('thumb') }}" />
+    #}
     {% for label, flashes in app.session.flashbag.all %}
         {% for flash in flashes %}
             <div class="alert alert-{{ label }}">

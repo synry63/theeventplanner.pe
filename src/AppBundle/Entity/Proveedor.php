@@ -100,7 +100,7 @@ class Proveedor implements UserInterface
     /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
-    private $departamente;
+    private $departamento;
 
     /**
      * @ORM\Column(type="string",nullable=true, length=64)
@@ -160,11 +160,27 @@ class Proveedor implements UserInterface
     }
 
     /**
+     * @param mixed $departamento
+     */
+    public function setDepartamento($departamento)
+    {
+        $this->departamento = $departamento;
+    }
+
+    /**
      * @return mixed
      */
-    public function getDepartamente()
+    public function getDepartamento()
     {
-        return $this->departamente;
+        return $this->departamento;
+    }
+
+    /**
+     * @param mixed $distrito
+     */
+    public function setDistrito($distrito)
+    {
+        $this->distrito = $distrito;
     }
 
     /**
@@ -174,6 +190,7 @@ class Proveedor implements UserInterface
     {
         return $this->distrito;
     }
+
 
     /**
      * @return mixed

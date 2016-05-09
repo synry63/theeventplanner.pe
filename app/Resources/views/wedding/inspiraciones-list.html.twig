@@ -4,9 +4,11 @@
 {% block content %}
     {{ parent() }}
     <h1>fdfsd</h1>
-    {{ dump(inspiraciones) }}
+    {#{{ dump(inspiraciones) }}#}
 
     <div class="navigation">
+        {#
         {{ knp_pagination_render(inspiraciones) }}
+        #}
     </div>
 {% endblock %}
