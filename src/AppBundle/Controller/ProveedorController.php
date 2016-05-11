@@ -19,7 +19,12 @@ use Symfony\Component\HttpFoundation\Request;
 class ProveedorController extends Controller
 {
 
-    private  function slugify($text)
+    /**
+     * @param $text
+     * @return mixed|string
+     * slugify a text
+     */
+    private function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
@@ -47,6 +52,68 @@ class ProveedorController extends Controller
         return $text;
     }
     /**
+     * @Route("/negocio/zona", name="negocio_zona")
+     */
+    public function zonaShowAction(Request $request){
+
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
+
+
+
+        return $this->render(
+            'temp.html.twig'
+        );
+    }
+    /**
+     * @Route("/negocio/zona/imagenes", name="negocio_zona_imagenes")
+     */
+    public function zonaImagenesShowAction(Request $request){
+        return $this->render(
+            'temp.html.twig'
+        );
+    }
+    /**
+     * @Route("/negocio/zona/cambiar-contrasena", name="negocio_zona_password")
+     */
+    public function zonaPasswordShowAction(Request $request){
+        return $this->render(
+            'temp.html.twig'
+        );
+    }
+    /**
+     * @Route("/negocio/zona/cambiar-perfile", name="negocio_zona_perfil")
+     */
+    public function zonaPerfildShowAction(Request $request){
+        return $this->render(
+            'temp.html.twig'
+        );
+    }
+
+    /**
+     * @Route("/negocio/login", name="login_negocio")
+     */
+    public function loginAction(Request $request){
+
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+
+        return $this->render(
+            'negocio/login.html.twig',
+            array(
+                // last username entered by the user
+                'last_username' => $lastUsername,
+                'error'         => $error,
+            )
+        );
+    }
+
+    /**
      * @Route("/negocio/registrar/validacion", name="register_validacion_negocio")
      */
     public function registerValidAction(Request $request){
@@ -62,7 +129,6 @@ class ProveedorController extends Controller
 
         $proveedor = new Proveedor();
         //$categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findAll();
-
 
         //$proveedor->test($categoria);
         $in = array();

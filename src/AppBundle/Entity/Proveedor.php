@@ -11,17 +11,21 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProveedorRepository")
  * @Vich\Uploadable
  * @ORM\Table(name="proveedores")
+ * @UniqueEntity(fields="email", message="Email already taken")
+ * @UniqueEntity(fields="username", message="Username already taken")
  */
-class Proveedor implements UserInterface
+class Proveedor implements AdvancedUserInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -245,7 +249,7 @@ class Proveedor implements UserInterface
 
 
     public function __construct() {
-        $this->isActive = true;
+        $this->isActive = false;
         $this->comentariosProveedor = new ArrayCollection();
         $this->productos = new ArrayCollection();
         $this->categoriasListado = new ArrayCollection();
@@ -530,7 +534,7 @@ class Proveedor implements UserInterface
     }
     public function getRoles()
     {
-        return array('ROLE_PROVEEDOR');
+        return array('ROLE_USER');
     }
     public function eraseCredentials()
     {
@@ -550,6 +554,25 @@ class Proveedor implements UserInterface
 
 
 
+    }
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
     }
 
 }

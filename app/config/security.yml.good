@@ -13,26 +13,14 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
-        proveedor_db_provider:
-            entity:
-                class: AppBundle:Proveedor
-                property: username
-                # if you're using multiple entity managers
-                # manager_name: customer
+        in_memory:
+            memory:
+                users:
+                    foo: { password: test }
 
     firewalls:
-        main_proveedor:
-            pattern: ^/negocio/.*
-            provider: proveedor_db_provider
-            anonymous: ~
-            form_login:
-                        login_path: login_negocio
-                        check_path: login_negocio
-            logout:
-                        path:   /negocio/logout
-                        target: /
         main:
-            pattern: ^/.*
+            pattern: ^/
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
@@ -52,8 +40,3 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/profile/, role: ROLE_USER }
-
-        - { path: ^/negocio/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/negocio/registrar, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/negocio/.*, role: ROLE_USER }
-

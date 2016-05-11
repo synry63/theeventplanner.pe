@@ -29,6 +29,13 @@ class Builder implements ContainerAwareInterface
 
         return $menu;
     }
+    public function menuNegocio(FactoryInterface $factory, array $options){
+        $menu = $factory->createItem('root');
+        $menu->addChild('Gestión de imagenes', array('route' => 'negocio_zona_imagenes'));
+
+        return $menu;
+
+    }
     public function menuProfile(FactoryInterface $factory, array $options){
         $menu = $factory->createItem('root');
         $menu->addChild('about-me',array(

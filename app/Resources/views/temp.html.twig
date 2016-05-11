@@ -1,1 +1,6 @@
 Temp File replace me !
+{{ knp_menu_render('AppBundle:Builder:menuNegocio',{ 'template': 'knp_menu.html.twig'}) }}
+
+{% if is_granted('ROLE_USER') %}
+    <a href="{{ path('negocio_logout') }}">logout</a>
+{% endif %}
