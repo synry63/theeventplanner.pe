@@ -34,6 +34,10 @@ body{
     color: #35b3b4;
 }
 
+.principal li a{
+    color: #C50051;
+}
+
 .descripcion{
     font-family: "OpenSans-Light", serif;
     padding: 10px;
@@ -72,8 +76,11 @@ body{
     border-radius: 100px;
     transition: all .5s;
 }
-.footer li a:hover{
+.wedding .footer li a:hover{
     color: #6cf0da;
+}
+.footer_principal .footer li a:hover{
+    color: #C50051;
 }
 .proveedores a{
     text-decoration: none;
@@ -97,28 +104,79 @@ body{
     width: 353px;
     transition: all .5s;
 }
-.search .input-group{
-    background: #00B1C9;
-    padding: 5px;
-    border-radius: 5px;
-}
 .filtroimg:hover{
     opacity:.5;
 }
 
-.search{
-    padding: 20px;
+
+.btn-tittle{
+    /*width: 500px;*/
+    background: none;
+    color: rgba(0,0,0,.5);
+    border: solid 5px #35b3b4;
+    border-radius: 10px 0 0 10px;
+}
+.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle){
+    border-radius: 0 10px 10px 0;
+}
+.btn-flecha{
+    background: #35b3b4;
+    border: solid 5px #35b3b4;
+    border-radius: 0 10px 10px 0;
 }
 
+.btn-flecha span{
+    color: #fff;
+}
+.categorias{
+    float: right;
+    padding: 20px 0;
+}
+
+
+.btn-entrar{
+    background: #C70052;
+    color: #fff;
+}
+
+.btn-entrar:hover{
+    color: rgba(255,255,255,.7);
+}
+
+.form-login{
+    padding-bottom: 20px;
+}
+
+.form-login label{
+    color:#C70052;
+}
+#grid i{
+    font-size: 25px;
+}
+.heart, .heart2{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #fff;
+    z-index: 200;
+    transition: all .5s;
+}
+.tittle_general img{
+    width: 800px;
+    margin: 0 auto;
+}
 @media only screen and (max-width:700px){
 
     .tittle_weddings img{
         width: 100%;
     }
+    .tittle_general img{
+        width: 100%;
+    }
     .header li{
         width: 100%;
     }
-    .footer li a i{
+    .wedding .footer li a i{
         width:20px;
     }
     .footer li a{

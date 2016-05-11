@@ -70,8 +70,15 @@
         </div>
     </div>
 
+    <div class="container-fluid">
+        <div class="slick_wedding">
+            {% for f in mejores_fotos %}
+                <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
+            {% endfor %}
 
-    {{ dump(mejores_fotos) }}
+        </div>
+    </div>
+
 
 {% endblock %}
 

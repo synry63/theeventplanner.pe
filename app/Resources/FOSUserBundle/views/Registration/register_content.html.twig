@@ -1,8 +1,61 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {novalidate: 'novalidate','class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'),
+    'attr': {novalidate: 'novalidate','class': 'fos_user_registration_register'}}) }}
+
+<div class="container form-login">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            {{ form_label(form.email,'Email') }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'Email'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.username,'Nombre de Usuario') }}
+            {{ form_errors(form.username) }}
+            {{ form_widget(form.username,{ 'attr': {'class': 'form-control','placeholder':'Username'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.plainPassword.first,'Contraseña') }}
+            {{ form_errors(form.plainPassword.first) }}
+            {{ form_widget(form.plainPassword.first,{ 'attr': {'class': 'form-control','placeholder':'Contraseña'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.plainPassword.second,'Repita Contraseña') }}
+            {{ form_errors(form.plainPassword.second) }}
+            {{ form_widget(form.plainPassword.second,{ 'attr': {'class': 'form-control','placeholder':'Repita Contraseña'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.nombres,'Nombres') }}
+            {{ form_errors(form.nombres) }}
+            {{ form_widget(form.nombres,{ 'attr': {'class': 'form-control','placeholder':'Carolina'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.apellidos,'Apellidos') }}
+            {{ form_errors(form.apellidos) }}
+            {{ form_widget(form.apellidos,{ 'attr': {'class': 'form-control','placeholder':'García'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.dni,'DNI') }}
+            {{ form_errors(form.dni) }}
+            {{ form_widget(form.dni,{ 'attr': {'class': 'form-control','placeholder':'73226378'}}) }}
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-entrar" value="{{ 'registration.submit'|trans }}" />
+        </div>
+
     </div>
+</div>
+
+
+
+
 {{ form_end(form) }}
+

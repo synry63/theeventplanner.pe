@@ -1,8 +1,10 @@
 $(document).ready(function(){
 	$('.gallery_content').createDiagonalSlider();
+
 	$('.flexslider').flexslider({
 		animation: "slide"
 	});
+
 	$('.slick_wedding').slick({
         arrows:true,
         autoplay:true,
@@ -39,4 +41,13 @@ $(document).ready(function(){
 			// instead of a settings object
 		]
 	});
+
+
+    new AnimOnScroll( document.getElementById( 'grid' ), {
+        minDuration : 0.4,
+        maxDuration : 0.7,
+        viewportFactor : 0.2
+    } );
+
+
 });

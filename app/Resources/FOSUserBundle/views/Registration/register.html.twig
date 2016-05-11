@@ -1,6 +1,20 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block content %}
+    {% block main_title %}
+
+        <div class="container">
+            <div class="row">
+                <div class="tittle_general">
+                    <img src="{{ asset('images/tittle_registrate.png') }}" alt="Proveedores Tittle">
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
     {{ parent() }}
-{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    <div class="container">
+        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    </div>
+
 {% endblock content %}

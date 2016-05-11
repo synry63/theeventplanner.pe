@@ -1,27 +1,93 @@
 {% extends 'FOSUserBundle::layout.html.twig' %}
 
+
 {% block content %}
+    {% block main_title %}
+
+        <div class="container">
+            <div class="row">
+                <div class="tittle_general">
+                    <img src="{{ asset('images/tittle_contactenos.png') }}" alt="Proveedores Tittle">
+                </div>
+            </div>
+        </div>
+    {% endblock %}
     {{ parent() }}
 
-    {% for label, flashes in app.session.flashbag.all %}
-        {% for flash in flashes %}
-            <div class="alert alert-{{ label }}">
-                {{ flash }}
-            </div>
-        {% endfor %}
-    {% endfor %}
+    <!--<div class="container">
+        <div class="col-md-8 col-md-offset-2">
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputName2">Nombre</label>
+                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Carolina García">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="carolina7@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">Asunto</label>
+                    <input type="text" class="form-control" id="exampleInputAsunto2" placeholder="Cotización">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Mensaje</label>
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Enviar</button>
+            </form>
+        </div>
+    </div>-->
 
-    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {#
-    <div>
+<div class="container form-login">
+    <div class="col-md-8 col-md-offset-2">
+        {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                <div class="alert alert-{{ label }}">
+                    {{ flash }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+
         {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-        <div>
+        {{ form_errors(form) }}
+
+        <div class="form-group">
             {{ form_label(form.name,'Nombre') }}
             {{ form_errors(form.name) }}
-            {{ form_widget(form.name) }}
+            {{ form_widget(form.name,{ 'attr': {'class': 'form-control','placeholder':'Carolina García'}}) }}
         </div>
 
+        <div class="form-group">
+            {{ form_label(form.email,'Email') }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.subject,'Asunto') }}
+            {{ form_errors(form.subject) }}
+            {{ form_widget(form.subject,{ 'attr': {'class': 'form-control','placeholder':'Cotización'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.message,'Mensaje') }}
+            {{ form_errors(form.message) }}
+            {{ form_widget(form.message,{ 'attr': {'class': 'form-control','placeholder':'Tu Mensaje'}}) }}
+        </div>
+
+
+        <div class="form-group">
+            {{ form_widget(form.send, { 'label': 'Enviar', 'attr':{'class':'btn btn-entrar'} } ) }}
+        </div>
+
+        {{ form_end(form) }}
+
     </div>
-    #}
+
+</div>
+
+
+
+
 
 {% endblock %}
