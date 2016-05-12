@@ -17,6 +17,13 @@ class FotoRepository extends EntityRepository
      * @param int $limit
      * @return mixed
      */
+    public function getProveedorFotos($proveedor){
+
+        $fotos = $this->findBy(array('proveedor'=>$proveedor));
+
+        return $fotos;
+
+    }
     public function getBestFotos($parent_category,$limit = 5){
         /*$qb = $this->createQueryBuilder('f')
              ->select('f as foto, count(fu.foto) as number')

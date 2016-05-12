@@ -9,7 +9,14 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\CategoriaListado;
+use AppBundle\Entity\Foto;
+use AppBundle\Entity\Logo;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Form\Type\FotoType;
+use AppBundle\Form\Type\LogoType;
+use AppBundle\Form\Type\ProveedorChangePasswordType;
+use AppBundle\Form\Type\ProveedorChangeLogoType;
+use AppBundle\Form\Type\ProveedorProfileType;
 use AppBundle\Form\Type\ProveedorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -58,34 +65,82 @@ class ProveedorController extends Controller
 
         $proveedor = $this->get('security.token_storage')->getToken()->getUser();
 
-
-
         return $this->render(
-            'temp.html.twig'
+            'negocio/zona-home.html.twig',array(
+                'proveedor'=>$proveedor
+
+            )
         );
     }
-    /**
-     * @Route("/negocio/zona/imagenes", name="negocio_zona_imagenes")
-     */
-    public function zonaImagenesShowAction(Request $request){
-        return $this->render(
-            'temp.html.twig'
-        );
-    }
+
     /**
      * @Route("/negocio/zona/cambiar-contrasena", name="negocio_zona_password")
      */
     public function zonaPasswordShowAction(Request $request){
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
+        $form = $this->createForm(new ProveedorChangePasswordType(), $proveedor);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $password = $this->get('security.password_encoder')
+                ->encodePassword($proveedor, $proveedor->getPlainPassword());
+            $proveedor->setPassword($password);
+
+            // 4) save the Proveedor !
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($proveedor);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Your password had change !');
+
+            return $this->redirectToRoute('negocio_zona_password');
+        }
+
         return $this->render(
-            'temp.html.twig'
+            'negocio/change-password.html.twig',
+            array('form' => $form->createView())
         );
     }
+
     /**
      * @Route("/negocio/zona/cambiar-perfile", name="negocio_zona_perfil")
      */
-    public function zonaPerfildShowAction(Request $request){
+    public function zonaPerfilShowAction(Request $request){
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
+
+        $in = array();
+        // weddings
+        $categoria_wdding = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'wedding'));
+        $in['wedding'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_wdding);
+        // dinners
+        $categoria_dinner = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'dinner'));
+        $in['dinner'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_dinner);
+        // kids
+        $categoria_kids = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'kids'));
+        $in['kids'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_kids);
+        // party
+        $categoria_party = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'party'));
+        $in['party'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_party);
+
+
+        $form = $this->createForm(new ProveedorProfileType($in), $proveedor);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // 4) save the Proveedor !
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($proveedor);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Your data had change !');
+
+            return $this->redirectToRoute('negocio_zona_perfil');
+        }
+
         return $this->render(
-            'temp.html.twig'
+            'negocio/profile.html.twig',
+            array('form' => $form->createView())
         );
     }
 
@@ -132,7 +187,6 @@ class ProveedorController extends Controller
 
         //$proveedor->test($categoria);
         $in = array();
-        $categorias = array();
         // weddings
         $categoria_wdding = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'wedding'));
         $in['wedding'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_wdding);
@@ -153,6 +207,26 @@ class ProveedorController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$data = $form->getData();
+            //$logo = new Logo();
+            //$logo->setLogoFile($temp_file);
+            $temp_file = $proveedor->getTempFile();
+            $logo = new Logo();
+            $logo->setLogoFile($temp_file);
+            $logo->setProveedor($proveedor);
+            $proveedor->setLogo($logo);
+
+            //$logo = $proveedor->getLogo();
+            //$logo->setProveedor($proveedor);
+
+
+
+            /*$temp_file = $proveedor->getLogo();
+            $logo = new Logo();
+            $logo->setLogoFile($temp_file);
+            $logo->setLogoName('test');
+            $proveedor->setLogo($logo);*/
+            //var_dump('here');
+            //exit;
             // 3) Encode the password (you could also do this via Doctrine listener)
             $proveedor->setSlug($this->slugify($proveedor->getNombre()));
             $password = $this->get('security.password_encoder')
@@ -162,6 +236,7 @@ class ProveedorController extends Controller
             // 4) save the Proveedor !
             $em = $this->getDoctrine()->getManager();
             $em->persist($proveedor);
+
             $em->flush();
 
             return $this->redirectToRoute('register_validacion_negocio');

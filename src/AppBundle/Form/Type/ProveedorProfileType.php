@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: pmary-game
- * Date: 4/18/16
- * Time: 9:35 AM
+ * Date: 5/12/16
+ * Time: 9:56 AM
  */
 namespace AppBundle\Form\Type;
 
@@ -20,11 +20,11 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class ProveedorType extends AbstractType
+class ProveedorProfileType extends AbstractType
 {
     private $categorias;
     public function __construct($categorias) {
-            $this->categorias = $categorias;
+        $this->categorias = $categorias;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -44,16 +44,6 @@ class ProveedorType extends AbstractType
         $builder->add('telefono');
         $builder->add('email', EmailType::class);
         $builder->add('username', TextType::class);
-        $builder->add('plainPassword', RepeatedType::class, array(
-            'type' => PasswordType::class,
-            'first_options'  => array('label' => 'Password'),
-            'second_options' => array('label' => 'Repeat Password'),
-            'constraints' => array(
-                new NotBlank(array('message' => 'Password should not be blank.')),
-
-            ),
-
-        ));
         /*$builder->add('categoriasListado', CategoriaListadoType::class,array(
             'multiple' => true,
             'expanded' => true,
@@ -89,12 +79,6 @@ class ProveedorType extends AbstractType
             /*'mapped' => true*/
         ));
         //$builder->add('logo', LogoType::class);
-        $builder->add('tempFile', 'file',array(
-            'constraints' => array(
-                new NotBlank(array('message' => 'File should not be blank.')),
-
-            ),
-        ));
 
         /*$builder->add('code', 'choice', array(
             //'class' => 'AppBundle:CategoriaListado',
@@ -110,7 +94,7 @@ class ProveedorType extends AbstractType
             'mapped' => false
 //            'data' => array('0','1')
          ));*/
-        $builder->add('Registrar', SubmitType::class);
+        $builder->add('Update', SubmitType::class);
     }
     /*public function getParent()
     {

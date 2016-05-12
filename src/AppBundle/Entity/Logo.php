@@ -2,24 +2,29 @@
 /**
  * Created by PhpStorm.
  * User: pmary-game
- * Date: 4/15/16
- * Time: 11:14 AM
+ * Date: 5/11/16
+ * Time: 6:55 PM
  */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\FotoRepository")
+ * @ORM\Entity
  * @Vich\Uploadable
- * @ORM\Table(name="fotos")
+ * @ORM\Table(name="logos")
  */
-class Foto
+class Logo
 {
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -30,16 +35,17 @@ class Foto
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="proveedor_image", fileNameProperty="img")
+     * @Vich\UploadableField(mapping="proveedor_logo", fileNameProperty="logoName")
      * @var File
      */
-    private $imgFile;
-
+    private $logoFile;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
-    private $img;
+    private $logoName;
 
     /**
      * @ORM\Column(type="datetime")
@@ -49,15 +55,35 @@ class Foto
     private $updatedAt;
 
     /**
-    @ORM\ManyToOne(targetEntity="Proveedor",inversedBy="fotos")
-    @ORM\JoinColumn(name="proveedor_id", referencedColumnName="id")
-     **/
+     * @ORM\OneToOne(targetEntity="Proveedor", inversedBy="logo")
+     * @ORM\JoinColumn(name="proveedor_id", referencedColumnName="id")
+     */
     private $proveedor;
 
     /**
-     * @ORM\OneToMany(targetEntity="FotoUserGusta", mappedBy="foto")
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Product
      */
-    private $users;
+    public function setLogoFile(File $image = null)
+    {
+
+
+        $this->logoFile = $image;
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
 
     /**
      * @param mixed $proveedor
@@ -76,88 +102,32 @@ class Foto
     }
 
     /**
-     * @param mixed $users
+     * @return File
      */
-    public function setUsers($users)
+    public function getLogoFile()
     {
-        $this->users = $users;
+        return $this->logoFile;
     }
 
     /**
-     * @return mixed
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     * @param string $imageName
      *
      * @return Product
      */
-    public function setImgFile(File $image = null)
+    public function setLogoName($imageName)
     {
-        $this->imgFile = $image;
-
-        if ($image) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime('now');
-        }
+        $this->logoName = $imageName;
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getImgFile()
+    public function getLogoName()
     {
-        return $this->imgFile;
+        return $this->logoName;
     }
-
-    /**
-     * @param mixed $img
-     */
-    public function setImg($img)
-    {
-        $this->img = $img;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImg()
-    {
-        return $this->img;
-    }
-
-
 
 
 }

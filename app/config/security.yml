@@ -28,6 +28,7 @@ security:
             form_login:
                         login_path: login_negocio
                         check_path: login_negocio
+                        default_target_path: negocio_zona
             logout:
                         path:   /negocio/logout
                         target: /

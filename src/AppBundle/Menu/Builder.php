@@ -31,8 +31,31 @@ class Builder implements ContainerAwareInterface
     }
     public function menuNegocio(FactoryInterface $factory, array $options){
         $menu = $factory->createItem('root');
-        $menu->addChild('Gestión de imagenes', array('route' => 'negocio_zona_imagenes'));
-
+        $menu->addChild('negocio-home',array(
+                'route' => 'negocio_zona',
+                'label' => 'Inicio',
+            )
+        );
+        $menu->addChild('negocio-password',array(
+                'route' => 'negocio_zona_password',
+                'label' => 'Cambiar contraseña',
+            )
+        );
+        $menu->addChild('negocio-imagenes',array(
+                'route' => 'negocio_zona_imagenes',
+                'label' => 'Gestión de imagenes',
+            )
+        );
+        $menu->addChild('negocio-logo',array(
+                'route' => 'negocio_zona_logo',
+                'label' => 'Cambiar logo',
+            )
+        );
+        $menu->addChild('negocio-datos',array(
+                'route' => 'negocio_zona_perfil',
+                'label' => 'Cambiar datos',
+            )
+        );
         return $menu;
 
     }
