@@ -53,12 +53,7 @@ class CategoriaListado
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $img_small;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $img_large;
+    private $imgSmall;
 
     /**
      * @param mixed $children
@@ -95,27 +90,11 @@ class CategoriaListado
     }
 
     /**
-     * @param mixed $img_large
-     */
-    public function setImgLarge($img_large)
-    {
-        $this->img_large = $img_large;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImgLarge()
-    {
-        return $this->img_large;
-    }
-
-    /**
      * @param mixed $img_small
      */
     public function setImgSmall($img_small)
     {
-        $this->img_small = $img_small;
+        $this->imgSmall = $img_small;
     }
 
     /**
@@ -123,7 +102,7 @@ class CategoriaListado
      */
     public function getImgSmall()
     {
-        return $this->img_small;
+        return $this->imgSmall;
     }
 
     /**

@@ -262,7 +262,7 @@ class ProveedorController extends Controller
 
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_category));
         $main_categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
-        $proveedores_category_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByCategory($main_categoria,$categoria);
+        $proveedores_category_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByCategory($categoria);
 
         $children_categories =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_category);
         $paginator  = $this->get('knp_paginator');
@@ -270,8 +270,8 @@ class ProveedorController extends Controller
         $pagination = $paginator->paginate(
             $proveedores_category_query,
             $page,
-            2,
-            array('wrap-queries'=>true)
+            2
+            //array('wrap-queries'=>true)
         );
 
         return $this->render(
@@ -292,7 +292,7 @@ class ProveedorController extends Controller
 
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_category));
         $main_categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
-        $proveedores_category_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByCategory($main_categoria,$categoria);
+        $proveedores_category_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByCategory($categoria);
 
         $children_categories =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_category);
         $paginator  = $this->get('knp_paginator');
