@@ -29,10 +29,19 @@ class Builder implements ContainerAwareInterface
 
         return $menu;
     }
-    public function menuNegocio(FactoryInterface $factory, array $options){
+    public function menuAdmin(FactoryInterface $factory, array $options){
         $menu = $factory->createItem('root');
         $menu->addChild('negocio-home',array(
                 'route' => 'negocio_zona',
+                'label' => 'Inicio',
+            )
+        );
+        return $menu;
+    }
+    public function menuNegocio(FactoryInterface $factory, array $options){
+        $menu = $factory->createItem('root');
+        $menu->addChild('negocio-home',array(
+                'route' => 'admin_start',
                 'label' => 'Inicio',
             )
         );

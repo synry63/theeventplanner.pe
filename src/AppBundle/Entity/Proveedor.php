@@ -87,6 +87,12 @@ class Proveedor implements AdvancedUserInterface, \Serializable
      */
     private $distrito;
 
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $registeredAt;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -227,13 +233,6 @@ class Proveedor implements AdvancedUserInterface, \Serializable
         $this->password = $password;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
 
     public function getPlainPassword()
     {
@@ -248,6 +247,7 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
     public function __construct() {
         $this->isActive = false;
+        $this->registeredAt = new \DateTime('now');
         $this->comentariosProveedor = new ArrayCollection();
         $this->productos = new ArrayCollection();
         $this->categoriasListado = new ArrayCollection();
@@ -540,6 +540,32 @@ class Proveedor implements AdvancedUserInterface, \Serializable
         return $this->isActive;
     }
 
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+
+    /**
+     * @param \DateTime $registeredAt
+     */
+    public function setRegisteredAt($registeredAt)
+    {
+        $this->registeredAt = $registeredAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getRegisteredAt()
+    {
+        return $this->registeredAt;
+    }
+
+
     /** @see \Serializable::serialize() */
     public function serialize()
     {
@@ -547,6 +573,7 @@ class Proveedor implements AdvancedUserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
+            $this->registeredAt
             // see section on salt below
             // $this->salt,
         ));
@@ -559,6 +586,7 @@ class Proveedor implements AdvancedUserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
+            $this->registeredAt
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized);
