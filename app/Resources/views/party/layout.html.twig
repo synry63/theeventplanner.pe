@@ -1,0 +1,56 @@
+{#
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+    {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
+{% endblock %}
+#}
+{% extends 'FOSUserBundle::layout.html.twig' %}
+{% block body %}
+
+    {% block main_title %}
+
+    {% endblock %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block footer %}
+    <div class="party">
+        {{ include('comun_includes/footer.html.twig')}}
+    </div>
+
+{% endblock %}
+
+{% block user_login %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}">
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    {% else %}
+        <ul class="wedding-login nav navbar-nav navbar-right">
+            <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+            <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+        </ul>
+
+    {% endif %}
+{% endblock user_login %}
+
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/component.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/default.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+{% endblock %}
+
+
+
