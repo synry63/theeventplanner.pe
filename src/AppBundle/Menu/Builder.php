@@ -18,7 +18,7 @@ class Builder implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
-    public  function testMenu(FactoryInterface $factory, array $options){
+    public function testMenu(FactoryInterface $factory, array $options){
         $menu = $factory->createItem('root');
 
         $menu->addChild('Home', array('route' => 'wedding_start',
@@ -34,6 +34,11 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('negocio-home',array(
                 'route' => 'negocio_zona',
                 'label' => 'Inicio',
+            )
+        );
+        $menu->addChild('negocios-lista',array(
+                'route' => 'admin_negocios',
+                'label' => 'Lista de negocios',
             )
         );
         return $menu;

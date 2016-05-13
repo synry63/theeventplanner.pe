@@ -38,6 +38,18 @@ class InspiracionController extends Controller
         );
     }
     /**
+     * @Route("/{slug_site}/inspiraciones/videos",name="inspiraciones_videos",requirements={
+     *      "slug_site": "wedding|dinner|kids|party"
+     *
+     * })
+     */
+    public function inspiracionesVideoAction(){
+
+        return $this->render(
+            'wedding/inspiraciones-video.html.twig'
+        );
+    }
+    /**
      * @Route("/{slug_site}/inspiraciones/musica",name="inspiraciones_music",requirements={
      *      "slug_site": "wedding|dinner|kids|party"
      *

@@ -2,10 +2,10 @@
 
 {% block content %}
     {{ parent() }}
-    <img src="{{ vich_uploader_asset(proveedor, 'logoFile')|imagine_filter('thumb') }}" alt="{{ proveedor.nombre }}" />
+    <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
 
+    {{ dump(proveedor) }}
     {{ dump(proveedor.comentariosProveedor) }}
-
 
     {#
         <img src="{{ vich_uploader_asset(proveedor.fotos[0], 'imgFile')|imagine_filter('thumb') }}" />

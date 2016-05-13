@@ -9,9 +9,11 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\CategoriaListado;
+use AppBundle\Entity\ComentarioProveedor;
 use AppBundle\Entity\Foto;
 use AppBundle\Entity\Logo;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Form\Type\ComentarioProveedorType;
 use AppBundle\Form\Type\FotoType;
 use AppBundle\Form\Type\LogoType;
 use AppBundle\Form\Type\ProveedorChangePasswordType;
@@ -287,7 +289,7 @@ class ProveedorController extends Controller
      *     "slug_site": "wedding|dinner|kids|party"
      * })
      */
-    public function proveedoresPagiAction($slug_site,$slug_category,$page)
+    /*public function proveedoresPagiAction($slug_site,$slug_category,$page)
     {
 
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_category));
@@ -311,7 +313,8 @@ class ProveedorController extends Controller
                 'categorias_hijos'=>$children_categories
             )
         );
-    }
+    }*/
+
     /**
      * @Route("/{slug_site}/proveedores/{slug_category}/{slug_proveedor}", name="proveedor_detail",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
@@ -331,7 +334,7 @@ class ProveedorController extends Controller
                 $comentarioProveedor = new ComentarioProveedor();
             }
 
-            $form = $this->createForm(ComentarioProveedorType::class, $comentarioProveedor);
+            $form = $this->createForm(new ComentarioProveedorType(), $comentarioProveedor);
 
             $form->handleRequest($request);
 
