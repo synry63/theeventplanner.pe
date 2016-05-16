@@ -1,9 +1,10 @@
 {% extends 'wedding/layout.html.twig' %}
+{% block title %}Proveedores{% endblock %}
 {% block main_title %}
 
     <div class="container">
         <div class="row">
-            <div class="tittle_weddings">
+            <div class="tittle_base">
                 <img src="{{ asset('images/proveedores_tittle.png') }}" alt="Proveedores Tittle">
             </div>
         </div>
@@ -21,11 +22,17 @@
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
+                    {% for c in categorias %}
+                        <li><a href="#">{{ c.nombre }}</a></li>
+                    {% endfor %}
+                    <!--
+                    <li><a href="#">Decoración</a></li>
+                    <li><a href="#">Limosinas</a></li>
+                    <li><a href="#">Flores</a></li>
+                    <li><a href="#">Fotografías</a></li>
+                    <li><a href="#">Buffet</a></li>
+                    <li><a href="#">Invitaciones</a></li>
+                    -->
                 </ul>
             </div>
     </div>
@@ -33,83 +40,19 @@
     <div class="container">
         <div class="proveedores row">
 
-            <div class="col-sm-6 col-md-4">
-                <a href="">
-                    <div class="thumbnail">
-                        <img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">
-                        <img src="{{ asset('images/alissa.jpg') }}" alt="Alissa">
-                        <div class="caption">
-                            <h3>ALISSA</h3>
+            {% for c in categorias %}
+                <div class="col-sm-6 col-md-4">
+                    <a href="">
+                        <div class="thumbnail">
+                            <img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">
+                            <img src="{{ asset('images/categorias/'~c.imgSmall)}}" alt="{{ c.nombre }}">
+                            <div class="caption">
+                                <h3>{{ c.nombre }}</h3>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-sm-6 col-md-4">
-                <a href="">
-                    <div class="thumbnail">
-                        <img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">
-                        <img src="{{ asset('images/limosinas.jpg') }}" alt="Limosinas">
-                        <div class="caption">
-                            <h3>LIMOSINAS</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-sm-6 col-md-4">
-                <a href="">
-                    <div class="thumbnail">
-                        <img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">
-                        <img src="{{ asset('images/flores.jpg') }}" alt="Flores">
-                        <div class="caption">
-                            <h3>FLORES</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-sm-6 col-md-4">
-                <a href="">
-                    <div class="thumbnail">
-                        <img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">
-                        <img src="{{ asset('images/fotogrfia.jpg') }}" alt="Fotografia">
-                        <div class="caption">
-                            <h3>FOTOGRAFÍAS</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-sm-6 col-md-4">
-                <a href="">
-                    <div class="thumbnail">
-                        <img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">
-                        <img src="{{ asset('images/buffet.jpg') }}" alt="Buffet">
-                        <div class="caption">
-                            <h3>BUFFET</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-sm-6 col-md-4">
-                <a href="">
-                    <div class="thumbnail">
-                        <img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">
-                        <img src="{{ asset('images/invitaciones.jpg') }}" alt="Invitaciones">
-                        <div class="caption">
-                            <h3>INVITACIONES</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-        </div>
+                    </a>
+                </div>
+            {% endfor %}
     </div>
 
-
-
-
-    {{ dump(categorias[0]) }}
 {% endblock %}

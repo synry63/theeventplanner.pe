@@ -1,3 +1,21 @@
-<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+{% extends 'wedding/layout.html.twig' %}
+{% block title %}Inspiraciones | Música{% endblock %}
 
-<iframe src="https://embed.spotify.com/?uri=spotify:track:5JunxkcjfCYcY7xJ29tLai" frameborder="0" allowtransparency="true"></iframe>
+{% block main_title %}
+
+    <div class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/tittle_inspiraciones.png') }}" alt="Inspiraciones Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+        <div class="container music-container"> 
+                <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12163228073%3Aplaylist%3A77jJUt6EGc07iV7VBwQj38" width="450" height="640" frameborder="0" allowtransparency="true"></iframe>
+
+        </div>
+{% endblock %}

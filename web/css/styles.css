@@ -13,14 +13,18 @@
 body{
     overflow-x: hidden;
 }
-.tittle_weddings{
+
+
+/*=============
+GLOBAL
+===============*/
+.tittle_base{
     text-align: center;
 }
 
-.tittle_weddings img{
+.tittle_base img{
     width: 800px;
 }
-
 .header li{
     display: inline-block;
     font-family: "OpenSans-Light", serif;
@@ -30,13 +34,6 @@ body{
     color: rgba(0,0,0,.5);
 }
 
-.wedding-login li a{
-    color: #35b3b4;
-}
-
-.principal li a{
-    color: #C50051;
-}
 
 .descripcion{
     font-family: "OpenSans-Light", serif;
@@ -53,6 +50,57 @@ body{
     /*width: 250px;*/
     margin: 0 auto;
 }
+
+.proveedores a{
+    text-decoration: none;
+}
+.proveedores h3{
+    text-align: center;
+    font-size: 15px;
+    margin: 0;
+    font-family: "OpenSans-Light", serif;
+}
+
+.filtroimg{
+    position: absolute;
+    opacity: 0;
+    width: 353px;
+    transition: all .5s;
+}
+.filtroimg:hover{
+    opacity:.5;
+}
+
+.btn-flecha span{
+    color: #fff;
+}
+.categorias{
+    float: right;
+    padding: 20px 0;
+}
+
+.heart, .heart2{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #fff;
+    z-index: 200;
+    transition: all .5s;
+}
+
+.music-container{
+    padding-bottom: 30px;
+    text-align: center;
+}
+.principal li a{
+    color: #C50051;
+}
+
+.tittle_general img{
+    width: 800px;
+    margin: 0 auto;
+}
+
 .footer{
     font-family: "OpenSans-Light";
     height: 140px;
@@ -76,64 +124,9 @@ body{
     border-radius: 100px;
     transition: all .5s;
 }
-.wedding .footer li a:hover{
-    color: #6cf0da;
-}
 .footer_principal .footer li a:hover{
     color: #C50051;
 }
-.proveedores a{
-    text-decoration: none;
-}
-.proveedores h3{
-    text-align: center;
-    font-size: 15px;
-    margin: 0;
-    font-family: "OpenSans-Light", serif;
-}
-
-.proveedores .thumbnail{
-    border: none;
-    box-shadow: none;
-    border-bottom: solid 3px #00B3C7;
-}
-
-.filtroimg{
-    position: absolute;
-    opacity: 0;
-    width: 353px;
-    transition: all .5s;
-}
-.filtroimg:hover{
-    opacity:.5;
-}
-
-
-.btn-tittle{
-    /*width: 500px;*/
-    background: none;
-    color: rgba(0,0,0,.5);
-    border: solid 5px #35b3b4;
-    border-radius: 10px 0 0 10px;
-}
-.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle){
-    border-radius: 0 10px 10px 0;
-}
-.btn-flecha{
-    background: #35b3b4;
-    border: solid 5px #35b3b4;
-    border-radius: 0 10px 10px 0;
-}
-
-.btn-flecha span{
-    color: #fff;
-}
-.categorias{
-    float: right;
-    padding: 20px 0;
-}
-
-
 .btn-entrar{
     background: #C70052;
     color: #fff;
@@ -153,21 +146,72 @@ body{
 #grid i{
     font-size: 25px;
 }
-.heart, .heart2{
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    color: #fff;
-    z-index: 200;
-    transition: all .5s;
-}
-.tittle_general img{
-    width: 800px;
-    margin: 0 auto;
-}
-@media only screen and (max-width:700px){
 
-    .tittle_weddings img{
+/*=============
+KIDS
+===============*/
+
+.kids .footer li a:hover{
+    color: #E26500;
+}
+
+
+/*=============
+PARTY
+===============*/
+
+
+
+
+/*=============
+ WEDDING
+===============*/
+
+
+.wedding-login li a{
+    color: #35b3b4;
+}
+.wedding .footer li a:hover{
+    color: #6cf0da;
+}
+.proveedores .thumbnail{
+    border: none;
+    box-shadow: none;
+    border-bottom: solid 3px #00B3C7;
+}
+.btn-tittle{
+    /*width: 500px;*/
+    background: none;
+    color: rgba(0,0,0,.5);
+    border: solid 5px #35b3b4;
+    border-radius: 10px 0 0 10px;
+}
+.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle){
+    border-radius: 0 10px 10px 0;
+}
+.btn-flecha{
+    background: #35b3b4;
+    border: solid 5px #35b3b4;
+    border-radius: 0 10px 10px 0;
+}
+/*=============
+DINNER
+===============*/
+
+
+
+
+
+
+/*=============
+MÓVILES PORTAIT
+===============*/
+
+@media only screen and (max-width:700px){
+    .music-container iframe{
+        width: 350px;
+    }
+    .tittle_base img{
         width: 100%;
     }
     .tittle_general img{
@@ -178,6 +222,12 @@ body{
     }
     .wedding .footer li a i{
         width:20px;
+    }
+    .footer_principal li a i{
+        width:20px;
+    }
+    .form-login{
+        padding: 30px 0;
     }
     .footer li a{
         color: rgba(0,0,0,.5);
