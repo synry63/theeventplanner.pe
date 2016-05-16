@@ -272,7 +272,7 @@ class ProveedorController extends Controller
         $pagination = $paginator->paginate(
             $proveedores_category_query,
             $page,
-            2
+            6
             //array('wrap-queries'=>true)
         );
 

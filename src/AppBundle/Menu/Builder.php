@@ -105,11 +105,127 @@ class Builder implements ContainerAwareInterface
 
         return $menu;
     }
+    public function mainMenu(FactoryInterface $factory, array $options){
+
+        $slug_site = $options['slug_site'];
+
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
+
+        $menu->addChild('home',array(
+                'route' => 'site_start',
+                'label' => 'Inicio',
+                'routeParameters' => array('slug_site' => $slug_site)
+
+            )
+        );
+        $menu->addChild('proveedores',array(
+                'route' => 'site_categorias',
+                'label' => 'Proveedores',
+                'routeParameters' => array('slug_site' => $slug_site)
+            )
+        );
+
+
+        $menu->addChild('inspiraciones',array(
+                'route' => 'inspiraciones_start',
+                'label' => 'Inspiraciones',
+                'routeParameters' => array('slug_site' => $slug_site),
+
+            )
+        );
+        $menu['inspiraciones']->setLinkAttribute('class', 'external-link');
+
+        //$uri = $this->container->get('router')->generate('wedding_contactenos');
+        $menu->addChild('contactenos',array(
+                'route' => 'site_contactenos',
+                'label' => 'Contactenos',
+                'routeParameters' => array('slug_site' => $slug_site)
+            )
+        );
+
+        return $menu;
+    }
+    public function mainMenuKids(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
+
+        $menu->addChild('home',array(
+                'route' => 'site_start',
+                'label' => 'Inicio',
+                'routeParameters' => array('slug_site' => 'kids')
+
+            )
+        );
+        $menu->addChild('proveedores',array(
+                'route' => 'site_categorias',
+                'label' => 'Proveedores',
+                'routeParameters' => array('slug_site' => 'kids')
+            )
+        );
+
+
+        $menu->addChild('inspiraciones',array(
+                'route' => 'inspiraciones_start',
+                'label' => 'Inspiraciones',
+                'routeParameters' => array('slug_site' => 'kids'),
+
+            )
+        );
+        $menu['inspiraciones']->setLinkAttribute('class', 'external-link');
+
+        //$uri = $this->container->get('router')->generate('wedding_contactenos');
+        $menu->addChild('contactenos',array(
+                'route' => 'site_contactenos',
+                'label' => 'Contactenos',
+                'routeParameters' => array('slug_site' => 'kids')
+            )
+        );
+
+        return $menu;
+    }
+    public function mainMenuParty(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
+
+        $menu->addChild('home',array(
+                'route' => 'site_start',
+                'label' => 'Inicio',
+                'routeParameters' => array('slug_site' => 'party')
+
+            )
+        );
+        $menu->addChild('proveedores',array(
+                'route' => 'site_categorias',
+                'label' => 'Proveedores',
+                'routeParameters' => array('slug_site' => 'party')
+            )
+        );
+
+
+        $menu->addChild('inspiraciones',array(
+                'route' => 'inspiraciones_start',
+                'label' => 'Inspiraciones',
+                'routeParameters' => array('slug_site' => 'party'),
+
+            )
+        );
+        $menu['inspiraciones']->setLinkAttribute('class', 'external-link');
+
+        //$uri = $this->container->get('router')->generate('wedding_contactenos');
+        $menu->addChild('contactenos',array(
+                'route' => 'site_contactenos',
+                'label' => 'Contactenos',
+                'routeParameters' => array('slug_site' => 'party')
+            )
+        );
+    }
     public function mainMenuWedding(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
-        $em = $this->container->get('doctrine')->getManager();
 
         //$uri = $this->container->get('router')->generate('wedding_start');
         $menu->addChild('home',array(

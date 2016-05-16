@@ -107,3 +107,8 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [300, 300], mode: outbound }
+
+knp_paginator:
+    template:
+        pagination: KnpPaginatorBundle:Pagination:foundation_v5_pagination.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
