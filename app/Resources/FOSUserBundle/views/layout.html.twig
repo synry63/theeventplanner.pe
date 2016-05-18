@@ -27,7 +27,10 @@
 
                     <div class="header collapse navbar-collapse">
 
+                        {% block menuprincipal %}
                             {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
+                        {% endblock menuprincipal %}
+
                             {% block user_login %}
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                     {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
@@ -53,6 +56,7 @@
 
 
 {% endblock body %}
+
 {% block footer %}
     <div class="footer_principal">
         {{ include('comun_includes/footer.html.twig')}}

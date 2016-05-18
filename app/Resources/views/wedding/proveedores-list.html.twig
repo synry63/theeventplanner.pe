@@ -1,23 +1,66 @@
-{% extends 'FOSUserBundle::layout.html.twig' %}
+{% extends 'wedding/layout.html.twig' %}
+{% block title %}Proveedores{% endblock %}
+{% block main_title %}
+
+    <div class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/proveedores_tittle.png') }}" alt="Proveedores Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
 
 {% block content %}
     {{ parent() }}
 
-    <h1>{{ dump(proveedores) }}</h1>
-    {{ dump(categorias_hijos) }}
+    <div class="container">
+        <div class="col-sm-6 col-md-12">
+            <form class="filtros_proveedores" action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" method="get" class="form_sort" id="myForm">
+                <span class="manage_title">Filtrar por:</span>
+                <select class="btn dropdown-toggle btn-default" id="sort_list" name="sort">
+                    <option value="p.id">Id</option>
+                    <option value="p.nombre">Nombre</option>
+                </select>
+                <select class="btn dropdown-toggle btn-default" id="sort_list" name="direction">
+                    <option value="desc">Descendiente</option>
+                    <option value="asc">Ascendente</option>
+                </select>
+                <input class="btn btn-default" type="submit" value="Filtrar">
+            </form>
+        </div>
 
-    <form action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" method="get" class="form_sort" id="myForm">
-        <span class="manage_title">Sort by:</span>
-        <select class="select_styled white_select" id="sort_list" name="sort">
-            <option value="p.id">id</option>
-            <option value="p.nombre">nombre</option>
-        </select>
-        <select class="select_styled white_select" id="sort_list" name="direction">
-            <option value="desc">desc</option>
-            <option value="asc">asc</option>
-        </select>
-        <input type="submit" value="Submit">
-    </form>
+        <div class="proveedores row">
+
+
+            {% for p in proveedores %}
+                <div class="col-sm-6 col-md-4">
+                    <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
+                        <div class="thumbnail">
+                            <!--<img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">-->
+                            <img src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                            <div class="caption">
+                                <h3>{{ p.nombre }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+
+
+        </div>
+
+        <div class="navigation">
+            {{ knp_pagination_render(proveedores) }}
+        </div>
+
+    </div>
+
+
+
+
     {#<table>
         <tr>
              sorting of properties based on query components
@@ -29,9 +72,8 @@
     </table>#}
 
  {#display navigation#}
-    <div class="navigation">
-        {{ knp_pagination_render(proveedores) }}
-    </div>
+
+
 
 
 {% endblock %}

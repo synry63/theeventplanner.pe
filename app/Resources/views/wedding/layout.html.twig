@@ -14,7 +14,9 @@
     {{ parent() }}
 
 {% endblock %}
-
+{% block menuprincipal %}
+    {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
+{% endblock menuprincipal %}
 {% block footer %}
     <div class="wedding">
         {{ include('comun_includes/footer.html.twig')}}
@@ -48,6 +50,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/slick.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 {% endblock %}

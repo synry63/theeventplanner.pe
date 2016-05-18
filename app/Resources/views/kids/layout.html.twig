@@ -14,7 +14,9 @@
     {{ parent() }}
 
 {% endblock %}
-
+{% block menuprincipal %}
+    {{ knp_menu_render('AppBundle:Builder:mainMenukids',{ 'template': 'knp_menu.html.twig'}) }}
+{% endblock menuprincipal %}
 {% block footer %}
     <div class="kids">
         {{ include('comun_includes/footer.html.twig')}}

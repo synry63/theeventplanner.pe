@@ -1,10 +1,16 @@
 $(document).ready(function(){
+
 	$('.gallery_content').createDiagonalSlider();
 
 	$('.flexslider').flexslider({
 		animation: "slide"
 	});
-
+	$('.flexslider2').flexslider({
+		animation: "slide",
+		controlNav: "thumbnails",
+		prevText: "Previous",
+		nextText: "Next"
+	});
 	$('.slick_wedding').slick({
         arrows:true,
         autoplay:true,
@@ -41,6 +47,16 @@ $(document).ready(function(){
 			// instead of a settings object
 		]
 	});
+
+    $("#rateYo").rateYo({
+        rating: 3.6,
+        ratedFill: "#35b3b4"
+    });
+
+    $("#rateYo2").rateYo({
+        rating: 3.6,
+        ratedFill: "#35b3b4"
+    });
 
 
     new AnimOnScroll( document.getElementById( 'grid' ), {

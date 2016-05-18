@@ -1,11 +1,11 @@
-{% extends 'wedding/layout.html.twig' %}
+{% extends 'kids/layout.html.twig' %}
 {% block title %}Proveedores{% endblock %}
 {% block main_title %}
 
     <div class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/proveedores_tittle.png') }}" alt="Proveedores Tittle">
+                <img src="{{ asset('images/prov_kids_tittle.png') }}" alt="Proveedores Tittle">
             </div>
         </div>
     </div>
@@ -25,6 +25,14 @@
                     {% for c in categorias %}
                         <li><a href="#">{{ c.nombre }}</a></li>
                     {% endfor %}
+                    <!--
+                    <li><a href="#">Decoración</a></li>
+                    <li><a href="#">Limosinas</a></li>
+                    <li><a href="#">Flores</a></li>
+                    <li><a href="#">Fotografías</a></li>
+                    <li><a href="#">Buffet</a></li>
+                    <li><a href="#">Invitaciones</a></li>
+                    -->
                 </ul>
             </div>
     </div>
@@ -34,7 +42,7 @@
 
             {% for c in categorias %}
                 <div class="col-sm-6 col-md-4">
-                    <a href="{{ path('proveedores_category', {'slug_site': 'wedding','slug_category': c.slug}) }}">
+                    <a href="">
                         <div class="thumbnail">
                             <img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">
                             <img src="{{ asset('images/categorias/'~c.imgSmall)}}" alt="{{ c.nombre }}">

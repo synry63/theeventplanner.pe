@@ -127,11 +127,11 @@ GLOBAL
 .footer_principal .footer li a:hover{
     color: #C50051;
 }
+
 .btn-entrar{
     background: #C70052;
     color: #fff;
 }
-
 .btn-entrar:hover{
     color: rgba(255,255,255,.7);
 }
@@ -140,11 +140,79 @@ GLOBAL
     padding-bottom: 20px;
 }
 
+
+#grid i{
+    font-size: 25px;
+}
+.navigation{
+    float: right;
+}
+
+.navigation .current a{
+    background: rgba(0,0,0,.3);
+    color: #fff;
+}
+.filtros_proveedores select{
+    width:120px;
+    height: 30px;
+}
+.filtros_proveedores{
+    float: right;
+}
+.manage_title{
+    padding: 0 10px;
+}
+
 .form-login label{
     color:#C70052;
 }
-#grid i{
-    font-size: 25px;
+
+.proveedor-info{
+    text-align: center;
+}
+
+#rateYo,#rateYo2{
+    margin: 0 auto;
+}
+
+.proveedor-info{
+    font-family: "OpenSans-Light", serif;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.1);
+}
+.links-proveedores a{
+    text-decoration: none;
+    padding: 0 10px;
+    font-size: 16px;
+}
+.sweddings .favorite-button{
+    text-decoration: none;
+}
+.favorite-button{
+    border: solid 1px;
+    font-family: "OpenSans-Light", serif;
+    font-size: 1.2em;
+    padding: 5px 10px;
+}
+
+.proveedor-social{
+    padding-top: 30px;
+}
+.proveedor-social ul{
+    float: right;
+    vertical-align: top;
+}
+.proveedor-social ul i{
+    font-size: 35px;
+}
+.proveedor-social li{
+    display: inline-block;
+    padding: 0 5px;
+}
+.proveedor-content{
+    text-align: center;
+    font-family: "OpenSans-Light", serif;
+    padding: 20px 0;
 }
 
 /*=============
@@ -152,7 +220,7 @@ KIDS
 ===============*/
 
 .kids .footer li a:hover{
-    color: #E26500;
+    color: #971ED1;
 }
 
 
@@ -168,11 +236,28 @@ PARTY
 ===============*/
 
 
+.lweddings a, .sweddings a{
+    color: #35b3b4;
+}
+
+
+.btn-coti{
+    margin: 10px 0;
+    font-style: normal;
+}
+.btn-wedding-entrar, .btn-coti{
+    background:#35b3b4;
+    color: #fff;
+}
+.form-wedding-login label{
+    color:#35b3b4;
+}
+
 .wedding-login li a{
     color: #35b3b4;
 }
 .wedding .footer li a:hover{
-    color: #6cf0da;
+    color: #35b3b4;
 }
 .proveedores .thumbnail{
     border: none;
@@ -193,6 +278,21 @@ PARTY
     background: #35b3b4;
     border: solid 5px #35b3b4;
     border-radius: 0 10px 10px 0;
+}
+
+.wedding_proveedores{
+    box-sizing: border-box;
+    margin: 5px;
+    text-align: center;
+    border-bottom:solid 3px #35b3b4;
+}
+.wedding_proveedores a{
+    text-decoration: none;
+}
+.wedding_proveedores h1{
+    text-align: center;
+    font-size: 15px;
+    font-family: "OpenSans-Light", serif;
 }
 /*=============
 DINNER
