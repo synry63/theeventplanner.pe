@@ -37,6 +37,30 @@ class ComentarioProveedor
      * @ORM\Column(type="text")
      */
     private $comentario;
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $adedAt;
+
+    /**
+     * @param \DateTime $adedAt
+     */
+    public function setAdedAt($adedAt)
+    {
+        $this->adedAt = $adedAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getAdedAt()
+    {
+        return $this->adedAt;
+    }
+
+
 
     /**
      * @param mixed $comentario

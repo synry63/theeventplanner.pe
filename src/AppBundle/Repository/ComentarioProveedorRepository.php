@@ -14,7 +14,9 @@ class ComentarioProveedorRepository extends EntityRepository
 {
     public function getAllComments($proveedor){
 
-        $result = $this->findBy(array('proveedor' => $proveedor));
+        $result = $this->findBy(array('proveedor' => $proveedor),
+                                array('adedAt' => 'DESC')
+        );
         return $result;
     }
 }

@@ -325,7 +325,7 @@ class ProveedorController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUser();
         $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
         $moy = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorRating($proveedor);
-        //$comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
+        $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
 
 
         if(is_object($user)){
@@ -359,6 +359,7 @@ class ProveedorController extends Controller
                 $slug_site.'/proveedores-detail.html.twig',array(
                     'proveedor'=>$proveedor,
                     'moy'=>$moy,
+                    'comentarios'=>$comments,
                     //'commentarios'=>$comments,
                     'form' => $form->createView()
                 )
@@ -368,7 +369,8 @@ class ProveedorController extends Controller
             return $this->render(
                 'wedding/proveedores-detail.html.twig',array(
                     'proveedor'=>$proveedor,
-                    'moy'=>$moy
+                    'moy'=>$moy,
+                    'comentarios'=>$comments
                     //'commentarios'=>$comments,
                 )
             );
@@ -376,4 +378,5 @@ class ProveedorController extends Controller
 
 
     }
+
 }
