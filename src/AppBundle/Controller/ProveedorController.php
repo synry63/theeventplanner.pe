@@ -316,11 +316,11 @@ class ProveedorController extends Controller
     }*/
 
     /**
-     * @Route("/{slug_site}/proveedores/{slug_category}/{slug_proveedor}", name="proveedor_detail",requirements={
+     * @Route("/{slug_site}/proveedor/{slug_proveedor}", name="proveedor_detail",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
      * })
      */
-    public function proveedorShowAction($slug_site,$slug_category,$slug_proveedor,Request $request){
+    public function proveedorShowAction($slug_site,$slug_proveedor,Request $request){
 
         $user = $this->container->get('security.context')->getToken()->getUser();
         $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
