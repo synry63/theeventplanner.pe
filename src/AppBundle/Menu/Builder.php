@@ -139,7 +139,7 @@ class Builder implements ContainerAwareInterface
         //$uri = $this->container->get('router')->generate('wedding_contactenos');
         $menu->addChild('contactenos',array(
                 'route' => 'site_contactenos',
-                'label' => 'Contactenos',
+                'label' => 'Contáctenos',
                 'routeParameters' => array('slug_site' => $slug_site)
             )
         );
@@ -178,7 +178,7 @@ class Builder implements ContainerAwareInterface
         //$uri = $this->container->get('router')->generate('wedding_contactenos');
         $menu->addChild('contactenos',array(
                 'route' => 'site_contactenos',
-                'label' => 'Contactenos',
+                'label' => 'Contáctenos',
                 'routeParameters' => array('slug_site' => 'kids')
             )
         );
@@ -217,7 +217,7 @@ class Builder implements ContainerAwareInterface
         //$uri = $this->container->get('router')->generate('wedding_contactenos');
         $menu->addChild('contactenos',array(
                 'route' => 'site_contactenos',
-                'label' => 'Contactenos',
+                'label' => 'Contáctenos',
                 'routeParameters' => array('slug_site' => 'party')
             )
         );
@@ -257,7 +257,7 @@ class Builder implements ContainerAwareInterface
         //$uri = $this->container->get('router')->generate('wedding_contactenos');
         $menu->addChild('contactenos',array(
                 'route' => 'site_contactenos',
-                'label' => 'Contactenos',
+                'label' => 'Contáctenos',
                 'routeParameters' => array('slug_site' => 'wedding')
             )
         );

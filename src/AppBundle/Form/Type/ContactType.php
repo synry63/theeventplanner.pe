@@ -29,7 +29,7 @@ class ContactType extends AbstractType
                     'pattern'     => '.{2,}' //minlength
                 ),
                 'constraints' => array(
-                    new NotBlank(array('message' => 'Name should not be blank.')),
+                    new NotBlank(array('message' => 'Recuerda ingresar tu nombre.')),
 
                 ),
 
@@ -40,8 +40,8 @@ class ContactType extends AbstractType
 
                 ),
                 'constraints' => array(
-                    new NotBlank(array('message' => 'Email should not be blank.')),
-                    new Email(array('message' => 'Invalid email address.'))
+                    new NotBlank(array('message' => 'Recuerda ingresar tu email.')),
+                    new Email(array('message' => 'Dirección de correo electrónico no válida.'))
 
                 ),
             ))
@@ -51,7 +51,7 @@ class ContactType extends AbstractType
                     'pattern'     => '.{3,}' //minlength
                 ),
                 'constraints' => array(
-                    new NotBlank(array('message' => 'Subject should not be blank.')),
+                    new NotBlank(array('message' => 'Recuerda ingresar el asunto de tu mensaje.')),
 
 
                 ),
@@ -63,7 +63,7 @@ class ContactType extends AbstractType
                     'placeholder' => 'And your message to me...'
                 ),
                 'constraints' => array(
-                    new NotBlank(array('message' => 'Message should not be blank.')),
+                    new NotBlank(array('message' => 'Recuerda ingresar tu mensaje.')),
 
 
                 ),
