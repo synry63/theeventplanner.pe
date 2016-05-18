@@ -36,6 +36,32 @@ class ProveedorRepository extends EntityRepository
 
         return $query->getResult();
     }
+    public function getProveedorRating($proveedor){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('avg(cp.nota) as mymoy')
+            ->from('AppBundle\Entity\Proveedor', 'p')
+            ->join('p.comentariosProveedor','cp')
+            ->where('p = :proveedor')
+            ->setParameter('proveedor', $proveedor);
+        $qb->addGroupBy('p');
+        $query = $qb->getQuery();
+
+        return $query->getSingleResult()['mymoy'];
+    }
+    public function getProveedorWithRating($proveedor_slug){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('p as proveedor,avg(cp.nota) as mymoy')
+            ->from('AppBundle\Entity\Proveedor', 'p')
+            ->join('p.comentariosProveedor','cp')
+            ->where('p.slug = :slug')
+            ->setParameter('slug', $proveedor_slug);
+        $qb->addGroupBy('p');
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
     public function getProveedoresOrderRecent(){
         $qb = $this->createQueryBuilder('p')
             ->orderBy('p.registeredAt', 'DESC');
