@@ -13,6 +13,7 @@ use AppBundle\Entity\ComentarioProveedor;
 use AppBundle\Entity\Foto;
 use AppBundle\Entity\Logo;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Entity\UserProveedorGusta;
 use AppBundle\Form\Type\ComentarioProveedorType;
 use AppBundle\Form\Type\FotoType;
 use AppBundle\Form\Type\LogoType;
@@ -328,54 +329,79 @@ class ProveedorController extends Controller
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
 
 
+        $renderOut = array(
+            'proveedor'=>$proveedor,
+            'moy'=>$moy,
+            'comentarios'=>$comments
+        );
+
         if(is_object($user)){
             $comentarioProveedor = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')
                 ->findOneBy(array('proveedor'=>$proveedor,'user'=>$user));
             if($comentarioProveedor==null){
                 $comentarioProveedor = new ComentarioProveedor();
+                $form = $this->createForm(new ComentarioProveedorType(), $comentarioProveedor);
+                $form->handleRequest($request);
+                if ($form->isValid()) {
+                    //$data = $form->getData();
+                    $comentarioProveedor->setUser($user);
+                    $comentarioProveedor->setProveedor($proveedor);
+                    //$comentarioProveedor->setNota($data->getNota());
+                    //$comentarioProveedor->setComentario($data->getComentario());
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($comentarioProveedor);
+                    $em->flush();
+
+                    $request->getSession()->getFlashBag()->add('success', 'Your comment is save !');
+
+                    //return $this->redirect($this->generateUrl('proveedor_detail'));
+                    //return $this->redirectToRoute('task_success');
+                    //$this->redirect($request->getReferer());
+                }
+                $renderOut['form'] = $form->createView();
             }
 
-            $form = $this->createForm(new ComentarioProveedorType(), $comentarioProveedor);
+            $userGustaProveedor = $this->getDoctrine()->getRepository('AppBundle:UserProveedorGusta')
+                ->findOneBy(array('proveedor'=>$proveedor,'user'=>$user));
 
-            $form->handleRequest($request);
+            $renderOut['favorito'] = $userGustaProveedor;
 
-            if ($form->isValid()) {
-                //$data = $form->getData();
-                $comentarioProveedor->setUser($user);
-                $comentarioProveedor->setProveedor($proveedor);
-                //$comentarioProveedor->setNota($data->getNota());
-                //$comentarioProveedor->setComentario($data->getComentario());
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($comentarioProveedor);
-                $em->flush();
-
-                $request->getSession()->getFlashBag()->add('success', 'Your comment is save !');
-
-                //return $this->redirect($this->generateUrl('proveedor_detail'));
-                //return $this->redirectToRoute('task_success');
-                //$this->redirect($request->getReferer());
-            }
             return $this->render(
-                $slug_site.'/proveedores-detail.html.twig',array(
-                    'proveedor'=>$proveedor,
-                    'moy'=>$moy,
-                    'comentarios'=>$comments,
-                    //'commentarios'=>$comments,
-                    'form' => $form->createView()
-                )
+                $slug_site.'/proveedores-detail.html.twig',$renderOut
             );
         }
         else{
             return $this->render(
-                'wedding/proveedores-detail.html.twig',array(
-                    'proveedor'=>$proveedor,
-                    'moy'=>$moy,
-                    'comentarios'=>$comments
-                    //'commentarios'=>$comments,
-                )
+                $slug_site.'/proveedores-detail.html.twig',$renderOut
             );
         }
+    }
+    /**
+     * @Route("/{slug_site}/proveedor/{slug_proveedor}/gusta", name="proveedor_me_gusta",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function updateGustaProveedorUserAction($slug_site,$slug_proveedor,Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if(is_object($user)){
+            $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
+            $userGustaProveedor = $this->getDoctrine()->getRepository('AppBundle:UserProveedorGusta')
+                ->findOneBy(array('proveedor'=>$proveedor,'user'=>$user));
 
+            $em = $this->getDoctrine()->getManager();
+            if($userGustaProveedor==NULL){
+                $userGustaProveedor = new UserProveedorGusta();
+                $userGustaProveedor->setUser($user);
+                $userGustaProveedor->setProveedor($proveedor);
+                $em->persist($userGustaProveedor);
+                $em->flush();
+            }
+            else{
+                $em->remove($userGustaProveedor);
+                $em->flush();
+            }
+            return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
+        }
 
     }
 

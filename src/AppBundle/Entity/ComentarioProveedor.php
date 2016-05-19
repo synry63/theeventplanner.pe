@@ -28,13 +28,20 @@ class ComentarioProveedor
 
 
 
-    /** @ORM\Column(type="integer")
+    /** @ORM\Column(type="decimal",precision=10,scale=2)
      *  @Assert\NotBlank()
+     *  @Assert\GreaterThan(
+     *     value = 0
+     *  )
+     *  @Assert\LessThanOrEqual(
+     *     value = 5
+     * )
      **/
     private $nota;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $comentario;
     /**

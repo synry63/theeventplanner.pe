@@ -80,5 +80,8 @@ class UserProveedorGusta
     {
         return $this->user;
     }
+    public function __construct() {
+        $this->updatedAt = new \DateTime('now');
+    }
 
 }

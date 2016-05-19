@@ -96,12 +96,16 @@ class Builder implements ContainerAwareInterface
                 'label' => 'Mis Comentarios',
             )
         );
-        $menu->addChild('show-favoritos',array(
-                'route' => 'show_user_favoritos',
-                'label' => 'Mis Favoritos',
+        $menu->addChild('show-favoritos-fotos',array(
+                'route' => 'show_user_favoritos_fotos',
+                'label' => 'Mis Fotos Favoritas',
             )
         );
-
+        $menu->addChild('show-favoritos-proveedores',array(
+                'route' => 'show_user_favoritos_proveedores',
+                'label' => 'Mis Proveedores Favoritos',
+            )
+        );
 
         return $menu;
     }

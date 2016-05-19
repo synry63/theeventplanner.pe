@@ -88,19 +88,40 @@ class DefaultController extends Controller
 
     }
     /**
-     * @Route("/profile/favoritos", name="show_user_favoritos")
+     * @Route("/profile/fotos-favoritas", name="show_user_favoritos_fotos")
      */
-    public function userFavoritosShowAction(){
+    public function userFavoritosFotosShowAction(){
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-
+        $fotos = $this->getDoctrine()->getRepository('AppBundle:FotoUserGusta')
+            ->findBy(
+                    array('user'=>$user),
+                    array('updatedAt'=>'DESC')
+        );
         return $this->render(
             'FOSUserBundle:Profile:show_favoritos.html.twig',
             array(
-                'fotos_proveedor_favoritas'=>$user->getFotos(),
+                'fotos_proveedor_favoritas'=>$fotos,
             )
         );
+    }
+    /**
+     * @Route("/profile/proveedores-favoritos", name="show_user_favoritos_proveedores")
+     */
+    public function userFavoritosProveedoresShowAction(){
 
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $proveedores = $this->getDoctrine()->getRepository('AppBundle:UserProveedorGusta')
+            ->findBy(
+                array('user'=>$user),
+                array('updatedAt'=>'DESC')
+            );
+        return $this->render(
+            'FOSUserBundle:Profile:show_favoritos.html.twig',
+            array(
+                'fotos_proveedor_favoritas'=>$proveedores,
+            )
+        );
     }
     /**
      * @Route("/{slug_site}/contactenos", name="site_contactenos",requirements={
