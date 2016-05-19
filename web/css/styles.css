@@ -171,10 +171,18 @@ GLOBAL
     text-align: center;
 }
 
-#rateYo,#rateYo2{
+#rateYo,#rateYo2,#rateYo3{
     margin: 0 auto;
 }
-
+#rateYo2{
+    margin: 15px auto;
+}
+.media-left{
+    text-align: center;
+}
+#rateYo3{
+    margin: 10px auto;
+}
 .proveedor-info{
     font-family: "OpenSans-Light", serif;
     padding: 10px;
@@ -213,6 +221,49 @@ GLOBAL
     text-align: center;
     font-family: "OpenSans-Light", serif;
     padding: 20px 0;
+}
+.comments-box{
+    padding: 30px;
+}
+.comments-box .media-heading .date{
+    padding: 0 10px;
+}
+.flexslider2 img{
+    width: 100%;
+}
+.logo_header{
+    float: left;
+}
+.user-login{
+    background: none;
+    border: none;
+    border-radius: 50%;
+}
+
+.btn-login{
+    float: right;
+}
+.btn-login span{
+    padding: 0 10px;
+}
+.user-login:focus{
+    outline: none;
+}
+.dropdown-user{
+    position: absolute;
+    top: 60px;
+    left: -200px;
+    padding: 10px;
+}
+.dropdown-user a{
+    color: #fff;
+    text-decoration: none;
+}
+.dropdown-user button{
+    margin: 10px 0;
+}
+.named{
+    padding-left: 40px;
 }
 
 /*=============

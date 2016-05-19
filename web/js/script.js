@@ -8,8 +8,7 @@ $(document).ready(function(){
 	$('.flexslider2').flexslider({
 		animation: "slide",
 		controlNav: "thumbnails",
-		prevText: "Previous",
-		nextText: "Next"
+
 	});
 	$('.slick_wedding').slick({
         arrows:true,
@@ -48,18 +47,40 @@ $(document).ready(function(){
 		]
 	});
 
+    var test=$("#rateYo").attr("data-rating");
+
+    var test3=$(".rateYo3").attr("data-rating3");
+
     $("#rateYo").rateYo({
-        rating: 3.6,
-        ratedFill: "#35b3b4"
+        rating: test,
+        ratedFill: "#35b3b4",
+		readOnly: true
     });
 
     $("#rateYo2").rateYo({
-        rating: 3.6,
-        ratedFill: "#35b3b4"
+        rating: 3.5,
+        starWidth: "60px",
+        ratedFill: "#35b3b4",
     });
 
 
-    new AnimOnScroll( document.getElementById( 'grid' ), {
+	/*$(".rateYo3").rateYo({
+		rating: test3,
+		starWidth: "20px",
+        readOnly: true,
+		ratedFill: "#35b3b4"
+	});*/
+    $( ".rateYo_comments" ).each(function( index ) {
+        $(this).rateYo({
+            rating: $(this).attr("data-rating"),
+            starWidth: "20px",
+            readOnly: true,
+            ratedFill: "#35b3b4"
+        });
+    });
+
+
+	new AnimOnScroll( document.getElementById( 'grid' ), {
         minDuration : 0.4,
         maxDuration : 0.7,
         viewportFactor : 0.2

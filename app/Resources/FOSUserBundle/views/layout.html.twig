@@ -26,14 +26,19 @@
                     </div>
 
                     <div class="header collapse navbar-collapse">
-
+                        <a href="{{ path('selection_start') }}">
+                            <span class="logo_header">
+                                <img src="{{ asset('images/logo_header.png') }}" alt="The event Planner">
+                            </span>
+                        </a>
                         {% block menuprincipal %}
+
                             {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
                         {% endblock menuprincipal %}
 
                             {% block user_login %}
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
                                     <a href="{{ path('fos_user_security_logout') }}">
                                         {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                                     </a>

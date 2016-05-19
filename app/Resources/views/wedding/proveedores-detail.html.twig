@@ -15,21 +15,15 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-8">
+            <div class="col-sm-12 col-md-8">
                 <div class="flexslider2">
                     <ul class="slides">
-                        <li data-thumb="http://placehold.it/198x120">
-                            <img src="http://placehold.it/750x450" />
-                        </li>
-                        <li data-thumb="http://placehold.it/198x120">
-                            <img src="http://placehold.it/750x450" />
-                        </li>
-                        <li data-thumb="http://placehold.it/198x120">
-                            <img src="http://placehold.it/750x450" />
-                        </li>
-                        <li data-thumb="http://placehold.it/198x120">
-                            <img src="http://placehold.it/750x450" />
-                        </li>
+                        {% for f in proveedor.fotos  %}
+                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+                            </li>
+                        {% endfor %}
+
                     </ul>
                 </div>
             </div>
@@ -37,7 +31,7 @@
                 <div class="proveedor-info">
                     <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
 
-                    <div id="rateYo"></div>
+                    <div id="rateYo"  data-rating="{{ moy }}"></div>
 
                     <a href="mailto:javierdia91@gmail.com"><button type="button" class="btn btn-coti">Contactar Empresa</button></a>
                     <br>
@@ -48,12 +42,20 @@
                     </div>
                 </div>
                 <div class="proveedor-social sweddings">
-                        <a class="favorite-button" href=""><i class="fa fa-heart-o" aria-hidden="true"></i> Favorito</a>
+                        {% if app.user is not null %}
+
+                            {% if favorito is not null%}
+                                <a class="favorite-button" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart" aria-hidden="true"></i> Favorito</a>
+                            {% else %}
+                                <a class="favorite-button" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i> Favorito</a>
+                            {% endif %}
+                        {% endif %}
+
+
                         <ul>
                             <li ><a style="color:#3b5998" href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
                             <li ><a style="color:#cd2027" href="#"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a></li>
                             <li ><a style="color:#55acee" href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
-                            <li ><a style="color:#000" href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
                             </li>
                         </ul>
                 </div>
@@ -63,89 +65,77 @@
 
         <p class="proveedor-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
 
-        <div class="rating-principal">
-
-        </div>
-        <div id="rateYo2"></div>
 
 
         <div class="comments-box">
-            <h4 class="title-heading">COMMENTS <span>(3)</span></h4>
+            <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
 
-            <div class="media comment">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="img-circle" alt="" src="http://placehold.it/100x100">
-                    </a>
+            {% for p in comentarios %}
+                <div class="media comment">
+                    <div class="media-left">
+                        <img class="img-circle" alt="" src="{{ asset('images/user_icon.png') }}">
+
+                        <div class="rateYo_comments" data-rating="{{ p.nota }}"></div>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading"><span>{{ p.user }}</span><small class="date">{{ p.adedAt|date("d F, Y") }}</small>
+                        </h5>
+                        {{ p.comentario }}
+                    </div>
                 </div>
-                <div class="media-body">
-                    <h5 class="media-heading">Post By : <span>Jonny Doel</span><small class="date">Feb 24, 2015</small>
-                    </h5>
-                    We create video templates with After effect, video display, video promotion promo, slideshow, and all about video. We trust, good video is good marketing.
-                </div>
-            </div>
-            <div class="media reply-comment">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="img-circle" alt="" src="http://placehold.it/100x100">
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h5 class="media-heading">Post By : <span>Jonny Doel</span><small class="date">Feb 24, 2015</small>
-                    </h5>
-                    We create and design a website templates with Adobe Muse. We give the best for our template with clean design, neat and content useful.
-                </div>
-            </div>
-            <div class="media comment">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="img-circle" alt="" src="http://placehold.it/100x100">
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h5 class="media-heading">Post By : <span>Jonny Doel</span><small class="date">Feb 24, 2015</small>
-                    </h5>
-                    We create video templates with After effect, video display, video promotion promo, slideshow, and all about video. We trust, good video is good marketing.
-                </div>
-            </div>
+            {% endfor %}
+
 
         </div>
 
-        <div class="leave-comment-box">
-            <h4 class="title-heading">LEAVE COMMENTS</h4>
-            <form action="#" class="form-comment">
-                <div class="row">
-                    <div class="col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" value="" class="inputtext form-control" placeholder="Enter Name">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" value="" class="inputtext form-control" placeholder="Enter Email">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-12">
-                        <div class="form-group">
-                            <textarea id="message" name="message" class="inputtext form-control" rows="6" placeholder="Enter Your Message..."></textarea>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-12">
-                        <div class="form-group">
-                            <button id="send" type="submit" class="btn btn-default">SUBMIT COMMENT</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+        {% if app.user is not null %}
 
-        </div>
+
+            <div class="leave-comment-box">
+                <h4 class="title-heading">Escribe tu comentario</h4>
+                <form action="#" class="form-comment">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-md-6">
+                            <div id="rateYo2"></div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <textarea id="message" name="message" class="inputtext form-control" rows="6" placeholder="Escribe tu comentario..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button id="send" type="submit" class="btn btn-default">Enviar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        {% else %}
+
+            <p>
+                <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
+                ó
+                <a href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
+                para poder comentar
+            </p>
+
+        {% endif %}
+
+
+
 
     </div>
 
-
     {{ dump(proveedor) }}
-    {{ dump(proveedor.comentariosProveedor) }}
     {{ dump(moy) }}
+
+    {{ dump(comentarios) }}
+
+
+
 
     {#
         <img src="{{ vich_uploader_asset(proveedor.fotos[0], 'imgFile')|imagine_filter('thumb') }}" />

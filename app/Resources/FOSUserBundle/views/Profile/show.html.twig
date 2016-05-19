@@ -2,6 +2,7 @@
 
 {% block content %}
     {{ parent() }}
+    <h1>toto</h1>
     {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
     {% include "FOSUserBundle:Profile:show_content.html.twig" %}
 {% endblock content %}
