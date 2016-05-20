@@ -15,18 +15,18 @@
 
 {% block content %}
     {{ parent() }}
-
+    {% set direction = proveedores.getDirection() %}
     <div class="container">
         <div class="col-sm-6 col-md-12">
             <form class="filtros_proveedores" action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" method="get" class="form_sort" id="myForm">
                 <span class="manage_title">Filtrar por:</span>
                 <select class="btn dropdown-toggle btn-default" id="sort_list" name="sort">
-                    <option value="p.id">Id</option>
-                    <option value="p.nombre">Nombre</option>
+                    <option {% if proveedores.isSorted('p.registeredAt') %} selected {% endif %} value="p.registeredAt">Fecha</option>
+                    <option {% if proveedores.isSorted('p.nombre') %} selected {% endif %} value="p.nombre">Nombre</option>
                 </select>
                 <select class="btn dropdown-toggle btn-default" id="sort_list" name="direction">
-                    <option value="desc">Descendiente</option>
-                    <option value="asc">Ascendente</option>
+                    <option {% if direction=='desc' %} selected {% endif %} value="desc">Descendiente</option>
+                    <option {% if direction=='asc' %} selected {% endif %} value="asc">Ascendente</option>
                 </select>
                 <input class="btn btn-default" type="submit" value="Filtrar">
             </form>
