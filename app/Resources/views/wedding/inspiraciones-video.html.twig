@@ -1,1 +1,29 @@
-hello videos
+{% extends 'wedding/layout.html.twig' %}
+{% block title %}Inspiraciones | Videos{% endblock %}
+
+{% block main_title %}
+
+    <div class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/tittle_inspiraciones.png') }}" alt="Inspiraciones Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="container"> 
+        <!-- 16:9 aspect ratio -->
+        <div class="embed-responsive embed-responsive-16by9 video-general">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DuDcPjj5TDE"></iframe>
+        </div>
+        <div class="embed-responsive embed-responsive-16by9 video-general">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DuDcPjj5TDE"></iframe>
+        </div>
+        <div class="embed-responsive embed-responsive-16by9 video-general">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DuDcPjj5TDE"></iframe>
+        </div>
+    </div>
+{% endblock %}

@@ -10,14 +10,19 @@
     font-family: "OpenSans-Light";
     src: url(../fonts/OpenSans-Light.ttf);
 }
+
 body{
     overflow-x: hidden;
 }
-
+.flex-direction-nav a{
+    height: 50px;
+}
 
 /*=============
 GLOBAL
 ===============*/
+
+
 .tittle_base{
     text-align: center;
 }
@@ -34,7 +39,6 @@ GLOBAL
     color: rgba(0,0,0,.5);
 }
 
-
 .descripcion{
     font-family: "OpenSans-Light", serif;
     padding: 10px;
@@ -47,8 +51,8 @@ GLOBAL
 }
 
 .slick_wedding div img{
-    /*width: 250px;*/
-    margin: 0 auto;
+    width: 100%;
+    margin: 0 5px;
 }
 
 .proveedores a{
@@ -239,7 +243,9 @@ GLOBAL
     border: none;
     border-radius: 50%;
 }
-
+.btn-login img{
+    display: inline-block;
+}
 .btn-login{
     float: right;
 }
@@ -264,6 +270,105 @@ GLOBAL
 }
 .named{
     padding-left: 40px;
+}
+.menu_profile{
+    padding:30px;
+    text-align: center;
+}
+.menu_profile span{
+    margin: 0 auto;
+}
+.menu_profile li{
+    display: inline-block;
+    margin: 10px 10px;
+}
+.menu_profile .current a{
+    border: solid 1px #C70052;
+    background: #fff;
+    color: #C70052;
+    box-sizing: border-box;
+}
+.menu_profile a{
+    text-decoration: none;
+    padding: 10px 15px;
+    background: #C70052;
+    color: #fff;
+    border-radius: 20px;
+    border: solid 1px transparent;
+    transition: all .5s;
+
+}
+.menu_profile a:hover{
+    border: solid 1px #C70052;
+    background: #fff;
+    color: #C70052;
+    box-sizing: border-box;
+
+}
+.flash-success{
+    position: absolute;
+    background: #C90051;
+    padding: 10px;
+    color: white;
+    border-radius: 0 0 10px;
+}
+.profile-detail span{
+    font-weight: bold;
+}
+.profile-detail{
+    text-align: center;
+}
+.fos_user_user_show{
+    padding: 25px;
+}
+.user_show{
+    margin: 0 auto;
+}
+
+.profile-detail img{
+    width: 100px;
+    margin: 10px auto;
+}
+.comment-detail img{
+    margin: 0 auto;
+}
+.comment-detail{
+    text-align: center;
+    border-bottom: solid 1px rgba(0,0,0,.1);
+    padding:10px;
+}
+.comment-detail:last-child{
+    border:none;
+}
+.video-general{
+    margin: 20px;
+}
+
+
+.slick-prev::before {
+    font-family: "flexslider-icon";
+    font-size: 40px;
+    display: inline-block;
+    content: '\f001';
+    color: rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+.slick-next::before{
+    font-family: "flexslider-icon";
+    font-size: 40px;
+    display: inline-block;
+    content: '\f002';
+    color: rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+
+/*=============
+User Login Responsive
+===============*/
+
+.user-login-responsive{
+    display: none;
 }
 
 /*=============
@@ -349,9 +454,9 @@ PARTY
 DINNER
 ===============*/
 
-
-
-
+.banner-sliders li img{
+    width: 250px;
+}
 
 
 /*=============
@@ -359,6 +464,25 @@ MÓVILES PORTAIT
 ===============*/
 
 @media only screen and (max-width:700px){
+    .btn_login_responsive{
+        display: none;
+    }
+    .user-login-responsive{
+        display: block;
+    }
+    .user-login-responsive a{
+        text-decoration: none;
+        color: #000;
+        margin: 0 10px;
+    }
+    .user-login-responsive img{
+
+        display: inline-block;
+    }
+    .menu_profile li{
+        width: 100%;
+        margin-bottom: 20px;
+    }
     .music-container iframe{
         width: 350px;
     }

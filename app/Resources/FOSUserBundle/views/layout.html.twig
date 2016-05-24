@@ -11,7 +11,7 @@
             {% endfor %}
         {% endif %}
 
-        <div>
+
             {% block content %}
 
             <nav class="navbar navbar-default">
@@ -32,35 +32,82 @@
                             </span>
                         </a>
                         {% block menuprincipal %}
-
                             {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
                         {% endblock menuprincipal %}
 
-                            {% block user_login %}
-                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
-                                    <a href="{{ path('fos_user_security_logout') }}">
-                                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                    </a>
-                                {% else %}
+                        {% block user_login %}
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <div class="user-login-responsive">
+                                    <div class="col-xs-8">
+                                        <a href="{{ path('fos_user_profile_show') }}">
+                                            <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span>{{app.user.nombres}}</span>
+                                                <img class="img-circle" width="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}" ">
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="{{ path('fos_user_security_logout') }}">
+                                            <button type="button" class="btn btn-entrar">
+                                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                            </button>
+                                        </a>
+                                    </div>
 
-                                    <ul class="principal nav navbar-nav navbar-right">
-                                        <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
-                                        <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
-                                    </ul>
+                                </div>
+                                <div class="btn-group btn-login btn_login_responsive">
 
-                                {% endif %}
-                            {% endblock user_login %}
+                                    <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span>{{app.user.nombres}}</span>
+                                        <img class="img-circle" alt="user icon" src="{{ asset('images/user_icon.png') }}" width="40">
+                                    </button>
+                                    <div class="dropdown-menu dropdown-user">
+                                        <div class="col-md-4">
+                                            <img class="img-circle" alt="user icon" src="{{ asset('images/user_icon.png') }}" width="90">
+                                        </div>
+                                        <div class="col-md-8 named">
+                                            <strong>{{app.user.nombres}} {{app.user.apellidos}}</strong>
+                                            <br>
+                                            {{app.user.email}}
+                                            <br>
+                                            <a href="{{ path('fos_user_profile_show') }}">
+                                                <button type="button" class="btn btn-entrar">
+                                                    Mi Perfil
+                                                </button>
+                                            </a>
+                                            <a href="{{ path('fos_user_security_logout') }}">
+                                                <button type="button" class="btn btn-entrar">
+                                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                                </button>
+                                            </a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            {% else %}
+
+                                <ul class="principal nav navbar-nav navbar-right">
+                                    <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                                    <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                                </ul>
+
+                            {% endif %}
+                        {% endblock user_login %}
+
 
                     </div>
 
                 </div>
             </nav>
+
             {% endblock content %}
-        </div>
+
 
 
 {% endblock body %}
+
+
 
 {% block footer %}
     <div class="footer_principal">

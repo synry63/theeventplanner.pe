@@ -14,9 +14,11 @@
     {{ parent() }}
 
 {% endblock %}
+
 {% block menuprincipal %}
     {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
 {% endblock menuprincipal %}
+
 {% block footer %}
     <div class="wedding">
         {{ include('comun_includes/footer.html.twig')}}
@@ -26,7 +28,25 @@
 
 {% block user_login %}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="btn-group btn-login">
+        <div class="user-login-responsive">
+            <div class="col-xs-8">
+                <a href="{{ path('fos_user_profile_show') }}">
+                    <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>{{app.user.nombres}}</span>
+                        <img class="img-circle img-responsive" alt="user icon" src="{{ asset('images/user_icon.png') }}" width="40">
+                    </button>
+                </a>
+            </div>
+            <div class="col-xs-4">
+                <a href="{{ path('fos_user_security_logout') }}">
+                    <button type="button" class="btn btn-entrar">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </button>
+                </a>
+            </div>
+
+        </div>
+        <div class="btn-group btn-login btn_login_responsive">
             <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span>{{app.user.nombres}}</span>
                 <img class="img-circle" alt="user icon" src="{{ asset('images/user_icon.png') }}" width="40">
@@ -40,21 +60,21 @@
                     <br>
                     {{app.user.email}}
                     <br>
-
+                    <a href="{{ path('fos_user_profile_show') }}">
                         <button type="button" class="btn btn-entrar">
-                            <a href="{{ path('fos_user_profile_show') }}">Mi Perfil</a>
+                           Mi Perfil
                         </button>
+                    </a>
+                    <a href="{{ path('fos_user_security_logout') }}">
                         <button type="button" class="btn btn-entrar">
-                            <a href="{{ path('fos_user_security_logout') }}">
                                 {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                            </a>
                         </button>
+                    </a>
+
                 </div>
             </div>
 
         </div>
-
-
     {% else %}
         <ul class="wedding-login nav navbar-nav navbar-right">
             <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
@@ -72,8 +92,8 @@
     <link rel="stylesheet" href="{{ asset('css/default.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/slick.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">

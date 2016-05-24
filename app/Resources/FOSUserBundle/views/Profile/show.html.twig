@@ -1,8 +1,29 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block content %}
+    {% block main_title %}
+
+        <div class="container">
+
+            <div class="row">
+                <div class="tittle_general">
+                    <img src="{{ asset('images/tittle_miperfil.png') }}" alt="Proveedores Tittle">
+                </div>
+            </div>
+
+        </div>
+    {% endblock %}
+
     {{ parent() }}
-    <h1>toto</h1>
-    {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
+
+    <div class="container">
+        <div class="menu_profile">
+            {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
+        </div>
+    </div>
+
     {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+
+
+
 {% endblock content %}

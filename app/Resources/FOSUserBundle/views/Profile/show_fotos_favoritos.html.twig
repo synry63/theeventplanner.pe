@@ -1,7 +1,6 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block content %}
-
     {% block main_title %}
 
         <div class="container">
@@ -14,13 +13,13 @@
 
         </div>
     {% endblock %}
-
     {{ parent() }}
 
-    <div class="container">
-        <div class="menu_profile">
-            {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
-        </div>
+    <div class="menu_profile">
+        {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
     </div>
-{% include "FOSUserBundle:ChangePassword:changePassword_content.html.twig" %}
+    <div>desde fotos favoritos</div>
+
+
+
 {% endblock content %}

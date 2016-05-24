@@ -3,13 +3,19 @@ $(document).ready(function(){
 	$('.gallery_content').createDiagonalSlider();
 
 	$('.flexslider').flexslider({
-		animation: "slide"
-	});
+		animation: "slide",
+        controlNav: true,
+        directionNav: true,
+        prevText: "Previous",
+        nextText: "Next",
+    });
+
 	$('.flexslider2').flexslider({
 		animation: "slide",
 		controlNav: "thumbnails",
 
 	});
+
 	$('.slick_wedding').slick({
         arrows:true,
         autoplay:true,
@@ -24,21 +30,25 @@ $(document).ready(function(){
 					slidesToShow: 3,
 					slidesToScroll: 3,
 					infinite: true,
-					dots: true
+					dots: false,
+                    arrows:false
 				}
 			},
 			{
 				breakpoint: 600,
 				settings: {
 					slidesToShow: 2,
-					slidesToScroll: 2
+					slidesToScroll: 2,
+                    arrows: false,
+                    dots: false
 				}
 			},
 			{
 				breakpoint: 480,
 				settings: {
 					slidesToShow: 1,
-					slidesToScroll: 1
+					slidesToScroll: 1,
+					arrows: false
 				}
 			}
 			// You can unslick at a given breakpoint now by adding:
@@ -57,11 +67,10 @@ $(document).ready(function(){
 		readOnly: true
     });
 
-    $("#rateYo2").rateYo({
-        rating: 3.5,
-        starWidth: "60px",
-        ratedFill: "#35b3b4",
-    });
+    $("#rateYo2").rateYo()
+        .on("rateyo.set", function (e, data) {
+            $("#comentario_proveedor_nota").val(data.rating);
+        });
 
 
 	/*$(".rateYo3").rateYo({
@@ -70,6 +79,7 @@ $(document).ready(function(){
         readOnly: true,
 		ratedFill: "#35b3b4"
 	});*/
+
     $( ".rateYo_comments" ).each(function( index ) {
         $(this).rateYo({
             rating: $(this).attr("data-rating"),

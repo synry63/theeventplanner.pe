@@ -100,13 +100,35 @@
                             <div id="rateYo2"></div>
                         </div>
 
+
                         <div class="col-xs-12 col-md-6">
-                            <div class="form-group">
-                                <textarea id="message" name="message" class="inputtext form-control" rows="6" placeholder="Escribe tu comentario..."></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button id="send" type="submit" class="btn btn-default">Enviar</button>
-                            </div>
+
+                            {% for label, flashes in app.session.flashbag.all %}
+                                {% for flash in flashes %}
+                                    <div class="alert alert-{{ label }}">
+                                        {{ flash }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+
+                            {% if form is defined %}
+
+                                <div class="form-group">
+                                    {{ form_label(form.comentario,'Comentario') }}
+                                    {{ form_errors(form.comentario) }}
+                                    {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+                                    <!-- el boton submit No renderiza con esto-->
+                                </div>
+
+                                {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+
+                            {% endif %}
+
                         </div>
 
                     </div>
@@ -129,26 +151,7 @@
 
     </div>
 
-    {{ dump(proveedor) }}
-    {{ dump(moy) }}
-
-    {{ dump(comentarios) }}
 
 
-
-
-    {#
-        <img src="{{ vich_uploader_asset(proveedor.fotos[0], 'imgFile')|imagine_filter('thumb') }}" />
-    #}
-    {% for label, flashes in app.session.flashbag.all %}
-        {% for flash in flashes %}
-            <div class="alert alert-{{ label }}">
-                {{ flash }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% if form is defined %}
-        {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {% endif %}
 
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+    {% block main_title %}
+
+        <div class="container">
+
+            <div class="row">
+                <div class="tittle_general">
+                    <img src="{{ asset('images/tittle_miperfil.png') }}" alt="Proveedores Tittle">
+                </div>
+            </div>
+
+        </div>
+    {% endblock %}
+    {{ parent() }}
+
+    <div class="menu_profile">
+        {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
+    </div>
+
+    <div class="container">
+        <h3>Proveedores Favoritos ({{ proveedores_favoritos|length }})</h3>
+
+        <div class="row">
+            {% for f in proveedores_favoritos %}
+                <div class="col-sm-6 col-md-4">
+                    <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': f.proveedor.slug}) }}">
+                        <img src="{{ vich_uploader_asset(f.proveedor.logo, 'logoFile') }}" alt="">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+
+
+
+{% endblock content %}
