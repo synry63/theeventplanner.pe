@@ -93,11 +93,10 @@
 
             <div class="leave-comment-box">
                 <h4 class="title-heading">Escribe tu comentario</h4>
-                <form action="#" class="form-comment">
                     <div class="row">
 
                         <div class="col-xs-12 col-md-6">
-                            <div id="rateYo2"></div>
+
                         </div>
 
 
@@ -110,21 +109,23 @@
                                     </div>
                                 {% endfor %}
                             {% endfor %}
-
                             {% if form is defined %}
+                                {{ form_start(form) }}
+                                    {{ form_errors(form) }}
+                                    <div id="rateYo2"></div>
+                                    <div class="form-group">
+                                        {{ form_label(form.comentario,'Comentario') }}
+                                        {{ form_errors(form.comentario) }}
+                                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
+                                    </div>
 
-                                <div class="form-group">
-                                    {{ form_label(form.comentario,'Comentario') }}
-                                    {{ form_errors(form.comentario) }}
-                                    {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
-                                </div>
+                                    <div class="form-group">
+                                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+                                        <!-- el boton submit No renderiza con esto-->
+                                    </div>
+                                    {{ form_widget(form.nota) }}
 
-                                <div class="form-group">
-                                    {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
-                                    <!-- el boton submit No renderiza con esto-->
-                                </div>
-
-                                {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                                {{ form_end(form) }}
 
 
                             {% endif %}
@@ -132,7 +133,6 @@
                         </div>
 
                     </div>
-                </form>
 
             </div>
         {% else %}
