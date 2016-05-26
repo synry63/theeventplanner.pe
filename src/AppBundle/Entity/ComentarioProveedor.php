@@ -135,6 +135,6 @@ class ComentarioProveedor
 
 
     public function __construct() {
-
+        $this->adedAt = new \DateTime('now');
     }
 }

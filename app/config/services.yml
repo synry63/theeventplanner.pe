@@ -23,3 +23,6 @@ services:
           tags:
               - { name: kernel.event_subscriber }
 
+  authentication_handler:
+      class:        MyUserBundle\Handler\AuthenticationHandler
+      arguments:    [@router, @security.context, @fos_user.user_manager, @service_container]

@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\CategoriaListado;
 use AppBundle\Entity\Foto;
+use AppBundle\Entity\FotoUserGusta;
 use AppBundle\Entity\Proveedor;
 use AppBundle\Form\Type\FotoType;
 use AppBundle\Form\Type\ProveedorChangePasswordType;
@@ -70,5 +71,33 @@ class FotoController extends Controller
             return $this->redirectToRoute('negocio_zona_imagenes');
         }
 
+    }
+    /**
+     * @Route("/{slug_site}/proveedor/{slug_proveedor}/foto/gusta/{id}", name="proveedor_foto_me_gusta",requirements={
+     *     "slug_site": "wedding|dinner|kids|party",
+     *     "id": "\d+"
+     * })
+     */
+    public function updateGustaProveedorFotoUserAction($slug_site,$slug_proveedor,$id,Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if(is_object($user)){
+            $foto = $this->getDoctrine()->getRepository('AppBundle:Foto')->find($id);
+            $userGustaFoto = $this->getDoctrine()->getRepository('AppBundle:FotoUserGusta')
+                ->findOneBy(array('foto'=>$foto,'user'=>$user));
+
+            $em = $this->getDoctrine()->getManager();
+            if($userGustaFoto==NULL){
+                $userGustaFoto = new FotoUserGusta();
+                $userGustaFoto->setUser($user);
+                $userGustaFoto->setFoto($foto);
+                $em->persist($userGustaFoto);
+                $em->flush();
+            }
+            else{
+                $em->remove($userGustaFoto);
+                $em->flush();
+            }
+            return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
+        }
     }
 }

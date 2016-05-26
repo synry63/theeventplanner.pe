@@ -18,7 +18,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Ivory\GoogleMap\Places\AutocompleteComponentRestriction;
+use Ivory\GoogleMap\Places\AutocompleteType;
 
 class ProveedorType extends AbstractType
 {
@@ -96,20 +97,33 @@ class ProveedorType extends AbstractType
             ),
         ));
 
-        /*$builder->add('code', 'choice', array(
-            //'class' => 'AppBundle:CategoriaListado',
-            'choices' =>
-                array(
-                'Food'  => array('45'=>'toto', 'burger', 'icecream'),
-                'Music' => array('poney', 'little', 'pocket'),
-            ),
-            //'choices_as_values' => true,
-            //'choice_label' => 'nombre',
-            'multiple' => true,
-            'expanded' => false,
-            'mapped' => false
-//            'data' => array('0','1')
-         ));*/
+        $builder->add('field', 'places_autocomplete', array(
+            'mapped' => false,
+            // Javascript prefix variable
+            'prefix' => 'js_prefix_',
+
+            // Autocomplete bound (array|Ivory\GoogleMap\Base\Bound)
+            'bound'  => array(-2.1, -3.9, 2.6, 1.4, true, true),
+
+            // Autocomplete types
+            /*'types'  => array(
+                AutocompleteType::CITIES,
+                // ...
+            ),*/
+
+            // Autocomplete component restrictions
+            /*'component_restrictions' => array(
+                AutocompleteComponentRestriction::COUNTRY => 'pe',
+                // ...
+            ),*/
+
+            // TRUE if the autocomplete is loaded asynchonously else FALSE
+            'async' => false,
+
+            // Autocomplete language
+            'language' => 'es',
+        ));
+
         $builder->add('Registrar', SubmitType::class);
     }
     /*public function getParent()

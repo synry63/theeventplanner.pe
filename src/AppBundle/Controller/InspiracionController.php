@@ -38,6 +38,21 @@ class InspiracionController extends Controller
         );
     }
     /**
+     * @Route("/{slug_site}/inspiraciones/fotos-proveedores",name="inspiraciones_fotos_proveedores",requirements={
+     *      "slug_site": "wedding|dinner|kids|party"
+     *
+     * })
+     */
+    public function inspiracionesFotosProveedoresAction($slug_site){
+
+        $fotos_proveedores = $this->getDoctrine()->getRepository('AppBundle:Foto')->findBy(array(),array('updatedAt'=>'DESC'));
+
+        return $this->render(
+            'wedding/inspiraciones-fotos.html.twig',
+            array('fotos_proveedores'=>$fotos_proveedores)
+        );
+    }
+    /**
      * @Route("/{slug_site}/inspiraciones/videos",name="inspiraciones_videos",requirements={
      *      "slug_site": "wedding|dinner|kids|party"
      *

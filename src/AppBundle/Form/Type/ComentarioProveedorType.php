@@ -21,7 +21,7 @@ class ComentarioProveedorType extends AbstractType
             ->add('comentario')
             ->add('nota',HiddenType::class, array(
                 'data' => '0'))
-            ->add('Send Review', SubmitType::class)
+            ->add('submit', SubmitType::class)
         ;
     }
 }

@@ -48,7 +48,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-
+                success_handler: authentication_handler
+                failure_handler: authentication_handler
                 #login_path: my_login
                 #check_path: my_login_check
                 default_target_path: /profile

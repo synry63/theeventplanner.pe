@@ -16,6 +16,7 @@ use AppBundle\Entity\Proveedor;
 use AppBundle\Entity\UserProveedorGusta;
 use AppBundle\Form\Type\ComentarioProveedorType;
 use AppBundle\Form\Type\FotoType;
+use AppBundle\Form\Type\GoogleMapType;
 use AppBundle\Form\Type\LogoType;
 use AppBundle\Form\Type\ProveedorChangePasswordType;
 use AppBundle\Form\Type\ProveedorChangeLogoType;
@@ -24,6 +25,12 @@ use AppBundle\Form\Type\ProveedorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Ivory\GoogleMap\Overlays\Marker;
+use Ivory\GoogleMap\Overlays\Animation;
+use Ivory\GoogleMap\Places\Autocomplete;
+use Ivory\GoogleMap\Places\AutocompleteComponentRestriction;
+use Ivory\GoogleMap\Places\AutocompleteType;
+use Ivory\GoogleMap\Helper\Places\AutocompleteHelper;
 
 
 class ProveedorController extends Controller
@@ -105,7 +112,24 @@ class ProveedorController extends Controller
             array('form' => $form->createView())
         );
     }
+    /**
+     * @Route("/negocio/zona/mapa   ", name="negocio_zona_map")
+     */
+    public function zonaGoogleMapShowAction(Request $request){
 
+        $form = $this->createForm(new GoogleMapType());
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            var_dump($data);
+        }
+
+        return $this->render(
+            'negocio/map.html.twig',
+            array('form' => $form->createView())
+        );
+    }
     /**
      * @Route("/negocio/zona/cambiar-perfile", name="negocio_zona_perfil")
      */
@@ -205,6 +229,19 @@ class ProveedorController extends Controller
 
         $form = $this->createForm(new ProveedorType($in), $proveedor);
 
+        $map = $this->get('ivory_google_map.map');
+        $map->setLanguage($this->get('request')->getLocale());
+        $map->setCenter(-12.0552581, -77.080205, true);
+        $map->setMapOption('zoom', 3);
+        $map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
+        $marker = new Marker();
+        // Sets your marker animation
+        $marker->setAnimation(Animation::BOUNCE);
+        $marker->setAnimation('bounce');
+        $marker->setPosition(-12.0552581, -77.080205, true);
+        // Add your marker to the map
+        $map->addMarker($marker);
+
         $form->handleRequest($request);
 
 
@@ -248,7 +285,8 @@ class ProveedorController extends Controller
         return $this->render(
             'negocio.html.twig',array(
                 //'commentarios'=>$comments,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'map'=>$map
             )
         );
     }
@@ -325,6 +363,7 @@ class ProveedorController extends Controller
 
         $user = $this->container->get('security.context')->getToken()->getUser();
         $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
+        //$fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getFotos($proveedor,$user);
         $moy = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorRating($proveedor);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
 
@@ -353,8 +392,7 @@ class ProveedorController extends Controller
                     $em->flush();
 
                     $request->getSession()->getFlashBag()->add('success', 'Your comment is save !');
-
-                    //return $this->redirect($this->generateUrl('proveedor_detail'));
+                    return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
                     //return $this->redirectToRoute('task_success');
                     //$this->redirect($request->getReferer());
                 }

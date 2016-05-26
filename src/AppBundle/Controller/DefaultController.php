@@ -44,12 +44,11 @@ class DefaultController extends Controller
         $best_inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->getBestInspiraciones();
 
 
-
         return $this->render(
             $slug_site.'/home.html.twig',array(
                 'mejores_proveedores'=>$best_proveedores,
                 'mejores_inspiraciones'=>$best_inspiraciones,
-                'mejores_fotos'=>$best_fotos
+                'mejores_fotos'=>$best_fotos,
             )
         );
 
@@ -99,7 +98,7 @@ class DefaultController extends Controller
                     array('updatedAt'=>'DESC')
         );
         return $this->render(
-            'FOSUserBundle:Profile:show_favoritos.html.twig',
+            'FOSUserBundle:Profile:show_fotos_favoritos.html.twig',
             array(
                 'fotos_proveedor_favoritas'=>$fotos,
             )
@@ -117,9 +116,9 @@ class DefaultController extends Controller
                 array('updatedAt'=>'DESC')
             );
         return $this->render(
-            'FOSUserBundle:Profile:show_favoritos.html.twig',
+            'FOSUserBundle:Profile:show_proveedores_favoritos.html.twig',
             array(
-                'fotos_proveedor_favoritas'=>$proveedores,
+                'proveedores_favoritos'=>$proveedores,
             )
         );
     }
