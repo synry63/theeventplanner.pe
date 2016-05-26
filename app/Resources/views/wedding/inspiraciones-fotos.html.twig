@@ -12,7 +12,8 @@
 
 {% block content %}
     {{ parent() }}
-
+    {{ dump(inspiraciones) }}
+    {{ dump(app.user.inspiraciones) }}
 
     <div class="container">
         <ul class="grid effect-6" id="grid">

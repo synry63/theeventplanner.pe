@@ -81,6 +81,10 @@ class User extends BaseUser
     private $comentariosInspiracion;
 
     /**
+     * @ORM\OneToMany(targetEntity="InspiracionUserGusta", mappedBy="user")
+     */
+    private $inspiraciones;
+    /**
      * @ORM\OneToMany(targetEntity="FotoUserGusta", mappedBy="user")
      */
     private $fotos;
@@ -198,6 +202,21 @@ class User extends BaseUser
         return $this->id;
     }
 
+    /**
+     * @param mixed $inspiraciones
+     */
+    public function setInspiraciones($inspiraciones)
+    {
+        $this->inspiraciones = $inspiraciones;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInspiraciones()
+    {
+        return $this->inspiraciones;
+    }
 
 
     public function __construct() {

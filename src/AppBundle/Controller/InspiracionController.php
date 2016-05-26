@@ -7,6 +7,7 @@
  */
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\InspiracionUserGusta;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,11 +33,40 @@ class InspiracionController extends Controller
      * })
      */
     public function inspiracionesFotosAction(){
-
+        $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(array(),array('order'=>'ASC'));
         return $this->render(
-            'wedding/inspiraciones-fotos.html.twig'
+            'wedding/inspiraciones-fotos.html.twig',
+            array('inspiraciones'=>$inspiraciones)
         );
     }
+    /**
+     * @Route("/{slug_site}/inspiracion/gusta/{id}", name="inspiracion_me_gusta",requirements={
+     *     "slug_site": "wedding|dinner|kids|party",
+     *     "id": "\d+"
+     * })
+     */
+    public function updateGustaInspiracionUserAction($slug_site,$id,Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if(is_object($user)){
+            $inspiracion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($id);
+            $userGustaInspiracion = $this->getDoctrine()->getRepository('AppBundle:InspiracionUserGusta')
+                ->findOneBy(array('inspiracion'=>$inspiracion,'user'=>$user));
+            $em = $this->getDoctrine()->getManager();
+            if($userGustaInspiracion==NULL){
+                $userGustaInspiracion = new InspiracionUserGusta();
+                $userGustaInspiracion->setUser($user);
+                $userGustaInspiracion->setInspiracion($inspiracion);
+                $em->persist($userGustaInspiracion);
+                $em->flush();
+            }
+            else{
+                $em->remove($userGustaInspiracion);
+                $em->flush();
+            }
+            return $this->redirectToRoute('inspiraciones_fotos',array('slug_site'=>$slug_site));
+        }
+    }
+
     /**
      * @Route("/{slug_site}/inspiraciones/fotos-proveedores",name="inspiraciones_fotos_proveedores",requirements={
      *      "slug_site": "wedding|dinner|kids|party"

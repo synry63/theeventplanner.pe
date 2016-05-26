@@ -24,50 +24,57 @@ class Inspiracion
     private $id;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=100)
+     * @ORM\Column(type="string")
      */
     private $slug;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=64)
+     * @ORM\Column(type="string")
      */
     private $type;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=100)
+     * @ORM\Column(type="string")
      */
     private $nombre;
 
     /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime
+     * @ORM\Column(type="string", length=100)
      */
-    private $addedAt;
+    private $img;
     /**
-     * @ORM\Column(type="string",nullable=true, length=100)
+     * @ORM\Column(type="integer")
      */
-    private $imgLarge;
-
+    private $order;
     /**
-     * @ORM\Column(type="text",nullable=true,)
+     * @ORM\Column(type="text")
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=100)
+     * @param mixed $order
      */
-    private $musicPath;
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    }
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=100)
+     * @return mixed
      */
-    private $videoPath;
-
+    public function getOrder()
+    {
+        return $this->order;
+    }
     /**
      * @ORM\OneToMany(targetEntity="ComentarioInspiracion", mappedBy="inspiracion")
      */
     private $comentariosInspiracion;
+
+    /**
+     * @ORM\OneToMany(targetEntity="InspiracionUserGusta", mappedBy="inspiracion")
+     */
+    private $users;
 
     /**
      * @param mixed $comentarios_inspiracion
@@ -106,17 +113,17 @@ class Inspiracion
     /**
      * @param mixed $imgLarge
      */
-    public function setImgLarge($imgLarge)
+    public function setImg($imgLarge)
     {
-        $this->imgLarge = $imgLarge;
+        $this->img = $imgLarge;
     }
 
     /**
      * @return mixed
      */
-    public function getImgLarge()
+    public function getImg()
     {
-        return $this->imgLarge;
+        return $this->img;
     }
 
 
@@ -170,35 +177,27 @@ class Inspiracion
     }
 
     /**
-     * @param mixed $musicPath
+     * @param mixed $users
      */
-    public function setMusicPath($musicPath)
+    public function setUsers($users)
     {
-        $this->musicPath = $musicPath;
+        $this->users = $users;
     }
 
     /**
      * @return mixed
      */
-    public function getMusicPath()
+    public function getUsers()
     {
-        return $this->musicPath;
-    }
-
-    /**
-     * @param mixed $videoPath
-     */
-    public function setVideoPath($videoPath)
-    {
-        $this->videoPath = $videoPath;
+        return $this->users;
     }
 
     /**
      * @return mixed
      */
-    public function getVideoPath()
+    public function getId()
     {
-        return $this->videoPath;
+        return $this->id;
     }
 
 
