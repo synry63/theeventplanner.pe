@@ -5,12 +5,21 @@
 <div class="col-md-10 col-md-offset-1 form-login">
         <h1 class="login-ajax-tittle">Entrar</h1>
         <form novalidate action="{{ path("fos_user_security_check") }}" method="post">
-                {% if error %}
+            {% for label, flashes in app.session.flashbag.all %}
+                {% for error in flashes %}
+                    <div class="alert alert-danger" role="alert">
+                        <div><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ error }}</div>
+                        <span class="sr-only">Error:</span>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+                {# if error
                     <div class="alert alert-danger" role="alert">
                         <div><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         <span class="sr-only">Error:</span>
                     </div>
                 {% endif %}
+                #}
             <!-- ajax error -->
             <div class="ajax-only alert alert-danger"  style="display: none" role="alert">
                 <div><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span class="message-here"></span></div>
@@ -41,14 +50,7 @@
 
 
 <script>
-    if (typeof jQuery == 'undefined'){
-
-        var script = document.createElement('script');
-        script.type = "text/javascript";
-        script.src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js";
-        document.getElementsByTagName('head')[0].appendChild(script);
-
-    }
+    if (typeof jQuery != 'undefined'){
         $('#_submit').click(function(e){
             e.preventDefault();
             $.ajax({
@@ -69,5 +71,7 @@
                 }
             });
         });
+    }
+
 
 </script>
