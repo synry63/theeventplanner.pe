@@ -1,83 +1,73 @@
-{% extends 'FOSUserBundle::layout.html.twig' %}
+
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block content %}
-    {% block main_title %}
 
-        <div class="container">
+<div class="col-md-10 col-md-offset-1 form-login">
+        <h1 class="login-ajax-tittle">Entrar</h1>
+        <form novalidate action="{{ path("fos_user_security_check") }}" method="post">
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        <div><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        <span class="sr-only">Error:</span>
+                    </div>
+                {% endif %}
+            <!-- ajax error -->
+            <div class="ajax-only alert alert-danger"  style="display: none" role="alert">
+                <div><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span class="message-here"></span></div>
+                <span class="sr-only">Error:</span>
+            </div>
+            <!-- end ajax error -->
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-            <div class="row">
-                <div class="tittle_general">
-                    <img src="{{ asset('images/tittle_entrar.png') }}" alt="Proveedores Tittle">
-                </div>
+            <div class="form-group">
+                <label for="username">{{ 'security.login.username'|trans }}</label>
+                <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required"  placeholder="Usuario">
             </div>
 
-        </div>
-    {% endblock %}
+            <div class="form-group">
+                <label for="password">{{ 'security.login.password'|trans }}</label>
+                <input type="password" id="password" name="_password" required="required" class="form-control"  placeholder="Contraseña">
+            </div>
 
-    {{ parent() }}
+            <div class="form-group">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+            </div>
 
-    <div class="container form-login">
+            <button type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-entrar">Entrar</button>
+        </form>
+</div>
 
-        <div class="col-md-8 col-md-offset-2">
-            <form novalidate action="{{ path("fos_user_security_check") }}" method="post">
-                    {% if error %}
-                        <div class="alert alert-danger" role="alert">
-                            <div><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                            <span class="sr-only">Error:</span>
-                        </div>
-                    {% endif %}
-                <!-- ajax error -->
-                <div class="ajax-only alert alert-danger"  style="display: none" role="alert">
-                    <div><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span class="message-here"></span></div>
-                    <span class="sr-only">Error:</span>
-                </div>
-                <!-- end ajax error -->
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-                <div class="form-group">
-                    <label for="username">{{ 'security.login.username'|trans }}</label>
-                    <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required"  placeholder="Usuario">
-                </div>
 
-                <div class="form-group">
-                    <label for="password">{{ 'security.login.password'|trans }}</label>
-                    <input type="password" id="password" name="_password" required="required" class="form-control"  placeholder="Contraseña">
-                </div>
+<script>
+    if (typeof jQuery == 'undefined'){
 
-                <div class="form-group">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-                </div>
+        var script = document.createElement('script');
+        script.type = "text/javascript";
+        script.src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js";
+        document.getElementsByTagName('head')[0].appendChild(script);
 
-                <button type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-entrar">Entrar</button>
-            </form>
-        </div>
-    </div>
-
-{% endblock content %}
-{% block javascripts %}
-        {{ parent() }}
-        <script>
-            $('#_submit').click(function(e){
-                e.preventDefault();
-                $.ajax({
-                    type        : $('form').attr( 'method' ),
-                    url         : $('form').attr( 'action' ),
-                    data        : $('form').serialize(),
-                    dataType    : "json",
-                    success     : function(data, status, object) {
-                        if (data.success == false) {
-                            $('.message-here').html(data.message);
-                            $('.ajax-only').show();
-                        }
-                        else {
-                            window.location.href = data.targetUrl;
-                        }
-                        //console.log( status );
-                        //console.log( data );
+    }
+        $('#_submit').click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type        : $('form').attr( 'method' ),
+                url         : $('form').attr( 'action' ),
+                data        : $('form').serialize(),
+                dataType    : "json",
+                success     : function(data, status, object) {
+                    if (data.success == false) {
+                        $('.message-here').html(data.message);
+                        $('.ajax-only').show();
                     }
-                });
+                    else {
+                        window.location.href = data.targetUrl;
+                    }
+                    //console.log( status );
+                    //console.log( data );
+                }
             });
-        </script>
-{% endblock %}
+        });
+
+</script>

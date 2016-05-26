@@ -21,7 +21,15 @@ body{
 /*=============
 GLOBAL
 ===============*/
-
+.login-ajax-tittle{
+    text-align:center;
+    color: #C50051;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.modal{
+    display: inline-block;
+}
 
 #carousel{
     margin-top: 5px;
@@ -145,10 +153,6 @@ GLOBAL
 }
 .btn-entrar:hover{
     color: rgba(255,255,255,.7);
-}
-
-.form-login{
-    padding-bottom: 20px;
 }
 
 
