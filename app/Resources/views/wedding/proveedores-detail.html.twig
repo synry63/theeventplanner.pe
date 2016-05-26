@@ -13,35 +13,137 @@
 {% block content %}
     {{ parent() }}
 
-    <div class="container">
+    <div class="container jojo">
         <div class="row">
-            <div class="col-sm-12 col-md-8">
-                <div class="flexslider2">
+            <div class="col-sm-8">
+
+                <div id="slider" class="flexslider2">
                     <ul class="slides">
                         {% for f in proveedor.fotos  %}
                             <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
                                 <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+                                
                             </li>
                         {% endfor %}
 
                     </ul>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-4 ">
-                <div class="proveedor-info">
-                    <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
 
-                    <div id="rateYo"  data-rating="{{ moy }}"></div>
+                <div id="carousel" class="flexslider2">
+                    <ul class="slides">
+                        {% for f in proveedor.fotos  %}
+                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
 
-                    <a href="mailto:javierdia91@gmail.com"><button type="button" class="btn btn-coti">Contactar Empresa</button></a>
-                    <br>
-                    <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
-                    <div class="links-proveedores lweddings">
-                        <a href="{{ proveedor.web }}">Página Web</a>
-                        <a href="tel:{{ proveedor.telefono }}">Teléfono</a>
-                    </div>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
                 </div>
-                <div class="proveedor-social sweddings">
+
+                <p class="proveedor-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
+
+                <div class="comments-box">
+                    <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
+
+                    {% for p in comentarios %}
+                        <div class="media comment">
+                            <div class="media-left">
+                                <img class="img-circle" alt="" src="{{ asset('images/user_icon.png') }}">
+
+                                <div class="rateYo_comments" data-rating="{{ p.nota }}"></div>
+                            </div>
+                            <div class="media-body">
+                                <h5 class="media-heading"><span>{{ p.user }}</span><small class="date">{{ p.adedAt|date("d F, Y") }}</small>
+                                </h5>
+                                {{ p.comentario }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+
+
+
+                {% if app.user is not null %}
+
+
+                    <div class="leave-comment-box">
+                        <h4 class="title-heading">Escribe tu comentario</h4>
+                        <div class="row">
+
+                            <div class="col-xs-12 col-md-6">
+
+                            </div>
+
+
+                            <div class="col-xs-12 col-md-12">
+
+                                {% for label, flashes in app.session.flashbag.all %}
+                                    {% for flash in flashes %}
+                                        <div class="alert alert-{{ label }}">
+                                            {{ flash }}
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                                {% if form is defined %}
+                                    {{ form_start(form) }}
+                                    {{ form_errors(form) }}
+                                    <div id="rateYo2"></div>
+                                    <div class="form-group">
+                                        {{ form_label(form.comentario,'Comentario') }}
+                                        {{ form_errors(form.comentario) }}
+                                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+                                        <!-- el boton submit No renderiza con esto-->
+                                    </div>
+                                    {{ form_widget(form.nota) }}
+
+                                    {{ form_end(form) }}
+
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% else %}
+
+                    <p>
+                        <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
+                        ó
+                        <a href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
+                        para poder comentar
+                    </p>
+
+                {% endif %}
+
+
+            </div>
+
+            <div class="col-sm-4">
+                <div class="proveedor-fixed">
+                    <div class="proveedor-info">
+
+                        <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
+
+                        <div id="rateYo"  data-rating="{{ moy }}"></div>
+
+                        <a href="mailto:javierdia91@gmail.com"><button type="button" class="btn btn-coti">Contactar Empresa</button></a>
+                        <br>
+                        <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
+                        <div class="links-proveedores lweddings">
+                            <a href="{{ proveedor.web }}">Página Web</a>
+                            <a href="tel:{{ proveedor.telefono }}">Teléfono</a>
+                        </div>
+                    </div>
+                    <div class="proveedor-social sweddings">
                         {% if app.user is not null %}
 
                             {% if favorito is not null%}
@@ -58,93 +160,21 @@
                             <li ><a style="color:#55acee" href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
                             </li>
                         </ul>
+                    </div>
                 </div>
+
 
             </div>
-        </div>
 
-        <p class="proveedor-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
-
-
-
-        <div class="comments-box">
-            <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
-
-            {% for p in comentarios %}
-                <div class="media comment">
-                    <div class="media-left">
-                        <img class="img-circle" alt="" src="{{ asset('images/user_icon.png') }}">
-
-                        <div class="rateYo_comments" data-rating="{{ p.nota }}"></div>
-                    </div>
-                    <div class="media-body">
-                        <h5 class="media-heading"><span>{{ p.user }}</span><small class="date">{{ p.adedAt|date("d F, Y") }}</small>
-                        </h5>
-                        {{ p.comentario }}
-                    </div>
-                </div>
-            {% endfor %}
 
 
         </div>
 
-        {% if app.user is not null %}
 
 
-            <div class="leave-comment-box">
-                <h4 class="title-heading">Escribe tu comentario</h4>
-                    <div class="row">
-
-                        <div class="col-xs-12 col-md-6">
-
-                        </div>
 
 
-                        <div class="col-xs-12 col-md-6">
 
-                            {% for label, flashes in app.session.flashbag.all %}
-                                {% for flash in flashes %}
-                                    <div class="alert alert-{{ label }}">
-                                        {{ flash }}
-                                    </div>
-                                {% endfor %}
-                            {% endfor %}
-                            {% if form is defined %}
-                                {{ form_start(form) }}
-                                    {{ form_errors(form) }}
-                                    <div id="rateYo2"></div>
-                                    <div class="form-group">
-                                        {{ form_label(form.comentario,'Comentario') }}
-                                        {{ form_errors(form.comentario) }}
-                                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
-                                        <!-- el boton submit No renderiza con esto-->
-                                    </div>
-                                    {{ form_widget(form.nota) }}
-
-                                {{ form_end(form) }}
-
-
-                            {% endif %}
-
-                        </div>
-
-                    </div>
-
-            </div>
-        {% else %}
-
-            <p>
-                <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
-                ó
-                <a href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
-                para poder comentar
-            </p>
-
-        {% endif %}
 
 
 
@@ -154,4 +184,70 @@
 
 
 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
+    <script>
+        $('#carousel').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            prevText: "Previous",
+            nextText: "Next",
+            slideshow: false,
+            itemWidth: 210,
+            itemMargin: 5,
+            asNavFor: '#slider'
+        });
+
+        $('#slider').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            sync: "#carousel"
+        });
+        var test = $("#rateYo").attr("data-rating");
+
+        var test3 = $(".rateYo3").attr("data-rating3");
+
+        $("#rateYo").rateYo({
+            rating: test,
+            ratedFill: "#35b3b4",
+            readOnly: true
+        });
+
+        $("#rateYo2").rateYo({
+                    ratedFill: "#35b3b4",
+                    starWidth: "60px"
+                })
+                .on("rateyo.set", function (e, data) {
+
+                    $("#comentario_proveedor_nota").val(data.rating);
+
+                });
+
+
+
+        /*$(".rateYo3").rateYo({
+         rating: test3,
+         starWidth: "20px",
+         readOnly: true,
+         ratedFill: "#35b3b4"
+         });*/
+
+        $( ".rateYo_comments" ).each(function( index ) {
+            $(this).rateYo({
+                rating: $(this).attr("data-rating"),
+                starWidth: "20px",
+                readOnly: true,
+                ratedFill: "#35b3b4"
+            });
+        });
+
+        $('.proveedor-fixed').fixTo('body');
+    </script>
 {% endblock %}

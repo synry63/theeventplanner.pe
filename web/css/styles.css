@@ -23,6 +23,13 @@ GLOBAL
 ===============*/
 
 
+#carousel{
+    margin-top: 5px;
+}
+#slider{
+    margin-bottom: 0;
+}
+
 .tittle_base{
     text-align: center;
 }

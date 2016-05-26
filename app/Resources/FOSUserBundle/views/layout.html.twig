@@ -107,11 +107,12 @@
 
 {% endblock body %}
 
-
-
 {% block footer %}
     <div class="footer_principal">
         {{ include('comun_includes/footer.html.twig')}}
     </div>
-
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock %}

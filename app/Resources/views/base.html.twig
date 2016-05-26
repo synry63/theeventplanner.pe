@@ -19,27 +19,15 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}
-                <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/DiagonalSlider.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/imagesloaded.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/AnimOnScroll.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('js/modernizr.custom.js') }}"></script>
 
+{% block footer %}
 
-        {% endblock %}
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 
-        {% block footer %}
-
-        {% endblock %}
-    </body>
+{% endblock %}
+</body>
 
 
 </html>
