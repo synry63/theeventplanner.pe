@@ -27,7 +27,12 @@
                             <span class="sr-only">Error:</span>
                         </div>
                     {% endif %}
-
+                <!-- ajax error -->
+                <div class="ajax-only alert alert-danger"  style="display: none" role="alert">
+                    <div><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span class="message-here"></span></div>
+                    <span class="sr-only">Error:</span>
+                </div>
+                <!-- end ajax error -->
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
                 <div class="form-group">
@@ -50,6 +55,29 @@
         </div>
     </div>
 
-
-
 {% endblock content %}
+{% block javascripts %}
+        {{ parent() }}
+        <script>
+            $('#_submit').click(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type        : $('form').attr( 'method' ),
+                    url         : $('form').attr( 'action' ),
+                    data        : $('form').serialize(),
+                    dataType    : "json",
+                    success     : function(data, status, object) {
+                        if (data.success == false) {
+                            $('.message-here').html(data.message);
+                            $('.ajax-only').show();
+                        }
+                        else {
+                            window.location.href = data.targetUrl;
+                        }
+                        //console.log( status );
+                        //console.log( data );
+                    }
+                });
+            });
+        </script>
+{% endblock %}
