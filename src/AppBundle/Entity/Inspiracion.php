@@ -39,7 +39,7 @@ class Inspiracion
     private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=64)
      */
     private $img;
     /**

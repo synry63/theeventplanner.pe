@@ -106,67 +106,18 @@ class InspiracionController extends Controller
             'wedding/inspiraciones-music.html.twig'
         );
     }
-
     /**
-     * @Route("/inspiraciones/{slug_type}/{page}",name="inspiraciones_type", defaults={"page" = 1}, requirements={
-     *     "page": "\d+"
+     * @Route("/{slug_site}/inspiraciones/votos",name="inspiraciones_votos",requirements={
+     *      "slug_site": "wedding|dinner|kids|party"
      *
      * })
      */
-    public function inspiracionesAction($slug_type,$page)
-    {
+    public function inspiracionesVotosAction(){
 
-        $inspiraciones_query = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(array('type'=>$slug_type));
-        $paginator  = $this->get('knp_paginator');
-
-        $pagination = $paginator->paginate(
-            $inspiraciones_query,
-            $page,
-            2
-        );
-
+        $votos = $this->getDoctrine()->getRepository('AppBundle:Voto')->findBy(array(),array('order'=>'ASC'));
         return $this->render(
-            'wedding/inspiraciones-list.html.twig',array(
-                'inspiraciones'=>$pagination
-            )
+            'wedding/inspiraciones-votos.html.twig',
+            array('votos'=>$votos)
         );
-    }
-    /**
-     * @Route("/inspiraciones/{slug_type}/{page}", requirements={
-     *     "page": "\d+"
-     * })
-     */
-    public function inspiracionesPagiAction($slug_category,$page)
-    {
-
-        $inspiraciones_query = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(array('type'=>$slug_category));
-        $paginator  = $this->get('knp_paginator');
-
-        $pagination = $paginator->paginate(
-            $inspiraciones_query,
-            $page,
-            2
-        );
-
-        return $this->render(
-            'wedding/proveedores-list.html.twig',array(
-                'inspiraciones'=>$pagination
-            )
-        );
-    }
-
-    /**
-     * @Route("/inspiraciones/{slug_type}/{slug_inspiracion}", name="inspiracion_detail")
-     */
-    public function inspiracionShowAction($slug_type,$slug_inspiracion){
-
-        $inspiracion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findOneBy(array('slug'=>$slug_inspiracion));
-
-        return $this->render(
-            'wedding/inspiraciones-detail.html.twig',array(
-                'inspiracion'=>$inspiracion
-            )
-        );
-
     }
 }
