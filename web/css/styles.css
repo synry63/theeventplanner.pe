@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
     font-family: "OpenSans-Bold";
     src: url(../fonts/OpenSans-Bold.ttf);
 }
@@ -9,9 +9,11 @@
 @font-face {
     font-family: "OpenSans-Light";
     src: url(../fonts/OpenSans-Light.ttf);
-}
+}*/
 
 body{
+    font-family: 'PT Serif', serif;
+    color: rgba(0,0,0,.7);
     overflow-x: hidden;
 }
 .flex-direction-nav a{
@@ -21,11 +23,37 @@ body{
 /*=============
 GLOBAL
 ===============*/
-.login-ajax-tittle{
-    text-align:center;
-    color: #C50051;
-    margin-top: 5px;
-    margin-bottom: 10px;
+
+.respuesta{
+    float: right;
+    font-style: italic;
+}
+
+.jq-ry-container{
+    padding: 0;
+}
+
+.proveedor-fixed{
+    margin-bottom: 50px;
+}
+.navbar-left .current a{
+    color: rgba(0,0,0,1);
+}
+
+.flash-success{
+    top:0;
+}
+
+.logo_login{
+    text-align: center;
+    padding:10px;
+    margin: 5px 0;
+}
+
+.form-login{
+    background-color: #fff;
+    padding:20px;
+
 }
 .modal{
     display: inline-block;
@@ -33,9 +61,11 @@ GLOBAL
 
 #carousel{
     margin-top: 5px;
+    margin-bottom: 20px;
 }
 #slider{
     margin-bottom: 0;
+    margin-top: 0;
 }
 
 .tittle_base{
@@ -47,15 +77,20 @@ GLOBAL
 }
 .header li{
     display: inline-block;
-    font-family: "OpenSans-Light", serif;
+    font-family: "OpenSans", serif;
     text-transform: uppercase;
 }
 .header li a{
     color: rgba(0,0,0,.5);
+    transition: all .5s;
+}
+
+.header li a:hover{
+    color: rgba(0,0,0,1);
 }
 
 .descripcion{
-    font-family: "OpenSans-Light", serif;
+
     padding: 10px;
     color:rgba(0,0,0,.5);
 }
@@ -74,10 +109,11 @@ GLOBAL
     text-decoration: none;
 }
 .proveedores h3{
+    font-family: "OpenSans-Light", serif;
     text-align: center;
     font-size: 15px;
     margin: 0;
-    font-family: "OpenSans-Light", serif;
+
 }
 
 .filtroimg{
@@ -169,10 +205,10 @@ GLOBAL
 }
 .filtros_proveedores select{
     width:120px;
-    height: 30px;
+    height: 40px;
 }
 .filtros_proveedores{
-    float: right;
+    text-align: right;
 }
 .manage_title{
     padding: 0 10px;
@@ -199,9 +235,8 @@ GLOBAL
     margin: 10px auto;
 }
 .proveedor-info{
-    font-family: "OpenSans-Light", serif;
     padding: 10px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,.1);
+    box-shadow: 0px 0px 5px rgba(0,0,0,.1);
 }
 .links-proveedores a{
     text-decoration: none;
@@ -212,8 +247,8 @@ GLOBAL
     text-decoration: none;
 }
 .favorite-button{
-    border: solid 1px;
     font-family: "OpenSans-Light", serif;
+    border: solid 1px;
     font-size: 1.2em;
     padding: 5px 10px;
 }
@@ -234,7 +269,6 @@ GLOBAL
 }
 .proveedor-content{
     text-align: center;
-    font-family: "OpenSans-Light", serif;
     padding: 20px 0;
 }
 .comments-box{
@@ -415,6 +449,7 @@ PARTY
 .btn-wedding-entrar, .btn-coti{
     background:#35b3b4;
     color: #fff;
+    height: 40px;
 }
 .form-wedding-login label{
     color:#35b3b4;
@@ -432,11 +467,11 @@ PARTY
     border-bottom: solid 3px #00B3C7;
 }
 .btn-tittle{
-    /*width: 500px;*/
+    width: 200px;
     background: none;
     color: rgba(0,0,0,.5);
-    border: solid 5px #35b3b4;
-    border-radius: 10px 0 0 10px;
+    border: solid 2px #35b3b4;
+
 }
 .btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle){
     border-radius: 0 10px 10px 0;
@@ -475,6 +510,9 @@ MÓVILES PORTAIT
 ===============*/
 
 @media only screen and (max-width:700px){
+    .filtros_proveedores{
+        text-align: center;
+    }
     .btn_login_responsive{
         display: none;
     }
@@ -513,7 +551,7 @@ MÓVILES PORTAIT
         width:20px;
     }
     .form-login{
-        padding: 30px 0;
+        padding: 20px;
     }
     .footer li a{
         color: rgba(0,0,0,.5);

@@ -16,10 +16,9 @@
     {{ parent() }}
     <div class="container">
             <div class="btn-group categorias">
-                <button type="button" class="btn btn-tittle">CATEGORÍAS &nbsp; &nbsp; &nbsp; &nbsp;</button>
-                <button type="button" class="btn btn-flecha" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-tittle dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Categorias
                     <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu">
                     {% for c in categorias %}

@@ -13,121 +13,11 @@
 {% block content %}
     {{ parent() }}
 
-    <div class="container jojo">
+    <div class="container">
+
         <div class="row">
-            <div class="col-sm-8">
 
-                <div id="slider" class="flexslider2">
-                    <ul class="slides">
-                        {% for f in proveedor.fotos  %}
-                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-                                
-                            </li>
-                        {% endfor %}
-
-                    </ul>
-                </div>
-
-                <div id="carousel" class="flexslider2">
-                    <ul class="slides">
-                        {% for f in proveedor.fotos  %}
-                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-
-                            </li>
-                        {% endfor %}
-
-                    </ul>
-                </div>
-
-                <p class="proveedor-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
-
-                <div class="comments-box">
-                    <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
-
-                    {% for p in comentarios %}
-                        <div class="media comment">
-                            <div class="media-left">
-                                <img class="img-circle" alt="" src="{{ asset('images/user_icon.png') }}">
-
-                                <div class="rateYo_comments" data-rating="{{ p.nota }}"></div>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading"><span>{{ p.user }}</span><small class="date">{{ p.adedAt|date("d F, Y") }}</small>
-                                </h5>
-                                {{ p.comentario }}
-                            </div>
-                        </div>
-                    {% endfor %}
-
-
-                </div>
-
-
-
-                {% if app.user is not null %}
-
-
-                    <div class="leave-comment-box">
-                        <h4 class="title-heading">Escribe tu comentario</h4>
-                        <div class="row">
-
-                            <div class="col-xs-12 col-md-6">
-
-                            </div>
-
-
-                            <div class="col-xs-12 col-md-12">
-
-                                {% for label, flashes in app.session.flashbag.all %}
-                                    {% for flash in flashes %}
-                                        <div class="alert alert-{{ label }}">
-                                            {{ flash }}
-                                        </div>
-                                    {% endfor %}
-                                {% endfor %}
-                                {% if form is defined %}
-                                    {{ form_start(form) }}
-                                    {{ form_errors(form) }}
-                                    <div id="rateYo2"></div>
-                                    <div class="form-group">
-                                        {{ form_label(form.comentario,'Comentario') }}
-                                        {{ form_errors(form.comentario) }}
-                                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
-                                        <!-- el boton submit No renderiza con esto-->
-                                    </div>
-                                    {{ form_widget(form.nota) }}
-
-                                    {{ form_end(form) }}
-
-
-                                {% endif %}
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                {% else %}
-
-                    <p>
-                        <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
-                        ó
-                        <a href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
-                        para poder comentar
-                    </p>
-
-                {% endif %}
-
-
-            </div>
-
-            <div class="col-sm-4">
+            <div class="col-md-4 col-md-push-8">
                 <div class="proveedor-fixed">
                     <div class="proveedor-info">
 
@@ -155,10 +45,10 @@
 
 
                         <ul>
-                            <li ><a style="color:#3b5998" href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
-                            <li ><a style="color:#cd2027" href="#"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a></li>
-                            <li ><a style="color:#55acee" href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
-                            </li>
+                            <li ><a style="color:#35b3b4" href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                            <li ><a style="color:#35b3b4" href="#"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a></li>
+                            <li ><a style="color:#35b3b4" href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -166,18 +56,157 @@
 
             </div>
 
+            <div class="col-md-8 col-md-pull-4">
 
+                <!-- Slider Section -->
+
+                <div id="slider" class="flexslider">
+                    <ul class="slides">
+                        {% for f in proveedor.fotos  %}
+                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+                                {% if app.user is not null %}
+                                    {% set me_gusta = 0 %}
+                                    {% for fu in app.user.fotos  %}
+                                        {% if fu.foto.id==f.id %}
+                                            {% set me_gusta = 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if me_gusta==1 %}
+                                        <a href="{{ path('proveedor_foto_me_gusta',
+                                        {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                            <i class="fa fa-heart" aria-hidden="true"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('proveedor_foto_me_gusta',
+                                        {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        </a>
+
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+                <div id="carousel" class="flexslider">
+                    <ul class="slides">
+                        {% for f in proveedor.fotos  %}
+                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+                <!-- Fin Slider Section -->
+
+
+                <!-- Description Section -->
+
+                <p class="proveedor-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
+
+                <!-- Fin Descriptioin Section -->
+
+
+                <!-- Comentarios Section -->
+
+                <div class="comments-box">
+                    <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
+                    
+                    {% for p in comentarios %}
+                        <div class="media comment">
+
+                            <div class="media-body">
+                                <h5 class="media-heading">
+                                    <h3>{{ p.titulo }}</h3>
+                                    <div class="rateYo_comments" data-rating="{{ p.nota }}"></div><span>{{ p.user }} - </span>
+                                    <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
+                                </h5>
+                                <p>{{ p.comentario }}</p>
+                                <div class="col-md-11 respuesta">
+                                    {% if p.respuesta is not null %}
+                                        <p>{{ p.respuesta.respuesta }}</p>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Fin Comentarios Section -->
+
+                {% if app.user is not null %}
+
+
+                    <div class="leave-comment-box">
+
+                        <div class="row">
+
+                            <div class="col-xs-12 col-md-12">
+
+                                {% for label, flashes in app.session.flashbag.all %}
+                                    <h4 class="title-heading">Escribe tu comentario</h4>
+                                    {% for flash in flashes %}
+                                        <div class="alert alert-{{ label }}">
+                                            {{ flash }}
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+
+                                {% if form is defined %}
+                                    {{ form_start(form) }}
+                                    {{ form_errors(form) }}
+                                    <div id="rateYo2"></div>
+
+                                    <div class="form-group">
+                                        {{ form_label(form.titulo,'Título') }}
+                                        {{ form_errors(form.titulo) }}
+                                        {{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'Tu título','rows':'6'}}) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_label(form.comentario,'Comentario') }}
+                                        {{ form_errors(form.comentario) }}
+                                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+                                        <!-- el boton submit No renderiza con esto-->
+                                    </div>
+                                    {{ form_widget(form.nota) }}
+
+                                    {{ form_end(form) }}
+
+
+                                {% endif %}
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% else %}
+
+                    <p>
+                        <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
+                        ó
+                        <a href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
+                        para poder comentar
+                    </p>
+
+                {% endif %}
+
+
+            </div>
 
         </div>
-
-
-
-
-
-
-
-
-
 
     </div>
 
@@ -214,14 +243,19 @@
 
         var test3 = $(".rateYo3").attr("data-rating3");
 
+        var color= "#AA986B";
+
+
         $("#rateYo").rateYo({
             rating: test,
-            ratedFill: "#35b3b4",
+            ratedFill: color,
+            normalFill: "#A0A0A0",
             readOnly: true
         });
 
         $("#rateYo2").rateYo({
-                    ratedFill: "#35b3b4",
+                    ratedFill: color,
+                    normalFill: "#A0A0A0",
                     starWidth: "60px"
                 })
                 .on("rateyo.set", function (e, data) {
@@ -244,7 +278,8 @@
                 rating: $(this).attr("data-rating"),
                 starWidth: "20px",
                 readOnly: true,
-                ratedFill: "#35b3b4"
+                ratedFill: color,
+                normalFill: "#A0A0A0"
             });
         });
 

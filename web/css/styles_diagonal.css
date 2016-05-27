@@ -1,4 +1,7 @@
-
+.tittle_cat a:focus, .tittle_cat a:hover , .tittle_cat a:active{
+    text-decoration: none;
+    color: #fff;
+}
 @font-face {
     font-family: "Bebas Neue";
     src: url(../fonts/BebasNeue_Regular.otf);
@@ -73,6 +76,7 @@ img
     font-size: 60px;
     left: 220px;
     top: 100px;
+    margin-bottom: 10px;
     text-shadow: 2px 2px 5px rgba(0,0,0,.5);
 }
 
@@ -85,8 +89,7 @@ img
     text-shadow: 2px 2px 5px rgba(0,0,0,.5);
     text-decoration: none;
     border: solid 2px #fff;
-    margin-top: 15px;
-    padding: 5px;
+    margin-top: 20px;
     padding: 5px;
     width: 90px;
     text-align: center;
@@ -115,6 +118,9 @@ img
 .content_slider_resp{
     display: none;
 }
+
+
+
 
 @media only screen and (max-device-width : 667px) {
 
