@@ -60,11 +60,33 @@ class Foto
     private $users;
 
     /**
+     * @var boolean
+     */
+    /** @ORM\Column(type="boolean",options={"default": false}) **/
+    private $isListado;
+
+    /**
      * @param mixed $proveedor
      */
     public function setProveedor($proveedor)
     {
         $this->proveedor = $proveedor;
+    }
+
+    /**
+     * @param mixed $isListado
+     */
+    public function setIsListado($isListado)
+    {
+        $this->isListado = $isListado;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsListado()
+    {
+        return $this->isListado;
     }
 
     /**
