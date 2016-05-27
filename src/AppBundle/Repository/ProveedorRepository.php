@@ -46,8 +46,9 @@ class ProveedorRepository extends EntityRepository
             ->setParameter('proveedor', $proveedor);
         $qb->addGroupBy('p');
         $query = $qb->getQuery();
-
-        return $query->getSingleResult()['mymoy'];
+        $result = $query->getOneOrNullResult();
+        if($result!=null) $result = $result['mymoy'];
+        return $result;
     }
     public function getProveedorWithRating($proveedor_slug){
         $em = $this->getEntityManager();

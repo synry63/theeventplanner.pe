@@ -17,16 +17,25 @@ class ComentarioProveedor
 {
 
     /**
-     * @ORM\Id @ORM\ManyToOne(targetEntity="User")
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
      **/
     private $user;
 
     /**
-     * @ORM\Id @ORM\ManyToOne(targetEntity="Proveedor",inversedBy="comentariosProveedor")
+     * @ORM\ManyToOne(targetEntity="Proveedor",inversedBy="comentariosProveedor")
      **/
     private $proveedor;
 
-
+    /**
+     * @ORM\OneToOne(targetEntity="RespuestaProveedor",mappedBy="comentarioProveedor")
+     */
+    private $respuesta;
 
     /** @ORM\Column(type="decimal",precision=10,scale=2)
      *  @Assert\NotBlank()
@@ -50,6 +59,24 @@ class ComentarioProveedor
      * @var \DateTime
      */
     private $adedAt;
+
+    /**
+     * @param mixed $respuesta
+     */
+    public function setRespuesta($respuesta)
+    {
+        $this->respuesta = $respuesta;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRespuesta()
+    {
+        return $this->respuesta;
+    }
+
+
 
     /**
      * @param \DateTime $adedAt
