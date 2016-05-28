@@ -49,6 +49,12 @@ class ComentarioProveedor
     private $nota;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
+     */
+    private $titulo;
+
+    /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
@@ -160,8 +166,24 @@ class ComentarioProveedor
         return $this->proveedor;
     }
 
+    /**
+     * @param mixed $titulo
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
 
     public function __construct() {
         $this->adedAt = new \DateTime('now');
     }
+
 }

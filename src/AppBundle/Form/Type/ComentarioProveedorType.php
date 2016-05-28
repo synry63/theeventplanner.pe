@@ -18,6 +18,7 @@ class ComentarioProveedorType extends AbstractType
     {
         $builder
             //->add('nota')
+            ->add('titulo')
             ->add('comentario')
             ->add('nota',HiddenType::class, array(
                 'data' => '0'))
