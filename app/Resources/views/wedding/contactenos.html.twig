@@ -18,7 +18,7 @@
 
 
 <div class="container form-wedding-login">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-6">
         {% for label, flashes in app.session.flashbag.all %}
             {% for flash in flashes %}
                 <div class="alert alert-{{ label }}">
@@ -62,7 +62,9 @@
         {{ form_end(form) }}
 
     </div>
-
+    <div class="col-md-6 image-contact">
+        <img src="{{ asset('images/contactenos_body.jpg') }}" alt="Contáctenos">
+    </div>
 </div>
 
 {% endblock %}

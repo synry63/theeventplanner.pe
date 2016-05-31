@@ -1,1 +1,101 @@
-{{ dump(votos) }}
+
+{% extends 'wedding/layout.html.twig' %}
+{% block title %}Inspiraciones | Votos{% endblock %}
+
+{% block main_title %}
+
+    <div class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/tittle_inspiraciones.png') }}" alt="Inspiraciones Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="container">
+        <section id="demo">
+            {% for v in votos  %}
+                <article class="white-panel">
+                    <h1><a href="#">{{ v.nombre }}</a></h1>
+                    <p>"{{ v.description }}"</p>
+                </article>
+            {% endfor %}
+
+
+            <article class="white-panel">
+                <h1><a href="#">Quiero Compartirlo todo</a></h1>
+                <p>“No es casualidad que nos hayamos conocido, no es casualidad que nos hayamos amado, creo que este gran amor que siento tampoco es casual, es más bien, fruto de nuestra amistad, de las ganas de vivir, de querer compartirlo todo juntos. (Nombre), ahora que estamos aquí, quiero ante Dios comprometerme a ser tu compañera fiel, tu amiga incondicional, y tu amante eterna, atrévete a construir nuestro destino, porque sé que tanto tú como yo, estamos convencidos que juntos somos mejor que separados.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Mi vida Contigo</a></h1>
+                <p>“Me entrego a ti este día, para compartir mi vida contigo. Puedes confiar en mi amor, porque es real. Prometo serte un esposo (esposa) fiel y compartir y apoyarte en tus esperanzas, sueños y metas. Mi voto estará contigo para siempre. Cuando caigas, te levantaré, cuando llores te confortaré, cuando rías compartiré contigo tu gozo. Todo lo que soy y todo lo que tengo es tuyo desde este momento hasta la eternidad.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Te Prometo</a></h1>
+                <p>“(Él) Prometemos amarnos el uno al otro y compartir hasta nuestros pensamientos más íntimos. Prometemos sostenernos, apreciarnos y valorarnos.
+                    (Ella) Queremos vivir cada día como si fuera el último, y prometernos nunca acostarnos enfadados. Si el dolor entra en nuestras vidas, juntos lo superaremos.
+                    (Él) Mientras envejezcamos y lentamente cambiemos, podremos mirarnos a los ojos y saber que lo que tenemos juntos nunca desaparecerá.
+                    (Ella) Con cada aliento que exhalemos crecerá nuestro amor.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Juntos</a></h1>
+                <p>“Ambos escogimos juntar nuestras vidas. Yo (nombre), me entrego a ti, sabiendo que la magia de nuestro amor es caminar juntos, en la prosperidad y en la adversidad. Yo quiero ser tu compañera y que tú seas mi compañero todos los días de mi vida.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Quiero Compartirlo todo</a></h1>
+                <p>“No es casualidad que nos hayamos conocido, no es casualidad que nos hayamos amado, creo que este gran amor que siento tampoco es casual, es más bien, fruto de nuestra amistad, de las ganas de vivir, de querer compartirlo todo juntos. (Nombre), ahora que estamos aquí, quiero ante Dios comprometerme a ser tu compañera fiel, tu amiga incondicional, y tu amante eterna, atrévete a construir nuestro destino, porque sé que tanto tú como yo, estamos convencidos que juntos somos mejor que separados.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Mi vida Contigo</a></h1>
+                <p>“Me entrego a ti este día, para compartir mi vida contigo. Puedes confiar en mi amor, porque es real. Prometo serte un esposo (esposa) fiel y compartir y apoyarte en tus esperanzas, sueños y metas. Mi voto estará contigo para siempre. Cuando caigas, te levantaré, cuando llores te confortaré, cuando rías compartiré contigo tu gozo. Todo lo que soy y todo lo que tengo es tuyo desde este momento hasta la eternidad.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Te Prometo</a></h1>
+                <p>“(Él) Prometemos amarnos el uno al otro y compartir hasta nuestros pensamientos más íntimos. Prometemos sostenernos, apreciarnos y valorarnos.
+                    (Ella) Queremos vivir cada día como si fuera el último, y prometernos nunca acostarnos enfadados. Si el dolor entra en nuestras vidas, juntos lo superaremos.
+                    (Él) Mientras envejezcamos y lentamente cambiemos, podremos mirarnos a los ojos y saber que lo que tenemos juntos nunca desaparecerá.
+                    (Ella) Con cada aliento que exhalemos crecerá nuestro amor.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Juntos</a></h1>
+                <p>“Ambos escogimos juntar nuestras vidas. Yo (nombre), me entrego a ti, sabiendo que la magia de nuestro amor es caminar juntos, en la prosperidad y en la adversidad. Yo quiero ser tu compañera y que tú seas mi compañero todos los días de mi vida.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Quiero Compartirlo todo</a></h1>
+                <p>“No es casualidad que nos hayamos conocido, no es casualidad que nos hayamos amado, creo que este gran amor que siento tampoco es casual, es más bien, fruto de nuestra amistad, de las ganas de vivir, de querer compartirlo todo juntos. (Nombre), ahora que estamos aquí, quiero ante Dios comprometerme a ser tu compañera fiel, tu amiga incondicional, y tu amante eterna, atrévete a construir nuestro destino, porque sé que tanto tú como yo, estamos convencidos que juntos somos mejor que separados.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Mi vida Contigo</a></h1>
+                <p>“Me entrego a ti este día, para compartir mi vida contigo. Puedes confiar en mi amor, porque es real. Prometo serte un esposo (esposa) fiel y compartir y apoyarte en tus esperanzas, sueños y metas. Mi voto estará contigo para siempre. Cuando caigas, te levantaré, cuando llores te confortaré, cuando rías compartiré contigo tu gozo. Todo lo que soy y todo lo que tengo es tuyo desde este momento hasta la eternidad.”</p>
+            </article>
+            <article class="white-panel">
+                <h1><a href="#">Te Prometo</a></h1>
+                <p>“(Él) Prometemos amarnos el uno al otro y compartir hasta nuestros pensamientos más íntimos. Prometemos sostenernos, apreciarnos y valorarnos.
+                    (Ella) Queremos vivir cada día como si fuera el último, y prometernos nunca acostarnos enfadados. Si el dolor entra en nuestras vidas, juntos lo superaremos.
+                    (Él) Mientras envejezcamos y lentamente cambiemos, podremos mirarnos a los ojos y saber que lo que tenemos juntos nunca desaparecerá.
+                    (Ella) Con cada aliento que exhalemos crecerá nuestro amor.”</p>
+            </article>
+
+        </section>
+
+         
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/pinterest_grid.js') }}"></script>
+    <script>
+        $('#demo').pinterest_grid({
+            no_columns: 4,
+            padding_x: 10,
+            padding_y: 10,
+            margin_bottom: 50,
+            single_column_breakpoint: 700
+            });
+    </script>
+{% endblock %}
+

@@ -40,7 +40,6 @@
         <p>Lorem ipsum dolor sitw amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
     </div>
 
-
     <div class="container">
         <div class="row">
             <div class="slick_wedding">
@@ -50,19 +49,17 @@
                     </a>
 
                 {% endfor %}
+
             </div>
         </div>
 
     </div>
 
 
-
-
-
     <div class="container">
         <div class="slick_wedding">
             {% for f in mejores_fotos %}
-                <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
+            <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
             {% endfor %}
 
         </div>

@@ -34,21 +34,37 @@
         </div>
 
 
-        <div class="proveedores row">
-
+        <div class="proveedores2 row">
 
             {% for p in proveedores %}
-                <div class="col-sm-6 col-md-4">
-                    <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
-                        <div class="thumbnail">
-                            <!--<img class="filtroimg" src="{{ asset('images/filtro_weddings.png') }}" alt="filter">-->
-                            <img src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
-                            <div class="caption">
-                                <h3>{{ p.nombre }}</h3>
+
+                    <div class="col-sm-6 col-md-4">
+                        <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
+                            <div class="thumbnail">
+                                <div id="card">
+                                    <div class="front">
+                                        {% for f in p.fotos  %}
+                                            {% if f.isListado %}
+                                                <div class="img-circle logo-circle">
+                                                    <img id="logo-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                                </div>
+                                                <img src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="back">
+                                        <img src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                    </div>
+                                </div>
+                                <div class="caption">
+                                    <h3>{{ p.nombre }}</h3>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+
+
+
             {% endfor %}
 
 
@@ -77,5 +93,21 @@
 
 
 
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/jquery.flip.min.js') }}"></script>
+    <script>
+
+            $("#card").flip({
+                axis: 'y',
+                trigger: 'hover',
+                reverse: false
+            });
+
+    </script>
 
 {% endblock %}

@@ -1,20 +1,15 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-{% block content %}
-    {% block main_title %}
+<body class="register_wedding_page">
 
-        <div class="container">
-            <div class="row">
-                <div class="tittle_general">
-                    <img src="{{ asset('images/tittle_registrate.png') }}" alt="Proveedores Tittle">
-                </div>
-            </div>
-        </div>
-    {% endblock %}
-
-    {{ parent() }}
-    <div class="container">
+    <div class="container-fluid back-register">
         {% include "FOSUserBundle:Registration:register_content.html.twig" %}
     </div>
 
-{% endblock content %}
+</body>
+
+

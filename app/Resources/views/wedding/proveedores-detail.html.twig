@@ -73,16 +73,19 @@
                                         {% endif %}
                                     {% endfor %}
                                     {% if me_gusta==1 %}
-                                        <a href="{{ path('proveedor_foto_me_gusta',
-                                        {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
-                                            <i class="fa fa-heart" aria-hidden="true"></i>
-                                        </a>
+                                        <div class="boton-megusta">
+                                            <a href="{{ path('proveedor_foto_me_gusta',
+                                            {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
                                     {% else %}
-                                        <a href="{{ path('proveedor_foto_me_gusta',
-                                        {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        </a>
-
+                                        <div class="boton-megusta">
+                                            <a href="{{ path('proveedor_foto_me_gusta',
+                                            {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
                                     {% endif %}
                                 {% endif %}
                             </li>
@@ -194,12 +197,14 @@
                     </div>
                 {% else %}
 
-                    <p>
-                        <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
-                        ó
-                        <a href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
-                        para poder comentar
-                    </p>
+                    <span  class="text-forcomments">
+                        <p>
+                            <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
+                            ó
+                            <a href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
+                            para poder comentar
+                        </p>
+                    </span>
 
                 {% endif %}
 
