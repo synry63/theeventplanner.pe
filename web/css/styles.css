@@ -43,7 +43,9 @@ GLOBAL
 .flash-success{
     top:0;
 }
-
+.logo_login img{
+    width: 100%;
+}
 .logo_login{
     text-align: center;
     padding:10px;
@@ -381,23 +383,7 @@ GLOBAL
     color: white;
     border-radius: 0 0 10px;
 }
-.profile-detail span{
-    font-weight: bold;
-}
-.profile-detail{
-    text-align: center;
-}
-.fos_user_user_show{
-    padding: 25px;
-}
-.user_show{
-    margin: 0 auto;
-}
 
-.profile-detail img{
-    width: 100px;
-    margin: 10px auto;
-}
 .comment-detail img{
     margin: 0 auto;
 }
@@ -462,6 +448,34 @@ GLOBAL
     color: white;
     font-size: 30px;
 }
+
+/*=============
+Profile
+===============*/
+.portada-profile{
+    height: 150px;
+    position: relative;
+    background: red;
+}
+.profile-detail span{
+    font-weight: bold;
+}
+.profile-detail{
+    text-align: center;
+    position: absolute;
+    top:80px;
+}
+.fos_user_user_show{
+    padding: 25px;
+}
+.user_show{
+    margin: 0 auto;
+}
+
+.profile-detail img{
+    width: 100px;
+    margin: 10px auto;
+}
 /*=============
 User Login Responsive
 ===============*/
@@ -483,7 +497,7 @@ Votos GRID
     margin-bottom: 50px;
 }
 
-img {
+#demo img {
     width: 100%;
     max-width: 100%;
     height: auto;
