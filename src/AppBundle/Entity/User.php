@@ -90,6 +90,28 @@ class User extends BaseUser
     private $fotos;
 
     /**
+     * @ORM\OneToMany(targetEntity="VotoUserGusta", mappedBy="user")
+     */
+    private $votos;
+
+    /**
+     * @param mixed $votos
+     */
+    public function setVotos($votos)
+    {
+        $this->votos = $votos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVotos()
+    {
+        return $this->votos;
+    }
+
+
+    /**
      * @param mixed $fotos
      */
     public function setFotos($fotos)
