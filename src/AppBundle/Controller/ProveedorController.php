@@ -366,6 +366,7 @@ class ProveedorController extends Controller
         $moy = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorRating($proveedor);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
 
+        if($moy==NULL) $moy = 0;
 
         $renderOut = array(
             'proveedor'=>$proveedor,
@@ -390,7 +391,7 @@ class ProveedorController extends Controller
                     $em->persist($comentarioProveedor);
                     $em->flush();
 
-                    $request->getSession()->getFlashBag()->add('success', 'Your comment is save !');
+                    $request->getSession()->getFlashBag()->add('success', 'Gracias por tu comentario !');
                     return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
                     //return $this->redirectToRoute('task_success');
                     //$this->redirect($request->getReferer());

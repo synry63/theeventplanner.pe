@@ -154,11 +154,9 @@
                             <div class="col-xs-12 col-md-12">
 
                                 {% for label, flashes in app.session.flashbag.all %}
-                                    <h4 class="title-heading">Escribe tu comentario</h4>
+                                <!--<h4 class="title-heading">Escribe tu comentario</h4>-->
                                     {% for flash in flashes %}
-                                        <div class="alert alert-{{ label }}">
-                                            {{ flash }}
-                                        </div>
+                                        <div data-coment="{{ flash }}" id="coment-alert"></div>
                                     {% endfor %}
                                 {% endfor %}
 
@@ -201,7 +199,7 @@
                         <p>
                             <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
                             ó
-                            <a href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
+                            <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
                             para poder comentar
                         </p>
                     </span>
@@ -224,7 +222,12 @@
     <script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
     <script>
+        var coment_r = $("#coment-alert").attr("data-coment");
+        if(coment_r!=undefined)
+            var n = noty({text: coment_r,'layout':'bottom',type:'success',timeout:2000});
+
         $('#carousel').flexslider({
             animation: "slide",
             controlNav: false,
