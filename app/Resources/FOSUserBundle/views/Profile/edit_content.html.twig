@@ -1,8 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': {novalidate: 'novalidate','class': 'fos_user_profile_edit' } }) }}
-<div class="container form-login">
-    <div class="col-md-8 col-md-offset-2">
+<div class="form-login3">
         <div class="form-group">
             {{ form_label(form.username,'Nombre de Usuario') }}
             {{ form_errors(form.username) }}
@@ -42,8 +41,6 @@
         <div>
             <input class="btn btn-entrar" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
         </div>
-
-    </div>
 </div>
 
 

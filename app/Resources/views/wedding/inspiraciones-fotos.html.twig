@@ -13,7 +13,7 @@
 {% block content %}
     {{ parent() }}
     {{ dump(inspiraciones) }}
-    {{ dump(app.user.inspiraciones) }}
+    {# {{ dump(app.user.inspiraciones) }}#}
     {{ dump(app.request.get('slug_site')) }}
 
     <div class="container">

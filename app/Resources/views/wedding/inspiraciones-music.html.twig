@@ -15,7 +15,11 @@
 {% block content %}
     {{ parent() }}
         <div class="container music-container"> 
-                <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12163228073%3Aplaylist%3A77jJUt6EGc07iV7VBwQj38" width="450" height="640" frameborder="0" allowtransparency="true"></iframe>
-
+            <div class="col-md-6">
+                <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12163228073%3Aplaylist%3A77jJUt6EGc07iV7VBwQj38&theme=white" width="450" height="640" frameborder="0" allowtransparency="true"></iframe>
+            </div>
+            <div class="col-md-6">
+                <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12163228073%3Aplaylist%3A77jJUt6EGc07iV7VBwQj38&theme=white" width="450" height="640" frameborder="0" allowtransparency="true"></iframe>
+            </div>
         </div>
 {% endblock %}

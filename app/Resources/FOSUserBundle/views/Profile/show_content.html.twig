@@ -1,7 +1,12 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-
-
+    <div class="user_show">
+        <p><span><strong>Nombres: </strong></span> {{ user.nombres }}</p>
+        <p><span><strong>Apellidos: </strong></span> {{ user.apellidos }}</p>
+        <p><span><strong>Nombre de Usuario: </strong></span> {{ user.username }}</p>
+        <p><span><strong>Email: </strong></span> {{ user.email }}</p>
+        <p><span><strong>DNI: </strong></span> {{ user.dni }}</p>
+    </div>
 
 
 

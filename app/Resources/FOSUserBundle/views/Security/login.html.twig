@@ -1,10 +1,60 @@
-
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="col-md-4 col-md-offset-4 form-login2">
+<div class="form-login2">
     <style>
+
+        .form-login2 input{
+            width: 100%;
+            height: 30px;
+            padding-left:10px;
+            font-size: 14px;
+            border:none;
+            border-radius:0 ;
+            border:solid 1px rgba(0,0,0,.2);
+            margin-bottom: 5px;
+        }
+        .form-login2 label{
+            color: #C70052;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-login2 img{
+            width: 100%;
+        }
         .form-login2{
-            background: red;
+            position: relative;
+            margin: 0 auto;
+            width: 350px;
+            background: #fff;
+            padding: 20px;
+            font-family: 'Lato', sans-serif;
+        }
+        .form-login2 label{
+            color:#C70052;
+        }
+        #remember_me{
+            width: auto;
+            height: auto;
+        }
+        #remember_text{
+            display: inline-block;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+        #_submit2{
+            width: 60px;
+            height: 35px;
+            background: #D12768;
+            border: none;
+            color: white;
+            font-size: 13px;
+        }
+        #_submit2:hover{
+            background: #C70052;
+            color: white;
+        }
+        .form-group{
+            margin-bottom: 5px;
         }
     </style>
         <div class="logo_login">
@@ -34,24 +84,25 @@
                 <span class="sr-only">Error:</span>
             </div>
             <!-- end ajax error -->
+
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
             <div class="form-group">
                 <label for="username">{{ 'security.login.username'|trans }}</label>
-                <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required"  placeholder="Usuario">
+                <input type="email" id="username" name="_username" value="{{ last_username }}" required="required"  placeholder="Usuario">
             </div>
 
             <div class="form-group">
                 <label for="password">{{ 'security.login.password'|trans }}</label>
-                <input type="password" id="password" name="_password" required="required" class="form-control"  placeholder="Contraseña">
+                <input type="password" id="password" name="_password" required="required"  placeholder="Contraseña">
             </div>
 
             <div class="form-group">
                 <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                <label id="remember_text" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
             </div>
             <div style="text-align: center">
-                <button type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-entrar">Entrar</button>
+                <button type="submit" id="_submit2" name="_submit" value="{{ 'security.login.submit'|trans }}" >Entrar</button>
 
             </div>
         </form>

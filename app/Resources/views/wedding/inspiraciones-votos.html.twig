@@ -20,6 +20,11 @@
             {% for v in votos  %}
                 <article class="white-panel">
                     <h1><a href="#">{{ v.nombre }}</a></h1>
+                    <div class="votosgusta">
+                        <a href="">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        </a>
+                    </div>
                     <p>"{{ v.description }}"</p>
                 </article>
             {% endfor %}

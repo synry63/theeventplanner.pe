@@ -19,12 +19,6 @@
         <div class="container profile-detail">
             <div class="col-sm-4 col-xs-12">
                 <img src="{{ asset('images/user_icon.png') }}" alt="User_foto">
-                <p>{{ user.nombres }} {{ user.apellidos }}</p>
-                <div class="user_show">
-                    <p><span>Nombre de Usuario:</span> {{ user.username }}</p>
-                    <p><span>Email:</span> {{ user.email }}</p>
-                    <p><span>DNI:</span> {{ user.dni }}</p>
-                </div>
             </div>
 
         </div>
@@ -32,12 +26,15 @@
 
 
     <div class="container">
-        <div class="menu_profile">
+        <div class="col-md-4 menu_profile">
             {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
+        </div>
+        <div class="col-md-8  profile-content">
+            {% include "FOSUserBundle:Profile:show_content.html.twig" %}
         </div>
     </div>
 
-    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+
 
 
 

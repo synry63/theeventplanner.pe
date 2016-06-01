@@ -206,9 +206,6 @@ GLOBAL
     background: #C70052;
     color: #fff;
 }
-.btn.focus, .btn:focus, .btn:hover{
-    color: rgba(255,255,255,.7);
-}
 
 #grid i{
     font-size: 25px;
@@ -237,6 +234,15 @@ GLOBAL
     font-family: 'Lato', sans-serif;
 }
 .form-login2 label{
+    color:#C70052;
+}
+
+.form-login3{
+
+    padding: 20px;
+    font-family: 'Lato', sans-serif;
+}
+.form-login3 label{
     color:#C70052;
 }
 
@@ -342,40 +348,7 @@ GLOBAL
 .named{
     padding-left: 40px;
 }
-.menu_profile{
-    padding:30px;
-    text-align: center;
-}
-.menu_profile span{
-    margin: 0 auto;
-}
-.menu_profile li{
-    display: inline-block;
-    margin: 10px 10px;
-}
-.menu_profile .current a{
-    border: solid 1px #C70052;
-    background: #fff;
-    color: #C70052;
-    box-sizing: border-box;
-}
-.menu_profile a{
-    text-decoration: none;
-    padding: 10px 15px;
-    background: #C70052;
-    color: #fff;
-    border-radius: 20px;
-    border: solid 1px transparent;
-    transition: all .5s;
 
-}
-.menu_profile a:hover{
-    border: solid 1px #C70052;
-    background: #fff;
-    color: #C70052;
-    box-sizing: border-box;
-
-}
 .flash-success{
     position: absolute;
     background: #C90051;
@@ -448,14 +421,77 @@ GLOBAL
     color: white;
     font-size: 30px;
 }
+.fotos_master{
+    margin: 10px 0;
+    position: relative;
+}
+.fotos_master img{
+    width: 100%;
+    border: solid 5px #fff;
+    box-shadow: 0px 0px 5px rgba(0,0,0,.2);
+    transition: all .5s;
+}
+.fotos_master img:hover{
+    transform: scale(1.1);
+}
+.fotos_master p:hover{
+    color: rgba(255,255,255,1);
+}
+.fotos_master p{
+    position: absolute;
+    left: 35px;
+    bottom: 0;
+    color: rgba(255,255,255,.5);
+    text-shadow: 2px 2px 5px rgba(0,0,0,.2);
+    font-size: 20px;
+}
 
 /*=============
 Profile
 ===============*/
+
+.fotos_profile_gusta{
+    margin: 10px 0;
+}
+.fotos_profile_gusta img{
+    width: 100%;
+}
 .portada-profile{
     height: 150px;
     position: relative;
-    background: red;
+    background: url("../images/banner_profile.png") center/cover;
+}
+
+.menu_profile{
+    margin-top:50px;
+    padding:30px;
+    float: left;
+}
+.menu_profile span{
+    margin: 0 auto;
+}
+.menu_profile li{
+    display: block;
+    margin: -1px 0;
+}
+.menu_profile .current a{
+    border: solid 1px #C70052;
+    background: #fff;
+    color: #C70052;
+    box-sizing: border-box;
+}
+.menu_profile a{
+    display: block;
+    width: 250px;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: solid 1px #C70052;
+    color: #C70052;
+    transition: all .5s;
+}
+.menu_profile a:hover{
+    background: #C70052;
+    color: #fff;
 }
 .profile-detail span{
     font-weight: bold;
@@ -468,13 +504,18 @@ Profile
 .fos_user_user_show{
     padding: 25px;
 }
-.user_show{
-    margin: 0 auto;
-}
-
 .profile-detail img{
     width: 100px;
     margin: 10px auto;
+}
+.profile-content{
+    position: relative;
+    padding:20px;
+}
+.user_show{
+    padding: 10px;
+    width: 250px;
+    margin:100px auto;
 }
 /*=============
 User Login Responsive
@@ -497,6 +538,16 @@ Votos GRID
     margin-bottom: 50px;
 }
 
+.votosgusta{
+    position: absolute;
+    top:20px;
+    right:20px;
+}
+.votosgusta a{
+    font-size: 20px;
+    color: #D72366;
+}
+
 #demo img {
     width: 100%;
     max-width: 100%;
@@ -514,7 +565,7 @@ Votos GRID
     font-size: 1em;
 }
 .white-panel h1 a {
-    color: #A92733;
+    color: #D72366;
 }
 .white-panel:hover {
     box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
@@ -698,6 +749,9 @@ MÓVILES PORTAIT
     .btn_login_responsive{
         display: none;
     }
+    .user_show{
+        margin:10px auto;
+    }
     .user-login-responsive{
         display: block;
     }
@@ -712,7 +766,6 @@ MÓVILES PORTAIT
     }
     .menu_profile li{
         width: 100%;
-        margin-bottom: 20px;
     }
     .music-container iframe{
         width: 350px;
@@ -734,6 +787,7 @@ MÓVILES PORTAIT
     }
     .form-login{
         padding: 20px;
+        margin: 50px 0;
     }
     .footer li a{
         color: rgba(0,0,0,.5);

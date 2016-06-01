@@ -1,0 +1,61 @@
+{% extends 'wedding/layout.html.twig' %}
+{% block title %}Inspiraciones | Fotos de Proveedores{% endblock %}
+
+{% block main_title %}
+
+    <div class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/tittle_inspiraciones.png') }}" alt="Inspiraciones Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+
+
+
+        <div class="container"> 
+            <div class="row">
+
+                {% for fp in fotos_proveedores  %}
+                    <div class="col-md-4 fotos_master popup-gallery">
+                        <a href="{{ vich_uploader_asset(fp, 'imgFile')}}"  title="{{ fp.proveedor.nombre }}">
+                            <img src="{{ vich_uploader_asset(fp, 'imgFile')}}" alt="">
+                            <p>{{ fp.proveedor.nombre }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.popup-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                titleSrc: function(item) {
+                    return item.el.attr('title') + '<small></small>';
+                }
+            }
+        });
+
+    </script>
+
+{% endblock %}
+
+
