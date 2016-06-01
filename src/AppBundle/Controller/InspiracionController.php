@@ -78,7 +78,7 @@ class InspiracionController extends Controller
         $fotos_proveedores = $this->getDoctrine()->getRepository('AppBundle:Foto')->findBy(array(),array('updatedAt'=>'DESC'));
 
         return $this->render(
-            'wedding/inspiraciones-fotos.html.twig',
+            'wedding/inspiraciones-fotos-proveedores.html.twig',
             array('fotos_proveedores'=>$fotos_proveedores)
         );
     }
