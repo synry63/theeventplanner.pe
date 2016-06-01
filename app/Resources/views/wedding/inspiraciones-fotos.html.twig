@@ -12,87 +12,37 @@
 
 {% block content %}
     {{ parent() }}
-    {{ dump(inspiraciones) }}
-    {# {{ dump(app.user.inspiraciones) }}#}
-    {{ dump(app.request.get('slug_site')) }}
 
     <div class="container">
         <ul class="grid effect-6" id="grid">
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x250.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x640.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x300.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x250.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x640.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x300.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x250.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x640.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x300.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x250.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x640.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x300.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x250.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x640.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x300.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x250.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x640.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-            <li>
-                <img src="{{ asset('images/wedding_gallery/400x300.jpg') }}">
-                <a href=""><i class="fa fa-heart-o heart" aria-hidden="true"></i></a>
-            </li>
-
+            {% for ifa in inspiraciones %}
+                <li>
+                    <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
+                    {% if app.user is not null %}
+                        {% set me_gusta = 0 %}
+                        {% for fu in app.user.inspiraciones  %}
+                            {% if fu.inspiracion.id==ifa.id %}
+                                {% set me_gusta = 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if me_gusta==1 %}
+                            <div class="boton-megusta">
+                                <a href="{{ path('inspiracion_me_gusta',
+                                {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="boton-megusta">
+                                <a href="{{ path('inspiracion_me_gusta',
+                                {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </li>
+            {% endfor %}
 
         </ul>
 

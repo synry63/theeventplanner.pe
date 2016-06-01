@@ -22,12 +22,12 @@
     <ul class="pagination">
         {% if previous is defined %}
             <li class="arrow">
-                <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo; {{ 'label_previous'|trans({}, 'KnpPaginatorBundle') }}</a>
+                <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo; {{ 'Atrás'|trans({}, 'KnpPaginatorBundle') }}</a>
             </li>
         {% else %}
             <li class="arrow unavailable">
                 <a>
-                    &laquo; {{ 'hacia atras'|trans({}, 'KnpPaginatorBundle') }}
+                    &laquo; {{ 'Atrás'|trans({}, 'KnpPaginatorBundle') }}
                 </a>
             </li>
         {% endif %}
@@ -84,13 +84,13 @@
         {% if next is defined %}
             <li class="arrow">
                 <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">
-                    {{ 'acia adelante'|trans({}, 'KnpPaginatorBundle') }} &nbsp;&raquo;
+                    {{ 'Siguiente'|trans({}, 'KnpPaginatorBundle') }} &nbsp;&raquo;
                 </a>
             </li>
         {% else %}
             <li class="arrow unavailable">
                 <a>
-                    {{ 'acia adelante'|trans({}, 'KnpPaginatorBundle') }} &nbsp;&raquo;
+                    {{ 'Siguiente'|trans({}, 'KnpPaginatorBundle') }} &nbsp;&raquo;
                 </a>
             </li>
         {% endif %}
