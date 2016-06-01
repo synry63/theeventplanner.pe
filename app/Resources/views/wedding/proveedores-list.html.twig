@@ -41,7 +41,7 @@
                     <div class="col-sm-6 col-md-4">
                         <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
                             <div class="thumbnail">
-                                <div id="card">
+                                <div class="card">
                                     <div class="front">
                                         {% for f in p.fotos  %}
                                             {% if f.isListado %}
@@ -62,11 +62,7 @@
                             </div>
                         </a>
                     </div>
-
-
-
             {% endfor %}
-
 
         </div>
 
@@ -76,24 +72,6 @@
 
     </div>
 
-
-
-
-    {#<table>
-        <tr>
-             sorting of properties based on query components
-            <th {% if proveedores.isSorted('p.nombre') %} class="sorted"{% endif %}> {{ knp_pagination_sortable(proveedores, 'Nombre', 'p.nombre',{'direction': 'desc'}) }} </th>
-            <th> {{ knp_pagination_sortable(proveedores, 'Country A-Z', 'country', {'sort': 'country', 'direction': 'desc'}) }} </th>
-            <th{% if proveedores.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(proveedores, 'Title', 'a.title') }}</th>
-            <th>{{ knp_pagination_sortable(proveedores, 'Release', ['a.date', 'a.time']) }}</th>
-        </tr>
-    </table>#}
-
- {#display navigation#}
-
-
-
-
 {% endblock %}
 
 
@@ -101,8 +79,7 @@
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/jquery.flip.min.js') }}"></script>
     <script>
-
-            $("#card").flip({
+            $(".card").flip({
                 axis: 'y',
                 trigger: 'hover',
                 reverse: false
