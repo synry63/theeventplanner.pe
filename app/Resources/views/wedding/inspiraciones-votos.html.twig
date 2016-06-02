@@ -15,17 +15,36 @@
 
 {% block content %}
     {{ parent() }}
+
     <div class="container">
         <section id="demo">
             {% for v in votos  %}
                 <article class="white-panel">
                     <h1><a href="#">{{ v.nombre }}</a></h1>
-                    <div class="votosgusta">
-                        <a href="">
-                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                    <p>"{{ v.description }}"</p>
+                    {% if app.user is not null %}
+                        {% set me_gusta = 0 %}
+                        {% for fu in app.user.votos  %}
+                            {% if fu.voto.id==v.id %}
+                                {% set me_gusta = 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if me_gusta==1 %}
+                            <div class="votosgusta">
+                                <a href="{{ path('voto_me_gusta',
+                                {'slug_site': app.request.get('slug_site'),"id":v.id}) }}">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="votosgusta">
+                                <a href="{{ path('voto_me_gusta',
+                                {'slug_site': app.request.get('slug_site'),"id":v.id}) }}">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    <p >"{{ v.description }}"</p>
                 </article>
             {% endfor %}
 
@@ -93,6 +112,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/pinterest_grid.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     <script>
         $('#demo').pinterest_grid({
             no_columns: 4,
@@ -100,6 +120,21 @@
             padding_y: 10,
             margin_bottom: 50,
             single_column_breakpoint: 700
+        });
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
         });
     </script>
 {% endblock %}

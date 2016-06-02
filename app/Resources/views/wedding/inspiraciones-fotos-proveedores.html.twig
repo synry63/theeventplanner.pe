@@ -14,12 +14,8 @@
 
 {% block content %}
     {{ parent() }}
-
-
-
         <div class="container"> 
             <div class="row">
-
                 {% for fp in fotos_proveedores  %}
                     <div class="col-md-4 fotos_master popup-gallery">
                         <a href="{{ vich_uploader_asset(fp, 'imgFile')}}"  title="{{ fp.proveedor.nombre }}">

@@ -40,30 +40,40 @@
         <p>Lorem ipsum dolor sitw amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="slick_wedding">
-                {% for p in mejores_proveedores %}
-                    <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.proveedor.slug}) }}">
-                        <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo')}}" alt="{{ p.proveedor.nombre }}" />
-                    </a>
 
+    <div class="container-fluid home-slicks">
+        <div class="container">
+            <div class="row">
+                <h1 class="tittle-slicks">Los Mejores Proveedores</h1>
+                <h3 class="subtittle-slick">Esperando por tí</h3>
+                <div class="slick_wedding">
+                    {% for p in mejores_proveedores %}
+                        <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.proveedor.slug}) }}">
+                            <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo')}}" alt="{{ p.proveedor.nombre }}" />
+                        </a>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container-fluid home-slicks2">
+        <div class="container">
+            <h1 class="tittle-slicks">Las Mejores Fotos</h1>
+            <h3 class="subtittle-slick">Inspirate y haz inolvidable "Tu" día</h3>
+            <div class="slick_wedding">
+                {% for f in mejores_fotos %}
+                    <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
                 {% endfor %}
 
             </div>
         </div>
-
     </div>
 
-
-    <div class="container">
-        <div class="slick_wedding">
-            {% for f in mejores_fotos %}
-            <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
-            {% endfor %}
-
-        </div>
-    </div>
 
 
 {% endblock %}

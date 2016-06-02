@@ -41,7 +41,7 @@
             margin-bottom: 0;
             vertical-align: middle;
         }
-        #_submit2{
+        .submit2{
             width: 60px;
             height: 35px;
             background: #D12768;
@@ -49,7 +49,7 @@
             color: white;
             font-size: 13px;
         }
-        #_submit2:hover{
+        .submit2:hover{
             background: #C70052;
             color: white;
         }
@@ -101,7 +101,7 @@
                 <label id="remember_text" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
             </div>
             <div style="text-align: center">
-                <button type="submit" id="_submit2" name="_submit" value="{{ 'security.login.submit'|trans }}" >Entrar</button>
+                <button type="submit" class="submit2" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" >Entrar</button>
 
             </div>
         </form>

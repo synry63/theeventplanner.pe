@@ -23,6 +23,31 @@ body{
 /*=============
 GLOBAL
 ===============*/
+.tittle-slicks{
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    color: rgba(0,0,0,.7);
+    margin: 35px 35px 0 35px;
+    text-rendering: optimizeLegibility;
+    font-family: 'Bree Serif', serif;
+}
+.subtittle-slick{
+    font-size: 17px;
+    text-align: center;
+    color: rgba(0,0,0,.4);
+    margin: 5px 5px 20px 5px;
+    font-family: 'Bree Serif', serif;
+}
+
+.home-slicks{
+    padding-bottom: 30px;
+}
+.home-slicks2{
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+    background: #F7F6F5;
+    padding-bottom: 30px;
+}
 
 .respuesta{
     float: right;
@@ -181,6 +206,7 @@ GLOBAL
     padding: 20px;
     background: #edeae6;
     text-align: center;
+    box-shadow: inset 0 0 10px 0 rgba(0,0,0,0.3);
 }
 .footer li{
     display:inline-block;
@@ -213,9 +239,13 @@ GLOBAL
 .navigation{
     float: right;
 }
+.navigation li a{
+    border: solid 2px #35B3B4;
+    color: #35B3B4;
+}
 
 .navigation .current a{
-    background: rgba(0,0,0,.3);
+    background: rgba(53,179,180,.5);
     color: #fff;
 }
 .filtros_proveedores select{
@@ -375,6 +405,7 @@ GLOBAL
 }
 
 
+
 .slick-prev::before {
     font-family: "flexslider-icon";
     font-size: 40px;
@@ -418,6 +449,7 @@ GLOBAL
     padding: 0 10px;
     position: absolute;
     bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.1);
 }
 .boton-megusta a{
     color: white;
@@ -490,6 +522,9 @@ Profile
     background: #C70052;
     color: #fff;
     box-sizing: border-box;
+}
+.menu_profile i{
+    padding-right: 10px;
 }
 .menu_profile a{
     display: block;
@@ -730,6 +765,9 @@ MÓVILES PORTAIT
 ===============*/
 
 @media only screen and (max-width:700px){
+    .image-contact img{
+        width: 100%;
+    }
     .profile-detail{
         text-align: center;
         position: relative;
