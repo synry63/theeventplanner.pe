@@ -22,7 +22,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     {% for c in categorias %}
-                        <li><a href="#">{{ c.nombre }}</a></li>
+                        <li><a href="{{ path('proveedores_category', {'slug_site': 'wedding','slug_category': c.slug}) }}">{{ c.nombre }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

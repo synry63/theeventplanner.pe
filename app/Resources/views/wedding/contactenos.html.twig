@@ -33,24 +33,41 @@
 
         <div class="form-group">
             {{ form_label(form.name,'Nombre') }}
-            {{ form_errors(form.name) }}
+            {% if form.name.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.name) }}</div>
+                </div>
+            {% endif %}
+            
             {{ form_widget(form.name,{ 'attr': {'class': 'form-control','placeholder':'Carolina García'}}) }}
         </div>
 
         <div class="form-group">
             {{ form_label(form.email,'Email') }}
-            {{ form_errors(form.email) }}
+            {% if form.email.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.email) }}</div>
+                </div>
+            {% endif %}
             {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
         </div>
 
         <div class="form-group">
             {{ form_label(form.subject,'Asunto') }}
-            {{ form_errors(form.subject) }}
+            {% if form.subject.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.subject) }}</div>
+                </div>
+            {% endif %}
             {{ form_widget(form.subject,{ 'attr': {'class': 'form-control','placeholder':'Cotización'}}) }}
         </div>
         <div class="form-group">
             {{ form_label(form.message,'Mensaje') }}
-            {{ form_errors(form.message) }}
+            {% if form.message.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.message) }}</div>
+                </div>
+            {% endif %}
             {{ form_widget(form.message,{ 'attr': {'class': 'form-control','placeholder':'Tu Mensaje'}}) }}
         </div>
 

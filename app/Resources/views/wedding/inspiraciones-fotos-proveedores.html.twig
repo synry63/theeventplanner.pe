@@ -14,16 +14,49 @@
 
 {% block content %}
     {{ parent() }}
+    {#
+     {{ dump(fotos_proveedores) }}
+    {{ dump(fotos_proveedores.params.page) }}
+    #}
+
         <div class="container"> 
             <div class="row">
+
                 {% for fp in fotos_proveedores  %}
                     <div class="col-md-4 fotos_master popup-gallery">
-                        <a href="{{ vich_uploader_asset(fp, 'imgFile')}}"  title="{{ fp.proveedor.nombre }}">
+                        {% if app.user is not null %}
+                            {% set me_gusta = 0 %}
+                            {% for fu in app.user.fotos %}
+                                {% if fu.foto.id==fp.id %}
+                                    {% set me_gusta = 1 %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if me_gusta==1 %}
+                                <div class="boton-megusta">
+                                    <a href="{{ path('inspiraciones_proveedor_foto_me_gusta',
+                                    {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="boton-megusta">
+                                    <a href="{{ path('inspiraciones_proveedor_foto_me_gusta',
+                                    {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                        <a class="popup_proveedores" href="{{ vich_uploader_asset(fp, 'imgFile')}}"  title="{{ fp.proveedor.nombre }}">
+
                             <img src="{{ vich_uploader_asset(fp, 'imgFile')}}" alt="">
                             <p>{{ fp.proveedor.nombre }}</p>
                         </a>
                     </div>
                 {% endfor %}
+                <div class="navigation">
+                    {{ knp_pagination_render(fotos_proveedores,'foundation_v5_pagination.html.twig') }}
+                </div>
 
             </div>
         </div>
@@ -33,7 +66,7 @@
     {{ parent() }}
     <script>
         $('.popup-gallery').magnificPopup({
-            delegate: 'a',
+            delegate: 'a.popup_proveedores',
             type: 'image',
             tLoading: 'Loading image #%curr%...',
             mainClass: 'mfp-img-mobile',

@@ -280,6 +280,41 @@ GLOBAL
     color:#C70052;
 }
 
+.form-login li{
+    list-style: none;
+
+}
+.form-login i{
+    padding: 10px;
+    font-size: 12px;
+}
+.form-login ul{
+    padding-left: 0;
+    display: inline-block;
+}
+.form-login .alert{
+    padding: 0;
+}
+
+.form-wedding-login li{
+    list-style: none;
+
+}
+.form-wedding-login i{
+    padding: 10px;
+    font-size: 12px;
+}
+.form-wedding-login ul{
+    padding-left: 0;
+    display: inline-block;
+}
+.form-wedding-login  .alert{
+    padding: 0;
+}
+
+
+
+
 .proveedor-info{
     text-align: center;
 }
@@ -448,6 +483,7 @@ GLOBAL
 .boton-megusta{
     padding: 0 10px;
     position: absolute;
+    z-index: 2;
     bottom: 10px;
     text-shadow: 2px 2px 5px rgba(0,0,0,.1);
 }
@@ -473,7 +509,7 @@ GLOBAL
 }
 .fotos_master p{
     position: absolute;
-    left: 35px;
+    right: 35px;
     bottom: 0;
     color: rgba(255,255,255,.5);
     text-shadow: 2px 2px 5px rgba(0,0,0,.2);

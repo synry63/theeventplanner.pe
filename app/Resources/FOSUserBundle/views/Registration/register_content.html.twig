@@ -12,41 +12,63 @@
         <div class="col-md-6">
             <div class="form-group">
                 {{ form_label(form.nombres,'Nombres') }}
-                {{ form_errors(form.nombres) }}
+                {% if form.nombres.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.nombres) }}</div>
+                    </div>
+                {% endif %}
                 {{ form_widget(form.nombres,{ 'attr': {'class': 'form-control','placeholder':'Carolina'}}) }}
             </div>
             <div class="form-group">
                 {{ form_label(form.apellidos,'Apellidos') }}
-                {{ form_errors(form.apellidos) }}
+                {% if form.apellidos.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.apellidos) }}</div>
+                    </div>
+                {% endif %}
                 {{ form_widget(form.apellidos,{ 'attr': {'class': 'form-control','placeholder':'García'}}) }}
             </div>
 
             <div class="form-group">
                 {{ form_label(form.username,'Nombre de Usuario') }}
-                {{ form_errors(form.username) }}
+                {% if form.username.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.username) }}</div>
+                    </div>
+                {% endif %}
                 {{ form_widget(form.username,{ 'attr': {'class': 'form-control','placeholder':'Username'}}) }}
             </div>
 
             <div class="form-group">
                 {{ form_label(form.email,'Email') }}
-                {{ form_errors(form.email) }}
+                {% if form.email.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.email) }}</div>
+                    </div>
+                {% endif %}
                 {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'Email'}}) }}
             </div>
-
-
 
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 {{ form_label(form.dni,'DNI') }}
-                {{ form_errors(form.dni) }}
+                {% if form.dni.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.dni) }}</div>
+                    </div>
+                {% endif %}
                 {{ form_widget(form.dni,{ 'attr': {'class': 'form-control','placeholder':'73226378'}}) }}
             </div>
 
             <div class="form-group">
                 {{ form_label(form.plainPassword.first,'Contraseña') }}
-                {{ form_errors(form.plainPassword.first) }}
+                {% if form.plainPassword.first.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.plainPassword.first) }}</div>
+                    </div>
+                {% endif %}
                 {{ form_widget(form.plainPassword.first,{ 'attr': {'class': 'form-control','placeholder':'Contraseña'}}) }}
             </div>
 
