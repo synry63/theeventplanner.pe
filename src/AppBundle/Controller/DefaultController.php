@@ -69,60 +69,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/profile/comments", name="show_user_comments")
-     */
-    public function userCommentsShowAction()
-    {
-
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        $ccoments_proveedores = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->findBy(array('user'=>$user));
-        $ccoments_inspiraciones = $this->getDoctrine()->getRepository('AppBundle:ComentarioInspiracion')->findBy(array('user'=>$user));
-        return $this->render(
-            'FOSUserBundle:Profile:show_comments.html.twig',
-            array(
-                'comentarios_proveedores'=>$ccoments_proveedores,
-                'comentarios_inspiraciones'=>$ccoments_inspiraciones,
-            )
-        );
-
-    }
-    /**
-     * @Route("/profile/fotos-favoritas", name="show_user_favoritos_fotos")
-     */
-    public function userFavoritosFotosShowAction(){
-
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        $fotos = $this->getDoctrine()->getRepository('AppBundle:FotoUserGusta')
-            ->findBy(
-                    array('user'=>$user),
-                    array('updatedAt'=>'DESC')
-        );
-        return $this->render(
-            'FOSUserBundle:Profile:show_fotos_favoritos.html.twig',
-            array(
-                'fotos_proveedor_favoritas'=>$fotos,
-            )
-        );
-    }
-    /**
-     * @Route("/profile/proveedores-favoritos", name="show_user_favoritos_proveedores")
-     */
-    public function userFavoritosProveedoresShowAction(){
-
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        $proveedores = $this->getDoctrine()->getRepository('AppBundle:UserProveedorGusta')
-            ->findBy(
-                array('user'=>$user),
-                array('updatedAt'=>'DESC')
-            );
-        return $this->render(
-            'FOSUserBundle:Profile:show_proveedores_favoritos.html.twig',
-            array(
-                'proveedores_favoritos'=>$proveedores,
-            )
-        );
-    }
-    /**
      * @Route("/{slug_site}/contactenos", name="site_contactenos",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
      * })

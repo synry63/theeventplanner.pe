@@ -61,13 +61,13 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception) {
 
         if ($request->isXmlHttpRequest()) {
-            $result = array('success' => false, 'message' => $exception->getMessage());
+            $result = array('success' => false, 'message' => ' Credenciales incorrectas'); // $exception->getMessage()
             $response = new Response(json_encode($result));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
         else{
-            $request->getSession()->getFlashBag()->add('error', $exception->getMessage());
+            $request->getSession()->getFlashBag()->add('error', ' Credenciales incorrectas'); // $exception->getMessage()
             //$request->getSession()->setFlash('error', $exception->getMessage());
             $url = $this->router->generate('fos_user_security_login');
             //return $this->router->redirectToRoute('fos_user_security_login');

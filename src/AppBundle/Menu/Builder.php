@@ -78,32 +78,69 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('about-me',array(
                 'route' => 'fos_user_profile_show',
                 'label' => 'Mis datos',
+                'extras' => array(
+                    'icon' => 'fa fa-user'
+                )
             )
         );
         $menu->addChild('change-data',array(
                 'route' => 'fos_user_profile_edit',
                 'label' => 'Cambiar mis datos',
+                'extras' => array(
+                    'icon' => 'fa fa-edit'
+                )
+
             )
         );
         $menu->addChild('change-password',array(
                 'route' => 'fos_user_change_password',
                 'label' => 'Cambiar mi contraseña',
+                'extras' => array(
+                    'icon' => 'fa fa-lock'
+                )
             )
         );
 
         $menu->addChild('show-comments',array(
                 'route' => 'show_user_comments',
                 'label' => 'Mis Comentarios',
+                'extras' => array(
+                    'icon' => 'fa fa-comments'
+                )
             )
         );
-        $menu->addChild('show-favoritos-fotos',array(
+        $menu->addChild('show-favoritos-fotos-proveedores',array(
                 'route' => 'show_user_favoritos_fotos',
-                'label' => 'Mis Fotos Favoritas',
+                'label' => 'Mis Fotos Proveedores',
+                'extras' => array(
+                    'icon' => 'fa fa-picture-o'
+                )
+            )
+        );
+        $menu->addChild('show-favoritos-fotos-inspiraciones',array(
+                'route' => 'show_user_favoritos_fotos_inspiraciones',
+                'label' => 'Mis Fotos Inspiraciones',
+                'extras' => array(
+                    'icon' => 'fa fa-picture-o'
+                )
             )
         );
         $menu->addChild('show-favoritos-proveedores',array(
                 'route' => 'show_user_favoritos_proveedores',
                 'label' => 'Mis Proveedores Favoritos',
+                'extras' => array(
+                    'icon' => 'fa fa-users'
+                )
+            )
+        );
+        $menu->addChild('show-votos',array(
+                'route' => 'show_user_votos',
+                'label' => 'Mis Votos',
+            )
+        );
+        $menu->addChild('show-tendencias',array(
+                'route' => 'show_user_tendencias',
+                'label' => 'Mis Tendencias',
             )
         );
 
