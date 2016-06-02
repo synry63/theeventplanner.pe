@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-        {#
+    {% block flashbag %}
         {% if app.request.hasPreviousSession %}
             {% for type, messages in app.session.flashbag.all() %}
                 {% for message in messages %}
@@ -11,9 +11,8 @@
                 {% endfor %}
             {% endfor %}
         {% endif %}
-        #}
-
-            {% block content %}
+    {% endblock flashbag %}
+    {% block content %}
 
             <nav class="navbar navbar-default">
                 <div class="container">
@@ -102,7 +101,7 @@
                 </div>
             </nav>
 
-            {% endblock content %}
+    {% endblock content %}
 
 
 

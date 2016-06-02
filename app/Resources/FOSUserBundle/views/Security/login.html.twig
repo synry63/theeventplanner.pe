@@ -63,13 +63,12 @@
 
 
         <form novalidate action="{{ path("fos_user_security_check") }}" method="post">
-            {% for label, flashes in app.session.flashbag.all %}
-                {% for error in flashes %}
+            {% for error in app.session.flashbag.get('error') %}
                     <div class="alert alert-danger" role="alert">
                         <div><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ error }}</div>
                         <span class="sr-only">Error:</span>
                     </div>
-                {% endfor %}
+
             {% endfor %}
                 {# if error
                     <div class="alert alert-danger" role="alert">
@@ -112,26 +111,29 @@
 
 <script>
     if (typeof jQuery != 'undefined'){
-        $('#_submit').click(function(e){
-            e.preventDefault();
-            $.ajax({
-                type        : $('form').attr( 'method' ),
-                url         : $('form').attr( 'action' ),
-                data        : $('form').serialize(),
-                dataType    : "json",
-                success     : function(data, status, object) {
-                    if (data.success == false) {
-                        $('.message-here').html(data.message);
-                        $('.ajax-only').show();
+        $( document ).ready(function() {
+            $('#_submit').click(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type        : $('form').attr( 'method' ),
+                    url         : $('form').attr( 'action' ),
+                    data        : $('form').serialize(),
+                    dataType    : "json",
+                    success     : function(data, status, object) {
+                        if (data.success == false) {
+                            $('.message-here').html(data.message);
+                            $('.ajax-only').show();
+                        }
+                        else {
+                            window.location.href = data.targetUrl;
+                        }
+                        //console.log( status );
+                        //console.log( data );
                     }
-                    else {
-                        window.location.href = data.targetUrl;
-                    }
-                    //console.log( status );
-                    //console.log( data );
-                }
+                });
             });
         });
+
     }
 
 
