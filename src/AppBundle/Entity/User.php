@@ -68,8 +68,6 @@ class User extends BaseUser
      */
     protected $dni;
 
-
-
     /**
      * @ORM\OneToMany(targetEntity="ComentarioProveedor", mappedBy="user")
      */
@@ -95,6 +93,11 @@ class User extends BaseUser
     private $votos;
 
     /**
+     * @ORM\OneToMany(targetEntity="TendenciaUserGusta", mappedBy="user")
+     */
+    private $tendencias;
+
+    /**
      * @param mixed $votos
      */
     public function setVotos($votos)
@@ -108,6 +111,22 @@ class User extends BaseUser
     public function getVotos()
     {
         return $this->votos;
+    }
+
+    /**
+     * @param mixed $tendencias
+     */
+    public function setTendencias($tendencias)
+    {
+        $this->tendencias = $tendencias;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTendencias()
+    {
+        return $this->tendencias;
     }
 
 

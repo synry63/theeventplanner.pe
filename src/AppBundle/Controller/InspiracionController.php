@@ -20,9 +20,9 @@ class InspiracionController extends Controller
      *
      * })
      */
-    public function inspiracionesStartAction(){
+    public function inspiracionesStartAction($slug_site){
         return $this->render(
-            'wedding/inspiraciones-categorias.html.twig'
+            $slug_site.'/inspiraciones-categorias.html.twig'
         );
     }
 
@@ -32,11 +32,24 @@ class InspiracionController extends Controller
      *
      * })
      */
-    public function inspiracionesFotosAction(){
+    public function inspiracionesFotosAction($slug_site){
         $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(array(),array('order'=>'ASC'));
         return $this->render(
-            'wedding/inspiraciones-fotos.html.twig',
+            $slug_site.'/inspiraciones-fotos.html.twig',
             array('inspiraciones'=>$inspiraciones)
+        );
+    }
+    /**
+     * @Route("/{slug_site}/inspiraciones/tendencias",name="inspiraciones_tendencias",requirements={
+     *      "slug_site": "wedding|dinner|kids|party"
+     *
+     * })
+     */
+    public function inspiracionesTendenciasAction($slug_site){
+        $tendencias = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findBy(array(),array('order'=>'ASC'));
+        return $this->render(
+            $slug_site.'/inspiraciones-tendencias.html.twig',
+            array('tendencias'=>$tendencias)
         );
     }
     /**
@@ -78,7 +91,7 @@ class InspiracionController extends Controller
         $fotos_proveedores = $this->getDoctrine()->getRepository('AppBundle:Foto')->findBy(array(),array('updatedAt'=>'DESC'));
 
         return $this->render(
-            'wedding/inspiraciones-fotos-proveedores.html.twig',
+            $slug_site.'/inspiraciones-fotos-proveedores.html.twig',
             array('fotos_proveedores'=>$fotos_proveedores)
         );
     }
@@ -88,10 +101,10 @@ class InspiracionController extends Controller
      *
      * })
      */
-    public function inspiracionesVideoAction(){
+    public function inspiracionesVideoAction($slug_site){
 
         return $this->render(
-            'wedding/inspiraciones-video.html.twig'
+            $slug_site.'/inspiraciones-video.html.twig'
         );
     }
     /**
@@ -100,10 +113,10 @@ class InspiracionController extends Controller
      *
      * })
      */
-    public function inspiracionesMusicAction(){
+    public function inspiracionesMusicAction($slug_site){
 
         return $this->render(
-            'wedding/inspiraciones-music.html.twig'
+            $slug_site.'/inspiraciones-music.html.twig'
         );
     }
     /**
@@ -112,11 +125,11 @@ class InspiracionController extends Controller
      *
      * })
      */
-    public function inspiracionesVotosAction(){
+    public function inspiracionesVotosAction($slug_site){
 
         $votos = $this->getDoctrine()->getRepository('AppBundle:Voto')->findBy(array(),array('order'=>'ASC'));
         return $this->render(
-            'wedding/inspiraciones-votos.html.twig',
+            $slug_site.'/inspiraciones-votos.html.twig',
             array('votos'=>$votos)
         );
     }
