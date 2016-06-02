@@ -95,7 +95,7 @@
                 </div>
 
                 <div id="carousel" class="flexslider">
-                    <ul class="slides">
+                    <ul class="slides flex-control-nav flex-control-thumbs">
                         {% for f in proveedor.fotos  %}
                             <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
                                 <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
@@ -152,13 +152,14 @@
                         <div class="row">
 
                             <div class="col-xs-12 col-md-12">
-
-                                {% for label, flashes in app.session.flashbag.all %}
-                                <!--<h4 class="title-heading">Escribe tu comentario</h4>-->
-                                    {% for flash in flashes %}
-                                        <div data-coment="{{ flash }}" id="coment-alert"></div>
+                                {% block flashbag %}
+                                    {% for label, flashes in app.session.flashbag.all %}
+                                    <!--<h4 class="title-heading">Escribe tu comentario</h4>-->
+                                        {% for flash in flashes %}
+                                            <div data-coment="{{ flash }}" id="coment-alert"></div>
+                                        {% endfor %}
                                     {% endfor %}
-                                {% endfor %}
+                                {% endblock flashbag %}
 
                                 {% if form is defined %}
                                     {{ form_start(form) }}
