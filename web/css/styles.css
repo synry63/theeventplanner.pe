@@ -23,6 +23,22 @@ body{
 /*=============
 GLOBAL
 ===============*/
+.atras{
+    display: none;
+}
+#atras{
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    color: #fff;
+    font-size: 40px;
+    background: rgba(0,0,0,.5);
+    padding: 10px 15px;
+    border-radius: 30px;
+}
+
+
+
 .tittle-slicks{
     font-size: 25px;
     font-weight: 600;
@@ -801,6 +817,17 @@ MÓVILES PORTAIT
 ===============*/
 
 @media only screen and (max-width:700px){
+    .atras{
+        margin: 10px 0;
+        width: 84px;
+        display: inline-block;
+    }
+    #atras{
+       display: none;
+    }
+    .back-register .btn-entrar{
+        width: 100%;
+    }
     .image-contact img{
         width: 100%;
     }
@@ -877,7 +904,7 @@ MÓVILES PORTAIT
     }
     .form-login{
         padding: 20px;
-        margin: 50px 0;
+        margin: 65px 0;
     }
     .footer li a{
         color: rgba(0,0,0,.5);

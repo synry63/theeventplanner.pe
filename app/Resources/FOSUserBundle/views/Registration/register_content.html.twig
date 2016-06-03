@@ -4,6 +4,12 @@
     'attr': {novalidate: 'novalidate','class': 'fos_user_registration_register'}}) }}
 
 <div class="container-fluid">
+    <a href="#">
+        <div id="atras">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div>
+    </a>
+
     <div class="col-md-6  form-login">
         <div class="col-md-12 register-logo">
             <img src="{{ asset('images/register_logo.png') }}" alt="">
@@ -82,6 +88,11 @@
             <div>
                 <input type="submit" class="btn btn-entrar" value="{{ 'registration.submit'|trans }}" />
             </div>
+
+            <a href="#">
+                <div class="btn btn-primary atras">Atrás</div>
+            </a>
+
 
         </div>
     </div>
