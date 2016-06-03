@@ -4,7 +4,7 @@
     'attr': {novalidate: 'novalidate','class': 'fos_user_registration_register'}}) }}
 
 <div class="container-fluid">
-    <a href="#">
+    <a href="{{ app.request.headers.get('referer') }}">
         <div id="atras">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
         </div>
@@ -89,7 +89,7 @@
                 <input type="submit" class="btn btn-entrar" value="{{ 'registration.submit'|trans }}" />
             </div>
 
-            <a href="#">
+            <a href="{{ app.request.headers.get('referer') }}">
                 <div class="btn btn-primary atras">Atrás</div>
             </a>
 
