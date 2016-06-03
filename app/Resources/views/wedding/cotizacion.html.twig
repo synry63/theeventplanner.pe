@@ -1,6 +1,41 @@
-<div class="cotizar-wraper">
-    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<div class="col-md-4 col-md-offset-4 cotizacion-form-weddings">
+    <h1>Solicitar Cotización</h1>
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+    <div id="error-form">
+
+    </div>
+
+
+    <div class="form-group">
+        {{ form_label(form.name,'Nombre: ') }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name,{ 'attr': {'class': 'form-control','placeholder':'Tu nombre'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.email,'Email:') }}
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'Tu email'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.subject,'Asunto:') }}
+        {{ form_errors(form.subject) }}
+        {{ form_widget(form.subject,{ 'attr': {'class': 'form-control','placeholder':'Asunto'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.message,'Mensaje:') }}
+        {{ form_errors(form.message) }}
+        {{ form_widget(form.message,{ 'attr': {'class': 'form-control','placeholder':'Mensaje','rows':'6','cols':'6'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_widget(form.send, { 'label': 'Enviar', 'attr':{'class':'btn btn-wedding-entrar'} } ) }}
+    </div>
+
+    {{ form_end(form) }}
 </div>
+
 <script>
     if (typeof jQuery != 'undefined'){
         $( document ).ready(function() {
@@ -14,6 +49,7 @@
 
                 }).done(function(data) {
                     if(data.success==false){
+                        $( "#error-form" ).html("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.message + "</div>"  );
                         console.log(data);
                     }
                     else{

@@ -23,6 +23,7 @@ body{
 /*=============
 GLOBAL
 ===============*/
+
 .atras{
     display: none;
 }
@@ -695,6 +696,23 @@ PARTY
 /*=============
  WEDDING
 ===============*/
+.cotizacion-form-weddings{
+    background: #fff;
+    padding:30px;
+}
+.cotizacion-form-weddings h1{
+    font-size: 25px;
+    text-align: center;
+    color: #35b3b4;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+.cotizacion-form-weddings .btn-wedding-entrar{
+    width: 100%;
+}
+.cotizacion-form-weddings label{
+    color:#35b3b4;
+}
 .register_wedding_page{
     font-family: 'Lato', sans-serif;
     -webkit-animation-name: test;
