@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\Type\ContactType;
+use AppBundle\Form\Type\CotizacionType;
 
 /**
  *
@@ -102,5 +103,50 @@ class DefaultController extends Controller
             array('form' => $form->createView())
         );
     }
+    /**
+     * @Route("/user-action/{slug_site}/{slug_proveedor}/contizacion", name="cotizacion_negocio",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function contizacionAction($slug_site,$slug_proveedor,Request $request)
+    {
 
+        if ($request->isXmlHttpRequest()) {
+            $form = $this->createForm(CotizacionType::class,NULL,array(
+                'action' => $this->generateUrl('cotizacion_negocio',array('slug_site' => $slug_site,'slug_proveedor'=>$slug_proveedor)),
+                'method' => 'POST',
+            ));
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted()) {
+
+               if($form->isValid()){
+                   $url = $this->get('router')->generate('proveedor_detail',array(
+                       'slug_site' => $slug_site,
+                       'slug_proveedor' => $slug_proveedor,
+                    ));
+                   $custom_response = new \stdClass();
+                   $custom_response->success = true;
+                   $custom_response->message = 'Tu solicitud de cotizacion fue enviada correctamente';
+                   $custom_response->targetUrl = $url;
+                   echo json_encode($custom_response);
+                   exit;
+               }
+               else{
+                   $custom_response = new \stdClass();
+                   $custom_response->success = false;
+                   $custom_response->message = 'El formulario contiene errores, por favor llene todo los campos requeridos';
+                   echo json_encode($custom_response);
+                   exit;
+               }
+
+            }
+            return $this->render(
+                $slug_site.'/cotizacion.html.twig',
+                array('form' => $form->createView())
+            );
+        }
+
+
+    }
 }

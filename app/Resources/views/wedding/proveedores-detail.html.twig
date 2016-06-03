@@ -25,7 +25,9 @@
 
                         <div id="rateYo"  data-rating="{{ moy }}"></div>
 
-                        <a href="mailto:javierdia91@gmail.com"><button type="button" class="btn btn-coti">Contactar Empresa</button></a>
+                        <a class="ajax-popup-link" href="{{ path('cotizacion_negocio',
+                            {'slug_site': app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">
+                            <button type="button" class="btn btn-coti">Contactar Empresa</button></a>
                         <br>
                         <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
                         <div class="links-proveedores lweddings">
@@ -227,7 +229,7 @@
     <script>
         var coment_r = $("#coment-alert").attr("data-coment");
         if(coment_r!=undefined)
-            var n = noty({text: coment_r,'layout':'bottom',type:'success',timeout:2000});
+            noty({text: coment_r,'layout':'bottom',type:'success',timeout:2000});
 
         $('#carousel').flexslider({
             animation: "slide",
