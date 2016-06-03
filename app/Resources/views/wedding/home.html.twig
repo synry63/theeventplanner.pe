@@ -60,14 +60,16 @@
         </div>
     </div>
 
-
     <div class="container-fluid home-slicks2">
         <div class="container">
             <h1 class="tittle-slicks">Las Mejores Fotos</h1>
             <h3 class="subtittle-slick">Inspirate y haz inolvidable "Tu" día</h3>
             <div class="slick_wedding">
+
                 {% for f in mejores_fotos %}
-                    <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
+                    <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': f.foto.proveedor.slug}) }}">
+                        <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
+                    </a>
                 {% endfor %}
 
             </div>
