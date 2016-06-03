@@ -17,7 +17,7 @@
     {{ parent() }}
 
 
-<div class="container form-wedding-login">
+<div class="container form-wedding-contactenos">
     <div class="col-md-6">
         {% for label, flashes in app.session.flashbag.all %}
             {% for flash in flashes %}
@@ -51,7 +51,15 @@
             {% endif %}
             {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
         </div>
-
+        <div class="form-group">
+            {{ form_label(form.tel,'Teléfono') }}
+            {% if form.tel.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.tel) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.tel,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+        </div>
         <div class="form-group">
             {{ form_label(form.subject,'Asunto') }}
             {% if form.subject.vars.errors|length>0 %}
@@ -78,9 +86,21 @@
 
         {{ form_end(form) }}
 
+
+
     </div>
+
+
     <div class="col-md-6 image-contact">
         <img src="{{ asset('images/contactenos_body.jpg') }}" alt="Contáctenos">
+        <div class="contact-event">
+            <ul>
+                <li><strong>Jessika Sarabia</strong></li>
+                <li>Gerente General</li>
+                <li><i class="fa fa-whatsapp" aria-hidden="true"></i> 998 345 623</li>
+                <li><strong>j.sarabia@theeventplanner.pe</strong></li>
+            </ul>
+        </div>
     </div>
 </div>
 

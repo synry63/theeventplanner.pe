@@ -24,6 +24,9 @@ body{
 GLOBAL
 ===============*/
 
+.session-start{
+    margin: 10px 0;
+}
 .atras{
     display: none;
 }
@@ -313,19 +316,19 @@ GLOBAL
     padding: 0;
 }
 
-.form-wedding-login li{
+.form-wedding-contactenos li{
     list-style: none;
 
 }
-.form-wedding-login i{
+.form-wedding-contactenos i{
     padding: 10px;
     font-size: 12px;
 }
-.form-wedding-login ul{
+.form-wedding-contactenos ul{
     padding-left: 0;
     display: inline-block;
 }
-.form-wedding-login  .alert{
+.form-wedding-contactenos  .alert{
     padding: 0;
 }
 
@@ -477,6 +480,7 @@ GLOBAL
 
 .image-contact{
     text-align: center;
+    margin: 20px 0;
 }
 
 .front img{
@@ -497,17 +501,7 @@ GLOBAL
     border-radius: 0;
 }
 
-.boton-megusta{
-    padding: 0 10px;
-    position: absolute;
-    z-index: 2;
-    bottom: 10px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,.1);
-}
-.boton-megusta a{
-    color: white;
-    font-size: 30px;
-}
+
 .fotos_master{
     margin: 10px 0;
     position: relative;
@@ -630,7 +624,15 @@ User Login Responsive
 /*=============
 Votos GRID
 ===============*/
-
+.popupvoto h1{
+    color:#D72366;
+    font-size: 25px;
+}
+.popupvoto{
+    background: white;
+    position: relative;
+    padding: 20px;
+}
 #demo {
     position: relative;
     max-width: 100%;
@@ -645,7 +647,7 @@ Votos GRID
 }
 .votosgusta a{
     font-size: 20px;
-    color: #D72366;
+    color: #35B3B4;
 }
 
 #demo img {
@@ -693,9 +695,85 @@ PARTY
 
 
 
+
+/*=============
+Counter Rating
+===============*/
+div.rating-container {
+    position: relative;
+}
+div.rating-container div.counter {
+    display: none;
+    position: absolute;
+    min-width: 20px;
+    padding: 5px;
+    font-size: 15px;
+    line-height: 0px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 50%;
+    right: 123px;
+    margin-top: -10px;
+    color: white;
+}
+div.rating-container div.counter:before,
+div.rating-container div.counter ::before {
+    content: "";
+    width: 0;
+    height: 0;
+    top: 50%;
+    margin-top: -5px;
+    display: block;
+    border-color: transparent rgba(0, 0, 0, 0.8) transparent transparent;
+    border-width: 5px 5px 5px 0px;
+    left: -10px;
+    border-style: solid;
+    position: relative;
+}
+div.rating-container:hover div.counter {
+    display: block;
+}
+
+/*=============
+CONTACTENOS
+===============*/
+.contact-event{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.contact-event li{
+    font-size: 16px;
+}
+.contact-event i{
+    font-size: 16px;
+    padding: 0;
+}
+.contact-event ul{
+    padding: 20px;
+    border: double 4px rgba(0,0,0,.2);
+    background: rgba(255,255,255,.4);
+}
+
 /*=============
  WEDDING
 ===============*/
+
+.form-wedding-contactenos label{
+    color: #35B3B4;
+}
+.boton-megusta{
+    padding: 0 10px;
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.1);
+}
+.boton-megusta a{
+    color: #35B3B4;
+    font-size: 30px;
+}
 .cotizacion-form-weddings{
     background: #fff;
     padding:30px;

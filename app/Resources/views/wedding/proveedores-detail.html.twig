@@ -25,15 +25,24 @@
 
                         <div id="rateYo"  data-rating="{{ moy }}"></div>
 
-                        <a class="ajax-popup-link" href="{{ path('cotizacion_negocio',
+                        {% if app.user is not null %}
+                            <a class="ajax-popup-link" href="{{ path('cotizacion_negocio',
                             {'slug_site': app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">
-                            <button type="button" class="btn btn-coti">Contactar Empresa</button></a>
-                        <br>
-                        <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
-                        <div class="links-proveedores lweddings">
-                            <a href="{{ proveedor.web }}">Página Web</a>
-                            <a href="tel:{{ proveedor.telefono }}">Teléfono</a>
-                        </div>
+                                <button type="button" class="btn btn-coti">Contactar Empresa</button></a>
+                            <br>
+                            <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
+                            <p>{{ proveedor.telefono }}</p>
+                            <div class="links-proveedores lweddings">
+                                <a href="{{ proveedor.web }}">Página Web</a>
+                            </div>
+                        {% else %}
+                            <div class="session-start">
+                                <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a> para ver los datos de la empresa
+                            </div>
+                        {% endif %}
+
+
+
                     </div>
                     <div class="proveedor-social sweddings">
                         {% if app.user is not null %}
@@ -176,7 +185,10 @@
                                 {% if form is defined %}
                                     {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
                                     {{ form_errors(form) }}
-                                    <div id="rateYo2"></div>
+                                    <div class="rating-container">
+                                        <div id="rateYo2"></div>
+                                        <div class="counter"></div>
+                                    </div>
 
                                     <div class="form-group">
                                         {{ form_label(form.titulo,'Título') }}
@@ -262,9 +274,9 @@
         });
         var test = $("#rateYo").attr("data-rating");
 
-        var test3 = $(".rateYo3").attr("data-rating3");
 
-        var color= "#AA986B";
+
+        var color= "#b28500";
 
 
         $("#rateYo").rateYo({
@@ -277,13 +289,25 @@
         $("#rateYo2").rateYo({
                     ratedFill: color,
                     normalFill: "#A0A0A0",
-                    starWidth: "60px"
+                    starWidth: "60px",
+                    onChange: function (rating, rateYoInstance) {
+
+                        $(this).next().text(rating);
+                    }
+
                 })
                 .on("rateyo.set", function (e, data) {
-
                     $("#comentario_proveedor_nota").val(data.rating);
-
+                    $("#rateYo2").rateYo("option", "readOnly", true);
+                    $("#rateYo2").rateYo("option", "ratedFill", "#dea600");
                 });
+
+        $("#rateYo2").mouseleave(function(){
+            $("#rateYo2").rateYo("option", "readOnly", false);
+        });
+        $("#rateYo2").mouseenter(function(){
+            $("#rateYo2").rateYo("option", "ratedFill", color);
+        });
 
 
 
@@ -303,6 +327,8 @@
                 normalFill: "#A0A0A0"
             });
         });
+
+
 
         $('.proveedor-fixed').fixTo('body');
     </script>
