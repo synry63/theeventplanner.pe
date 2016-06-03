@@ -43,6 +43,14 @@
                                 </a>
                             </div>
                         {% endif %}
+
+                    {% else %}
+                        <div class="votosgusta">
+                            <a class="ajax-popup-link" href="{{ path('voto_me_gusta',
+                            {'slug_site': app.request.get('slug_site'),"id":v.id}) }}">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     {% endif %}
                     <p >"{{ v.description }}"</p>
                 </article>

@@ -149,7 +149,7 @@ class InspiracionController extends Controller
         );
     }
     /**
-     * @Route("/{slug_site}/voto/gusta/{id}", name="voto_me_gusta",requirements={
+     * @Route("/user-action/{slug_site}/voto/gusta/{id}", name="voto_me_gusta",requirements={
      *     "slug_site": "wedding|dinner|kids|party",
      *     "id": "\d+"
      * })
