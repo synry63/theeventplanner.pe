@@ -77,6 +77,28 @@ class Inspiracion
     private $users;
 
     /**
+    @ORM\ManyToOne(targetEntity="Tendencia",inversedBy="inspiraciones")
+    @ORM\JoinColumn(name="tendencia_id", referencedColumnName="id")
+     **/
+    private $tendencia;
+
+    /**
+     * @param mixed $tendencia
+     */
+    public function setTendencia($tendencia)
+    {
+        $this->tendencia = $tendencia;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTendencia()
+    {
+        return $this->tendencia;
+    }
+
+    /**
      * @param mixed $comentarios_inspiracion
      */
     public function setComentariosInspiracion($comentarios_inspiracion)

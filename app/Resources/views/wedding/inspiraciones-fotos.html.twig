@@ -40,6 +40,15 @@
                                 </a>
                             </div>
                         {% endif %}
+
+                    {% else %}
+                        <div class="boton-megusta">
+                            <a class="ajax-popup-link" href="{{ path('inspiracion_me_gusta',
+                            {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            </a>
+                        </div>
+
                     {% endif %}
                 </li>
             {% endfor %}

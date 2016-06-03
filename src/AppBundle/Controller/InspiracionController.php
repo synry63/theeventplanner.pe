@@ -29,13 +29,18 @@ class InspiracionController extends Controller
     }
 
     /**
-     * @Route("/{slug_site}/inspiraciones/fotos",name="inspiraciones_fotos",requirements={
+     * @Route("/{slug_site}/inspiraciones/{tendencia_slug}/fotos",name="inspiraciones_fotos",requirements={
      *      "slug_site": "wedding|dinner|kids|party"
      *
      * })
      */
-    public function inspiracionesFotosAction($slug_site){
-        $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(array(),array('order'=>'ASC'));
+    public function inspiracionesFotosAction($slug_site,$tendencia_slug){
+
+        $tendencia = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findOneBy(array('slug'=>$tendencia_slug));
+
+        $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(
+            array('tendencia'=>$tendencia),
+            array('order'=>'ASC'));
         return $this->render(
             $slug_site.'/inspiraciones-fotos.html.twig',
             array('inspiraciones'=>$inspiraciones)
@@ -55,7 +60,7 @@ class InspiracionController extends Controller
         );
     }
     /**
-     * @Route("/{slug_site}/inspiracion/gusta/{id}", name="inspiracion_me_gusta",requirements={
+     * @Route("/user-action/{slug_site}/inspiracion/gusta/{id}", name="inspiracion_me_gusta",requirements={
      *     "slug_site": "wedding|dinner|kids|party",
      *     "id": "\d+"
      * })
@@ -78,7 +83,8 @@ class InspiracionController extends Controller
                 $em->remove($userGustaInspiracion);
                 $em->flush();
             }
-            return $this->redirectToRoute('inspiraciones_fotos',array('slug_site'=>$slug_site));
+            return $this->redirectToRoute('inspiraciones_fotos',array('slug_site'=>$slug_site,
+                'tendencia_slug'=>$inspiracion->getTendencia()->getSlug()));
         }
     }
 
@@ -167,33 +173,6 @@ class InspiracionController extends Controller
                 $em->flush();
             }
             return $this->redirectToRoute('inspiraciones_votos',array('slug_site'=>$slug_site));
-        }
-    }
-    /**
-     * @Route("/{slug_site}/tendencia/gusta/{id}", name="tendencia_me_gusta",requirements={
-     *     "slug_site": "wedding|dinner|kids|party",
-     *     "id": "\d+"
-     * })
-     */
-    public function updateGustaTendenciaUserAction($slug_site,$id,Request $request){
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        if(is_object($user)){
-            $tendencia = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->find($id);
-            $userGustaTendencia = $this->getDoctrine()->getRepository('AppBundle:TendenciaUserGusta')
-                ->findOneBy(array('tendencia'=>$tendencia,'user'=>$user));
-            $em = $this->getDoctrine()->getManager();
-            if($userGustaTendencia==NULL){
-                $userGustaTendencia = new TendenciaUserGusta();
-                $userGustaTendencia->setUser($user);
-                $userGustaTendencia->setTendencia($tendencia);
-                $em->persist($userGustaTendencia);
-                $em->flush();
-            }
-            else{
-                $em->remove($userGustaTendencia);
-                $em->flush();
-            }
-            return $this->redirectToRoute('inspiraciones_tendencias',array('slug_site'=>$slug_site));
         }
     }
 

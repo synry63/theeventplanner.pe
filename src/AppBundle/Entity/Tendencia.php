@@ -45,6 +45,29 @@ class Tendencia
      * @ORM\Column(type="string", length=64)
      */
     private $img;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Inspiracion", mappedBy="tendencia")
+     **/
+    private $inspiraciones;
+
+    /**
+     * @param mixed $inspiraciones
+     */
+    public function setInspiraciones($inspiraciones)
+    {
+        $this->inspiraciones = $inspiraciones;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInspiraciones()
+    {
+        return $this->inspiraciones;
+    }
+
+
     /**
      * @param mixed $description
      */
