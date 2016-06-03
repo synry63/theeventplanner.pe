@@ -141,14 +141,6 @@ class Builder implements ContainerAwareInterface
                 )
             )
         );
-        $menu->addChild('show-tendencias',array(
-                'route' => 'show_user_tendencias',
-                'label' => 'Mis Tendencias',
-                'extras' => array(
-                    'icon' => 'fa fa-newspaper-o'
-                )
-            )
-        );
 
         return $menu;
     }

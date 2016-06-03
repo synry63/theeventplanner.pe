@@ -92,6 +92,27 @@ class User extends BaseUser
      */
     private $votos;
 
+    /**
+     * @ORM\OneToOne(targetEntity="FotoProfile",mappedBy="user",cascade={"persist"})
+     */
+    private $profile;
+
+    /**
+     * @param mixed $profile
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
 
     /**
      * @param mixed $votos

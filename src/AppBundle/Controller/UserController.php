@@ -8,6 +8,8 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\FotoProfile;
+use AppBundle\Form\Type\FotoProfileType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -109,21 +111,35 @@ class UserController extends Controller
         );
     }
     /**
-     * @Route("/profile/tendencias", name="show_user_tendencias")
+     * @Route("/profile/foto", name="change_user_foto")
      */
-    public function userFavoritosTendenciasShowAction(){
+    public function userFotoProfileShowAction(Request $request){
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $tendiencias = $this->getDoctrine()->getRepository('AppBundle:TendenciaUserGusta')
-            ->findBy(
-                array('user'=>$user),
-                array('updatedAt'=>'DESC')
-            );
+        $profile = $user->getProfile();
+
+        if($profile==NULL){
+            $profile = new FotoProfile();
+            $profile->setUser($user);
+        }
+
+        $form = $this->createForm(new FotoProfileType(), $profile);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            //$logo->setProveedor($proveedor);
+            $em->persist($profile);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Your logo had change !');
+            return $this->redirectToRoute('negocio_zona_logo');
+        }
+
         return $this->render(
-            'FOSUserBundle:Profile:show_tendencias_favoritos.html.twig',
+            'FOSUserBundle:Profile:change_foto.html.twig',
             array(
-                'tendiencias'=>$tendiencias,
-            )
+                'logo' => $profile,
+                'form' => $form->createView())
         );
     }
 }
