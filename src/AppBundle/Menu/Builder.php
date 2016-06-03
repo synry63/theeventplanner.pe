@@ -136,11 +136,17 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('show-votos',array(
                 'route' => 'show_user_votos',
                 'label' => 'Mis Votos',
+                'extras' => array(
+                    'icon' => 'fa fa-heart'
+                )
             )
         );
         $menu->addChild('show-tendencias',array(
                 'route' => 'show_user_tendencias',
                 'label' => 'Mis Tendencias',
+                'extras' => array(
+                    'icon' => 'fa fa-newspaper-o'
+                )
             )
         );
 

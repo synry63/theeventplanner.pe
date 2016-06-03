@@ -100,4 +100,33 @@ class FotoController extends Controller
             return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
         }
     }
+    /**
+     * @Route("/{slug_site}/inspiraciones/foto/gusta/{id}/page/{page}", name="inspiraciones_proveedor_foto_me_gusta",requirements={
+     *     "slug_site": "wedding|dinner|kids|party",
+     *     "id": "\d+",
+     *     "page": "\d+",
+     * })
+     */
+    public function updateGustaInspiracionesProveedorFotoUserAction($slug_site,$id,$page,Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if(is_object($user)){
+            $foto = $this->getDoctrine()->getRepository('AppBundle:Foto')->find($id);
+            $userGustaFoto = $this->getDoctrine()->getRepository('AppBundle:FotoUserGusta')
+                ->findOneBy(array('foto'=>$foto,'user'=>$user));
+
+            $em = $this->getDoctrine()->getManager();
+            if($userGustaFoto==NULL){
+                $userGustaFoto = new FotoUserGusta();
+                $userGustaFoto->setUser($user);
+                $userGustaFoto->setFoto($foto);
+                $em->persist($userGustaFoto);
+                $em->flush();
+            }
+            else{
+                $em->remove($userGustaFoto);
+                $em->flush();
+            }
+            return $this->redirectToRoute('inspiraciones_fotos_proveedores',array('slug_site'=>$slug_site,'page'=>$page));
+        }
+    }
 }
