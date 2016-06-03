@@ -46,6 +46,13 @@
                                     </a>
                                 </div>
                             {% endif %}
+                        {% else %}
+                            <div class="boton-megusta">
+                                <a class="ajax-popup-link" href="{{ path('inspiraciones_proveedor_foto_me_gusta',
+                                {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
                         {% endif %}
                         <a class="popup_proveedores" href="{{ vich_uploader_asset(fp, 'imgFile')}}"  title="{{ fp.proveedor.nombre }}">
 

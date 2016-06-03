@@ -101,7 +101,7 @@ class FotoController extends Controller
         }
     }
     /**
-     * @Route("/{slug_site}/inspiraciones/foto/gusta/{id}/page/{page}", name="inspiraciones_proveedor_foto_me_gusta",requirements={
+     * @Route("/user-action/{slug_site}/inspiraciones/foto/gusta/{id}/page/{page}", name="inspiraciones_proveedor_foto_me_gusta",requirements={
      *     "slug_site": "wedding|dinner|kids|party",
      *     "id": "\d+",
      *     "page": "\d+",
