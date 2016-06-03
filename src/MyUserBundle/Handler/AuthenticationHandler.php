@@ -9,6 +9,7 @@ namespace MyUserBundle\Handler;
 
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
+use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 
-class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, AuthenticationFailureHandlerInterface
+class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, AuthenticationFailureHandlerInterface, LogoutSuccessHandlerInterface
 {
 
     protected $router;
@@ -75,5 +76,13 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
         }
 
 
+    }
+    public function onLogoutSuccess(Request $request)
+    {
+        $referer = $request->headers->get('referer');
+        //$request->getSession()->setFlash('success', 'Wylogowano');
+
+
+        return new RedirectResponse($referer);
     }
 }
