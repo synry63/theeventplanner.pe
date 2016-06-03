@@ -415,7 +415,7 @@ class ProveedorController extends Controller
         }
     }
     /**
-     * @Route("/{slug_site}/proveedor/{slug_proveedor}/gusta", name="proveedor_me_gusta",requirements={
+     * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/gusta", name="proveedor_me_gusta",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
      * })
      */

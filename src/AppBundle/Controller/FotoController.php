@@ -73,7 +73,7 @@ class FotoController extends Controller
 
     }
     /**
-     * @Route("/{slug_site}/proveedor/{slug_proveedor}/foto/gusta/{id}", name="proveedor_foto_me_gusta",requirements={
+     * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/foto/gusta/{id}", name="proveedor_foto_me_gusta",requirements={
      *     "slug_site": "wedding|dinner|kids|party",
      *     "id": "\d+"
      * })

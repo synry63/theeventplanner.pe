@@ -37,12 +37,15 @@
                     </div>
                     <div class="proveedor-social sweddings">
                         {% if app.user is not null %}
-
                             {% if favorito is not null%}
                                 <a class="favorite-button" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart" aria-hidden="true"></i> Favorito</a>
                             {% else %}
                                 <a class="favorite-button" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i> Favorito</a>
                             {% endif %}
+
+                        {% else %}
+                            <a class="favorite-button ajax-popup-link" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i> Favorito</a>
+
                         {% endif %}
 
 
@@ -89,6 +92,13 @@
                                             </a>
                                         </div>
                                     {% endif %}
+                                {% else %}
+                                    <div class="boton-megusta">
+                                        <a class="ajax-popup-link" href="{{ path('proveedor_foto_me_gusta',
+                                        {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                 {% endif %}
                             </li>
                         {% endfor %}
