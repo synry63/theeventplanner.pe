@@ -1,11 +1,69 @@
-{% for label, flashes in app.session.flashbag.all %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ label }}">
-            {{ flash }}
+
+
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+    {% block main_title %}
+
+        <div class="container">
+
+            <div class="row">
+                <div class="tittle_general">
+                    <img src="{{ asset('images/tittle_miperfil.png') }}" alt="Proveedores Tittle">
+                </div>
+            </div>
+
         </div>
-    {% endfor %}
-{% endfor %}
+    {% endblock %}
 
-<img src="{{ vich_uploader_asset(profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" />
+    {{ parent() }}
+    <div class="container-fluid portada-profile">
+        <div class="container profile-detail">
+            <div class="col-sm-4 col-xs-12">
+                <img class="img-circle" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" alt="User_foto">
+            </div>
 
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="col-md-4 menu_profile">
+            {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
+        </div>
+        <div class="col-md-8  profile-content">
+
+            {% for label, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    <div class="alert alert-{{ label }}">
+                        {{ flash }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            <div class="change_foto">
+                <div class="form-group">
+                    <img class="img-circle" src="{{ vich_uploader_asset(profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" />
+                </div>
+
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                {{ form_errors(form) }}
+                <div class="form-group">
+                    {{ form_errors(form.profileFile) }}
+                    {{ form_widget(form.profileFile) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_widget(form.update,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Subir'}) }}
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+
+
+
+        </div>
+    </div>
+
+{% endblock content %}
+
