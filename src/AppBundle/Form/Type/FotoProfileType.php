@@ -23,12 +23,7 @@ class FotoProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('profileFile', 'file',array(
-            'constraints' => array(
-                new NotBlank(array('message' => 'File should not be blank.')),
-
-            ),
-        ));
+        $builder->add('profileFile', 'file');
         $builder->add('update', SubmitType::class);
     }
     public function configureOptions(OptionsResolver $resolver)

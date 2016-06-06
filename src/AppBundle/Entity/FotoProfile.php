@@ -37,7 +37,15 @@ class FotoProfile
      *
      * @Vich\UploadableField(mapping="user_foto", fileNameProperty="profileName")
      * @var File
+     *  @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 100,
+     *     minHeight = 100,
+     *     maxHeight = 100,
+     *     mimeTypes = {"image/jpeg"}
+     * )
      */
+
     private $profileFile;
 
     /**
