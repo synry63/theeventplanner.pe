@@ -92,6 +92,15 @@ class Builder implements ContainerAwareInterface
 
             )
         );
+        $menu->addChild('change-foto',array(
+                'route' => 'change_user_foto',
+                'label' => 'Cambiar mi foto perfil',
+                'extras' => array(
+                    'icon' => 'fa fa-camera'
+                )
+
+            )
+        );
         $menu->addChild('change-password',array(
                 'route' => 'fos_user_change_password',
                 'label' => 'Cambiar mi contraseña',

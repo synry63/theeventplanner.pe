@@ -131,14 +131,14 @@ class UserController extends Controller
             $em->persist($profile);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Your logo had change !');
-            return $this->redirectToRoute('negocio_zona_logo');
+            $request->getSession()->getFlashBag()->add('success', 'Your foto had change !');
+            return $this->redirectToRoute('change_user_foto');
         }
 
         return $this->render(
             'FOSUserBundle:Profile:change_foto.html.twig',
             array(
-                'logo' => $profile,
+                'profile' => $profile,
                 'form' => $form->createView())
         );
     }

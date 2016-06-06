@@ -1,1 +1,11 @@
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ label }}">
+            {{ flash }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<img src="{{ vich_uploader_asset(profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" />
+
 {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}

@@ -35,7 +35,7 @@ class FotoProfile
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="proveedor_logo", fileNameProperty="logoName")
+     * @Vich\UploadableField(mapping="user_foto", fileNameProperty="profileName")
      * @var File
      */
     private $profileFile;
