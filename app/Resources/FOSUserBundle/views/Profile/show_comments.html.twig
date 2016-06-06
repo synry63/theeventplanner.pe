@@ -17,7 +17,7 @@
     <div class="container-fluid portada-profile">
         <div class="container profile-detail">
             <div class="col-sm-4 col-xs-12">
-                <img src="{{ asset('images/user_icon.png') }}" alt="User_foto">
+                <img class="img-circle" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" alt="User_foto">
             </div>
 
         </div>

@@ -31,12 +31,14 @@
 
 {% block user_login %}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+
         <div class="user-login-responsive">
             <div class="col-xs-8">
                 <a href="{{ path('fos_user_profile_show') }}">
                     <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span>{{app.user.nombres}} {{app.user.apellidos}}</span>
-                        <img class="img-circle img-responsive" alt="user icon" src="{{ asset('images/user_icon.png') }}" width="40">
+                        <img class="img-circle img-responsive" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" width="40">
                     </button>
                 </a>
             </div>
@@ -47,16 +49,21 @@
                     </button>
                 </a>
             </div>
-
         </div>
+
+
         <div class="btn-group btn-login btn_login_responsive">
             <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span>{{app.user.nombres}} {{app.user.apellidos}}</span>
-                <img class="img-circle" alt="user icon" src="{{ asset('images/user_icon.png') }}" width="40">
+
+
+                <img class="img-circle" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" width="40">
+
+
             </button>
             <div class="dropdown-menu dropdown-user">
                 <div class="col-md-4">
-                    <img class="img-circle" alt="user icon" src="{{ asset('images/user_icon.png') }}" width="90">
+                    <img class="img-circle" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" width="90">
                 </div>
                 <div class="col-md-8 named">
                     <strong>{{app.user.nombres}} {{app.user.apellidos}}</strong>
@@ -88,7 +95,6 @@
 {% endblock user_login %}
 
 {% block stylesheets %}
-
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/component.css') }}">

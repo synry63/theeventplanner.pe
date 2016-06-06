@@ -1,1 +1,87 @@
-{{ dump(votos) }}
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+    {% block main_title %}
+
+        <div class="container">
+
+            <div class="row">
+                <div class="tittle_general">
+                    <img src="{{ asset('images/tittle_miperfil.png') }}" alt="Proveedores Tittle">
+                </div>
+            </div>
+
+        </div>
+    {% endblock %}
+
+    {{ parent() }}
+    <div class="container-fluid portada-profile">
+        <div class="container profile-detail">
+            <div class="col-sm-4 col-xs-12">
+                <img class="img-circle" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" alt="User_foto">
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="col-md-4 menu_profile">
+            {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
+        </div>
+        <div class="col-md-8  profile-content">
+                <section id="demo">
+                    {% for v in votos  %}
+                        <article class="white-panel">
+
+                            <h1><a class="popup-with-zoom-anim" href="{{ '#small-dialog'}}">{{ v.voto.nombre }}</a></h1>
+                            <p >"{{ v.voto.description }}"</p>
+
+                            <div id="{{ 'small-dialog'}}"  class="popupvoto col-md-4 col-md-offset-4 white-popup mfp-hide">
+                                <h1>{{ v.voto.nombre }}</h1>
+                                <p >"{{ v.voto.description }}"</p>
+                            </div>
+                        </article>
+
+                    {% endfor %}
+
+                </section>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/pinterest_grid.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    <script>
+        $('#demo').pinterest_grid({
+            no_columns: 3,
+            padding_x: 10,
+            padding_y: 10,
+            margin_bottom: 50,
+            single_column_breakpoint: 700
+        });
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    </script>
+{% endblock %}
+
+
+
+

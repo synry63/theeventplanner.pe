@@ -1,1 +1,90 @@
-{{ dump(fotos_inspiraciones_favoritas) }}
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+    {% block main_title %}
+
+        <div class="container">
+
+            <div class="row">
+                <div class="tittle_general">
+                    <img src="{{ asset('images/tittle_miperfil.png') }}" alt="Proveedores Tittle">
+                </div>
+            </div>
+
+        </div>
+    {% endblock %}
+
+    {{ parent() }}
+    <div class="container-fluid portada-profile">
+        <div class="container profile-detail">
+            <div class="col-sm-4 col-xs-12">
+                <img class="img-circle" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" alt="User_foto">
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="col-md-4 menu_profile">
+            {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
+        </div>
+        <div class="col-md-8  profile-content">
+
+            <ul class="grid effect-3" id="grid">
+                {% for ifa in fotos_inspiraciones_favoritas %}
+                    <li>
+                        <a class="image-link" href="{{ asset('images/inspiraciones/'~ifa.inspiracion.img) }}">
+                            <img src="{{ asset('images/inspiraciones/'~ifa.inspiracion.img) }}">
+                        </a>
+
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/imagesloaded.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/AnimOnScroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/modernizr.custom.js') }}"></script>
+    <script>
+        new AnimOnScroll( document.getElementById( 'grid' ), {
+            minDuration : 0.4,
+            maxDuration : 0.7,
+            viewportFactor : 0.2
+        } );
+
+        $('.image-link').magnificPopup({
+            type: 'image',
+            mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+
+            zoom: {
+                enabled: true, // By default it's false, so don't forget to enable it
+
+                duration: 300, // duration of the effect, in milliseconds
+                easing: 'ease-in-out', // CSS transition easing function
+
+                // The "opener" function should return the element from which popup will be zoomed in
+                // and to which popup will be scaled down
+                // By defailt it looks for an image tag:
+                opener: function(openerElement) {
+                    // openerElement is the element on which popup was initialized, in this case its <a> tag
+                    // you don't need to add "opener" option if this code matches your needs, it's defailt one.
+                    return openerElement.is('img') ? openerElement : openerElement.find('img');
+                }
+            }
+
+        });
+    </script>
+{% endblock %}
+
+
+
+
+

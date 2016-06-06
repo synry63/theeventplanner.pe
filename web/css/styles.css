@@ -695,7 +695,20 @@ PARTY
 
 
 
-
+/*=============
+Profile Change
+===============*/
+.change_foto{
+    width: 250px;
+    margin: 15% auto;
+    text-align: center;
+}
+.change_foto button{
+    width: 100%;
+}
+.change_foto img{
+    margin: 0 auto;
+}
 /*=============
 Counter Rating
 ===============*/
@@ -735,8 +748,34 @@ div.rating-container:hover div.counter {
 }
 
 /*=============
+Proveedor errors
+===============*/
+
+
+
+
+.proveedor_comments li{
+    list-style: none;
+
+}
+.proveedor_comments i{
+    padding: 10px;
+    font-size: 12px;
+}
+.proveedor_comments ul{
+    padding-left: 0;
+    display: inline-block;
+}
+.proveedor_comments .alert{
+    padding: 0;
+}
+
+
+/*=============
 CONTACTENOS
 ===============*/
+
+
 .contact-event{
     position: absolute;
     top: 40%;

@@ -20,30 +20,7 @@
             {% for t in tendencias  %}
                 <article class="white-panel">
                     <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
-                    {% if app.user is not null %}
-                        {% set me_gusta = 0 %}
-                        {% for fu in app.user.tendencias  %}
-                            {% if fu.tendencia.id==t.id %}
-                                {% set me_gusta = 1 %}
-                            {% endif %}
-                        {% endfor %}
-                        {% if me_gusta==1 %}
-                            <div class="votosgusta">
-                                <a href="{{ path('tendencia_me_gusta',
-                                {'slug_site': app.request.get('slug_site'),"id":t.id}) }}">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        {% else %}
-                            <div class="votosgusta">
-                                <a href="{{ path('tendencia_me_gusta',
-                                {'slug_site': app.request.get('slug_site'),"id":t.id}) }}">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                    <h1><a href="#">{{ t.nombre }}</a></h1>
+                    <h1><a href="{{ path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug}) }}">{{ t.nombre }}</a></h1>
                     <p>"{{ t.description }}"</p>
                 </article>
             {% endfor %}
