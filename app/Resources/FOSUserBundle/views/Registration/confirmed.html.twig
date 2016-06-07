@@ -6,6 +6,10 @@
 
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
     {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+
     {% endif %}
+
+    <a href="">Ahora puedes iniciar session</a>
+
 {% endblock content %}

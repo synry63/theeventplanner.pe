@@ -43,8 +43,14 @@
                             <div class="thumbnail">
                                 <div class="card">
                                     <div class="front">
+                                        {% if loop.first %}
+                                            <div class="liston">
+                                                <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
+                                            </div>
+                                        {% endif %}
                                         {% for f in p.fotos  %}
                                             {% if f.isListado %}
+
                                                 <div class="img-circle logo-circle">
                                                     <img id="logo-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
                                                 </div>
@@ -53,6 +59,11 @@
                                         {% endfor %}
                                     </div>
                                     <div class="back">
+                                        {% if loop.first %}
+                                            <div class="liston">
+                                                <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
+                                            </div>
+                                        {% endif %}
                                         <img src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
                                     </div>
                                 </div>

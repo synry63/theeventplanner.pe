@@ -33,7 +33,7 @@
                             <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
                             <p>{{ proveedor.telefono }}</p>
                             <div class="links-proveedores lweddings">
-                                <a href="{{ proveedor.web }}">Página Web</a>
+                                <a href="{{ proveedor.web }}" target="_blank">Página Web</a>
                             </div>
                         {% else %}
                             <div class="session-start">
@@ -142,15 +142,14 @@
                 <div class="comments-box">
                     <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
                     {% for p in comentarios %}
+
                         <div class="media comment">
                             <div class="media-left">
-                                {% if p.user.profile.profileFile is not null %}
-                                    <img src="{{ asset('images/user_icon.png') }}" alt="">
+                                {% if p.user.profile is not null %}
+                                    <img class="img-circle"  alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                                 {% else %}
-                                    <img class="img-circle" alt="{{ p.user.nombres }}" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                    <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
                                 {% endif %}
-
-
                             </div>
                             <div class="media-body">
 
@@ -308,8 +307,8 @@
         $('#slider').flexslider({
             animation: "slide",
             controlNav: false,
-            animationLoop: false,
-            slideshow: false,
+            animationLoop: true,
+            slideshow: true,
             sync: "#carousel"
         });
         var test = $("#rateYo").attr("data-rating");

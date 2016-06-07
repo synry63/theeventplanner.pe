@@ -35,7 +35,7 @@
 
     {{ form_end(form) }}
 </div>
-
+<script type="text/javascript" src="{{ asset('js/default_wedding.js') }}"></script>
 <script>
     if (typeof jQuery != 'undefined'){
         $( document ).ready(function() {
@@ -53,12 +53,18 @@
                         console.log(data);
                     }
                     else{
-                        noty({text: data.message,'layout':'bottom',type:'success',timeout:2000});
+                        noty({
+                            text: data.message,
+                            'layout':'bottom',
+                            type:'wedding',
+                            timeout:3000});
                         setTimeout(function(){
                             window.location.href = data.targetUrl;
                         }, 500);
 
-
+                        var n = noty({
+                            theme: 'default_wedding',
+                        });
                     }
 
                     //alert( data );

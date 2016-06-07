@@ -63,10 +63,16 @@ GLOBAL
 .home-slicks{
     padding-bottom: 30px;
 }
+.home-slicks a{
+    padding: 0 5px;
+}
 .home-slicks2{
     box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
     background: #F7F6F5;
     padding-bottom: 30px;
+}
+.home-slicks2 a{
+    padding: 0 5px;
 }
 
 .respuesta{
@@ -179,6 +185,11 @@ GLOBAL
     margin: 0;
 
 }
+
+
+
+
+
 
 .filtroimg{
     position: absolute;
@@ -482,7 +493,12 @@ GLOBAL
     text-align: center;
     margin: 20px 0;
 }
-
+.front{
+    position: relative;
+}
+.back{
+    position: relative;
+}
 .front img{
     width: 100%;
 }
@@ -774,7 +790,17 @@ Proveedor errors
 .proveedor_comments .alert{
     padding: 0;
 }
-
+/*=============
+Listones Premium
+===============*/
+.liston{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.liston img{
+    width: 100%;
+}
 
 /*=============
 CONTACTENOS
@@ -803,7 +829,10 @@ CONTACTENOS
 /*=============
  WEDDING
 ===============*/
-
+.music-container iframe{
+    border: solid 5px #35B3B4;
+    padding: 3px;
+}
 .form-wedding-contactenos label{
     color: #35B3B4;
 }
@@ -821,6 +850,7 @@ CONTACTENOS
 .cotizacion-form-weddings{
     background: #fff;
     padding:30px;
+    padding-bottom: 6px;
 }
 .cotizacion-form-weddings h1{
     font-size: 25px;
@@ -843,6 +873,7 @@ CONTACTENOS
     animation-timing-function: ease;
     animation-fill-mode: both;
 }
+
 @-webkit-keyframes test {
     0% {
         background:  url("../images/dinner_register.jpg") center/cover;
@@ -951,6 +982,13 @@ DINNER
     width: 250px;
 }
 
+/*=============
+Animates
+===============*/
+.rotateIn img {
+    margin: 70px auto;
+}
+
 
 /*=============
 MÓVILES PORTAIT
@@ -1025,7 +1063,11 @@ MÓVILES PORTAIT
         width: 100%;
     }
     .music-container iframe{
-        width: 350px;
+        width: 320px;
+        margin: 10px 0;
+    }
+    .music-container{
+        margin: 10px auto;
     }
     .tittle_base img{
         width: 100%;

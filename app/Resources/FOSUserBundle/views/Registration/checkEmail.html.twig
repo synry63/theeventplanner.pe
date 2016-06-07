@@ -2,6 +2,22 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block flashbag %}
+
+{% endblock flashbag %}
+
 {% block content %}
+
+
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2 animated rotateIn fadein">
+            <img width="300px" src="{{ asset('images/check_email.png') }}" alt="">
+        </div>
+    </div>
+
+
+
     <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
 {% endblock content %}
+
+
