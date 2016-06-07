@@ -140,6 +140,8 @@ class FotoProfile
     {
         return $this->profileName;
     }
-
+    public function __construct() {
+        $this->updatedAt = new \DateTime('now');
+    }
 
 }

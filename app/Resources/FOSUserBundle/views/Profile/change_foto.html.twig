@@ -26,44 +26,50 @@
         </div>
     </div>
 
-
     <div class="container">
         <div class="col-md-4 menu_profile">
             {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
         </div>
-        <div class="col-md-8  profile-content">
-
-            {% for label, flashes in app.session.flashbag.all %}
-                {% for flash in flashes %}
-                    <div class="alert alert-{{ label }}">
-                        {{ flash }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
-
-            <div class="change_foto">
-                <div class="form-group">
-                    <img class="img-circle" src="{{ vich_uploader_asset(profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}" />
-                </div>
-
-                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-                {{ form_errors(form) }}
-                <div class="form-group">
-                    {{ form_errors(form.profileFile) }}
-                    {{ form_widget(form.profileFile) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_widget(form.update,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Subir'}) }}
-                </div>
-
-                {{ form_end(form) }}
-            </div>
-
-
-
+        <div class="col-md-8">
+            <h4 class="centered"> Minimal Controls </h4>
+            <p class="centered">( define the controls available )</p>
+            <div id="cropContainerMinimal"></div>
         </div>
     </div>
 
 {% endblock content %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/croppic.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            var cropperOptions = {
+                uploadUrl:'/app_dev.php/profile/image-processing',
+                cropUrl:'/app_dev.php/profile/image-crop',
+                modal:false,
+                doubleZoomControls:false,
+                rotateControls: false,
+                loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+                onBeforeImgUpload: function(){  },
+                onAfterImgUpload: function(){  },
+                onImgDrag: function(){  },
+                onImgZoom: function(){  },
+                onBeforeImgCrop: function(){  },
+                onAfterImgCrop:function(data){
+                    noty({text: data.message,'layout':'bottom',type:'success',timeout:2000});
+                    setTimeout(function(){
+                        window.location.href = data.targetUrl;
+                    }, 3000);
+
+                },
+                onReset:function(){  },
+                onError:function(errormessage){ }
+            }
+
+            var cropperHeader = new Croppic('cropContainerMinimal', cropperOptions);
+        });
+
+    </script>
+{% endblock %}
 

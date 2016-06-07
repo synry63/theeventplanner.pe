@@ -611,6 +611,11 @@ Profile
     width: 250px;
     margin:100px auto;
 }
+#cropContainerModal{ width:100%; height:200px; position: relative; border:1px solid #ccc;}
+#cropContaineroutput{ width:100%; height:145px; position: relative; border:1px solid #ccc;}
+#cropContainerEyecandy{ width:100%; height:200px; position: relative; border:1px solid #ccc;}
+#cropContainerPreload{ width:100%; height:200px; position: relative; border:1px solid #ccc;}
+#cropContainerMinimal{ width:100px; height:100px; position: relative; border:1px solid #ccc;}
 /*=============
 User Login Responsive
 ===============*/
