@@ -4,12 +4,39 @@
 
 {% block content %}
 
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    <div class="register-after-background">
 
-    {% endif %}
+    </div>
 
-    <a href="">Ahora puedes iniciar session</a>
+    <div class="container check-page">
+        <div class="animated animacion zoomIn">
+            <img width="300px" src="{{ asset('images/confirmed.png') }}" alt="">
+        </div>
+        <div class="col-md-10 col-md-offset-1 text-check">
+            <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+
+            {#
+            {% if targetUrl %}
+                <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+            {% endif %}
+            #}
+
+            <a class="btn btn-entrar" href="{{ path('fos_user_profile_show') }}">Ahora puedes visitar Tu Perfil</a>
+
+        </div>
+
+
+
+        <div class="col-md-8 col-md-offset-2 text-check">
+            <img src="{{ asset('images/logo_login.png') }}" alt="">
+        </div>
+    </div>
+
+
+
 
 {% endblock content %}
+
+{% block footer %}
+
+{% endblock %}

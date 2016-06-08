@@ -7,17 +7,29 @@
 {% endblock flashbag %}
 
 {% block content %}
+    <div class="register-after-background">
 
+    </div>
 
-    <div class="container">
-        <div class="col-md-8 col-md-offset-2 animated rotateIn fadein">
+    <div class="container check-page">
+        <div class="animated animacion zoomIn">
             <img width="300px" src="{{ asset('images/check_email.png') }}" alt="">
+        </div>
+
+        <div class="col-md-10 col-md-offset-1 text-check">
+            <p>{{ 'registration.check_email'|trans( {'%email%': user.email}) }}</p>
+        </div>
+        
+        <div class="col-md-8 col-md-offset-2 text-check">
+            <img src="{{ asset('images/logo_login.png') }}" alt="">
         </div>
     </div>
 
 
-
-    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
 {% endblock content %}
+
+{% block footer %}
+
+{% endblock %}
 
 

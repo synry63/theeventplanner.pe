@@ -20,7 +20,9 @@
             <div class="col-md-4 col-md-push-8">
                 <div class="proveedor-fixed">
                     <div class="proveedor-info">
-
+                        <div class="liston">
+                            <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
+                        </div>
                         <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
 
                         <div id="rateYo"  data-rating="{{ moy }}"></div>
@@ -47,22 +49,28 @@
                     <div class="proveedor-social sweddings">
                         {% if app.user is not null %}
                             {% if favorito is not null%}
-                                <a class="favorite-button" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart" aria-hidden="true"></i> Favorito</a>
+                                <a class="favorite-button" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
+                                </a>
                             {% else %}
-                                <a class="favorite-button" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i> Favorito</a>
+                                <a class="favorite-button" style="background-position-x: 55px" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
+
+                                </a>
                             {% endif %}
 
                         {% else %}
-                            <a class="favorite-button ajax-popup-link" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i> Favorito</a>
+
+                            <a class="favorite-button ajax-popup-link" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
+
+                            </a>
 
                         {% endif %}
 
 
                         <ul>
-                            <li ><a href="{{ proveedor.facebookLink  }}"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
-                            <li ><a href="{{ proveedor.pinteresLink  }}"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a></li>
-                            <li ><a href="{{ proveedor.twitterLink  }}"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
-                            <li ><a href="{{ proveedor.instagramLink  }}"><i class="fa fa-instagram-square" aria-hidden="true"></i></a></li>
+                            <li ><a href="{{ proveedor.facebookLink  }}"><img width="60px" src="{{ asset('images/social_facebook.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.pinteresLink  }}"><img width="60px" src="{{ asset('images/social_pinterest.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.twitterLink  }}"><img  width="60px"src="{{ asset('images/social_twitter.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.instagramLink  }}"><img  width="60px" src="{{ asset('images/social_instagram.png') }}" alt=""></a></li>
                         </ul>
                     </div>
                 </div>
