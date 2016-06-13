@@ -20,11 +20,11 @@
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 <form class="filtros_proveedores" action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" method="get" class="form_sort" id="myForm">
-                    <select class="btn dropdown-toggle btn-tittle" id="sort_list" name="sort">
+                    <select class="selectpicker" id="sort_list" name="sort">
                         <option {% if proveedores.isSorted('p.registeredAt') %} selected {% endif %} value="p.registeredAt">Fecha</option>
                         <option {% if proveedores.isSorted('p.nombre') %} selected {% endif %} value="p.nombre">Nombre</option>
                     </select>
-                    <select class="btn dropdown-toggle btn-tittle" id="sort_list" name="direction">
+                    <select class="selectpicker " id="sort_list" name="direction">
                         <option {% if direction=='desc' %} selected {% endif %} value="desc">Descendiente</option>
                         <option {% if direction=='asc' %} selected {% endif %} value="asc">Ascendente</option>
                     </select>
@@ -89,6 +89,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/jquery.flip.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
     <script>
             $(".card").flip({
                 axis: 'y',
@@ -96,7 +97,10 @@
                 speed: 900,
                 reverse: false
             });
-
+            $('.selectpicker').selectpicker({
+                style: 'btn btn-tittle',
+                size: 4
+            })
     </script>
 
 {% endblock %}

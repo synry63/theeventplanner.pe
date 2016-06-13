@@ -54,7 +54,8 @@
                                 </a>
                             </div>
                         {% endif %}
-                        <a class="popup_proveedores" href="{{ vich_uploader_asset(fp, 'imgFile')}}"  title="{{ fp.proveedor.nombre }}">
+
+                        <a class="popup_proveedores" href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': fp.proveedor.slug}) }}"  title="{{ fp.proveedor.nombre }}">
                             <img src="{{ vich_uploader_asset(fp, 'imgFile')}}" alt="">
                         </a>
                     </div>
@@ -67,29 +68,5 @@
         </div>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        $('.popup-gallery').magnificPopup({
-            delegate: 'a.popup_proveedores',
-            type: 'image',
-            tLoading: 'Loading image #%curr%...',
-            mainClass: 'mfp-img-mobile',
-            gallery: {
-                enabled: true,
-                navigateByImgClick: true,
-                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-            },
-            image: {
-                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-                titleSrc: function(item) {
-                    return item.el.attr('title') + '<small></small>';
-                }
-            }
-        });
-
-    </script>
-
-{% endblock %}
 
 

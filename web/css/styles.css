@@ -205,8 +205,19 @@ GLOBAL
     color: #fff;
 }
 .categorias{
-    float: right;
+    width:100%;
     padding: 20px 0;
+}
+.categorias ul{
+    width: 100%;
+    text-align: center;
+    top: 80%;
+}
+.categorias ul li a{
+    padding: 10px 20px;
+}
+.categorias .categorias2{
+    width: 100%;
 }
 
 .heart, .heart2{
@@ -379,12 +390,13 @@ GLOBAL
 
 .sweddings .favorite-button{
     text-decoration: none;
+    margin-top:10px;
 }
 .favorite-button{
     background: url(../images/favorito_button.png);
     display: inline-block;
-    width: 55px;
-    height: 55px;
+    width: 35px;
+    height: 32px;
 }
 
 .proveedor-social{
@@ -632,6 +644,16 @@ Profile
     width: 250px;
     margin:100px auto;
 }
+.cropcontain p{
+    position: absolute;
+    top: 25%;
+    left: 26%;
+}
+#cropContainerMinimal{
+    margin: 150px auto;
+    background-color: rgba(0,0,0,.1);
+}
+
 #cropContainerModal{ width:100%; height:200px; position: relative; border:1px solid #ccc;}
 #cropContaineroutput{ width:100%; height:145px; position: relative; border:1px solid #ccc;}
 #cropContainerEyecandy{ width:100%; height:200px; position: relative; border:1px solid #ccc;}
@@ -921,7 +943,7 @@ CONTACTENOS
     border-radius: 0;
     background:#35b3b4;
     color: #fff;
-    height: 40px;
+    height: 36px;
 }
 .form-wedding-login{
     margin-bottom: 20px;
@@ -963,7 +985,7 @@ CONTACTENOS
     background: none;
     color: rgba(0,0,0,.5);
     border: solid 2px #35b3b4;
-
+    border-radius: 0;
 }
 .btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle){
     border-radius: 0 10px 10px 0;
@@ -1024,6 +1046,19 @@ MÓVILES PORTAIT
 ===============*/
 
 @media only screen and (max-width:700px){
+    .cropcontain{
+        display: inline;
+    }
+    .cropcontain p{
+        top: -40px;
+        left: 35%;
+    }
+    #cropContainerMinimal{
+        margin: 20px auto;
+    }
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+        width: auto;
+    }
     .atras{
         margin: 10px 0;
         width: 84px;

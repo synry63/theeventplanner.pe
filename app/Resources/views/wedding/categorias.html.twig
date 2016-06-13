@@ -15,8 +15,9 @@
 {% block content %}
     {{ parent() }}
     <div class="container">
+        <div class="col-md-4 col-md-offset-4">
             <div class="btn-group categorias">
-                <button class="btn btn-tittle dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <button class="btn btn-tittle categorias2 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Categorias
                     <span class="caret"></span>
                 </button>
@@ -26,6 +27,7 @@
                     {% endfor %}
                 </ul>
             </div>
+        </div>
     </div>
 
     <div class="container">

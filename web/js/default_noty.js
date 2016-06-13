@@ -160,9 +160,9 @@ $.noty.themes.defaultTheme = {
                 this.$message.css({fontWeight: 'bold'});
                 this.$buttons.css({borderTop: '1px solid darkred'});
                 break;
-            case 'information':
-                this.$bar.css({backgroundColor: '#57B7E2', borderColor: '#0B90C4', color: '#FFF'});
-                this.$buttons.css({borderTop: '1px solid #0B90C4'});
+            case 'theevent':
+                this.$bar.css({backgroundColor: '#C30057', borderColor: '#C30057', color: '#FFF'});
+                this.$buttons.css({borderTop: '1px solid ##C30057'});
                 break;
             case 'wedding':
                 this.$bar.css({backgroundColor: '#35B3B4', borderColor: '#35B3B4', color: '#fff'});

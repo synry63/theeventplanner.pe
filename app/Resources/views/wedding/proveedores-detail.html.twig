@@ -52,7 +52,7 @@
                                 <a class="favorite-button" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
                                 </a>
                             {% else %}
-                                <a class="favorite-button" style="background-position-x: 55px" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
+                                <a class="favorite-button" style="background-position-x: 35px" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
 
                                 </a>
                             {% endif %}
@@ -67,10 +67,10 @@
 
 
                         <ul>
-                            <li ><a href="{{ proveedor.facebookLink  }}"><img width="60px" src="{{ asset('images/social_facebook.png') }}" alt=""></a></li>
-                            <li ><a href="{{ proveedor.pinteresLink  }}"><img width="60px" src="{{ asset('images/social_pinterest.png') }}" alt=""></a></li>
-                            <li ><a href="{{ proveedor.twitterLink  }}"><img  width="60px"src="{{ asset('images/social_twitter.png') }}" alt=""></a></li>
-                            <li ><a href="{{ proveedor.instagramLink  }}"><img  width="60px" src="{{ asset('images/social_instagram.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.facebookLink  }}"><img width="50px" src="{{ asset('images/social_facebook.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.pinteresLink  }}"><img width="50px" src="{{ asset('images/social_pinterest.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.twitterLink  }}"><img  width="50px"src="{{ asset('images/social_twitter.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.instagramLink  }}"><img  width="50px" src="{{ asset('images/social_instagram.png') }}" alt=""></a></li>
                         </ul>
                     </div>
                 </div>
@@ -282,7 +282,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/default_wedding.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>
     <script>
 
 
@@ -296,7 +296,7 @@
 
             });
         var n = noty({
-            theme: 'default_wedding',
+            theme: 'default_noty',
         });
 
 
