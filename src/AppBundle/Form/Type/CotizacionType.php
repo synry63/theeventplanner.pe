@@ -34,6 +34,17 @@ class CotizacionType extends AbstractType
                 ),
 
             ))
+            ->add('tel', 'text', array(
+                'attr' => array(
+                    'placeholder' => 'Ingrese un telefono.',
+                    'pattern'     => '.{3,}' //minlength
+                ),
+                'constraints' => array(
+                    new NotBlank(array('message' => 'Recuerda ingresar tu número de teléfono.')),
+
+
+                ),
+            ))
             ->add('email', 'email', array(
                 'attr' => array(
                     'placeholder' => 'So I can get back to you.',
