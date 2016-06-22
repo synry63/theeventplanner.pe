@@ -75,7 +75,7 @@ class ProveedorProfileType extends AbstractType
                 $this->categorias,
 
             'multiple'      => true,
-            'expanded'      => false,
+            'expanded'      => true,
             /*'mapped' => true*/
         ));
         //$builder->add('logo', LogoType::class);

@@ -28,7 +28,7 @@ class ProveedorChangePasswordType extends AbstractType
             'second_options' => array('label' => 'Repeat Password'),
         ));
 
-        $builder->add('change password', SubmitType::class);
+        $builder->add('submit', SubmitType::class);
     }
     public function configureOptions(OptionsResolver $resolver)
     {

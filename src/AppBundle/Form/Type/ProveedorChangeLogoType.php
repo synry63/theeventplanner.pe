@@ -30,7 +30,7 @@ class ProveedorChangeLogoType extends AbstractType
             ),
         ));
 
-        $builder->add('change logo', SubmitType::class);
+        $builder->add('submit', SubmitType::class);
     }
     public function configureOptions(OptionsResolver $resolver)
     {

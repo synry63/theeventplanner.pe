@@ -37,6 +37,7 @@ class FotoController extends Controller
 
             // 4) save the Foto !
             $foto->setProveedor($proveedor);
+            $foto->setIsListado(false);
             $em = $this->getDoctrine()->getManager();
             $em->persist($foto);
             $em->flush();
