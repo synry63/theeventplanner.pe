@@ -70,6 +70,11 @@ class Builder implements ContainerAwareInterface
                 'label' => 'Cambiar datos',
             )
         );
+        $menu->addChild('negocio-comentarios',array(
+                'route' => 'negocio_zona_comentarios',
+                'label' => 'Comentarios',
+            )
+        );
         return $menu;
 
     }

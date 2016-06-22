@@ -12,10 +12,11 @@ use Doctrine\ORM\EntityRepository;
 
 class ComentarioProveedorRepository extends EntityRepository
 {
-    public function getAllComments($proveedor){
+    public function getAllComments($proveedor,$limit = null){
 
         $result = $this->findBy(array('proveedor' => $proveedor),
-                                array('adedAt' => 'DESC')
+                                array('adedAt' => 'DESC'),
+                                $limit
         );
         return $result;
     }

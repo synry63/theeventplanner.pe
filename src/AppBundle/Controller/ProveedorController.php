@@ -13,8 +13,10 @@ use AppBundle\Entity\ComentarioProveedor;
 use AppBundle\Entity\Foto;
 use AppBundle\Entity\Logo;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Entity\RespuestaProveedor;
 use AppBundle\Entity\UserProveedorGusta;
 use AppBundle\Form\Type\ComentarioProveedorType;
+use AppBundle\Form\Type\ComentarioRespuestaType;
 use AppBundle\Form\Type\FotoType;
 use AppBundle\Form\Type\GoogleMapType;
 use AppBundle\Form\Type\LogoType;
@@ -22,6 +24,7 @@ use AppBundle\Form\Type\ProveedorChangePasswordType;
 use AppBundle\Form\Type\ProveedorChangeLogoType;
 use AppBundle\Form\Type\ProveedorProfileType;
 use AppBundle\Form\Type\ProveedorType;
+use AppBundle\Form\Type\RespuestaProveedorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,10 +77,61 @@ class ProveedorController extends Controller
     public function zonaShowAction(Request $request){
 
         $proveedor = $this->get('security.token_storage')->getToken()->getUser();
-
+        $moy = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorRating($proveedor);
+        $total = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorCount($proveedor);
+        $best_fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getBestFotosProveedor($proveedor);
+        $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor,5);
         return $this->render(
             'negocio/zona-home.html.twig',array(
-                'proveedor'=>$proveedor
+            //   'negocio/temp.html.twig',array(
+                'proveedor'=>$proveedor,
+                'moy'=>$moy,
+                'favorito_total_usuarios'=>$total,
+                'mejores_fotos'=>$best_fotos,
+                'comentarios'=>$comments
+
+            )
+        );
+    }
+    /**
+     * @Route("/negocio/zona/comentarios", name="negocio_zona_comentarios")
+     */
+    public function zonaComentariosAction(Request $request){
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
+        $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
+        return $this->render(
+            'negocio/comentarios.html.twig',array(
+                'comentarios'=>$comments
+            )
+        );
+
+    }
+    /**
+     * @Route("/negocio/zona/comentario/{id}", name="negocio_zona_comentario"),requirements={
+     *     "id": "\d+",
+     * })
+     */
+    public function zonaComentarioAction($id,Request $request){
+        $comment =$this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->find($id);
+        $respuesta = $comment->getRespuesta();
+        if($respuesta==null){
+            $respuesta = new RespuestaProveedor();
+            $respuesta->setComentarioProveedor($comment);
+        }
+        $form = $this->createForm(new RespuestaProveedorType(),$respuesta );
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // 4) save the respuesta !
+            $respuesta->setAdedAt(new \DateTime('now'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($respuesta);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Respuesta actualizada correctamente !');
+        }
+        return $this->render(
+            'negocio/comentario.html.twig',
+            array('form' => $form->createView(),
+                  'comentario'=>$comment
 
             )
         );

@@ -19,9 +19,6 @@ class ProveedorRepository extends EntityRepository
     public function getBestProveedores($parent_category,$limit = 5){
 
         $em = $this->getEntityManager();
-
-
-
         $qb = $em->createQueryBuilder();
         $qb->select('p as proveedor,avg(cp.nota) as mymoy')
             ->from('AppBundle\Entity\Proveedor', 'p')
@@ -35,6 +32,19 @@ class ProveedorRepository extends EntityRepository
         $query = $qb->getQuery();
 
         return $query->getResult();
+    }
+    public function getProveedorCount($proveedor){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('COUNT(up) as total')
+            ->from('AppBundle\Entity\UserProveedorGusta', 'up')
+            ->where('up.proveedor = :proveedor')
+            ->setParameter('proveedor', $proveedor);
+        $qb->addGroupBy('up.proveedor');
+        $query = $qb->getQuery();
+        $result = $query->getOneOrNullResult();
+        if($result!=null) $result = $result['total'];
+        return $result;
     }
     public function getProveedorRating($proveedor){
         $em = $this->getEntityManager();
