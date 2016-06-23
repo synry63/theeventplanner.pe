@@ -23,7 +23,37 @@ body{
 /*=============
 GLOBAL
 ===============*/
+#tittle_responsive{
+    display: none;
+}
+.navbar-default{
+    height: 100px;
+}
+#center-image a img{
+    width: 400px;
+}
+#center-image{
+    position: relative;
+    top: -30px;
+}
+.header .navbar-right{
+    position: absolute;
+    right: 10px;
+}
+.header{
+    position: relative;
+}
+.header .navbar-left .last{
+    position: relative;
+}
+.header .navbar-left{
+    margin-top: 25px;
+}
 
+
+.comments-box .media-left img{
+    width: 80px;
+}
 .session-start{
     margin: 10px 0;
 }
@@ -153,7 +183,7 @@ GLOBAL
 }
 
 .descripcion{
-
+    background: gray;
     padding: 10px;
     color:rgba(0,0,0,.5);
 }
@@ -162,6 +192,8 @@ GLOBAL
     box-shadow: none;
     border:none;
 }
+
+
 
 .slick_wedding div img{
     width: 100%;
@@ -393,10 +425,10 @@ GLOBAL
     margin-top:10px;
 }
 .favorite-button{
-    background: url(../images/favorito_button.png);
+    background: url(../images/heart_like.png);
     display: inline-block;
-    width: 35px;
-    height: 32px;
+    width: 33px;
+    height: 30px;
 }
 
 .proveedor-social{
@@ -426,6 +458,7 @@ GLOBAL
     width: 100%;
 }
 .logo_header{
+    margin-top: 15px;
     float: left;
 }
 .user-login{
@@ -438,6 +471,7 @@ GLOBAL
 }
 .btn-login{
     float: right;
+    margin-top: 15px;
 }
 .btn-login span{
     padding: 0 10px;
@@ -873,7 +907,6 @@ CONTACTENOS
 }
 .contact-event ul{
     padding: 20px;
-    border: double 4px rgba(0,0,0,.2);
     background: rgba(255,255,255,.4);
 }
 
@@ -1215,13 +1248,57 @@ Zona e Negocio
     transform: scale(1.5);
 
 }
-
-
+.check-boxs{
+    width: 100%;
+    display: inline-block;
+}
+.check-boxs li{
+    list-style: none;
+}
+.check-boxs .checkbox_category{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.check-boxs .indent{
+    padding-left: 20px;
+}
 /*=============
 MÓVILES PORTAIT
 ===============*/
 
 @media only screen and (max-width:700px){
+
+    .navbar-default{
+        height: auto;
+    }
+    .header .logo_header{
+        float: none;
+        margin: 0 auto;
+        display: block;
+        width: 50px;
+    }
+    .header .navbar-right{
+        position: relative;
+        right: 0;
+        top:0 ;
+    }
+    .header{
+        position: relative;
+    }
+    .header .navbar-left .last{
+        position: relative;
+        right: 0;
+    }
+    .header .navbar-left{
+        margin-top: 15px;
+    }
+
+    #center-image{
+        display: none;
+    }
+    #tittle_responsive{
+        display: block;
+    }
     .cropcontain{
         display: inline;
     }
@@ -1316,6 +1393,7 @@ MÓVILES PORTAIT
         width: 100%;
     }
     .header li{
+        text-align: center;
         width: 100%;
     }
     .wedding .footer li a i{

@@ -102,25 +102,25 @@
             {{ form_errors(form.username) }}
             {{ form_widget(form.username,{ 'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="form-group">
+        <div class="form-group check-boxs">
             {% for name, choices in form.categoriasListado.vars.choices %}
-                <ul>
-                    <li class="checkbox_category">
-                        <input type="checkbox" class="checkallsub" /> {{ name }}
-                    </li>
-
-                    {% for key,choice in choices %}
-                        <li class="indent">
-                            {{ form_errors(form.categoriasListado[key]) }}
-                            {{ form_widget(form.categoriasListado[key]) }}
-                            {{ form_label(form.categoriasListado[key]) }}
-
-
-
-
+                <div class="col-md-6 ">
+                    <ul>
+                        <li class="checkbox_category">
+                            <input type="checkbox" class="checkallsub" /> {{ name }}
                         </li>
-                    {% endfor %}
-                </ul>
+
+                        {% for key,choice in choices %}
+                            <li class="indent">
+                                {{ form_errors(form.categoriasListado[key]) }}
+                                {{ form_widget(form.categoriasListado[key]) }}
+                                {{ form_label(form.categoriasListado[key]) }}
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
             {% endfor %}
         </div>
         <div class="form-group">

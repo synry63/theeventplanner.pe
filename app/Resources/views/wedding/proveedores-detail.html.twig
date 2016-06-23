@@ -1,8 +1,7 @@
 {% extends 'wedding/layout.html.twig' %}
 {% block title %}Proveedores{% endblock %}
 {% block main_title %}
-
-    <div class="container">
+    <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
                 <img src="{{ asset('images/proveedores_tittle.png') }}" alt="Proveedores Tittle">
@@ -10,6 +9,11 @@
         </div>
     </div>
 {% endblock %}
+
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'proveedores_tittle.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
 {% block content %}
     {{ parent() }}
 
@@ -52,7 +56,7 @@
                                 <a class="favorite-button" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
                                 </a>
                             {% else %}
-                                <a class="favorite-button" style="background-position-x: 35px" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
+                                <a class="favorite-button" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
 
                                 </a>
                             {% endif %}

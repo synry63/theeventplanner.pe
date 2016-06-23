@@ -4,7 +4,7 @@
 
 {% block main_title %}
 
-    <div class="container">
+    <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
                 <img src="{{ asset('images/tittle_inspiraciones.png') }}" alt="Inspiraciones Tittle">
@@ -12,6 +12,10 @@
         </div>
     </div>
 {% endblock %}
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'tittle_inspiraciones.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
 
 {% block content %}
     {{ parent() }}

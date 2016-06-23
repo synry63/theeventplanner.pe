@@ -19,6 +19,8 @@
 {% endblock %}
 
 {% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': false}) %}
+    {{ knp_menu_render(menuItem) }}
     {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
 {% endblock menuprincipal %}
 
@@ -31,8 +33,6 @@
 
 {% block user_login %}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-
         <div class="user-login-responsive">
             <div class="col-xs-8">
                 <a href="{{ path('fos_user_profile_show') }}">
@@ -53,8 +53,6 @@
                 </a>
             </div>
         </div>
-
-
         <div class="btn-group btn-login btn_login_responsive">
             <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span>{{app.user.nombres}} {{app.user.apellidos}}</span>

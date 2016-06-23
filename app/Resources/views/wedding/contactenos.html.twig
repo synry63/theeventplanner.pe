@@ -1,16 +1,19 @@
 {% extends 'wedding/layout.html.twig' %}
 {% block title %}Contáctenos{% endblock %}
+{% block main_title %}
+    <div id="tittle_responsive" class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/tittle_contactenos_wedding.png') }}" alt="Proveedores Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
- {% block main_title %}
-
-     <div class="container">
-         <div class="row">
-             <div class="tittle_base">
-                 <img src="{{ asset('images/tittle_contactenos_wedding.png') }}" alt="Contactenos Tittle">
-             </div>
-         </div>
-     </div>
- {% endblock %}
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'tittle_contactenos_wedding.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
 
 {% block content %}
 

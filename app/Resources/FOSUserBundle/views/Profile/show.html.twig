@@ -1,18 +1,24 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'tittle_miperfil.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
+
 {% block content %}
+
     {% block main_title %}
-
-        <div class="container">
-
+        <div id="tittle_responsive" class="container">
             <div class="row">
-                <div class="tittle_general">
+                <div class="tittle_base">
                     <img src="{{ asset('images/tittle_miperfil.png') }}" alt="Proveedores Tittle">
                 </div>
             </div>
-
         </div>
     {% endblock %}
+
+
 
     {{ parent() }}
     <div class="container-fluid portada-profile">

@@ -1,24 +1,30 @@
 {% extends 'wedding/layout.html.twig' %}
 {% block title %}The Event Planner | Home{% endblock %}
+
 {% block main_title %}
 
-    <div class="container">
+    <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/weddings_tittle.png') }}" alt="Weedings Tittle">
+                <img src="{{ asset('images/weddings_tittle.png') }}" alt="Proveedores Tittle">
             </div>
         </div>
     </div>
-
 {% endblock %}
 
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'weddings_tittle.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
 
 {% block content %}
     {{ parent() }}
+
+
     <div class="container-fluid">
         <div class="row">
             <div class="flexslider">
-                <ul class="slides banner-sliders">
+                <ul class="slides">
                     <li>
                         <img src="{{ asset('images/banner.jpg') }}" />
                     </li>
@@ -34,10 +40,13 @@
                 </ul>
             </div>
         </div>
+
+
+
     </div>
 
     <div class="container text-center descripcion">
-        <p>Lorem ipsum dolor sitw amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
+        <p>Lorem ipsum dolor sitw amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
     </div>
 
 
@@ -93,6 +102,7 @@
             prevText: "Previous",
             nextText: "Next"
         });
+
         $('.slick_wedding').slick({
             arrows: true,
             autoplay: true,
