@@ -68,6 +68,18 @@ class ProveedorProfileType extends AbstractType
                     return $er->createQueryBuilder('c');
                 },
         ));*/
+        /*$builder->add('code', 'choice', array(
+        'choices' => array(
+            'Food'  => array('pizza', 'burger', 'icecream'),
+            'Music' => array('poney', 'little', 'pocket'),
+        ),
+        'multiple' => true,
+        'expanded' => true,
+        'required' => true,
+        'mapped' => false,
+        //'choice_name' => 1,
+        //'choices_as_values' => true,
+         ));*/
         $builder->add('categoriasListado',EntityType::class, array(
             'class' => 'AppBundle:CategoriaListado',
             'choice_label' => 'nombre',
