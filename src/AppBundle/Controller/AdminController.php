@@ -9,6 +9,8 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Tendencia;
+use AppBundle\Form\Type\TendenciaType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,12 +21,104 @@ use AppBundle\Form\Type\ContactType;
 class AdminController extends Controller
 {
     /**
+     * @param $text
+     * @return mixed|string
+     * slugify a text
+     */
+    private function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text))
+        {
+            return 'n-a';
+        }
+
+        return $text;
+    }
+
+    /**
      * @Route("/admin/", name="admin_start")
      */
     public function adminZonaAction(){
 
         return $this->render(
             'admin/home.html.twig'
+        );
+    }
+    /**
+     * @Route("/admin/tendencias", name="admin_tendencias")
+     */
+    public function adminTendenciasAction(){
+        $tendencias = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findBy(
+            array(),
+            array('sort' => 'ASC')
+        );
+        return $this->render(
+            'admin/tendencias.html.twig',
+            array(
+                'tendencias'=>$tendencias
+            )
+        );
+    }
+    /**
+     * @Route("/admin/tendencia/delete/{id}", name="admin_tendencia_delete")
+     */
+    public function adminTendenciaDeleteAction(Request $request,$id){
+
+    }
+    /**
+     * @Route("/admin/tendencia/add", name="admin_tendencia_add")
+     */
+    public function adminTendenciaAddAction(Request $request){
+        $tendencia = new Tendencia();
+        $form = $this->createForm(new TendenciaType(), $tendencia);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $slug = $this->slugify($tendencia->getNombre());
+            $tendencia->setSlug($slug);
+            //$logo->setProveedor($proveedor);
+            $em->persist($tendencia);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Your tendencia saved !');
+            return $this->redirectToRoute('admin_tendencias');
+        }
+        return $this->render(
+            'admin/tendencia_add.html.twig',
+            array(
+                'form' => $form->createView()
+            )
+        );
+    }
+    /**
+     * @Route("/admin/tendencia/{id}", name="admin_tendencias_edit")
+     */
+    public function adminTendenciaAction($id){
+        $tendencia = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->find($id);
+
+        return $this->render(
+            'admin/tendencias.html.twig',
+            array(
+                'tendencia'=>$tendencia
+            )
         );
     }
     /**

@@ -53,7 +53,7 @@ class InspiracionController extends Controller
      * })
      */
     public function inspiracionesTendenciasAction($slug_site){
-        $tendencias = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findBy(array(),array('order'=>'ASC'));
+        $tendencias = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findBy(array(),array('sort'=>'ASC'));
         return $this->render(
             $slug_site.'/inspiraciones-tendencias.html.twig',
             array('tendencias'=>$tendencias)

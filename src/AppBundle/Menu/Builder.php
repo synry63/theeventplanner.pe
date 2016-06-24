@@ -278,7 +278,7 @@ class Builder implements ContainerAwareInterface
     {
 
         $menu = $factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-default');
 
         //$uri = $this->container->get('router')->generate('wedding_start');
         $menu->addChild('home',array(
