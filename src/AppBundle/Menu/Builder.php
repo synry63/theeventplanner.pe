@@ -266,7 +266,6 @@ class Builder implements ContainerAwareInterface
             )
         );
         $menu['inspiraciones']->setLinkAttribute('class', 'external-link');
-
         //$uri = $this->container->get('router')->generate('wedding_contactenos');
         $menu->addChild('contactenos',array(
                 'route' => 'site_contactenos',
@@ -277,6 +276,7 @@ class Builder implements ContainerAwareInterface
     }
     public function mainMenuWedding(FactoryInterface $factory, array $options)
     {
+
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
 
@@ -297,6 +297,14 @@ class Builder implements ContainerAwareInterface
         //$menu->addChild('Proveedores');
         //$menu['Proveedores']->setUri('#');
 
+        $menu->addChild('center-image', array(
+            'uri' => '#',
+            'label' => '',
+            'attributes' => array('id' => 'center-image'),
+            'extras' => array(
+                'img' => '/images/'.$options['image_title']
+            )
+        ));
 
         $menu->addChild('inspiraciones',array(
         'route' => 'inspiraciones_start',
@@ -307,7 +315,8 @@ class Builder implements ContainerAwareInterface
         );
         $menu['inspiraciones']->setLinkAttribute('class', 'external-link');
 
-        //$uri = $this->container->get('router')->generate('wedding_contactenos');
+
+
         $menu->addChild('contactenos',array(
                 'route' => 'site_contactenos',
                 'label' => 'Contáctenos',

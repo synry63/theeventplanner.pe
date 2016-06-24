@@ -104,6 +104,9 @@
         {% if not item.getExtra('icon') is empty %}
             <i class="{{ item.getExtra('icon') }}"></i>
         {% endif %}
+    {% if not item.getExtra('img') is empty %}
+        <img src="{{ item.getExtra('img') }}"/>
+    {% endif %}
     {{ block('label') }}</a>
 {% endblock %}
 
