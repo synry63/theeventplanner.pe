@@ -19,6 +19,41 @@ body{
 .flex-direction-nav a{
     height: 50px;
 }
+/*=============
+Nav bar
+===============*/
+.total-container .navbar{
+    margin-bottom:0;
+}
+.menu-principal .navbar-default{
+    margin-left: 11%;
+}
+.menu-principal .navbar-default li{
+    text-transform: uppercase;
+    font-weight: 400;
+    padding-top: 30px;
+}
+.menu-principal .navbar-default li a{
+    color: rgba(0,0,0,.5);
+}
+.menu-principal .navbar-right{
+    position: absolute;
+    right:120px;
+}
+.logo_header{
+    margin-top: 30px;
+    margin-left: 50px;
+    position: absolute;
+}
+#center-image a img{
+    width: 400px;
+}
+#center-image{
+    position: relative;
+    top: -30px;
+    padding-top: 15px;
+}
+
 
 /*=============
 GLOBAL
@@ -29,26 +64,7 @@ GLOBAL
 .navbar-default{
     height: 100px;
 }
-#center-image a img{
-    width: 400px;
-}
-#center-image{
-    position: relative;
-    top: -30px;
-}
-.header .navbar-right{
-    position: absolute;
-    right: 10px;
-}
-.header{
-    position: relative;
-}
-.header .navbar-left .last{
-    position: relative;
-}
-.header .navbar-left{
-    margin-top: 25px;
-}
+
 
 
 .comments-box .media-left img{
@@ -114,9 +130,6 @@ GLOBAL
     padding: 0;
 }
 
-.proveedor-fixed{
-    margin-bottom: 50px;
-}
 .navbar-left .current a{
     color: rgba(0,0,0,1);
 }
@@ -168,22 +181,9 @@ GLOBAL
 .tittle_base img{
     width: 800px;
 }
-.header li{
-    display: inline-block;
-    font-family: 'Lato', sans-serif;
-    text-transform: uppercase;
-}
-.header li a{
-    color: rgba(0,0,0,.5);
-    transition: all .5s;
-}
 
-.header li a:hover{
-    color: rgba(0,0,0,1);
-}
 
 .descripcion{
-    background: gray;
     padding: 10px;
     color:rgba(0,0,0,.5);
 }
@@ -217,8 +217,12 @@ GLOBAL
     margin: 0;
 
 }
-
-
+.proveedor-detail-page{
+    margin-top: 30px;
+}
+.card-prov{
+    padding: 0 60px;
+}
 
 
 
@@ -373,7 +377,9 @@ GLOBAL
 .form-login .alert{
     padding: 0;
 }
-
+.form-wedding-contactenos{
+    margin-top: 30px;
+}
 .form-wedding-contactenos li{
     list-style: none;
 
@@ -390,7 +396,9 @@ GLOBAL
     padding: 0;
 }
 
-
+.categorias-list-page{
+    margin-top: 30px;
+}
 
 
 .proveedor-info{
@@ -413,6 +421,9 @@ GLOBAL
 .proveedor-info{
     padding: 10px;
     box-shadow: 0px 0px 5px rgba(0,0,0,.1);
+}
+.proveedor-info>img{
+    width: 100%;
 }
 .links-proveedores a{
     text-decoration: none;
@@ -457,21 +468,21 @@ GLOBAL
 .flexslider2 img{
     width: 100%;
 }
-.logo_header{
-    margin-top: 15px;
-    float: left;
-}
+
 .user-login{
     background: none;
     border: none;
     border-radius: 50%;
 }
+.user-login span{
+    display: block;
+}
 .btn-login img{
     display: inline-block;
 }
 .btn-login{
-    float: right;
-    margin-top: 15px;
+    position: absolute;
+    margin-top: 30px;
 }
 .btn-login span{
     padding: 0 10px;
@@ -482,7 +493,8 @@ GLOBAL
 .dropdown-user{
     position: absolute;
     top: 60px;
-    left: -200px;
+    left: -280px;
+    width: 350px;
     padding: 10px;
 }
 .dropdown-user a{
@@ -547,6 +559,9 @@ GLOBAL
 .front{
     position: relative;
 }
+.back img{
+    width: 100%;
+}
 .back{
     position: relative;
 }
@@ -593,6 +608,35 @@ GLOBAL
     text-shadow: 2px 2px 5px rgba(0,0,0,.2);
     font-size: 20px;
 }
+
+/*=============
+Proveedores-List
+===============*/
+.image-prov{
+    position: relative;
+    margin: 20px 0 45px 0;
+}
+.image-prov .prov-foto{
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    border-bottom: solid 4px #35B3B4;
+}
+.proveedores2 a:hover .logo_tag>img{
+    transform: scale(1.2);
+}
+.logo_tag{
+    position: absolute;
+    bottom: -45px;
+    left:50%;
+    margin-left:-50px;
+}
+.logo_tag img{
+    width: 100px;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    transition: all .5s;
+}
+
+
 /*=============
 Negocios
 ===============*/
@@ -743,6 +787,7 @@ Votos GRID
     position: relative;
     max-width: 100%;
     width: 100%;
+    margin-top: 30px;
     margin-bottom: 50px;
 }
 
@@ -1011,6 +1056,7 @@ CONTACTENOS
 }
 
 .wedding-login li a{
+    padding: 10px;
     color: #35b3b4;
 }
 .wedding .footer li a:hover{
@@ -1025,7 +1071,7 @@ CONTACTENOS
 
 .proveedores2 .thumbnail{
     border: none;
-    height: 250px;
+    height: 360px;
     margin: 20px 0;
     position: relative;
     box-shadow: none;
@@ -1263,34 +1309,82 @@ Zona e Negocio
     padding-left: 20px;
 }
 /*=============
+NAV DASHBOARD
+===============*/
+#nav-dashboard{
+    background: #23282D;
+    width: 190px;
+    position: fixed;
+    height: 100%;
+    border-radius: 0;
+}
+.menu-dashboard li a{
+    color: #fff;
+    text-transform: uppercase;
+    font-size:12px;
+    cursor: pointer;
+}
+.menu-dashboard li a:hover{
+   background: #32373C;
+}
+#nav-dashboar .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    background: #32373C;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    background: #32373C;
+}
+.menu-dashboard .dropdown-menu{
+    top: 0;
+    left: 190px;
+    padding: 0;
+    text-align: center;
+    border: 0;
+    margin:0;
+}
+
+.menu-dashboard .dropdown-menu li a{
+    color: #fff;
+    background: #23282D;
+    padding: 10px 0;
+    cursor: pointer;
+}
+.menu-dashboard .dropdown-menu li a:hover{
+    background: #32373C;
+}
+
+.menu-dashboard i{
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+/*=============
 MÓVILES PORTAIT
 ===============*/
 
 @media only screen and (max-width:700px){
-
+    .image-prov{
+        margin: 20px 0 55px 0;
+    }
+    .menu-principal .navbar-right{
+        position: initial;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .menu-principal .navbar-default{
+        margin: 0;
+    }
+    .menu-principal .navbar-default li{
+        padding: 10px 0;
+        text-align: center;
+    }
+    .logo_header{
+        margin: 10px auto;
+        position: relative;
+        width: 50px;
+        display: block;
+    }
     .navbar-default{
         height: auto;
-    }
-    .header .logo_header{
-        float: none;
-        margin: 0 auto;
-        display: block;
-        width: 50px;
-    }
-    .header .navbar-right{
-        position: relative;
-        right: 0;
-        top:0 ;
-    }
-    .header{
-        position: relative;
-    }
-    .header .navbar-left .last{
-        position: relative;
-        right: 0;
-    }
-    .header .navbar-left{
-        margin-top: 15px;
     }
 
     #center-image{

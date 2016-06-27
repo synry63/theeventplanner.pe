@@ -20,7 +20,7 @@
 {% block content %}
     {{ parent() }}
     {% set direction = proveedores.getDirection() %}
-    <div class="container">
+    <div class="container categorias-list-page">
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 <form class="filtros_proveedores" action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" method="get" class="form_sort" id="myForm">
@@ -41,6 +41,30 @@
         <div class="proveedores2 row">
 
             {% for p in proveedores %}
+                    <div class="col-sm-6 col-md-4 detail-prov">
+                        <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
+                            <div class="image-prov">
+                                {% if loop.first %}
+                                    <div class="liston">
+                                        <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
+                                    </div>
+                                {% endif %}
+                                {% for f in p.fotos  %}
+                                    {% if f.isListado %}
+                                        <img class="prov-foto" src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="logo_tag">
+                                    <img class="img-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+            {% endfor %}
+
+            {#
+            {% for p in proveedores %}
 
                     <div class="col-sm-6 col-md-4">
                         <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
@@ -54,7 +78,6 @@
                                         {% endif %}
                                         {% for f in p.fotos  %}
                                             {% if f.isListado %}
-
                                                 <div class="img-circle logo-circle">
                                                     <img id="logo-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
                                                 </div>
@@ -78,6 +101,7 @@
                         </a>
                     </div>
             {% endfor %}
+            #}
 
         </div>
 

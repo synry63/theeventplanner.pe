@@ -22,13 +22,14 @@
     <div class="container">
         <section id="demo">
             {% for t in tendencias  %}
-                <article class="white-panel">
-                    <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
-                    <h1><a href="{{ path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug}) }}">{{ t.nombre }}</a></h1>
-                    <p>"{{ t.description }}"</p>
-                </article>
+                <a href="{{ path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug}) }}">
+                    <article class="white-panel">
+                        <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
+                        <h1><a href="{{ path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug}) }}">{{ t.nombre }}</a></h1>
+                        <p>"{{ t.description }}"</p>
+                    </article>
+                </a>
             {% endfor %}
-
             <article class="white-panel">
                 <img src="{{ asset('images/tendencias/tendencia2.jpg') }}" alt="">
                 <h1><a href="#">Quiero Compartirlo todo</a></h1>
@@ -59,7 +60,7 @@
 
     <script>
         $('#demo').pinterest_grid({
-            no_columns: 2,
+            no_columns: 3,
             padding_x: 10,
             padding_y: 10,
             margin_bottom: 50,

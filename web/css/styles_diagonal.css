@@ -133,23 +133,25 @@ img
     }
     .test{
         display: block;
-        height: 450px;
+        height: 250px;
         padding: 10px;
+        margin: 10px 0;
         text-align: center;
         position: relative;
+        box-shadow: 0 0 5px rgba(0,0,0,.4);
     }
     .test h1{
         color: #fff;
-        font-size: 100px;
+        font-size: 50px;
         z-index: 200;
         position: absolute;
         bottom:90px;
         right: 30px;
-        text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+        text-shadow: 2px 2px 5px rgba(0,0,0,.8);
     }
 
     .test:nth-child(2){
-        margin-top: 40px;
+        margin-top: 10px;
         background: url("../images/weddings3.jpg") no-repeat center;
         background-size: cover;
     }
@@ -169,21 +171,27 @@ img
     .sello_top_resp{
         width: 100%;
         z-index: 200;
-        position: absolute;
-        top:0;
+        
     }
     .sello_top_resp img{
         width: 100%;
     }
 
-    .sello_resp{
-        width: 100%;
-        position: absolute;
-        z-index: 300;
-        margin: -170px auto;
+    footer{
+        margin: 20px 0;
+        padding: 20px;
+        text-align: center;
     }
-    .sello_resp img{
-        width: 100%;
+    footer li{
+        display: inline;
+    }
+    footer li a{
+        color: rgba(0,0,0,.5);
+        background: #fff;
+        font-size: 30px;
+        padding: 10px 15px;
+        border-radius: 100px;
+        transition: all .5s;
     }
 }
 

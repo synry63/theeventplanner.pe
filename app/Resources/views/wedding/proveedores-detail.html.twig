@@ -17,11 +17,11 @@
 {% block content %}
     {{ parent() }}
 
-    <div class="container">
+    <div class="container proveedor-detail-page">
 
         <div class="row">
 
-            <div class="col-md-4 col-md-push-8">
+            <div class="col-md-4 col-md-push-8 card-prov">
                 <div class="proveedor-fixed">
                     <div class="proveedor-info">
                         <div class="liston">
@@ -46,8 +46,6 @@
                                 <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a> para ver los datos de la empresa
                             </div>
                         {% endif %}
-
-
 
                     </div>
                     <div class="proveedor-social sweddings">
@@ -78,8 +76,6 @@
                         </ul>
                     </div>
                 </div>
-
-
             </div>
 
             <div class="col-md-8 col-md-pull-4">
@@ -364,14 +360,6 @@
         });
 
 
-
-        /*$(".rateYo3").rateYo({
-         rating: test3,
-         starWidth: "20px",
-         readOnly: true,
-         ratedFill: "#35b3b4"
-         });*/
-
         $( ".rateYo_comments" ).each(function( index ) {
             $(this).rateYo({
                 rating: $(this).attr("data-rating"),
@@ -381,8 +369,6 @@
                 normalFill: "#A0A0A0"
             });
         });
-
-
 
         $('.proveedor-fixed').fixTo('body');
     </script>

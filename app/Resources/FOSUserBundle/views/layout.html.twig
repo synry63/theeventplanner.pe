@@ -16,9 +16,9 @@
 
 
     {% block content %}
-
+    <div class="container total-container">
             <nav class="navbar navbar-default">
-                <div class="container">
+
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -27,30 +27,32 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="header collapse navbar-collapse">
+                    <div class="collapse navbar-collapse menu-principal">
+
                         <a href="{{ path('selection_start') }}">
                             <span class="logo_header">
-                                <img src="{{ asset('images/logo_header.png') }}" alt="The event Planner">
+                                <img src="{{ asset('images/sello_wedding.png') }}" alt="The event Planner">
                             </span>
                         </a>
+
+
                         {% block menuprincipal %}
+
                             {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
                         {% endblock menuprincipal %}
 
                         {% block user_login %}
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <div class="user-login-responsive">
-
-
                                     <div class="col-xs-8">
                                         <a href="{{ path('fos_user_profile_show') }}">
                                             <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span>{{app.user.nombres}} {{app.user.apellidos}}</span>
                                                 {% if app.user.profile is not null %}
                                                     <img class="img-circle" width="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                                                 {% else %}
                                                     <img class="img-circle" width="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
                                                 {% endif %}
+                                                <span>{{app.user.nombres}}</span>
                                             </button>
                                         </a>
                                     </div>
@@ -69,12 +71,13 @@
                                 <div class="btn-group btn-login btn_login_responsive">
 
                                     <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span>{{app.user.nombres}} {{app.user.apellidos}}</span>
                                         {% if app.user.profile is not null %}
                                             <img class="img-circle" width="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                                         {% else %}
                                             <img class="img-circle" width="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                                        {% endif %}                                    </button>
+                                        {% endif %}
+                                        <span>{{app.user.nombres}}</span>
+                                    </button>
                                     <div class="dropdown-menu dropdown-user">
                                         <div class="col-md-4">
                                             {% if app.user.profile is not null %}
@@ -104,18 +107,16 @@
 
                                 </div>
                             {% else %}
-
                                 <ul class="principal nav navbar-nav navbar-right">
                                     <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
                                     <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
                                 </ul>
-
                             {% endif %}
                         {% endblock user_login %}
                     </div>
-                </div>
-            </nav>
 
+            </nav>
+    </div>
 
             <div class="negocios">
                 <a href="{{ path('negocio_zona') }}">
