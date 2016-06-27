@@ -80,6 +80,10 @@ vich_uploader:
                 uri_prefix:         /images/tendencias
                 upload_destination: %kernel.root_dir%/../web/images/tendencias
                 namer:              vich_uploader.namer_uniqid
+            inspiracion_foto:
+                uri_prefix:         /images/inspiraciones
+                upload_destination: %kernel.root_dir%/../web/images/inspiraciones
+                namer:              vich_uploader.namer_uniqid
             proveedor_image:
                 uri_prefix:         /images/proveedores/fotos
                 upload_destination: %kernel.root_dir%/../web/images/proveedores/fotos

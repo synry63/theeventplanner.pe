@@ -9,7 +9,9 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Inspiracion;
 use AppBundle\Entity\Tendencia;
+use AppBundle\Form\Type\InspiracionType;
 use AppBundle\Form\Type\TendenciaType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -81,6 +83,16 @@ class AdminController extends Controller
      * @Route("/admin/tendencia/delete/{id}", name="admin_tendencia_delete")
      */
     public function adminTendenciaDeleteAction(Request $request,$id){
+        $tendencia = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->find($id);
+
+        if($tendencia!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($tendencia);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Your tendencia deleted !');
+            return $this->redirectToRoute('admin_tendencias');
+        }
+
 
     }
     /**
@@ -120,6 +132,60 @@ class AdminController extends Controller
                 'tendencia'=>$tendencia
             )
         );
+    }
+    /**
+     * @Route("/admin/tendencia/{id}/inspiraciones", name="admin_tendencia_inpiraciones")
+     */
+    public function adminTendenciaInspiracionesAction(Request $request,$id){
+        $tendencia = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->find($id);
+        $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(
+            array('tendencia'=>$tendencia),
+            array('sort' => 'ASC')
+        );
+
+        return $this->render(
+            'admin/tendencia_inspiraciones.html.twig',
+            array(
+                'inspiraciones' => $inspiraciones
+            )
+        );
+    }
+    /**
+     * @Route("/admin/tendencia/inspiracion/add", name="admin_tendencia_inpiracion_add")
+     */
+    public function adminTendenciaInspiracionAddAction(Request $request){
+        $inspiracion = new Inspiracion();
+        $form = $this->createForm(new InspiracionType(), $inspiracion);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            //$logo->setProveedor($proveedor);
+            $em->persist($inspiracion);
+            $em->flush();
+            $id = $inspiracion->getTendencia()->getId();
+            $request->getSession()->getFlashBag()->add('success', 'Your inspiracion added !');
+            return $this->redirectToRoute('admin_tendencia_inpiraciones',array('id'=>$id));
+        }
+        return $this->render(
+            'admin/tendencia_add.html.twig',
+            array(
+                'form' => $form->createView()
+            )
+        );
+    }
+    /**
+     * @Route("/admin/tendencia/inspiracion/delete/{id}", name="admin_tendencia_inpiracion_delete")
+     */
+    public function adminTendenciaInspiracionDeleteAction(Request $request,$id){
+        $inspiraion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($id);
+        if($inspiraion!=null){
+            $id = $inspiraion->getTendencia()->getId();
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($inspiraion);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Your inspiraion deleted !');
+            return $this->redirectToRoute('admin_tendencia_inpiraciones',array('id'=>$id));
+        }
     }
     /**
      * @Route("/admin/negocios/{page}", name="admin_negocios", defaults={"page" = 1})

@@ -32,7 +32,7 @@ class Builder implements ContainerAwareInterface
     public function menuAdmin(FactoryInterface $factory, array $options){
         $menu = $factory->createItem('root');
         $menu->addChild('negocio-home',array(
-                'route' => 'negocio_zona',
+                'route' => 'admin_start',
                 'label' => 'Inicio',
             )
         );
@@ -41,6 +41,12 @@ class Builder implements ContainerAwareInterface
                 'label' => 'Lista de negocios',
             )
         );
+        $menu->addChild('tendencias-lista',array(
+                'route' => 'admin_tendencias',
+                'label' => 'Lista de tendencias',
+            )
+        );
+
         return $menu;
     }
     public function menuNegocio(FactoryInterface $factory, array $options){
