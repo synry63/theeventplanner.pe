@@ -23,10 +23,10 @@ class InspiracionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('tendencia',EntityType::class, array(
+        /*$builder->add('tendencia',EntityType::class, array(
             'class' => 'AppBundle:Tendencia',
             'choice_label' => 'nombre',
-        ));
+        ));*/
         $builder->add('nombre');
         $builder->add('sort');
         $builder->add('imgFile', 'file',array(

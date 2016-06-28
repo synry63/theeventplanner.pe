@@ -100,9 +100,9 @@ class AdminController extends Controller
      */
     public function adminTendenciaAddAction(Request $request){
         $tendencia = new Tendencia();
-        $form = $this->createForm(new TendenciaType(), $tendencia);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $form_tendencia = $this->createForm(new TendenciaType(), $tendencia);
+        $form_tendencia->handleRequest($request);
+        if ($form_tendencia->isSubmitted() && $form_tendencia->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $slug = $this->slugify($tendencia->getNombre());
             $tendencia->setSlug($slug);
@@ -113,28 +113,63 @@ class AdminController extends Controller
             $request->getSession()->getFlashBag()->add('success', 'Your tendencia saved !');
             return $this->redirectToRoute('admin_tendencias');
         }
+
         return $this->render(
             'admin/tendencia_add.html.twig',
             array(
-                'form' => $form->createView()
+                'form_tendencia' => $form_tendencia->createView(),
             )
         );
     }
     /**
-     * @Route("/admin/tendencia/{id}", name="admin_tendencias_edit")
+     * @Route("/admin/tendencia/{id}", name="admin_tendencia_edit")
      */
-    public function adminTendenciaAction($id){
+    public function adminTendenciaAction(Request $request,$id){
         $tendencia = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->find($id);
+        $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(
+            array('tendencia'=>$tendencia),
+            array('sort' => 'ASC')
+        );
+        $form_tendencia = $this->createForm(new TendenciaType(), $tendencia);
+        $form_tendencia->handleRequest($request);
+        if ($form_tendencia->isSubmitted() && $form_tendencia->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $slug = $this->slugify($tendencia->getNombre());
+            $tendencia->setSlug($slug);
+            //$logo->setProveedor($proveedor);
+            $em->persist($tendencia);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Your tendencia saved !');
+            return $this->redirectToRoute('admin_tendencias_edit',array('id'=>$id));
+        }
+
+        $inspiracion = new Inspiracion();
+        $form_inspiracion = $this->createForm(new InspiracionType(), $inspiracion);
+        $form_inspiracion->handleRequest($request);
+        if ($form_inspiracion->isSubmitted() && $form_inspiracion->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            //$logo->setProveedor($proveedor);
+            $em->persist($inspiracion);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Your inspiracion added !');
+            return $this->redirectToRoute('admin_tendencias_edit',array('id'=>$id));
+        }
+
 
         return $this->render(
-            'admin/tendencias.html.twig',
+            'admin/tendencia_edit.html.twig',
             array(
-                'tendencia'=>$tendencia
+                'tendencia'=>$tendencia,
+                'inspiraciones'=>$inspiraciones,
+                'form_tendencia' => $form_tendencia->createView(),
+                'form_inspiracion' => $form_inspiracion->createView()
+
             )
         );
     }
     /**
-     * @Route("/admin/tendencia/{id}/inspiraciones", name="admin_tendencia_inpiraciones")
+     * @Route("/admin/tendencia/{id}/inspiraciones", name="admin_tendencia_inspiraciones")
      */
     public function adminTendenciaInspiracionesAction(Request $request,$id){
         $tendencia = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->find($id);
@@ -199,7 +234,7 @@ class AdminController extends Controller
         $pagination = $paginator->paginate(
             $proveedores_query,
             $page,
-            2
+            4
         //array('wrap-queries'=>true)
         );
 

@@ -40,7 +40,7 @@ class InspiracionController extends Controller
 
         $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(
             array('tendencia'=>$tendencia),
-            array('order'=>'ASC'));
+            array('sort'=>'ASC'));
         return $this->render(
             $slug_site.'/inspiraciones-fotos.html.twig',
             array('inspiraciones'=>$inspiraciones)
