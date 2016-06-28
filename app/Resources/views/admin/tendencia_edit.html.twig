@@ -1,7 +1,128 @@
-editar tendencia
-{{ form(form_tendencia, {'attr': {'novalidate': 'novalidate'}}) }}
-{{ dump(tendencia) }}
+<html>
 
-agregar inspiraciones
-{{ form(form_inspiracion, {'attr': {'novalidate': 'novalidate'}}) }}
-{{ dump(inspiraciones) }}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/component.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Dashboard</title>
+</head>
+
+<body>
+<!--
+        <nav id="nav-dashboard" class="navbar navbar-default">
+            {{ knp_menu_render('AppBundle:Builder:menuAdmin',{ 'template': 'knp_menu.html.twig'}) }}
+        </nav>
+        -->
+
+<nav id="nav-dashboard" class="navbar navbar-default">
+    <ul class="nav menu-dashboard">
+        <li>
+            <a class="dropdown-toggle" href="{{ path('admin_start') }}">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-briefcase" aria-hidden="true"></i> Lista de Negocios
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_negocios') }}">Ver Todo</a></li>
+                <li><a href="#">Agregar Nuevo</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="dropdown-toggle  active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-area-chart" aria-hidden="true"></i> Lista de Tendencias
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_tendencias') }}">Ver Todo</a></li>
+                <li><a href="{{ path('admin_tendencia_add') }}">Agregar Nuevo</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div class="container">
+    <div class="col-md-10 body-dashboard">
+        <h1>
+            Agregar Tendencias
+        </h1>
+        {{ form_start(form_tendencia) }}
+        <div class="form-group">
+            {{ form_label(form_tendencia.nombre,'Nombre') }}
+            {{ form_errors(form_tendencia.nombre) }}
+            {{ form_widget(form_tendencia.nombre,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form_tendencia.description,'Descripción') }}
+            {{ form_errors(form_tendencia.description) }}
+            {{ form_widget(form_tendencia.description,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form_tendencia.sort,'Sort') }}
+            {{ form_errors(form_tendencia.sort) }}
+            {{ form_widget(form_tendencia.sort,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+        </div>
+        <div class="form-group">
+            <img  width="120px" style="padding: 10px" src="{{ asset('images/tendencias/'~tendencia.img) }}">
+            {{ form_label(form_tendencia.imgFile,'Elija una imagen') }}
+            {{ form_errors(form_tendencia.imgFile) }}
+            {{ form_widget(form_tendencia.imgFile,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form_tendencia.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-wedding-entrar'} } ) }}
+        </div>
+
+        {{ form_end(form_tendencia) }}
+
+
+        <h1>
+            Agregar Inspiraciones
+        </h1>
+
+
+        {{ form_start(form_inspiracion,{'attr': {'novalidate': 'novalidate'}}) }}
+
+
+        {{ form_end(form_inspiracion) }}
+        <ul class="grid effect-1" id="grid">
+            {% for ifa in inspiraciones %}
+                <li>
+                    <a class="admin_delete" href=""><i class="fa fa-times" aria-hidden="true"></i></a>
+
+                    <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/imagesloaded.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/AnimOnScroll.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/modernizr.custom.js') }}"></script>
+<script>
+    new AnimOnScroll( document.getElementById( 'grid' ), {
+        minDuration : 0.4,
+        maxDuration : 0.7,
+        viewportFactor : 0.2
+    } );
+</script>
+</body>
+
+</html>
+
+
+
+
+
+

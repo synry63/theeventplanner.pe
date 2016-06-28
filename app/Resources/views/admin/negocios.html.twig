@@ -19,13 +19,17 @@
 
 <nav id="nav-dashboard" class="navbar navbar-default">
     <ul class="nav menu-dashboard">
-        <li><a href=""><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
         <li>
-            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="dropdown-toggle" href="{{ path('admin_start') }}">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-toggle  active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-briefcase" aria-hidden="true"></i> Lista de Negocios
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">Ver Todo</a></li>
+                <li><a href="{{ path('admin_negocios') }}">Ver Todo</a></li>
                 <li><a href="#">Agregar Nuevo</a></li>
             </ul>
         </li>
@@ -34,8 +38,8 @@
                 <i class="fa fa-area-chart" aria-hidden="true"></i> Lista de Tendencias
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">Ver Todo</a></li>
-                <li><a href="#">Agregar Nuevo</a></li>
+                <li><a href="{{ path('admin_tendencias') }}">Ver Todo</a></li>
+                <li><a href="{{ path('admin_tendencia_add') }}">Agregar Nuevo</a></li>
             </ul>
         </li>
     </ul>
@@ -43,15 +47,22 @@
 
 
 
+<div class="container">
+    <div class="col-md-10 body-dashboard">
 
 
+        {{ dump(proveedores) }}
 
+        <div class="navigation">
+            {{ knp_pagination_render(proveedores) }}
+        </div>
 
-{{ dump(proveedores) }}
-
-<div class="navigation">
-    {{ knp_pagination_render(proveedores) }}
+    </div>
 </div>
+
+
+
+
 
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>

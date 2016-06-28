@@ -1312,6 +1312,7 @@ Zona e Negocio
 NAV DASHBOARD
 ===============*/
 #nav-dashboard{
+    z-index: 2;
     background: #23282D;
     width: 190px;
     position: fixed;
@@ -1356,7 +1357,56 @@ NAV DASHBOARD
     font-size: 18px;
     padding-right: 10px;
 }
+.body-dashboard{
+    margin-left: 190px;
+}
+.dropdown-toggle.active{
+    background: #32373C;
+}
+.dropdown-toggle.active:after{
+    right: 0;
+    border: 8px solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-right-color: #fff;
+    top: 50%;
+    margin-top: -8px;
+}
+.white-panel .admin_delete{
+    font-size: 20px;
+    color: #fff;
+    top:20px;
+    right: 20px;
+    z-index: 9999;
+    position: absolute;
+    text-shadow: 2px 2px 5px #000;
+    transition: all .5s;
+}
+.white-panel .admin_delete:hover{
+    transform: scale(1.8);
+}
+.white-panel .admin_edit{
+    font-size: 20px;
+    color: #fff;
+    top:16%;
+    right: 35%;
+    z-index: 9999;
+    padding: 10px;
+    position: absolute;
+    border-radius: 10px;
+    background: rgba(0,0,0,.5);
+    text-shadow: 2px 2px 5px #000;
+    transition: all .5s;
+    text-decoration: none;
+}
 
+.body-dashboard .tendencias_return{
+    margin-top: 20px;
+    display: block;
+}
 /*=============
 MÓVILES PORTAIT
 ===============*/

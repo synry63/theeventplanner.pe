@@ -5,7 +5,6 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <title>Dashboard</title>
 </head>
@@ -19,45 +18,84 @@
 
 <nav id="nav-dashboard" class="navbar navbar-default">
     <ul class="nav menu-dashboard">
-        <li><a href=""><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
+        <li>
+            <a class="dropdown-toggle" href="{{ path('admin_start') }}">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </a>
+        </li>
         <li>
             <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-briefcase" aria-hidden="true"></i> Lista de Negocios
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">Ver Todo</a></li>
+                <li><a href="{{ path('admin_negocios') }}">Ver Todo</a></li>
                 <li><a href="#">Agregar Nuevo</a></li>
             </ul>
         </li>
         <li>
-            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-area-chart" aria-hidden="true"></i> Lista de Tendencias
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">Ver Todo</a></li>
-                <li><a href="#">Agregar Nuevo</a></li>
+                <li><a href="{{ path('admin_tendencias') }}">Ver Todo</a></li>
+                <li><a href="{{ path('admin_tendencia_add') }}">Agregar Nuevo</a></li>
             </ul>
         </li>
     </ul>
 </nav>
 
+<div class="container">
+    <div class="col-md-10 body-dashboard">
+        {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                <div class="alert alert-{{ label }}">
+                    {{ flash }}
+                </div>
+            {% endfor %}
+        {% endfor %}
 
 
 
-{% for label, flashes in app.session.flashbag.all %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ label }}">
-            {{ flash }}
-        </div>
-    {% endfor %}
-{% endfor %}
+        <section id="demo">
 
-{{ dump(tendencias) }}
+            {% for t in tendencias  %}
+
+                    <article class="white-panel">
+                        <a class="admin_delete" href="{{ path('admin_tendencia_delete', {'id': t.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        <a class="admin_edit" href="{{ path('admin_tendencia_edit', {'id': t.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+                        <a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">
+                            <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
+                            <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">{{ t.nombre }}</a></h1>
+                            <p>"{{ t.description }}"</p>
+                        </a>
+                    </article>
+
+            {% endfor %}
+
+        </section>
+
+    </div>
+</div>
+
+
+
 
 
 
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/pinterest_grid.js') }}"></script>
+
+<script>
+    $('#demo').pinterest_grid({
+        no_columns: 3,
+        padding_x: 10,
+        padding_y: 10,
+        margin_bottom: 50,
+        single_column_breakpoint: 700
+    });
+
+</script>
 </body>
 
 </html>
