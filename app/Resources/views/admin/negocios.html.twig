@@ -50,8 +50,26 @@
 <div class="container">
     <div class="col-md-10 body-dashboard">
 
+        {% for p in proveedores %}
+            <div class="col-sm-6 col-md-4 detail-prov">
+                <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
+                    <div class="image-prov">
+                        {% for f in p.fotos  %}
+                            {% if f.isListado %}
+                                <img class="prov-foto" src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
+                            {% endif %}
+                        {% endfor %}
+                        <div class="logo_tag">
+                            <img class="img-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                        </div>
+                    </div>
 
-        {{ dump(proveedores) }}
+                </a>
+            </div>
+        {% endfor %}
+
+
+
 
         <div class="navigation">
             {{ knp_pagination_render(proveedores) }}

@@ -1143,7 +1143,7 @@ Animates
     margin: 20px auto;
 }
 /*=============
-Zona e Negocio
+Zona de Negocio
 ===============*/
 .dashboard-section-icons{
     position: absolute;
@@ -1309,7 +1309,7 @@ Zona e Negocio
     padding-left: 20px;
 }
 /*=============
-NAV DASHBOARD
+DASHBOARD ADMIN
 ===============*/
 #nav-dashboard{
     z-index: 2;
@@ -1375,17 +1375,17 @@ NAV DASHBOARD
     top: 50%;
     margin-top: -8px;
 }
-.white-panel .admin_delete{
+.white-panel .admin_delete, .tendencias-images .admin_delete{
     font-size: 20px;
-    color: #fff;
+    color: #FFF;
     top:20px;
     right: 20px;
     z-index: 9999;
     position: absolute;
-    text-shadow: 2px 2px 5px #000;
+    text-shadow: 0px 0px 10px #000;
     transition: all .5s;
 }
-.white-panel .admin_delete:hover{
+.white-panel .admin_delete:hover, .tendencias-images .admin_delete:hover{
     transform: scale(1.8);
 }
 .white-panel .admin_edit{
@@ -1406,6 +1406,16 @@ NAV DASHBOARD
 .body-dashboard .tendencias_return{
     margin-top: 20px;
     display: block;
+}
+.tendencias-images{
+    position: relative;
+}
+.dash-edit h1{
+    text-align: center;
+    color: #23282D;
+    margin: 20px 0;
+    font-size:25px;
+    text-transform: uppercase;
 }
 /*=============
 MÓVILES PORTAIT

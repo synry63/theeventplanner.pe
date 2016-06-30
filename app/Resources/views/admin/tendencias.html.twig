@@ -61,7 +61,7 @@
             {% for t in tendencias  %}
 
                     <article class="white-panel">
-                        <a class="admin_delete" href="{{ path('admin_tendencia_delete', {'id': t.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_delete', {'id': t.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
                         <a class="admin_edit" href="{{ path('admin_tendencia_edit', {'id': t.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
                         <a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">
                             <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">

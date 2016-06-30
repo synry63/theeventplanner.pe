@@ -1,1 +1,96 @@
-{{ form(form_tendencia, {'attr': {'novalidate': 'novalidate'}}) }}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Dashboard</title>
+</head>
+
+<body>
+<!--
+        <nav id="nav-dashboard" class="navbar navbar-default">
+            {{ knp_menu_render('AppBundle:Builder:menuAdmin',{ 'template': 'knp_menu.html.twig'}) }}
+        </nav>
+        -->
+
+<nav id="nav-dashboard" class="navbar navbar-default">
+    <ul class="nav menu-dashboard">
+        <li>
+            <a class="dropdown-toggle" href="{{ path('admin_start') }}">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-briefcase" aria-hidden="true"></i> Lista de Negocios
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_negocios') }}">Ver Todo</a></li>
+                <li><a href="#">Agregar Nuevo</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="dropdown-toggle  active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-area-chart" aria-hidden="true"></i> Lista de Tendencias
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_tendencias') }}">Ver Todo</a></li>
+                <li><a href="{{ path('admin_tendencia_add') }}">Agregar Nuevo</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div class="container">
+    <div class="col-md-10 body-dashboard  dash-edit">
+        {{ form_start(form_tendencia) }}
+        <h1>Agregar Nueva Tendencia</h1>
+        <div class="form-group">
+            {{ form_label(form_tendencia.nombre,'Nombre de la Tendencia') }}
+            {{ form_errors(form_tendencia.nombre) }}
+            {{ form_widget(form_tendencia.nombre,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form_tendencia.description,'Descripción') }}
+            {{ form_errors(form_tendencia.description) }}
+            {{ form_widget(form_tendencia.description,{ 'attr': {'class': 'form-control','rows':'8'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form_tendencia.sort,'Sort') }}
+            {{ form_errors(form_tendencia.sort) }}
+            {{ form_widget(form_tendencia.sort,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form_tendencia.imgFile,'Elija una imagen') }}
+            {{ form_errors(form_tendencia.imgFile) }}
+            {{ form_widget(form_tendencia.imgFile,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form_tendencia.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
+        </div>
+
+        {{ form_end(form_tendencia) }}
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

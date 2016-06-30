@@ -45,34 +45,39 @@
     </ul>
 </nav>
 <div class="container">
-    <div class="col-md-10 body-dashboard">
+    <div class="col-md-10 body-dashboard dash-edit">
+        <a class="tendencias_return" href="{{ path('admin_tendencias') }}">
+            <button class="btn btn-entrar">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Tendencias
+            </button>
+        </a>
         <h1>
-            Agregar Tendencias
+            Editar Tendencia
         </h1>
         {{ form_start(form_tendencia) }}
         <div class="form-group">
             {{ form_label(form_tendencia.nombre,'Nombre') }}
             {{ form_errors(form_tendencia.nombre) }}
-            {{ form_widget(form_tendencia.nombre,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+            {{ form_widget(form_tendencia.nombre,{ 'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="form-group">
             {{ form_label(form_tendencia.description,'Descripción') }}
             {{ form_errors(form_tendencia.description) }}
-            {{ form_widget(form_tendencia.description,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+            {{ form_widget(form_tendencia.description,{ 'attr': {'class': 'form-control','rows':'8'}}) }}
         </div>
         <div class="form-group">
             {{ form_label(form_tendencia.sort,'Sort') }}
             {{ form_errors(form_tendencia.sort) }}
-            {{ form_widget(form_tendencia.sort,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+            {{ form_widget(form_tendencia.sort,{ 'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="form-group">
             <img  width="120px" style="padding: 10px" src="{{ asset('images/tendencias/'~tendencia.img) }}">
             {{ form_label(form_tendencia.imgFile,'Elija una imagen') }}
             {{ form_errors(form_tendencia.imgFile) }}
-            {{ form_widget(form_tendencia.imgFile,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+            {{ form_widget(form_tendencia.imgFile,{ 'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="form-group">
-            {{ form_widget(form_tendencia.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-wedding-entrar'} } ) }}
+            {{ form_widget(form_tendencia.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
         </div>
 
         {{ form_end(form_tendencia) }}
@@ -84,14 +89,30 @@
 
 
         {{ form_start(form_inspiracion,{'attr': {'novalidate': 'novalidate'}}) }}
-
-
+            <div class="form-group">
+                {{ form_label(form_inspiracion.nombre,'Título de la Inspiración') }}
+                {{ form_errors(form_inspiracion.nombre) }}
+                {{ form_widget(form_inspiracion.nombre,{ 'attr': {'class': 'form-control','placeholder':'Título de la Inspiración'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form_inspiracion.sort,'Sort') }}
+                {{ form_errors(form_inspiracion.sort) }}
+                {{ form_widget(form_inspiracion.sort,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form_inspiracion.imgFile,'Elija una imagen') }}
+                {{ form_errors(form_inspiracion.imgFile) }}
+                {{ form_widget(form_inspiracion.imgFile,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form_inspiracion.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
+            </div>
         {{ form_end(form_inspiracion) }}
+
         <ul class="grid effect-1" id="grid">
             {% for ifa in inspiraciones %}
-                <li>
-                    <a class="admin_delete" href=""><i class="fa fa-times" aria-hidden="true"></i></a>
-
+                <li class="tendencias-images">
+                    <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_inspiracion_delete', {'id': ifa.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
                     <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
                 </li>
             {% endfor %}
