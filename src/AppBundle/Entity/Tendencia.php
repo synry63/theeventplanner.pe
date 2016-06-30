@@ -66,7 +66,7 @@ class Tendencia
     private $img;
 
     /**
-     * @ORM\OneToMany(targetEntity="Inspiracion", mappedBy="tendencia")
+     * @ORM\OneToMany(targetEntity="Inspiracion", mappedBy="tendencia",cascade={"remove"})
      **/
     private $inspiraciones;
 

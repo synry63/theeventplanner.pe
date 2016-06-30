@@ -141,19 +141,20 @@ class AdminController extends Controller
             $em->flush();
 
             $request->getSession()->getFlashBag()->add('success', 'Your tendencia saved !');
-            return $this->redirectToRoute('admin_tendencias_edit',array('id'=>$id));
+            return $this->redirectToRoute('admin_tendencia_edit',array('id'=>$id));
         }
 
         $inspiracion = new Inspiracion();
         $form_inspiracion = $this->createForm(new InspiracionType(), $inspiracion);
         $form_inspiracion->handleRequest($request);
         if ($form_inspiracion->isSubmitted() && $form_inspiracion->isValid()) {
+            $inspiracion->setTendencia($tendencia);
             $em = $this->getDoctrine()->getManager();
             //$logo->setProveedor($proveedor);
             $em->persist($inspiracion);
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'Your inspiracion added !');
-            return $this->redirectToRoute('admin_tendencias_edit',array('id'=>$id));
+            return $this->redirectToRoute('admin_tendencia_edit',array('id'=>$id));
         }
 
 
