@@ -210,7 +210,7 @@ class AdminController extends Controller
         );
     }
     /**
-     * @Route("/admin/tendencia/inspiracion/delete/{id}", name="admin_tendencia_inpiracion_delete")
+     * @Route("/admin/tendencia/inspiracion/delete/{id}", name="admin_tendencia_inspiracion_delete")
      */
     public function adminTendenciaInspiracionDeleteAction(Request $request,$id){
         $inspiraion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($id);
@@ -220,7 +220,7 @@ class AdminController extends Controller
             $em->remove($inspiraion);
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'Your inspiraion deleted !');
-            return $this->redirectToRoute('admin_tendencia_inpiraciones',array('id'=>$id));
+            return $this->redirectToRoute('admin_tendencia_inspiraciones',array('id'=>$id));
         }
     }
     /**

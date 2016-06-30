@@ -420,12 +420,27 @@ class ProveedorController extends Controller
         $moy = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorRating($proveedor);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
 
+
+        $map = $this->get('ivory_google_map.map');
+        $map->setLanguage($this->get('request')->getLocale());
+        $map->setCenter(-12.0552581, -77.080205, true);
+        $map->setMapOption('zoom', 3);
+        $map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
+        $marker = new Marker();
+        // Sets your marker animation
+        $marker->setAnimation(Animation::BOUNCE);
+        $marker->setAnimation('bounce');
+        $marker->setPosition(-12.0552581, -77.080205, true);
+        // Add your marker to the map
+        $map->addMarker($marker);
+
         if($moy==NULL) $moy = 0;
 
         $renderOut = array(
             'proveedor'=>$proveedor,
             'moy'=>$moy,
-            'comentarios'=>$comments
+            'comentarios'=>$comments,
+            'map'=>$map
         );
 
         if(is_object($user)){

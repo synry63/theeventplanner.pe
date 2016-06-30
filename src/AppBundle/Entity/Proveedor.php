@@ -326,7 +326,7 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
 
     public function __construct() {
-        $this->isActive = false;
+        $this->isActive = true;
         $this->registeredAt = new \DateTime('now');
         $this->comentariosProveedor = new ArrayCollection();
         $this->productos = new ArrayCollection();
