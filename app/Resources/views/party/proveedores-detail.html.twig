@@ -1,0 +1,375 @@
+{% extends 'party/layout.html.twig' %}
+{% block title %}Proveedores{% endblock %}
+{% block main_title %}
+    <div id="tittle_responsive" class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/proveedores_party_tittle.png') }}" alt="Proveedores Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuParty', [], {'image_title': 'proveedores_party_tittle.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
+{% block content %}
+    {{ parent() }}
+
+    <div class="container proveedor-detail-page">
+
+        <div class="row">
+
+            <div class="col-md-4 col-md-push-8 card-prov">
+                <div class="proveedor-fixed">
+                    <div class="proveedor-info">
+                        <div class="liston">
+                            <img src="{{ asset('images/liston_party.png')}}" alt="wedding premium">
+                        </div>
+                        <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
+
+                        <div id="rateYo"  data-rating="{{ moy }}"></div>
+
+                        {% if app.user is not null %}
+                            <a class="ajax-popup-link" href="{{ path('cotizacion_negocio',
+                            {'slug_site': app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">
+                                <button type="button" class="btn btn-coti-party">Contactar Empresa</button></a>
+                            <br>
+                            <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
+                            <p>{{ proveedor.telefono }}</p>
+                            <div class="links-proveedores lparty">
+                                <a href="{{ proveedor.web }}" target="_blank">Página Web</a>
+                            </div>
+                        {% else %}
+                            <div class="session-start">
+                                <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a> para ver los datos de la empresa
+                            </div>
+                        {% endif %}
+
+                    </div>
+                    <div class="proveedor-social spartys">
+                        {% if app.user is not null %}
+                            {% if favorito is not null%}
+                                <a class="favorite-button-party" href="{{ path('proveedor_me_gusta', {'slug_site': 'party', 'slug_proveedor': proveedor.slug}) }}">
+                                </a>
+                            {% else %}
+                                <a class="favorite-button-party" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': 'party', 'slug_proveedor': proveedor.slug}) }}">
+
+                                </a>
+                            {% endif %}
+
+                        {% else %}
+
+                            <a class="favorite-button-party ajax-popup-link" href="{{ path('proveedor_me_gusta', {'slug_site': 'party', 'slug_proveedor': proveedor.slug}) }}">
+
+                            </a>
+
+                        {% endif %}
+
+
+                        <ul>
+                            <li ><a href="{{ proveedor.facebookLink  }}"><img width="50px" src="{{ asset('images/social_facebook.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.pinteresLink  }}"><img width="50px" src="{{ asset('images/social_pinterest.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.twitterLink  }}"><img  width="50px"src="{{ asset('images/social_twitter.png') }}" alt=""></a></li>
+                            <li ><a href="{{ proveedor.instagramLink  }}"><img  width="50px" src="{{ asset('images/social_instagram.png') }}" alt=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-md-pull-4">
+
+                <!-- Slider Section -->
+
+                <div id="slider" class="flexslider">
+                    <ul class="slides">
+                        {% for f in proveedor.fotos  %}
+                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+                                {% if app.user is not null %}
+                                    {% set me_gusta = 0 %}
+                                    {% for fu in app.user.fotos  %}
+                                        {% if fu.foto.id==f.id %}
+                                            {% set me_gusta = 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if me_gusta==1 %}
+                                        <div class="boton-megusta_party">
+                                            <a href="{{ path('proveedor_foto_me_gusta',
+                                            {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    {% else %}
+                                        <div class="boton-megusta_party">
+                                            <a href="{{ path('proveedor_foto_me_gusta',
+                                            {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                {% else %}
+                                    <div class="boton-megusta_party">
+                                        <a class="ajax-popup-link" href="{{ path('proveedor_foto_me_gusta',
+                                        {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+                <div id="carousel" class="flexslider">
+                    <ul class="slides flex-control-nav flex-control-thumbs">
+                        {% for f in proveedor.fotos  %}
+                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+                <!-- Fin Slider Section -->
+
+
+                <!-- Description Section -->
+
+                <p class="proveedor-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
+
+                <!-- Fin Descriptioin Section -->
+
+
+                <!-- Comentarios Section -->
+
+                <div class="comments-box">
+                    <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
+                    {% for p in comentarios %}
+
+                        <div class="media comment">
+                            <div class="media-left">
+                                {% if p.user.profile is not null %}
+                                    <img class="img-circle"  alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                {% else %}
+                                    <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                                {% endif %}
+                            </div>
+                            <div class="media-body">
+
+                                <h5 class="media-heading">
+                                    <h3 style="margin-top: 0">{{ p.titulo }}</h3>
+                                    <div class="rateYo_comments" data-rating="{{ p.nota }}"></div><span>{{ p.user }} - </span>
+                                    <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
+                                </h5>
+                                <p>{{ p.comentario }}</p>
+                                <div class="col-md-11 respuesta">
+                                    {% if p.respuesta is not null %}
+                                        <p>{{ p.respuesta.respuesta }}</p>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Fin Comentarios Section -->
+
+                {% if app.user is not null %}
+
+
+                    <div class="leave-comment-box">
+
+                        <div class="row">
+
+                            <div class="col-xs-12 col-md-12 proveedor_comments">
+                                {% block flashbag %}
+                                    {% for label, flashes in app.session.flashbag.all %}
+                                    <!--<h4 class="title-heading">Escribe tu comentario</h4>-->
+                                        {% for flash in flashes %}
+                                            <div data-coment="{{ flash }}" id="coment-alert"></div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% endblock flashbag %}
+
+                                {% if form is defined %}
+                                    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+                                    {% if form.vars.errors|length>0 %}
+                                        <div class="alert alert-danger" role="alert">
+                                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>
+                                        </div>
+                                    {% endif %}
+
+
+
+                                    <div class="rating-container">
+                                        <div id="rateYo2"></div>
+                                        <div class="counter"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_label(form.titulo,'Título') }}
+                                        {% if form.titulo.vars.errors|length>0 %}
+                                            <div class="alert alert-danger" role="alert">
+                                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>
+                                            </div>
+                                        {% endif %}
+                                        {{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'Tu título','rows':'6'}}) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_label(form.comentario,'Comentario') }}
+                                        {% if form.comentario.vars.errors|length>0 %}
+                                            <div class="alert alert-danger" role="alert">
+                                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>
+                                            </div>
+                                        {% endif %}
+                                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+                                        <!-- el boton submit No renderiza con esto-->
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_widget(form.nota) }}
+
+                                    </div>
+                                    {{ form_end(form) }}
+
+
+                                {% endif %}
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% else %}
+
+                    <span  class="text-forcomments">
+                        <p>
+                            <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
+                            ó
+                            <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
+                            para poder comentar
+                        </p>
+                    </span>
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>
+    <script>
+
+
+        var coment_r = $("#coment-alert").attr("data-coment");
+        if(coment_r!=undefined)
+            noty({
+                text: coment_r,
+                'layout':'bottom',
+                timeout:2000,
+                type:'wedding',
+
+            });
+        var n = noty({
+            theme: 'default_noty',
+        });
+
+
+        $('#carousel').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            prevText: "Previous",
+            nextText: "Next",
+            slideshow: false,
+            itemWidth: 210,
+            itemMargin: 5,
+            asNavFor: '#slider'
+        });
+
+        $('#slider').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: true,
+            slideshow: true,
+            sync: "#carousel"
+        });
+        var test = $("#rateYo").attr("data-rating");
+
+        var recuperar = $("#comentario_proveedor_nota").attr("value");
+
+
+
+        var color= "#b28500";
+
+
+        $("#rateYo").rateYo({
+            rating: test,
+            ratedFill: color,
+            normalFill: "#A0A0A0",
+            readOnly: true
+        });
+
+        $("#rateYo2").rateYo({
+                    rating: recuperar,
+                    ratedFill: color,
+                    normalFill: "#A0A0A0",
+                    starWidth: "60px",
+                    onChange: function (rating, rateYoInstance) {
+                        $(this).next().text(rating);
+                    }
+
+                })
+                .on("rateyo.set", function (e, data) {
+                    $("#comentario_proveedor_nota").val(data.rating);
+                    $("#rateYo2").rateYo("option", "readOnly", true);
+                    $("#rateYo2").rateYo("option", "ratedFill", "#dea600");
+                });
+
+
+        $("#rateYo2").mouseleave(function(){
+            $("#rateYo2").rateYo("option", "readOnly", false);
+        });
+        $("#rateYo2").mouseenter(function(){
+            $("#rateYo2").rateYo("option", "ratedFill", color);
+        });
+
+
+        $( ".rateYo_comments" ).each(function( index ) {
+            $(this).rateYo({
+                rating: $(this).attr("data-rating"),
+                starWidth: "20px",
+                readOnly: true,
+                ratedFill: color,
+                normalFill: "#A0A0A0"
+            });
+        });
+
+        $('.proveedor-fixed').fixTo('body');
+    </script>
+{% endblock %}

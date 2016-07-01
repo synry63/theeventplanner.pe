@@ -1,17 +1,17 @@
-{% extends 'wedding/layout.html.twig' %}
+{% extends 'party/layout.html.twig' %}
 {% block title %}Proveedores{% endblock %}
 {% block main_title %}
     <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/proveedores_tittle.png') }}" alt="Proveedores Tittle">
+                <img src="{{ asset('images/proveedores_party_tittle.png') }}" alt="Proveedores Tittle">
             </div>
         </div>
     </div>
 {% endblock %}
 
 {% block menuprincipal %}
-    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'proveedores_tittle.png'}) %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuParty', [], {'image_title': 'proveedores_party_tittle.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
 
@@ -32,7 +32,7 @@
                         <option {% if direction=='desc' %} selected {% endif %} value="desc">Descendiente</option>
                         <option {% if direction=='asc' %} selected {% endif %} value="asc">Ascendente</option>
                     </select>
-                    <input class="btn btn-wedding-entrar" type="submit" value="Filtrar">
+                    <input class="btn btn-party-entrar" type="submit" value="Filtrar">
                 </form>
             </div>
         </div>
@@ -42,21 +42,21 @@
 
             {% for p in proveedores %}
                     <div class="col-sm-6 col-md-4 detail-prov">
-                        <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
+                        <a href="{{ path('proveedor_detail', {'slug_site': 'party','slug_proveedor': p.slug}) }}">
                             <div class="image-prov">
                                 {% if loop.first %}
                                     <div class="liston">
-                                        <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
+                                        <img src="{{ asset('images/liston_party.png')}}" alt="party premium">
                                     </div>
                                 {% endif %}
                                 {% if p.fotos is empty %}
-                                    <div class="img-default">
-                                        <img src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                    <div class="img-default prov-foto-party">
+                                        <img  src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
                                     </div>
                                 {% else %}
                                     {% for f in p.fotos  %}
                                         {% if f.isListado %}
-                                            <img class="prov-foto" src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
+                                            <img class="prov-foto-party" src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
                                         {% endif %}
                                     {% endfor %}
                                 {% endif %}
@@ -70,49 +70,10 @@
                     </div>
             {% endfor %}
 
-            {#
-            {% for p in proveedores %}
-
-                    <div class="col-sm-6 col-md-4">
-                        <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
-                            <div class="thumbnail">
-                                <div class="card">
-                                    <div class="front">
-                                        {% if loop.first %}
-                                            <div class="liston">
-                                                <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
-                                            </div>
-                                        {% endif %}
-                                        {% for f in p.fotos  %}
-                                            {% if f.isListado %}
-                                                <div class="img-circle logo-circle">
-                                                    <img id="logo-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
-                                                </div>
-                                                <img src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                    <div class="back">
-                                        {% if loop.first %}
-                                            <div class="liston">
-                                                <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
-                                            </div>
-                                        {% endif %}
-                                        <img src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3>{{ p.nombre }}</h3>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-            {% endfor %}
-            #}
 
         </div>
 
-        <div class="navigation">
+        <div class="navigation-party">
             {{ knp_pagination_render(proveedores,'foundation_v5_pagination.html.twig') }}
         </div>
 
@@ -133,7 +94,7 @@
                 reverse: false
             });
             $('.selectpicker').selectpicker({
-                style: 'btn btn-tittle',
+                style: 'btn btn-tittle_party',
                 size: 4
             })
     </script>

@@ -1,0 +1,82 @@
+{% extends 'party/layout.html.twig' %}
+{% block main_title %}
+
+    <div id="tittle_responsive" class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/tittle_party_inspiraciones.png') }}" alt="Inspiraciones Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuParty', [], {'image_title': 'tittle_party_inspiraciones.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
+
+{% block content %}
+    {{ parent() }}
+
+    <div class="container">
+        <ul class="grid effect-1" id="grid">
+            {% for ifa in inspiraciones %}
+                <li>
+                    <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
+                    {% if app.user is not null %}
+                        {% set me_gusta = 0 %}
+                        {% for fu in app.user.inspiraciones  %}
+                            {% if fu.inspiracion.id==ifa.id %}
+                                {% set me_gusta = 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if me_gusta==1 %}
+                            <div class="boton-megusta">
+                                <a href="{{ path('inspiracion_me_gusta',
+                                {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="boton-megusta">
+                                <a href="{{ path('inspiracion_me_gusta',
+                                {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        {% endif %}
+
+                    {% else %}
+                        <div class="boton-megusta">
+                            <a class="ajax-popup-link" href="{{ path('inspiracion_me_gusta',
+                            {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            </a>
+                        </div>
+
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/imagesloaded.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/AnimOnScroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/modernizr.custom.js') }}"></script>
+    <script>
+        new AnimOnScroll( document.getElementById( 'grid' ), {
+            minDuration : 0.4,
+            maxDuration : 0.7,
+            viewportFactor : 0.2
+        } );
+    </script>
+{% endblock %}

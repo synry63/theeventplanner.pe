@@ -58,14 +58,29 @@ Nav bar
 /*=============
 GLOBAL
 ===============*/
+.img-default{
+    width: 360px;
+    height: 220px;
+    background: rgba(0,0,0,.2);
+    display: inline-block;
+    text-align: center;
+
+}
+
+.img-default img{
+    width: 150px;
+    padding-top: 30px;
+    opacity: .2;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
 #tittle_responsive{
     display: none;
 }
 .navbar-default{
     height: 100px;
 }
-
-
 
 .comments-box .media-left img{
     width: 80px;
@@ -837,14 +852,199 @@ KIDS
 .kids .footer li a:hover{
     color: #971ED1;
 }
+.kids-login li a{
+    padding: 10px;
+    color: #971ED1;
+}
+.categorias_kids{
+     width:100%;
+     padding: 20px 0;
+}
+.categorias_kids ul{
+    width: 100%;
+    text-align: center;
+    top: 80%;
+}
+.categorias_kids ul li a{
+    padding: 10px 20px;
+}
+.categorias_kids .categorias2{
+    width: 100%;
+}
 
+.proveedores_kids .thumbnail{
+    border: none;
+    position: relative;
+    box-shadow: none;
+    border-bottom: solid 3px #971ED1;
+}
+.proveedores_kids a{
+    text-decoration: none;
+}
+.proveedores_kids h3{
+    font-family: "OpenSans-Light", serif;
+    text-align: center;
+    font-size: 15px;
+    margin: 0;
+}
+.btn-kids-entrar, .btn-coti-kids{
+    border-radius: 0;
+    background: #971ED1;
+    color: #fff;
+    height: 36px;
+}
+.btn-tittle_kids{
+    width: 200px;
+    background: none;
+    color: rgba(0,0,0,.5);
+    border: solid 2px #971ED1;
+    border-radius: 0;
+}
 
 /*=============
 PARTY
 ===============*/
+.form-party-contactenos label{
+    color: #6BD204;
+}
+.form-party-contactenos{
+    margin-top: 30px;
+}
+.form-party-contactenos li{
+    list-style: none;
 
+}
+.form-party-contactenos i{
+    padding: 10px;
+    font-size: 12px;
+}
+.form-party-contactenos ul{
+    padding-left: 0;
+    display: inline-block;
+}
+.form-party-contactenos  .alert{
+    padding: 0;
+}
+.navigation-party{
+    float: right;
+}
+.navigation-party li a{
+    border: solid 2px #6BD204;
+    color: #6BD204;
+}
 
+.navigation-party .current a{
+    background: rgba(107,210,4,.5);
+    color: #fff;
+}
+.music-container-party iframe{
+    border: solid 5px #6BD204;
+    padding: 3px;
+}
+.cotizacion-form-partys{
+    background: #fff;
+    padding:30px;
+    padding-bottom: 6px;
+}
+.cotizacion-form-partys h1{
+    font-size: 25px;
+    text-align: center;
+    color: #6BD204;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+.cotizacion-form-partys .btn-wedding-entrar{
+    border-radius: 0;
+    width: 100%;
+}
+.cotizacion-form-partys label{
+    color:#6BD204;
+}
+.spartys .favorite-button-party{
+    text-decoration: none;
+    margin-top:10px;
+}
+.favorite-button-party{
+    background: url(../images/heart_party.png);
+    display: inline-block;
+    width: 33px;
+    height: 30px;
+}
 
+.lparty a, .sweddings a{
+    color: #6BD204;
+}
+.boton-megusta_party{
+    padding: 0 10px;
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    text-shadow: 0px 0px 10px rgba(0,0,0,.5);
+}
+.boton-megusta_party a{
+    color: #6BD204;
+    font-size: 30px;
+}
+.btn-coti-party{
+    margin: 10px 0;
+    font-style: normal;
+}
+.image-prov .prov-foto-party{
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    border-bottom: solid 4px #6BD204;
+}
+.btn-party-entrar, .btn-coti-party{
+    border-radius: 0;
+    background:#6BD204;
+    color: #fff;
+    height: 36px;
+}
+.btn-tittle_party{
+    width: 200px;
+    background: none;
+    color: rgba(0,0,0,.5);
+    border: solid 2px #6BD204;
+    border-radius: 0;
+}
+
+.party .footer li a:hover{
+    color: #6BD204;
+}
+.party-login li a{
+    padding: 10px;
+    color: #6BD204;
+}
+.proveedores_party .thumbnail{
+    border: none;
+    position: relative;
+    box-shadow: none;
+    border-bottom: solid 3px #6BD204;
+}
+.proveedores_party a{
+    text-decoration: none;
+}
+.proveedores_party h3{
+    font-family: "OpenSans-Light", serif;
+    text-align: center;
+    font-size: 15px;
+    margin: 0;
+}
+.categorias_party{
+    width:100%;
+    padding: 20px 0;
+}
+.categorias_party ul{
+    width: 100%;
+    text-align: center;
+    top: 80%;
+}
+.categorias_party ul li a{
+    padding: 10px 20px;
+}
+.categorias_party .categorias2{
+    width: 100%;
+}
 
 /*=============
 Profile Change
@@ -1037,7 +1237,6 @@ CONTACTENOS
 
 
 .btn-coti{
-
     margin: 10px 0;
     font-style: normal;
 }
@@ -1538,6 +1737,13 @@ MÓVILES PORTAIT
         margin: 10px 0;
     }
     .music-container{
+        margin: 10px auto;
+    }
+    .music-container-party iframe{
+        width: 320px;
+        margin: 10px 0;
+    }
+    .music-container-party{
         margin: 10px auto;
     }
     .tittle_base img{

@@ -1,16 +1,21 @@
-{% extends 'wedding/layout.html.twig' %}
+{% extends 'party/layout.html.twig' %}
 {% block title %}The Event Planner | Home{% endblock %}
+
 {% block main_title %}
 
-    <div class="container">
+    <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/tittle_party.png') }}" alt="Weedings Tittle">
+                <img src="{{ asset('images/tittle_party.png') }}" alt="Party Tittle">
             </div>
         </div>
     </div>
-
 {% endblock %}
+
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuParty', [], {'image_title': 'tittle_party.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
 
 {% block content %}
     {{ parent() }}
@@ -19,66 +24,62 @@
             <div class="flexslider">
                 <ul class="slides">
                     <li>
-                        <img src="{{ asset('images/banner.jpg') }}" />
+                        <img src="{{ asset('images/party/portada_1.jpg') }}" />
                     </li>
                     <li>
-                        <img src="{{ asset('images/banner.jpg') }}" />
+                        <img src="{{ asset('images/party/portada_2.jpg') }}" />
                     </li>
                     <li>
-                        <img src="{{ asset('images/banner.jpg') }}" />
-                    </li>
-                    <li>
-                        <img src="{{ asset('images/banner.jpg') }}" />
+                        <img src="{{ asset('images/party/portada_3.jpg') }}" />
                     </li>
                 </ul>
             </div>
         </div>
+
+
+
     </div>
 
     <div class="container text-center descripcion">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
+        <p>Lorem ipsum dolor sitw amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
     </div>
 
 
-    <!--
-    <div class="container-fluid">
-        <div class="slick_wedding">
+    <div class="container-fluid home-slicks">
+        <div class="container">
+            <div class="row">
+                <h1 class="tittle-slicks">Los Mejores Proveedores</h1>
+                <h3 class="subtittle-slick">Esperando por tí</h3>
+                <div class="slick_wedding">
+                    {% for p in mejores_proveedores %}
+                        <a href="{{ path('proveedor_detail', {'slug_site': 'party','slug_proveedor': p.proveedor.slug}) }}">
+                            <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo')}}" alt="{{ p.proveedor.nombre }}" />
+                        </a>
 
-            <div><img src="{{ asset('images/proveedores/logo/logo1.jpg') }}" alt=""></div>
-            <div><img src="{{ asset('images/proveedores/logo/logo2.jpg') }}" alt=""></div>
-            <div><img src="{{ asset('images/proveedores/logo/logo3.jpg') }}" alt=""></div>
-            <div><img src="{{ asset('images/proveedores/logo/logo4.jpg') }}" alt=""></div>
-            <div><img src="{{ asset('images/proveedores/logo/logo5.jpg') }}" alt=""></div>
-        </div>
-    </div>
+                    {% endfor %}
 
-    <div class="container">
-        <div class="slick_wedding">
-            <div><img src="{{ asset('images/proveedores/fotos/foto1.jpg') }}" alt=""></div>
-            <div><img src="{{ asset('images/proveedores/fotos/foto2.jpg') }}" alt=""></div>
-            <div><img src="{{ asset('images/proveedores/fotos/foto3.jpg') }}" alt=""></div>
-            <div><img src="{{ asset('images/proveedores/fotos/foto4.jpg') }}" alt=""></div>
-            <div><img src="{{ asset('images/proveedores/fotos/foto5.jpg') }}" alt=""></div>
-        </div>
-    </div>-->
-
-    <div class="container-fluid">
-        <div class="slick_wedding">
-            {% for p in mejores_proveedores %}
-                <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo')|imagine_filter('thumb') }}" alt="{{ p.proveedor.nombre }}" />
-            {% endfor %}
+                </div>
+            </div>
 
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="slick_wedding">
-            {% for f in mejores_fotos %}
-                <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
-            {% endfor %}
+    <div class="container-fluid home-slicks2">
+        <div class="container">
+            <h1 class="tittle-slicks">Las Mejores Fotos</h1>
+            <h3 class="subtittle-slick">Inspirate y haz inolvidable "Tu" día</h3>
+            <div class="slick_wedding">
 
+                {% for f in mejores_fotos %}
+                    <a href="{{ path('proveedor_detail', {'slug_site': 'party','slug_proveedor': f.foto.proveedor.slug}) }}">
+                        <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
+                    </a>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
+
 
 
 {% endblock %}
@@ -86,5 +87,57 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+    <script>
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: true,
+            directionNav: true,
+            prevText: "Previous",
+            nextText: "Next"
+        });
+
+        $('.slick_wedding').slick({
+            arrows: true,
+            autoplay: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: false,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        arrows: false,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+    </script>
+
 {% endblock %}

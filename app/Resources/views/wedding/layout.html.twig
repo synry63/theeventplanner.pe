@@ -31,6 +31,10 @@
 
 {% endblock %}
 
+{% block selloimage %}
+    <img src="{{ asset('images/sello_wedding.png') }}" alt="The event Planner">
+{% endblock selloimage %}
+
 {% block user_login %}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <div class="user-login-responsive">

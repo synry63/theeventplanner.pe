@@ -1,18 +1,18 @@
-{% extends 'kids/layout.html.twig' %}
+{% extends 'party/layout.html.twig' %}
 {% block title %}Proveedores{% endblock %}
 
 {% block main_title %}
     <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/proveedores_kids_tittle.png') }}" alt="Proveedores Tittle">
+                <img src="{{ asset('images/proveedores_party_tittle.png') }}" alt="Proveedores Tittle">
             </div>
         </div>
     </div>
 {% endblock %}
 
 {% block menuprincipal %}
-    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuKids', [], {'image_title': 'proveedores_kids_tittle.png'}) %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuParty', [], {'image_title': 'proveedores_party_tittle.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
 
@@ -23,8 +23,8 @@
     {{ parent() }}
     <div class="container">
         <div class="col-md-4 col-md-offset-4">
-            <div class="btn-group categorias_kids">
-                <button class="btn btn-tittle_kids categorias2 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="btn-group categorias_party">
+                <button class="btn btn-tittle_party categorias2 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Categorias
                     <span class="caret"></span>
                 </button>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="container">
-        <div class="proveedores_kids row">
+        <div class="proveedores_party row">
 
             {% for c in categorias %}
                 <div class="col-sm-6 col-md-4">

@@ -31,13 +31,14 @@
 
                         <a href="{{ path('selection_start') }}">
                             <span class="logo_header">
-                                <img src="{{ asset('images/sello_wedding.png') }}" alt="The event Planner">
+                                {% block selloimage %}
+
+                                {% endblock selloimage %}
                             </span>
                         </a>
 
 
                         {% block menuprincipal %}
-
                             {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
                         {% endblock menuprincipal %}
 
