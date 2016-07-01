@@ -30,7 +30,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     {% for c in categorias %}
-                        <li><a href="{{ path('proveedores_category', {'slug_site': 'party','slug_category': c.slug}) }}">{{ c.nombre }}</a></li>
+                        <li><a href="{{ path('proveedores_category', {'slug_site': 'kids','slug_category': c.slug}) }}">{{ c.nombre }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -42,9 +42,9 @@
 
             {% for c in categorias %}
                 <div class="col-sm-6 col-md-4">
-                    <a href="{{ path('proveedores_category', {'slug_site': 'party','slug_category': c.slug}) }}">
+                    <a href="{{ path('proveedores_category', {'slug_site': 'kids','slug_category': c.slug}) }}">
                         <div class="thumbnail">
-                            <img class="filtroimg" src="{{ asset('images/filtro_party.png') }}" alt="filter">
+                            <img class="filtroimg" src="{{ asset('images/filtro_kids.png') }}" alt="filter">
                             <img src="{{ asset('images/categorias/'~c.imgSmall)}}" alt="{{ c.nombre }}">
                             <div class="caption">
                                 <h3>{{ c.nombre }}</h3>

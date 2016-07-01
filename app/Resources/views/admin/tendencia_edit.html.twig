@@ -56,6 +56,11 @@
         </h1>
         {{ form_start(form_tendencia,{'attr': {'novalidate': 'novalidate'}}) }}
         <div class="form-group">
+            {{ form_label(form_tendencia.type,'Tipo') }}
+            {{ form_errors(form_tendencia.type) }}
+            {{ form_widget(form_tendencia.type,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
             {{ form_label(form_tendencia.nombre,'Nombre') }}
             {{ form_errors(form_tendencia.nombre) }}
             {{ form_widget(form_tendencia.nombre,{ 'attr': {'class': 'form-control'}}) }}

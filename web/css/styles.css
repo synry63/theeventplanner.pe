@@ -1616,6 +1616,24 @@ DASHBOARD ADMIN
     font-size:25px;
     text-transform: uppercase;
 }
+.links-tendencias{
+    margin: 20px;
+    text-align: center;
+}
+.links-tendencias ul li{
+    display: inline-block;
+    margin: 5px;
+}
+.links-tendencias ul li a{
+    color: #fff;
+    background: #23282D;
+    padding: 10px;
+    text-decoration: none;
+    transition: all .5s;
+}
+.links-tendencias ul li a:hover{
+    background: rgba(0,0,0,.5);
+}
 /*=============
 MÓVILES PORTAIT
 ===============*/

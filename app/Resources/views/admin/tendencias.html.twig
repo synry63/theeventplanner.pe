@@ -54,57 +54,27 @@
             {% endfor %}
         {% endfor %}
 
-
+        <div class="links-tendencias">
+            <ul>
+                <li><a href="{{ path('admin_tendencias', {'slug_site': 'wedding'}) }}">Tendencias Weeding</a></li>
+                <li><a href="{{ path('admin_tendencias', {'slug_site': 'party'}) }}">Tendencias Party</a></li>
+                <li><a href="{{ path('admin_tendencias', {'slug_site': 'kids'}) }}">Tendencias Kids</a></li>
+                <li><a href="{{ path('admin_tendencias', {'slug_site': 'dinner'}) }}">Tendencias Dinner</a></li>
+            </ul>
+        </div>
 
         <section id="demo">
-
-            {% for t in tendencias_wedding  %}
-                    <article class="white-panel">
-                        <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_delete', {'id': t.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
-                        <a class="admin_edit" href="{{ path('admin_tendencia_edit', {'id': t.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
-                        <a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">
-                            <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
-                            <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">{{ t.nombre }}</a></h1>
-                            <p>"{{ t.description }}"</p>
-                        </a>
-                    </article>
-            {% endfor %}
-
-            {% for t in tendencias_party %}
-                <article class="white-panel">
-                    <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_delete', {'id': t.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    <a class="admin_edit" href="{{ path('admin_tendencia_edit', {'id': t.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
-                    <a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">
-                        <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
-                        <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">{{ t.nombre }}</a></h1>
-                        <p>"{{ t.description }}"</p>
-                    </a>
-                </article>
-            {% endfor %}
-
-            {% for t in tendencias_kids %}
-                <article class="white-panel">
-                    <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_delete', {'id': t.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    <a class="admin_edit" href="{{ path('admin_tendencia_edit', {'id': t.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
-                    <a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">
-                        <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
-                        <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">{{ t.nombre }}</a></h1>
-                        <p>"{{ t.description }}"</p>
-                    </a>
-                </article>
-            {% endfor %}
-            {% for t in tendencias_dinner %}
-                <article class="white-panel">
-                    <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_delete', {'id': t.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    <a class="admin_edit" href="{{ path('admin_tendencia_edit', {'id': t.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
-                    <a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">
-                        <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
-                        <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">{{ t.nombre }}</a></h1>
-                        <p>"{{ t.description }}"</p>
-                    </a>
-                </article>
-            {% endfor %}
-
+                    {% for t in tendencias  %}
+                        <article class="white-panel wedding_link">
+                            <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_delete', {'id': t.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            <a class="admin_edit" href="{{ path('admin_tendencia_edit', {'id': t.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+                            <a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">
+                                <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
+                                <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">{{ t.nombre }}</a></h1>
+                                <p>"{{ t.description }}"</p>
+                            </a>
+                        </article>
+                    {% endfor %}
 
         </section>
 
@@ -121,6 +91,7 @@
 <script type="text/javascript" src="{{ asset('js/pinterest_grid.js') }}"></script>
 
 <script>
+
     $('#demo').pinterest_grid({
         no_columns: 3,
         padding_x: 10,
