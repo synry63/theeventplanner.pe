@@ -49,7 +49,7 @@
         <h1>
             Agregar Tendencias
         </h1>
-        {{ form_start(form_tendencia) }}
+        {{ form_start(form_tendencia,{'attr': {'novalidate': 'novalidate'}}) }}
         <div class="form-group">
             {{ form_label(form_tendencia.nombre,'Nombre') }}
             {{ form_errors(form_tendencia.nombre) }}
