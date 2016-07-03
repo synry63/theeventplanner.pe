@@ -40,6 +40,11 @@ class Tendencia
     private $nombre;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    private $type;
+    /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
@@ -52,6 +57,12 @@ class Tendencia
      */
     private $sort;
 
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
@@ -93,6 +104,21 @@ class Tendencia
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -213,5 +239,22 @@ class Tendencia
     {
         return $this->slug;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
 
 }

@@ -31,11 +31,7 @@ class Inspiracion
 
     /**
      * @ORM\Column(type="string")
-     */
-    private $type;
-
-    /**
-     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $nombre;
 
@@ -45,6 +41,8 @@ class Inspiracion
     private $img;
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(value = 0)
      */
     private $sort;
 
@@ -187,21 +185,7 @@ class Inspiracion
         return $this->slug;
     }
 
-    /**
-     * @param mixed $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 
     /**
      * @param mixed $users
@@ -257,10 +241,6 @@ class Inspiracion
     public function getImgFile()
     {
         return $this->imgFile;
-    }
-
-    public function __construct() {
-        $this->type='foto';
     }
 
 

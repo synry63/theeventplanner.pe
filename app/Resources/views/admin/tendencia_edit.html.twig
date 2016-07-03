@@ -46,6 +46,13 @@
 </nav>
 <div class="container">
     <div class="col-md-10 body-dashboard dash-edit">
+        {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                <div class="alert alert-{{ label }}">
+                    {{ flash }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         <a class="tendencias_return" href="{{ path('admin_tendencias') }}">
             <button class="btn btn-entrar">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Tendencias

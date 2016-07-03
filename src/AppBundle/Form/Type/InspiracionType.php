@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Image;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,6 +33,9 @@ class InspiracionType extends AbstractType
         $builder->add('imgFile', 'file',array(
             'constraints' => array(
                 new NotBlank(array('message' => 'File should not be blank.')),
+                new Image(array(
+                        'maxSize'       => '250K')
+                )
 
             ),
         ));

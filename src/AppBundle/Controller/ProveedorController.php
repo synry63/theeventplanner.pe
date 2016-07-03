@@ -253,6 +253,7 @@ class ProveedorController extends Controller
      * @Route("/negocio/registrar/validacion", name="register_validacion_negocio")
      */
     public function registerValidAction(Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
         return $this->render(
             'temp.html.twig'
         );

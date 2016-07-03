@@ -38,6 +38,18 @@ class FotoRepository extends EntityRepository
         $query = $qb->getQuery();
         return $query->getResult();
     }
+    public function getFotosByCate($cate){
+
+        $qb = $this->createQueryBuilder('f')
+            ->join('f.proveedor','fp')
+            ->join('fp.categoriasListado','fpc')
+            ->where('fpc.parent = :cate')
+            ->setParameter('cate',$cate);
+
+        $qb->addOrderBy('f.updatedAt', 'DESC');
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
     public function getBestFotos($parent_category,$limit = 5){
         /*$qb = $this->createQueryBuilder('f')
              ->select('f as foto, count(fu.foto) as number')

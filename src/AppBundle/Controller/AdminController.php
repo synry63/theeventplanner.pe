@@ -67,9 +67,26 @@ class AdminController extends Controller
     /**
      * @Route("/admin/tendencias", name="admin_tendencias")
      */
-    public function adminTendenciasAction(){
+    public function adminTendenciasAllAction(Request $request){
         $tendencias = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findBy(
             array(),
+            array('updatedAt' => 'DESC')
+        );
+        return $this->render(
+            'admin/tendencias.html.twig',
+            array(
+                'tendencias'=>$tendencias
+            )
+        );
+    }
+    /**
+     * @Route("/admin/tendencias/{slug_site}", name="admin_tendencias_seccion",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function adminTendenciasAction(Request $request,$slug_site){
+        $tendencias = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findBy(
+            array('type'=>$slug_site),
             array('sort' => 'ASC')
         );
         return $this->render(
@@ -136,7 +153,7 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $slug = $this->slugify($tendencia->getNombre());
             $tendencia->setSlug($slug);
-            //$logo->setProveedor($proveedor);
+            $tendencia->setUpdatedAt(new \DateTime('now'));
             $em->persist($tendencia);
             $em->flush();
 
@@ -256,7 +273,7 @@ class AdminController extends Controller
 
         $p =  $this->getDoctrine()->getRepository('AppBundle:Proveedor')->find($id);
         if($p!=NULL){
-            $p->setIsActive(false);
+            $p->setIsAccepted(false);
             $em = $this->getDoctrine()->getManager();
             $em->persist($p);
             $em->flush();
@@ -275,7 +292,7 @@ class AdminController extends Controller
     public function adminNegociosEnableAction(Request $request,$id){
         $p =  $this->getDoctrine()->getRepository('AppBundle:Proveedor')->find($id);
         if($p!=NULL){
-            $p->setIsActive(true);
+            $p->setIsAccepted(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($p);
             $em->flush();

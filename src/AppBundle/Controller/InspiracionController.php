@@ -53,7 +53,9 @@ class InspiracionController extends Controller
      * })
      */
     public function inspiracionesTendenciasAction($slug_site){
-        $tendencias = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findBy(array(),array('sort'=>'ASC'));
+        $tendencias = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findBy(
+            array('type'=>$slug_site),
+            array('sort'=>'ASC'));
         return $this->render(
             $slug_site.'/inspiraciones-tendencias.html.twig',
             array('tendencias'=>$tendencias)
@@ -97,7 +99,8 @@ class InspiracionController extends Controller
      */
     public function inspiracionesFotosProveedoresAction($slug_site,$page){
 
-        $fotos_proveedores = $this->getDoctrine()->getRepository('AppBundle:Foto')->findBy(array(),array('updatedAt'=>'DESC'));
+        $cate = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
+        $fotos_proveedores = $this->getDoctrine()->getRepository('AppBundle:Foto')->getFotosByCate($cate);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $fotos_proveedores,

@@ -73,6 +73,11 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     private $web;
 
     /**
+     * @ORM\Column(type="boolean",nullable=true,options={"default": false})
+     */
+    private $isAccepted;
+
+    /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $facebookLink;
@@ -627,6 +632,23 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     {
         $this->isActive = $isActive;
     }
+
+    /**
+     * @param mixed $isAccepted
+     */
+    public function setIsAccepted($isAccepted)
+    {
+        $this->isAccepted = $isAccepted;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsAccepted()
+    {
+        return $this->isAccepted;
+    }
+
 
 
     /**
