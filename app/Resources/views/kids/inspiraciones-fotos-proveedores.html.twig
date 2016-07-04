@@ -1,4 +1,4 @@
-{% extends 'party/layout.html.twig' %}
+{% extends 'kids/layout.html.twig' %}
 {% block title %}Inspiraciones | Fotos de Proveedores{% endblock %}
 
 {% block main_title %}
@@ -6,13 +6,13 @@
     <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/tittle_party_inspiraciones.png') }}" alt="Inspiraciones Tittle">
+                <img src="{{ asset('images/inspiraciones_kids_tittle.png') }}" alt="Inspiraciones Tittle">
             </div>
         </div>
     </div>
 {% endblock %}
 {% block menuprincipal %}
-    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuParty', [], {'image_title': 'tittle_party_inspiraciones.png'}) %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuKids', [], {'image_title': 'inspiraciones_kids_tittle.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
 
@@ -59,7 +59,7 @@
                             </div>
                         {% endif %}
 
-                        <a class="popup_proveedores" href="{{ path('proveedor_detail', {'slug_site': 'party','slug_proveedor': fp.proveedor.slug}) }}"  title="{{ fp.proveedor.nombre }}">
+                        <a class="popup_proveedores" href="{{ path('proveedor_detail', {'slug_site': 'kids','slug_proveedor': fp.proveedor.slug}) }}"  title="{{ fp.proveedor.nombre }}">
                             <img src="{{ vich_uploader_asset(fp, 'imgFile')}}" alt="">
                         </a>
                     </div>

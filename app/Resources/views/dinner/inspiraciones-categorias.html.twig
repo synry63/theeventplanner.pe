@@ -1,0 +1,79 @@
+{% extends 'dinner/layout.html.twig' %}
+{% block title %}Inspiraciones | Categorías{% endblock %}
+{% block main_title %}
+
+    <div id="tittle_responsive" class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/inspiraciones_dinner_tittle.png') }}" alt="Inspiraciones Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuDinner', [], {'image_title': 'inspiraciones_dinner_tittle.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
+
+{% block content %}
+    {{ parent() }}
+
+    <div class="container">
+        <div class="proveedores_dinner row">
+            <div class="col-sm-6 col-md-4">
+                <a href="{{ path('inspiraciones_tendencias', {'slug_site': 'dinner'}) }}">
+                    <div class="thumbnail">
+                        <img class="filtroimg" src="{{ asset('images/filtro_dinner.png') }}" alt="filter">
+                        <img src="{{ asset('images/dinner_tendencias.jpg') }}" alt="Tendencias">
+                        <div class="caption">
+                            <h3>TENDENCIAS</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-sm-6 col-md-4">
+                <a href="{{ path('inspiraciones_videos', {'slug_site': 'dinner'}) }}">
+                    <div class="thumbnail">
+                        <img class="filtroimg" src="{{ asset('images/filtro_dinner.png') }}" alt="filter">
+                        <img src="{{ asset('images/dinner_videos.jpg') }}" alt="Videos Inspiraciones">
+                        <div class="caption">
+                            <h3>VIDEOS</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+
+            <div class="col-sm-6 col-md-4">
+                <a href="{{ path('inspiraciones_music', {'slug_site': 'dinner'}) }}">
+                    <div class="thumbnail">
+                        <img class="filtroimg" src="{{ asset('images/filtro_dinner.png') }}" alt="filter">
+                        <img src="{{ asset('images/dinner_canciones.jpg') }}" alt="Canciones">
+                        <div class="caption">
+                            <h3>CANCIONES</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <a href="{{ path('inspiraciones_fotos_proveedores', {'slug_site': 'dinner'}) }}">
+                    <div class="thumbnail">
+                        <img class="filtroimg" src="{{ asset('images/filtro_dinner.png') }}" alt="filter">
+                        <img src="{{ asset('images/dinner_fotop.jpg') }}" alt="Fotos Proveedores">
+                        <div class="caption">
+                            <h3>FOTOS DE PROVEEDORES</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

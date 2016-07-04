@@ -1,4 +1,4 @@
-{% extends 'party/layout.html.twig' %}
+{% extends 'dinner/layout.html.twig' %}
 {% block title %}Inspiraciones | Fotos de Proveedores{% endblock %}
 
 {% block main_title %}
@@ -6,13 +6,13 @@
     <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/tittle_party_inspiraciones.png') }}" alt="Inspiraciones Tittle">
+                <img src="{{ asset('images/inspiraciones_dinner_tittle.png') }}" alt="Inspiraciones Tittle">
             </div>
         </div>
     </div>
 {% endblock %}
 {% block menuprincipal %}
-    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuParty', [], {'image_title': 'tittle_party_inspiraciones.png'}) %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuDinner', [], {'image_title': 'inspiraciones_dinner_tittle.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
 
@@ -36,14 +36,14 @@
                                 {% endif %}
                             {% endfor %}
                             {% if me_gusta==1 %}
-                                <div class="boton-megusta_party">
+                                <div class="boton-megusta_dinner">
                                     <a href="{{ path('inspiraciones_proveedor_foto_me_gusta',
                                     {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
                                         <i class="fa fa-heart" aria-hidden="true"></i>
                                     </a>
                                 </div>
                             {% else %}
-                                <div class="boton-megusta_party">
+                                <div class="boton-megusta_dinner">
                                     <a href="{{ path('inspiraciones_proveedor_foto_me_gusta',
                                     {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -51,7 +51,7 @@
                                 </div>
                             {% endif %}
                         {% else %}
-                            <div class="boton-megusta_party">
+                            <div class="boton-megusta_dinner">
                                 <a class="ajax-popup-link" href="{{ path('inspiraciones_proveedor_foto_me_gusta',
                                 {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -59,12 +59,12 @@
                             </div>
                         {% endif %}
 
-                        <a class="popup_proveedores" href="{{ path('proveedor_detail', {'slug_site': 'party','slug_proveedor': fp.proveedor.slug}) }}"  title="{{ fp.proveedor.nombre }}">
+                        <a class="popup_proveedores" href="{{ path('proveedor_detail', {'slug_site': 'dinner','slug_proveedor': fp.proveedor.slug}) }}"  title="{{ fp.proveedor.nombre }}">
                             <img src="{{ vich_uploader_asset(fp, 'imgFile')}}" alt="">
                         </a>
                     </div>
                 {% endfor %}
-                <div class="navigation-party">
+                <div class="navigation-dinner">
                     {{ knp_pagination_render(fotos_proveedores,'foundation_v5_pagination.html.twig') }}
                 </div>
 

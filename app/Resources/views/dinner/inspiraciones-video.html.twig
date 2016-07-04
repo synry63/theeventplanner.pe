@@ -1,0 +1,40 @@
+{% extends 'dinner/layout.html.twig' %}
+{% block title %}Inspiraciones | Videos{% endblock %}
+
+{% block main_title %}
+
+    <div id="tittle_responsive" class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/inspiraciones_dinner_tittle.png') }}" alt="Inspiraciones Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuDinner', [], {'image_title': 'inspiraciones_dinner_tittle.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="container"> 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="embed-responsive embed-responsive-16by9 video-general">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DuDcPjj5TDE"></iframe>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="embed-responsive embed-responsive-16by9 video-general">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DuDcPjj5TDE"></iframe>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="embed-responsive embed-responsive-16by9 video-general">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DuDcPjj5TDE"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

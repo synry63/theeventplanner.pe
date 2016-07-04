@@ -1,4 +1,4 @@
-{% extends 'kids/layout.html.twig' %}
+{% extends 'dinner/layout.html.twig' %}
 {% block title %}The Event Planner | Home{% endblock %}
 
 {% block main_title %}
@@ -6,14 +6,14 @@
     <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/tittle_kids.png') }}" alt="Party Tittle">
+                <img src="{{ asset('images/tittle_dinner.png') }}" alt="Party Tittle">
             </div>
         </div>
     </div>
 {% endblock %}
 
 {% block menuprincipal %}
-    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuKids', [], {'image_title': 'tittle_kids.png'}) %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuDinner', [], {'image_title': 'tittle_dinner.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
 
@@ -24,13 +24,13 @@
             <div class="flexslider">
                 <ul class="slides">
                     <li>
-                        <img src="{{ asset('images/kids/portada_1.jpg') }}" />
+                        <img src="{{ asset('images/dinner/portada_dinner_1.jpg') }}" />
                     </li>
                     <li>
-                        <img src="{{ asset('images/kids/portada_2.jpg') }}" />
+                        <img src="{{ asset('images/dinner/portada_dinner_2.jpg') }}" />
                     </li>
                     <li>
-                        <img src="{{ asset('images/kids/portada_3.jpg') }}" />
+                        <img src="{{ asset('images/dinner/portada_dinner_3.jpg') }}" />
                     </li>
                 </ul>
             </div>
@@ -52,7 +52,7 @@
                 <h3 class="subtittle-slick">Esperando por tí</h3>
                 <div class="slick_wedding">
                     {% for p in mejores_proveedores %}
-                        <a href="{{ path('proveedor_detail', {'slug_site': 'kids','slug_proveedor': p.proveedor.slug}) }}">
+                        <a href="{{ path('proveedor_detail', {'slug_site': 'dinner','slug_proveedor': p.proveedor.slug}) }}">
                             <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo')}}" alt="{{ p.proveedor.nombre }}" />
                         </a>
 
@@ -71,7 +71,7 @@
             <div class="slick_wedding">
 
                 {% for f in mejores_fotos %}
-                    <a href="{{ path('proveedor_detail', {'slug_site': 'kids','slug_proveedor': f.foto.proveedor.slug}) }}">
+                    <a href="{{ path('proveedor_detail', {'slug_site': 'dinner','slug_proveedor': f.foto.proveedor.slug}) }}">
                         <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
                     </a>
                 {% endfor %}

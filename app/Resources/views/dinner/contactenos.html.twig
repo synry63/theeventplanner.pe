@@ -1,0 +1,110 @@
+{% extends 'dinner/layout.html.twig' %}
+{% block title %}Contáctenos{% endblock %}
+{% block main_title %}
+    <div id="tittle_responsive" class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/contactenos_dinner_tittle.png') }}" alt="Proveedores Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuDinner', [], {'image_title': 'contactenos_dinner_tittle.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
+
+{% block content %}
+
+    {{ parent() }}
+
+
+<div class="container form-dinner-contactenos">
+    <div class="col-md-6">
+        {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                <div class="alert alert-{{ label }}">
+                    {{ flash }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{ form_label(form.name,'Nombre') }}
+            {% if form.name.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.name) }}</div>
+                </div>
+            {% endif %}
+            
+            {{ form_widget(form.name,{ 'attr': {'class': 'form-control','placeholder':'Carolina García'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.email,'Email') }}
+            {% if form.email.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.email) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.tel,'Teléfono') }}
+            {% if form.tel.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.tel) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.tel,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.subject,'Asunto') }}
+            {% if form.subject.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.subject) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.subject,{ 'attr': {'class': 'form-control','placeholder':'Cotización'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.message,'Mensaje') }}
+            {% if form.message.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.message) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.message,{ 'attr': {'class': 'form-control','placeholder':'Tu Mensaje'}}) }}
+        </div>
+
+
+        <div class="form-group">
+            {{ form_widget(form.send, { 'label': 'Enviar', 'attr':{'class':'btn btn-dinner-entrar'} } ) }}
+        </div>
+
+        {{ form_end(form) }}
+
+
+
+    </div>
+
+
+    <div class="col-md-6 image-contact">
+        <img src="{{ asset('images/contactenos_dinner_img.jpg') }}" alt="Contáctenos">
+        <div class="contact-event">
+            <ul>
+                <li><strong>Jessika Sarabia</strong></li>
+                <li>Gerente General</li>
+                <li><i class="fa fa-whatsapp" aria-hidden="true"></i> 998 345 623</li>
+                <li><strong>j.sarabia@theeventplanner.pe</strong></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -46,12 +46,13 @@ Nav bar
     position: absolute;
 }
 #center-image a img{
-    width: 400px;
+    width: 450px;
 }
 #center-image{
     position: relative;
     top: -30px;
     padding-top: 15px;
+    left: -18px;
 }
 
 
@@ -208,7 +209,9 @@ GLOBAL
     border:none;
 }
 
-
+.navbar-default ul li:nth-child(4){
+    margin-left: -35px;
+}
 
 .slick_wedding div img{
     width: 100%;
@@ -296,6 +299,7 @@ GLOBAL
 .footer{
     font-family: "OpenSans-Light";
     height: 130px;
+    margin-top: 40px;
     padding: 20px;
     background: #edeae6;
     text-align: center;
@@ -423,6 +427,9 @@ GLOBAL
 
 #rateYo,#rateYo2,#rateYo3{
     margin: 0 auto;
+}
+#rateYo{
+    margin: 10px auto;
 }
 #rateYo2{
     margin: 15px auto;
@@ -817,12 +824,9 @@ Votos GRID
 }
 
 #demo img {
-    /*width: 100%;*/
-    width: 277px;
+    width: 100%;
     max-width: 100%;
-    /*height: auto;*/
-    height: 184px;
-
+    height: auto;
 }
 
 .white-panel {
@@ -851,7 +855,97 @@ Votos GRID
 /*=============
 KIDS
 ===============*/
+.music-container-kids{
+    margin-top: 20px;
+}
+.music-container-kids iframe{
+    border: solid 5px #971ED1;
+    padding: 3px;
+}
+.form-kids-contactenos label{
+    color: #971ED1;
+}
+.form-kids-contactenos{
+    margin-top: 30px;
+}
+.form-kids-contactenos li{
+    list-style: none;
 
+}
+.form-kids-contactenos i{
+    padding: 10px;
+    font-size: 12px;
+}
+.form-kids-contactenos ul{
+    padding-left: 0;
+    display: inline-block;
+}
+.form-kids-contactenos  .alert{
+    padding: 0;
+}
+.proveedores_kids .thumbnail{
+    border: none;
+    position: relative;
+    box-shadow: none;
+    border-bottom: solid 3px #971ED1;
+}
+.proveedores_kids a{
+    text-decoration: none;
+}
+.proveedores_kids h3{
+    font-family: "OpenSans-Light", serif;
+    text-align: center;
+    font-size: 15px;
+    margin: 0;
+}
+.cotizacion-form-kids{
+    background: #fff;
+    padding:30px;
+    padding-bottom: 6px;
+}
+.cotizacion-form-kids h1{
+    font-size: 25px;
+    text-align: center;
+    color: #971ED1;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+.cotizacion-form-kids .btn-kids-entrar{
+    border-radius: 0;
+    width: 100%;
+}
+.cotizacion-form-kids label{
+    color:#971ED1;
+}
+.lkids a{
+    color: #971ED1;
+}
+.boton-megusta_kids{
+    padding: 0 10px;
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    text-shadow: 0px 0px 10px rgba(0,0,0,.5);
+}
+.boton-megusta_kids a{
+    color: #971ED1;
+    font-size: 30px;
+}
+.spartys .favorite-button-kids{
+    text-decoration: none;
+    margin-top:10px;
+}
+.favorite-button-kids{
+    background: url(../images/heart_kids.png);
+    display: inline-block;
+    width: 33px;
+    height: 30px;
+}
+.image-prov .prov-foto-kids{
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    border-bottom: solid 4px #971ED1;
+}
 .kids .footer li a:hover{
     color: #971ED1;
 }
@@ -874,7 +968,9 @@ KIDS
 .categorias_kids .categorias2{
     width: 100%;
 }
-
+.proveedores_kids{
+    margin-top: 20px;
+}
 .proveedores_kids .thumbnail{
     border: none;
     position: relative;
@@ -896,6 +992,9 @@ KIDS
     color: #fff;
     height: 36px;
 }
+.btn-coti-kids{
+    margin-bottom: 10px;
+}
 .btn-tittle_kids{
     width: 200px;
     background: none;
@@ -908,7 +1007,7 @@ KIDS
 PARTY
 ===============*/
 .form-party-contactenos label{
-    color: #6BD204;
+    color: #FF860C;
 }
 .form-party-contactenos{
     margin-top: 30px;
@@ -932,16 +1031,16 @@ PARTY
     float: right;
 }
 .navigation-party li a{
-    border: solid 2px #6BD204;
-    color: #6BD204;
+    border: solid 2px #FF860C;
+    color: #FF860C;
 }
 
 .navigation-party .current a{
-    background: rgba(107,210,4,.5);
+    background: rgba(223,105,1,.5);
     color: #fff;
 }
 .music-container-party iframe{
-    border: solid 5px #6BD204;
+    border: solid 5px #FF860C;
     padding: 3px;
 }
 .cotizacion-form-partys{
@@ -952,7 +1051,7 @@ PARTY
 .cotizacion-form-partys h1{
     font-size: 25px;
     text-align: center;
-    color: #6BD204;
+    color: #FF860C;
     font-weight: bold;
     margin: 0 0 15px 0;
 }
@@ -961,7 +1060,7 @@ PARTY
     width: 100%;
 }
 .cotizacion-form-partys label{
-    color:#6BD204;
+    color:#FF860C;
 }
 .spartys .favorite-button-party{
     text-decoration: none;
@@ -975,7 +1074,7 @@ PARTY
 }
 
 .lparty a, .sweddings a{
-    color: #6BD204;
+    color: #FF860C;
 }
 .boton-megusta_party{
     padding: 0 10px;
@@ -985,21 +1084,22 @@ PARTY
     text-shadow: 0px 0px 10px rgba(0,0,0,.5);
 }
 .boton-megusta_party a{
-    color: #6BD204;
+    color: #FF860C;
     font-size: 30px;
 }
 .btn-coti-party{
     margin: 10px 0;
     font-style: normal;
+    margin-bottom: 10px;
 }
 .image-prov .prov-foto-party{
     width: 100%;
     border-radius: 0 0 5px 5px;
-    border-bottom: solid 4px #6BD204;
+    border-bottom: solid 4px #FF860C;
 }
 .btn-party-entrar, .btn-coti-party{
     border-radius: 0;
-    background:#6BD204;
+    background:#FF860C;
     color: #fff;
     height: 36px;
 }
@@ -1007,22 +1107,22 @@ PARTY
     width: 200px;
     background: none;
     color: rgba(0,0,0,.5);
-    border: solid 2px #6BD204;
+    border: solid 2px #FF860C;
     border-radius: 0;
 }
 
 .party .footer li a:hover{
-    color: #6BD204;
+    color: #FF860C;
 }
 .party-login li a{
     padding: 10px;
-    color: #6BD204;
+    color: #FF860C;
 }
 .proveedores_party .thumbnail{
     border: none;
     position: relative;
     box-shadow: none;
-    border-bottom: solid 3px #6BD204;
+    border-bottom: solid 3px #FF860C;
 }
 .proveedores_party a{
     text-decoration: none;
@@ -1242,6 +1342,7 @@ CONTACTENOS
 .btn-coti{
     margin: 10px 0;
     font-style: normal;
+    margin-bottom: 10px;
 }
 .btn-wedding-entrar, .btn-coti{
     border-radius: 0;
@@ -1319,8 +1420,152 @@ CONTACTENOS
 DINNER
 ===============*/
 
-.banner-sliders li img{
-    width: 250px;
+.music-container-dinner{
+    margin-top: 20px;
+}
+.music-container-dinner iframe{
+    border: solid 5px #0000ea;
+    padding: 3px;
+}
+.form-dinner-contactenos label{
+    color: #0000ea;
+}
+.form-dinner-contactenos{
+    margin-top: 30px;
+}
+.form-dinner-contactenos li{
+    list-style: none;
+
+}
+.form-dinner-contactenos i{
+    padding: 10px;
+    font-size: 12px;
+}
+.form-dinner-contactenos ul{
+    padding-left: 0;
+    display: inline-block;
+}
+.form-dinner-contactenos  .alert{
+    padding: 0;
+}
+.proveedores_dinner .thumbnail{
+    border: none;
+    position: relative;
+    box-shadow: none;
+    border-bottom: solid 3px #0000ea;
+}
+.proveedores_dinner a{
+    text-decoration: none;
+}
+.proveedores_dinner h3{
+    font-family: "OpenSans-Light", serif;
+    text-align: center;
+    font-size: 15px;
+    margin: 0;
+}
+.cotizacion-form-dinner{
+    background: #fff;
+    padding:30px;
+    padding-bottom: 6px;
+}
+.cotizacion-form-dinner h1{
+    font-size: 25px;
+    text-align: center;
+    color: #0000ea;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+.cotizacion-form-dinner .btn-dinner-entrar{
+    border-radius: 0;
+    width: 100%;
+}
+.cotizacion-form-dinner label{
+    color:#0000ea;
+}
+.ldinner a{
+    color: #0000ea;
+}
+.boton-megusta_dinner{
+    padding: 0 10px;
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    text-shadow: 0px 0px 10px rgba(0,0,0,.5);
+}
+.boton-megusta_dinner a{
+    color: #0000ea;
+    font-size: 30px;
+}
+.sdinner .favorite-button-dinner{
+    text-decoration: none;
+    margin-top:10px;
+}
+.favorite-button-dinner{
+    background: url(../images/heart_kids.png);
+    display: inline-block;
+    width: 33px;
+    height: 30px;
+}
+.image-prov .prov-foto-dinner{
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    border-bottom: solid 4px #0000ea;
+}
+.dinner .footer li a:hover{
+    color: #0000ea;
+}
+.dinner-login li a{
+    padding: 10px;
+    color: #0000ea;
+}
+.categorias_dinner{
+    width:100%;
+    padding: 20px 0;
+}
+.categorias_dinner ul{
+    width: 100%;
+    text-align: center;
+    top: 80%;
+}
+.categorias_dinner ul li a{
+    padding: 10px 20px;
+}
+.categorias_dinner .categorias2{
+    width: 100%;
+}
+.proveedores_dinner{
+    margin-top: 20px;
+}
+.proveedores_dinner .thumbnail{
+    border: none;
+    position: relative;
+    box-shadow: none;
+    border-bottom: solid 3px #0000ea;
+}
+.proveedores_dinner a{
+    text-decoration: none;
+}
+.proveedores_dinner h3{
+    font-family: "OpenSans-Light", serif;
+    text-align: center;
+    font-size: 15px;
+    margin: 0;
+}
+.btn-dinner-entrar, .btn-coti-dinner{
+    border-radius: 0;
+    background: #0000ea;
+    color: #fff;
+    height: 36px;
+}
+.btn-coti-dinner{
+    margin-bottom: 10px;
+}
+.btn-tittle_dinner{
+    width: 200px;
+    background: none;
+    color: rgba(0,0,0,.5);
+    border: solid 2px #0000ea;
+    border-radius: 0;
 }
 
 /*=============

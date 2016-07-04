@@ -1,4 +1,4 @@
-{% extends 'wedding/layout.html.twig' %}
+{% extends 'kids/layout.html.twig' %}
 {% block title %}Inspiraciones | Tendencias{% endblock %}
 
 {% block main_title %}
@@ -6,13 +6,13 @@
     <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/tittle_inspiraciones.png') }}" alt="Inspiraciones Tittle">
+                <img src="{{ asset('images/inspiraciones_kids_tittle.png') }}" alt="Inspiraciones Tittle">
             </div>
         </div>
     </div>
 {% endblock %}
 {% block menuprincipal %}
-    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'tittle_inspiraciones.png'}) %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuParty', [], {'image_title': 'inspiraciones_kids_tittle.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
 

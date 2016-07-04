@@ -1,0 +1,102 @@
+{% extends 'dinner/layout.html.twig' %}
+{% block title %}Proveedores{% endblock %}
+{% block main_title %}
+    <div id="tittle_responsive" class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/proveedores_dinner_tittle.png') }}" alt="Proveedores Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuDinner', [], {'image_title': 'proveedores_dinner_tittle.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
+
+
+
+{% block content %}
+    {{ parent() }}
+    {% set direction = proveedores.getDirection() %}
+    <div class="container categorias-list-page">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <form class="filtros_proveedores" action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" method="get" class="form_sort" id="myForm">
+                    <select class="selectpicker" id="sort_list" name="sort">
+                        <option {% if proveedores.isSorted('p.registeredAt') %} selected {% endif %} value="p.registeredAt">Fecha</option>
+                        <option {% if proveedores.isSorted('p.nombre') %} selected {% endif %} value="p.nombre">Nombre</option>
+                    </select>
+                    <select class="selectpicker " id="sort_list" name="direction">
+                        <option {% if direction=='desc' %} selected {% endif %} value="desc">Descendiente</option>
+                        <option {% if direction=='asc' %} selected {% endif %} value="asc">Ascendente</option>
+                    </select>
+                    <input class="btn btn-dinner-entrar" type="submit" value="Filtrar">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="proveedores2 row">
+
+            {% for p in proveedores %}
+                    <div class="col-sm-6 col-md-4 detail-prov">
+                        <a href="{{ path('proveedor_detail', {'slug_site': 'dinner','slug_proveedor': p.slug}) }}">
+                            <div class="image-prov">
+                                {% if loop.first %}
+                                    <div class="liston">
+                                        <img src="{{ asset('images/liston_dinner.png')}}" alt="dinner premium">
+                                    </div>
+                                {% endif %}
+                                {% if p.fotos is empty %}
+                                    <div class="img-default prov-foto-dinner">
+                                        <img  src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                    </div>
+                                {% else %}
+                                    {% for f in p.fotos  %}
+                                        {% if f.isListado %}
+                                            <img class="prov-foto-dinner" src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+
+                                <div class="logo_tag">
+                                    <img class="img-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+            {% endfor %}
+
+
+        </div>
+
+        <div class="navigation-dinner">
+            {{ knp_pagination_render(proveedores,'foundation_v5_pagination.html.twig') }}
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/jquery.flip.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+    <script>
+            $(".card").flip({
+                axis: 'y',
+                trigger: 'hover',
+                speed: 900,
+                reverse: false
+            });
+            $('.selectpicker').selectpicker({
+                style: 'btn btn-tittle_dinner',
+                size: 4
+            })
+    </script>
+
+{% endblock %}
