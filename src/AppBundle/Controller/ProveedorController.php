@@ -254,9 +254,11 @@ class ProveedorController extends Controller
      */
     public function registerValidAction(Request $request){
         $user = $this->container->get('security.context')->getToken()->getUser();
-        return $this->render(
-            'temp.html.twig'
-        );
+        if(is_object($user)){
+            return $this->render(
+                'temp.html.twig'
+            );
+        }
     }
     /**
      * @Route("/negocio/registrar", name="register_negocio_start")
@@ -284,6 +286,7 @@ class ProveedorController extends Controller
 
         $form = $this->createForm(new ProveedorType($in), $proveedor);
 
+        /*
         $map = $this->get('ivory_google_map.map');
         $map->setLanguage($this->get('request')->getLocale());
         $map->setCenter(-12.0552581, -77.080205, true);
@@ -296,6 +299,7 @@ class ProveedorController extends Controller
         $marker->setPosition(-12.0552581, -77.080205, true);
         // Add your marker to the map
         $map->addMarker($marker);
+        */
 
         $form->handleRequest($request);
 
@@ -341,7 +345,7 @@ class ProveedorController extends Controller
             'negocio.html.twig',array(
                 //'commentarios'=>$comments,
                 'form' => $form->createView(),
-                'map'=>$map
+                //'map'=>$map
             )
         );
     }
@@ -427,6 +431,8 @@ class ProveedorController extends Controller
         $map->setCenter(-12.0552581, -77.080205, true);
         $map->setMapOption('zoom', 3);
         $map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
+        $map->setStylesheetOption('width', '100%');
+        $map->setStylesheetOption('height', '300px');
         $marker = new Marker();
         // Sets your marker animation
         $marker->setAnimation(Animation::BOUNCE);

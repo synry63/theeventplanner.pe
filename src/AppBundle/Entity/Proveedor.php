@@ -35,17 +35,20 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=100)
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
+     * @Assert\NotBlank()
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
      */
     private $password;
 
@@ -55,11 +58,13 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
+     * @Assert\NotBlank()
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=64)
+     * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
      */
     private $telefono;
 
@@ -94,17 +99,20 @@ class Proveedor implements AdvancedUserInterface, \Serializable
      */
     private $instagramLink;
     /**
-     * @ORM\Column(type="string",nullable=true, length=64)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $direccion;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=64)
+     * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
      */
     private $departamento;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=64)
+     * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
      */
     private $distrito;
 

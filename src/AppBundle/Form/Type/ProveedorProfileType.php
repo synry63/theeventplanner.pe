@@ -42,6 +42,11 @@ class ProveedorProfileType extends AbstractType
         $builder->add('departamento');
         $builder->add('distrito');
         $builder->add('telefono');
+        $builder->add('web');
+        $builder->add('facebookLink');
+        $builder->add('twitterLink');
+        $builder->add('pinteresLink');
+        $builder->add('instagramLink');
         $builder->add('email', EmailType::class);
         $builder->add('username', TextType::class);
         /*$builder->add('categoriasListado', CategoriaListadoType::class,array(

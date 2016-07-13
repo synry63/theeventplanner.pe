@@ -18,8 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Ivory\GoogleMap\Places\AutocompleteComponentRestriction;
-use Ivory\GoogleMap\Places\AutocompleteType;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ProveedorType extends AbstractType
 {
@@ -30,30 +29,28 @@ class ProveedorType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-
-        $entity = $builder->getData();
-        //$test =$options['data'];
-
-        //var_dump($categorias[0]->getNombre());
-        //exit;
         $builder->add('description');
         $builder->add('nombre');
         $builder->add('direccion');
         $builder->add('departamento');
         $builder->add('distrito');
         $builder->add('telefono');
+        $builder->add('web');
+        $builder->add('facebookLink');
+        $builder->add('twitterLink');
+        $builder->add('pinteresLink');
+        $builder->add('instagramLink');
         $builder->add('email', EmailType::class);
         $builder->add('username', TextType::class);
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
+            'invalid_message' => 'The password fields must match.',
             'first_options'  => array('label' => 'Password'),
             'second_options' => array('label' => 'Repeat Password'),
             'constraints' => array(
                 new NotBlank(array('message' => 'Password should not be blank.')),
 
             ),
-
         ));
         /*$builder->add('categoriasListado', CategoriaListadoType::class,array(
             'multiple' => true,
@@ -86,18 +83,25 @@ class ProveedorType extends AbstractType
                 $this->categorias,
 
             'multiple'      => true,
-            'expanded'      => false,
+            'expanded'      => true,
             /*'mapped' => true*/
         ));
         //$builder->add('logo', LogoType::class);
         $builder->add('tempFile', 'file',array(
             'constraints' => array(
                 new NotBlank(array('message' => 'File should not be blank.')),
+                new Image(array(
+                    'maxSize'       => '50K',
+                    'maxWidth'=>250,
+                    'maxHeight'=>250,
+                    'minWidth'=>250,
+                    'minWidth'=>250,
+                    'mimeTypes'=>array('image/jpeg')
+                ))
 
             ),
         ));
-
-        $builder->add('field', 'places_autocomplete', array(
+        /*$builder->add('field', 'places_autocomplete', array(
             'mapped' => false,
             // Javascript prefix variable
             'prefix' => 'js_prefix_',
@@ -106,25 +110,25 @@ class ProveedorType extends AbstractType
             'bound'  => array(-2.1, -3.9, 2.6, 1.4, true, true),
 
             // Autocomplete types
-            /*'types'  => array(
+            //'types'  => array(
                 AutocompleteType::CITIES,
                 // ...
-            ),*/
+           // ),
 
             // Autocomplete component restrictions
-            /*'component_restrictions' => array(
-                AutocompleteComponentRestriction::COUNTRY => 'pe',
+            //'component_restrictions' => array(
+            //    AutocompleteComponentRestriction::COUNTRY => 'pe',
                 // ...
-            ),*/
+           // ),
 
             // TRUE if the autocomplete is loaded asynchonously else FALSE
             'async' => false,
 
             // Autocomplete language
             'language' => 'es',
-        ));
+        ));*/
 
-        $builder->add('Registrar', SubmitType::class);
+        $builder->add('submit', SubmitType::class);
     }
     /*public function getParent()
     {
