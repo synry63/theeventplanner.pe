@@ -48,7 +48,7 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank()
+     *
      */
     private $password;
 
@@ -213,6 +213,7 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="text",nullable=true)
+     * @Assert\NotBlank()
      */
     private $description;
 
