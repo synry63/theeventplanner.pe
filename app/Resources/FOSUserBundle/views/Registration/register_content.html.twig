@@ -14,10 +14,18 @@
         <div class="col-md-12 register-logo">
             <img src="{{ asset('images/register_logo.png') }}" alt="">
         </div>
-
+        <!--
+        <div class="facebook_button2">
+            <a href="">
+                <button class="btn btn-primary"><i class="fa fa-facebook" aria-hidden="true"></i> Registrarse con Facebook</button>
+            </a>
+        </div>
+        -->
         <div class="col-md-6">
+
             <div class="form-group">
-                {{ form_label(form.nombres,'Nombres') }}
+
+                {{ form_label(form.nombres,'* Nombres') }}
                 {% if form.nombres.vars.errors|length>0 %}
                     <div class="alert alert-danger" role="alert">
                         <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.nombres) }}</div>
@@ -26,7 +34,7 @@
                 {{ form_widget(form.nombres,{ 'attr': {'class': 'form-control','placeholder':'Carolina'}}) }}
             </div>
             <div class="form-group">
-                {{ form_label(form.apellidos,'Apellidos') }}
+                {{ form_label(form.apellidos,'* Apellidos') }}
                 {% if form.apellidos.vars.errors|length>0 %}
                     <div class="alert alert-danger" role="alert">
                         <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.apellidos) }}</div>
@@ -36,7 +44,7 @@
             </div>
 
             <div class="form-group">
-                {{ form_label(form.username,'Nombre de Usuario') }}
+                {{ form_label(form.username,'* Nombre de Usuario') }}
                 {% if form.username.vars.errors|length>0 %}
                     <div class="alert alert-danger" role="alert">
                         <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.username) }}</div>
@@ -46,7 +54,7 @@
             </div>
 
             <div class="form-group">
-                {{ form_label(form.email,'Email') }}
+                {{ form_label(form.email,'* Email') }}
                 {% if form.email.vars.errors|length>0 %}
                     <div class="alert alert-danger" role="alert">
                         <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.email) }}</div>
@@ -67,7 +75,15 @@
                 {% endif %}
                 {{ form_widget(form.dni,{ 'attr': {'class': 'form-control','placeholder':'73226378'}}) }}
             </div>
-
+            <div class="form-group">
+                {{ form_label(form.telefono,'Teléfono') }}
+                {% if form.telefono.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.telefono) }}</div>
+                    </div>
+                {% endif %}
+                {{ form_widget(form.telefono,{ 'attr': {'class': 'form-control','placeholder':'997574286'}}) }}
+            </div>
             <div class="form-group">
                 {{ form_label(form.plainPassword.first,'Contraseña') }}
                 {% if form.plainPassword.first.vars.errors|length>0 %}
@@ -75,19 +91,22 @@
                         <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.plainPassword.first) }}</div>
                     </div>
                 {% endif %}
-                {{ form_widget(form.plainPassword.first,{ 'attr': {'class': 'form-control','placeholder':'Contraseña'}}) }}
+                {{ form_widget(form.plainPassword.first,{ 'attr': {'class': 'form-control','placeholder':'*******'}}) }}
             </div>
 
             <div class="form-group">
                 {{ form_label(form.plainPassword.second,'Repita Contraseña') }}
                 {{ form_errors(form.plainPassword.second) }}
-                {{ form_widget(form.plainPassword.second,{ 'attr': {'class': 'form-control','placeholder':'Repita Contraseña'}}) }}
+                {{ form_widget(form.plainPassword.second,{ 'attr': {'class': 'form-control','placeholder':'*******'}}) }}
             </div>
 
 
             <div>
                 <input type="submit" class="btn btn-entrar" value="{{ 'registration.submit'|trans }}" />
             </div>
+
+
+
 
             <a href="{{ app.request.headers.get('referer') }}">
                 <div class="btn btn-primary atras">Atrás</div>

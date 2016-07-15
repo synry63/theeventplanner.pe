@@ -148,21 +148,21 @@ $.noty.themes.defaultTheme = {
 
         switch(this.options.type) {
             case 'alert':
-            case 'notification':
-                this.$bar.css({backgroundColor: '#FFF', borderColor: '#CCC', color: '#444'});
+            case 'kids':
+                this.$bar.css({backgroundColor: '#8802CD', borderColor: '#8802CD', color: '#fff'});
+                this.$buttons.css({borderTop: '1px solid #8802CD'});
                 break;
-            case 'warning':
-                this.$bar.css({backgroundColor: '#FFEAA8', borderColor: '#FFC237', color: '#826200'});
-                this.$buttons.css({borderTop: '1px solid #FFC237'});
+            case 'party':
+                this.$bar.css({backgroundColor: '#FE8104', borderColor: '#FE8104', color: '#fff'});
+                this.$buttons.css({borderTop: '1px solid #FE8104'});
                 break;
-            case 'error':
-                this.$bar.css({backgroundColor: 'red', borderColor: 'darkred', color: '#FFF'});
-                this.$message.css({fontWeight: 'bold'});
-                this.$buttons.css({borderTop: '1px solid darkred'});
+            case 'dinner':
+                this.$bar.css({backgroundColor: '#0606EA', borderColor: '#0606EA', color: '#FFF'});
+                this.$buttons.css({borderTop: '1px solid #0606EA'});
                 break;
             case 'theevent':
                 this.$bar.css({backgroundColor: '#C30057', borderColor: '#C30057', color: '#FFF'});
-                this.$buttons.css({borderTop: '1px solid ##C30057'});
+                this.$buttons.css({borderTop: '1px solid #C30057'});
                 break;
             case 'wedding':
                 this.$bar.css({backgroundColor: '#35B3B4', borderColor: '#35B3B4', color: '#fff'});

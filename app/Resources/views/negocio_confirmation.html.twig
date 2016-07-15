@@ -1,0 +1,42 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+    <div class="register-after-background">
+
+    </div>
+
+    <div class="container check-page">
+        <div class="animated animacion zoomIn">
+            <img width="300px" src="{{ asset('images/confirmed.png') }}" alt="">
+        </div>
+        <div class="col-md-10 col-md-offset-1 text-check">
+
+
+            {#
+            {% if targetUrl %}
+                <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+            {% endif %}
+            #}
+
+            <a class="btn btn-entrar" href="{{ path('negocio_zona') }}">Ahora puedes visitar Tu Panel de Negocio</a>
+
+        </div>
+
+
+
+        <div class="col-md-8 col-md-offset-2 text-check">
+            <img src="{{ asset('images/logo_login.png') }}" alt="">
+        </div>
+    </div>
+
+
+
+
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock %}

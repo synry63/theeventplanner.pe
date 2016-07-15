@@ -37,9 +37,8 @@
             </div>
         </div>
 
-
+        {#
         <div class="proveedores2 row">
-
             {% for p in proveedores %}
                     <div class="col-sm-6 col-md-4 detail-prov">
                         <a href="{{ path('proveedor_detail', {'slug_site': 'dinner','slug_proveedor': p.slug}) }}">
@@ -69,8 +68,48 @@
                         </a>
                     </div>
             {% endfor %}
+        </div>
+        #}
+        
+        <div class="proveedores2 row">
 
+            {% for p in proveedores %}
+                    <div class="col-sm-6 col-md-4 detail-prov">
+                        <div class="card">
+                            <div class="front">
+                                Front content
+                            </div>
+                            <div class="back">
+                                Back content
+                            </div>
+                        </div>
+                        <a href="{{ path('proveedor_detail', {'slug_site': 'dinner','slug_proveedor': p.slug}) }}">
+                            <div class="image-prov">
+                                {% if loop.first %}
+                                    <div class="liston">
+                                        <img src="{{ asset('images/liston_dinner.png')}}" alt="dinner premium">
+                                    </div>
+                                {% endif %}
+                                {% if p.fotos is empty %}
+                                    <div class="img-default prov-foto-dinner">
+                                        <img  src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                    </div>
+                                {% else %}
+                                    {% for f in p.fotos  %}
+                                        {% if f.isListado %}
+                                            <img class="prov-foto-dinner" src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
 
+                                <div class="logo_tag">
+                                    <img class="img-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+            {% endfor %}
         </div>
 
         <div class="navigation-dinner">

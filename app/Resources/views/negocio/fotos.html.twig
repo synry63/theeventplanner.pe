@@ -47,14 +47,31 @@
     {% endfor %}
 {% endfor %}
 
-<div class="container dashboard">
+<div class="container dashboard negocio_reg register_negocio">
     <div id="select-img" class="col-md-8 col-md-offset-2" >
-        <h2>Subir Nueva foto</h2>
-        {{ form_start(form) }}
-        {{ form_widget(form.imgFile,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Seleccionar Foto'}) }}
-        <div>{{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Subir Foto'}) }}</div>
-        {{ form_end(form) }}
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <i class="fa fa-camera" aria-hidden="true"></i> Subir Nueva Foto
+            </div>
+            <div class="panel-body foto_caja">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                {{ form_widget(form.imgFile,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Seleccionar Foto'}) }}
+                {{ form_errors(form.imgFile) }}
+                <div>
+                    {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Subir Foto'}) }}
+
+                </div>
+                {{ form_end(form) }}
+                <p>Las imagenes deben ser de 750x450px</p>
+            </div>
+        </div>
     </div>
+
+
+
+
 
 
     {% for label, flashes in app.session.flashbag.all %}
@@ -66,6 +83,7 @@
     {% endfor %}
 
     <div class="fotos_galery">
+
         {% for foto in fotos %}
             <div class="col-md-4 gest-img">
                 <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" href="{{ path('negocio_zona_imagenes_delete',{"id":foto.id}) }}">

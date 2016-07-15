@@ -47,7 +47,7 @@
     {% endfor %}
 {% endfor %}
 
-<div class="container dashboard">
+<div class="container-fluid dashboard negocio_reg">
 
     {% for label, flashes in app.session.flashbag.all %}
         {% for flash in flashes %}
@@ -58,73 +58,152 @@
     {% endfor %}
 
 
-    <div class="col-md-6 col-md-offset-3 form-login3">
+    <div class="col-md-10 col-md-offset-1 form-login3">
 
         {{ form_start(form) }}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-check-square" aria-hidden="true"></i> Datos de Acceso
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6">
 
-        <div class="form-group">
-            {{ form_label(form.description,'Descripción') }}
-            {{ form_errors(form.description) }}
-            {{ form_widget(form.description,{ 'attr': {'class': 'form-control','placeholder':'Descripción'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.nombre,'Nombre') }}
-            {{ form_errors(form.nombre) }}
-            {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.direccion,'Dirección') }}
-            {{ form_errors(form.direccion) }}
-            {{ form_widget(form.direccion,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.departamento,'Departamento') }}
-            {{ form_errors(form.departamento) }}
-            {{ form_widget(form.departamento,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.distrito,'Distrito') }}
-            {{ form_errors(form.distrito) }}
-            {{ form_widget(form.distrito,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.telefono,'Teléfono') }}
-            {{ form_errors(form.telefono) }}
-            {{ form_widget(form.telefono,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.email,'Email') }}
-            {{ form_errors(form.email) }}
-            {{ form_widget(form.email,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.username,'Usuario') }}
-            {{ form_errors(form.username) }}
-            {{ form_widget(form.username,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group check-boxs">
-            {% for name, choices in form.categoriasListado.vars.choices %}
-                <div class="col-md-6 ">
-                    <ul>
-                        <li class="checkbox_category">
-                            <input type="checkbox" class="checkallsub" /> {{ name }}
-                        </li>
+                    <div class="form-group">
+                        {{ form_label(form.username,'Usuario') }}
+                        {{ form_errors(form.username) }}
+                        {{ form_widget(form.username,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p>El usuario debe tener al menos 6 caracteres, la contraseña al menos 4 caracteres y considera las mayúsculas y minúsculas.</p>
+                </div>
+            </div>
 
-                        {% for key,choice in choices %}
-                            <li class="indent">
-                                {{ form_errors(form.categoriasListado[key]) }}
-                                {{ form_widget(form.categoriasListado[key]) }}
-                                {{ form_label(form.categoriasListado[key]) }}
-                            </li>
-                        {% endfor %}
+        </div>
 
-                    </ul>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-briefcase" aria-hidden="true"></i> Datos de Empresa
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.description,'Descripción') }}
+                        {{ form_errors(form.description) }}
+                        {{ form_widget(form.description,{ 'attr': {'class': 'form-control','placeholder':'Descripción'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.nombre,'Nombre') }}
+                        {{ form_errors(form.nombre) }}
+                        {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.email,'Email') }}
+                        {{ form_errors(form.email) }}
+                        {{ form_widget(form.email,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.direccion,'Dirección') }}
+                        {{ form_errors(form.direccion) }}
+                        {{ form_widget(form.direccion,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.departamento,'Departamento') }}
+                        {{ form_errors(form.departamento) }}
+                        {{ form_widget(form.departamento,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.distrito,'Distrito') }}
+                        {{ form_errors(form.distrito) }}
+                        {{ form_widget(form.distrito,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.telefono,'Teléfono') }}
+                        {{ form_errors(form.telefono) }}
+                        {{ form_widget(form.telefono,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p>Los datos de la empresa son de gran importacia mantenganlos actualizados.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-users" aria-hidden="true"></i> Datos Sociales
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.web,'Web') }}
+                        {{ form_errors(form.web) }}
+                        {{ form_widget(form.web,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.facebookLink,'Facebook Link') }}
+                        {{ form_errors(form.facebookLink) }}
+                        {{ form_widget(form.facebookLink,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.twitterLink,'Twitter Link') }}
+                        {{ form_errors(form.twitterLink) }}
+                        {{ form_widget(form.twitterLink,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.pinteresLink,'Pinterest Link') }}
+                        {{ form_errors(form.pinteresLink) }}
+                        {{ form_widget(form.pinteresLink,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.instagramLink,'Instagram Link') }}
+                        {{ form_errors(form.instagramLink) }}
+                        {{ form_widget(form.instagramLink,{ 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Ingrese sus datos sociales para ser contactados por sus clientes.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-briefcase" aria-hidden="true"></i> Rubro de Actividad
+            </div>
+            <div class="panel-body">
+                <div class="form-group check-boxs">
+                    {% for name, choices in form.categoriasListado.vars.choices %}
+                        <div class="col-md-3 ">
+                            <ul>
+                                <li class="checkbox_category">
+                                    <input type="checkbox" class="checkallsub" /> {{ name }}
+                                </li>
+
+                                {% for key,choice in choices %}
+                                    <li class="indent">
+                                        {{ form_errors(form.categoriasListado[key]) }}
+                                        {{ form_widget(form.categoriasListado[key]) }}
+                                        {{ form_label(form.categoriasListado[key]) }}
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+
+                    {% endfor %}
                 </div>
 
-            {% endfor %}
+            </div>
+
         </div>
+
+
         <div class="form-group">
-            {{ form_widget(form.Update,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+            {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
         </div>
 
         {{ form_end(form) }}

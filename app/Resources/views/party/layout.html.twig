@@ -96,10 +96,12 @@
 
         </div>
     {% else %}
-        <ul class="party-login nav navbar-nav navbar-right">
+        {#
+        <ul class="wedding-login nav navbar-nav navbar-right">
             <li><a href="{{ path('fos_user_security_login') }}" class="ajax-popup-link">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
             <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
         </ul>
+        #}
 
     {% endif %}
 {% endblock user_login %}

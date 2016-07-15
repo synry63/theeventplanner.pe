@@ -108,10 +108,13 @@
 
                                 </div>
                             {% else %}
+                                {#
                                 <ul class="principal nav navbar-nav navbar-right">
                                     <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
                                     <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
                                 </ul>
+                                #}
+
                             {% endif %}
                         {% endblock user_login %}
                     </div>
@@ -124,6 +127,18 @@
                     <i class="fa fa-briefcase" aria-hidden="true"></i>&nbsp Área Empresas
                 </a>
             </div>
+
+
+        {% if app.user is not null %}
+
+        {% else %}
+            <div class="boton-session">
+                <a href="{{ path('fos_user_security_login') }}" class="ajax-popup-link">
+                    <i class="fa fa-user" aria-hidden="true"></i> Iniciar Sesión
+                </a>
+            </div>
+        {% endif %}
+
 
     {% endblock content %}
 

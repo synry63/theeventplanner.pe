@@ -39,7 +39,7 @@
 
 
         <div class="proveedores2 row">
-
+            {#
             {% for p in proveedores %}
                     <div class="col-sm-6 col-md-4 detail-prov">
                         <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
@@ -69,8 +69,9 @@
                         </a>
                     </div>
             {% endfor %}
+            #}
 
-            {#
+
             {% for p in proveedores %}
 
                     <div class="col-sm-6 col-md-4">
@@ -98,7 +99,7 @@
                                                 <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
                                             </div>
                                         {% endif %}
-                                        <img src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                        <img width="60%" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
                                     </div>
                                 </div>
                                 <div class="caption">
@@ -108,7 +109,7 @@
                         </a>
                     </div>
             {% endfor %}
-            #}
+
 
         </div>
 

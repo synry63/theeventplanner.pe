@@ -47,37 +47,35 @@
     {% endfor %}
 {% endfor %}
 
-<div class="container dashboard">
+<div class="container dashboard negocio_reg">
     <div id="select-img" class="col-md-8 col-md-offset-2" >
-        <h2>Cambiar Logo</h2>
-        {% for label, flashes in app.session.flashbag.all %}
-            {% for flash in flashes %}
-                <div class="alert alert-{{ label }}">
-                    {{ flash }}
-                </div>
-            {% endfor %}
-        {% endfor %}
+        <div class="panel panel-default">
 
-        <img src="{{ vich_uploader_asset(logo, 'logoFile','AppBundle\\Entity\\Logo') }}" />
+            <div class="panel-heading">
+                <i class="fa fa-picture-o" aria-hidden="true"></i> Cambiar Logo
+            </div>
+            <div class="panel-body">
+                <img width="30%" style="margin-bottom: 10px" src="{{ vich_uploader_asset(logo, 'logoFile','AppBundle\\Entity\\Logo') }}" />
+                <br>
+                {% for label, flashes in app.session.flashbag.all %}
+                    {% for flash in flashes %}
+                        <div class="alert alert-{{ label }}">
+                            {{ flash }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-        {{ form_start(form) }}
+                {{ form_widget(form.logoFile,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Seleccionar Foto'}) }}
+                {{ form_errors(form.logoFile) }}
 
-        {{ form_widget(form.logoFile,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Seleccionar Foto'}) }}
-        {{ form_errors(form.logoFile) }}
+                <div>{{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Subir Foto'}) }}</div>
 
-        <div>{{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Subir Foto'}) }}</div>
-
-        {{ form_end(form) }}
-
-
-
+                {{ form_end(form) }}
+            </div>
+        </div>
 
     </div>
-
-
-
-
-
 </div>
 
 
