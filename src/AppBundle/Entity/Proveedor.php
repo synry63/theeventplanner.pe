@@ -36,13 +36,13 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
+     *
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
-     * @Assert\NotBlank()
+     *
      */
     private $username;
 
@@ -58,13 +58,13 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
-     * @Assert\NotBlank()
+     *
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank()
+     *
      */
     private $telefono;
 
@@ -100,19 +100,19 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     private $instagramLink;
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     *
      */
     private $direccion;
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank()
+     *
      */
     private $departamento;
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank()
+     *
      */
     private $distrito;
 
@@ -213,7 +213,7 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="text",nullable=true)
-     * @Assert\NotBlank()
+     *
      */
     private $description;
 

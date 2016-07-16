@@ -56,6 +56,23 @@ class FotoController extends Controller
         );
     }
     /**
+     * @Route("/negocio/zona/imagenes/update/listado/{id}", name="negocio_zona_imagen_listado",requirements={
+     *     "id": "\d+"
+     * })
+     */
+    public function zonaImagenesUpdateListadoAction(Request $request,$id){
+
+        $foto = $this->getDoctrine()->getRepository('AppBundle:Foto')->find($id);
+        if($foto!=null){
+            $foto->setIsListado(true);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($foto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Foto de listado actualizado !');
+            return $this->redirectToRoute('negocio_zona_imagenes');
+        }
+    }
+    /**
      * @Route("/negocio/zona/imagenes/delete/{id}", name="negocio_zona_imagenes_delete",requirements={
      *     "id": "\d+"
      * })
@@ -68,7 +85,7 @@ class FotoController extends Controller
         if($foto!=null){
             $em->remove($foto);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('success', 'Your deleted an image !');
+            $request->getSession()->getFlashBag()->add('success', 'Foto suprimida !');
             return $this->redirectToRoute('negocio_zona_imagenes');
         }
 

@@ -156,7 +156,7 @@ class ProveedorController extends Controller
             $em->persist($proveedor);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Your password had change !');
+            $request->getSession()->getFlashBag()->add('success', 'Contraseña actualizada !');
 
             return $this->redirectToRoute('negocio_zona_password');
         }
@@ -214,7 +214,7 @@ class ProveedorController extends Controller
             $em->persist($proveedor);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Your data had change !');
+            $request->getSession()->getFlashBag()->add('success', 'Datos actualizados !');
 
             return $this->redirectToRoute('negocio_zona_perfil');
         }

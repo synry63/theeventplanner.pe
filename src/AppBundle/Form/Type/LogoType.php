@@ -25,11 +25,22 @@ class LogoType extends AbstractType
     {
         $builder->add('logoFile', 'file',array(
             'constraints' => array(
-                new NotBlank(array('message' => 'File should not be blank.')),
+                new NotBlank(),
+                new Image(array(
+                    'maxSize'       => '50K',
+                    /*'maxWidth'=>250,
+                    'maxHeight'=>250,*/
+                    'minWidth'=>200,
+                    'minHeight'=>200,
+                    'allowLandscape'=>false,
+                    'allowSquare'=>true,
+                    'allowPortrait'=>false,
+                    'mimeTypes'=>array('image/jpeg')
+                ))
 
             ),
         ));
-        $builder->add('change logo', SubmitType::class);
+        $builder->add('submit', SubmitType::class);
     }
     public function configureOptions(OptionsResolver $resolver)
     {

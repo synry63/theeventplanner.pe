@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Image;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,7 +26,18 @@ class ProveedorChangeLogoType extends AbstractType
     {
         $builder->add('logoFile', 'file',array(
             'constraints' => array(
-                new NotBlank(array('message' => 'File should not be blank.')),
+                new NotBlank(),
+                new Image(array(
+                    'maxSize'       => '50K',
+                    /*'maxWidth'=>250,
+                    'maxHeight'=>250,*/
+                    'minWidth'=>200,
+                    'minHeight'=>200,
+                    'allowLandscape'=>false,
+                    'allowSquare'=>true,
+                    'allowPortrait'=>false,
+                    'mimeTypes'=>array('image/jpeg')
+                ))
 
             ),
         ));

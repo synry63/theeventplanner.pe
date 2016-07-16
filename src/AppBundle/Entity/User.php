@@ -55,9 +55,9 @@ class User extends BaseUser
     protected $apellidos;
 
     /**
-     * @ORM\Column(type="string", length=8)
+     * @ORM\Column(type="string",nullable=true, length=8)
      *
-     * @Assert\NotBlank(message="Ingrese su DNI", groups={"Registration", "Profile"})
+     *
      * @Assert\Length(
      *     min=8,
      *     max=8,
@@ -67,6 +67,11 @@ class User extends BaseUser
      * )
      */
     protected $dni;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=10)
+     *
+    */
+    protected $telefono;
 
     /**
      * @ORM\OneToMany(targetEntity="ComentarioProveedor", mappedBy="user")
@@ -103,6 +108,22 @@ class User extends BaseUser
     public function setProfile($profile)
     {
         $this->profile = $profile;
+    }
+
+    /**
+     * @param mixed $telefono
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
     }
 
     /**

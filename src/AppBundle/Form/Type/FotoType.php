@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FotoType extends AbstractType
@@ -25,7 +26,15 @@ class FotoType extends AbstractType
     {
         $builder->add('imgFile', 'file',array(
             'constraints' => array(
-                new NotBlank(array('message' => 'File should not be blank.')),
+                new NotBlank(),
+                new Image(array(
+                    'maxSize'       => '250ki',
+                    'maxWidth'=>750,
+                    'maxHeight'=>450,
+                    'minWidth'=>750,
+                    'minHeight'=>450,
+                    'mimeTypes'=>array('image/jpeg')
+                ))
 
             ),
         ));

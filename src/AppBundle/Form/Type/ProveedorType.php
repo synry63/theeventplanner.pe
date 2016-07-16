@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -29,26 +30,66 @@ class ProveedorType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('description');
-        $builder->add('nombre');
-        $builder->add('direccion');
-        $builder->add('departamento');
-        $builder->add('distrito');
-        $builder->add('telefono');
+        $builder->add('description',TextareaType::class,array(
+            'constraints' => array(
+                new NotBlank(),
+
+            ),
+        ));
+        $builder->add('nombre',TextType::class,array(
+            'constraints' => array(
+                new NotBlank(),
+
+            )
+        ));
+        $builder->add('direccion',TextType::class,array(
+            'constraints' => array(
+                new NotBlank(),
+
+            )
+        ));
+        $builder->add('departamento',TextType::class,array(
+            'constraints' => array(
+                new NotBlank(),
+
+            )
+        ));
+        $builder->add('distrito',TextType::class,array(
+            'constraints' => array(
+                new NotBlank(),
+
+            )
+        ));
+        $builder->add('telefono',TextType::class,array(
+            'constraints' => array(
+                new NotBlank(),
+
+            )
+        ));
         $builder->add('web');
         $builder->add('facebookLink');
         $builder->add('twitterLink');
         $builder->add('pinteresLink');
         $builder->add('instagramLink');
-        $builder->add('email', EmailType::class);
-        $builder->add('username', TextType::class);
+        $builder->add('email', EmailType::class,array(
+            'constraints' => array(
+                new NotBlank(),
+
+            )
+        ));
+        $builder->add('username', TextType::class,array(
+            'constraints' => array(
+                new NotBlank(),
+
+            )
+        ));
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
             'invalid_message' => 'The password fields must match.',
             'first_options'  => array('label' => 'Password'),
             'second_options' => array('label' => 'Repeat Password'),
             'constraints' => array(
-                new NotBlank(array('message' => 'Password should not be blank.')),
+                new NotBlank(),
 
             ),
         ));
@@ -89,13 +130,16 @@ class ProveedorType extends AbstractType
         //$builder->add('logo', LogoType::class);
         $builder->add('tempFile', 'file',array(
             'constraints' => array(
-                new NotBlank(array('message' => 'File should not be blank.')),
+                new NotBlank(),
                 new Image(array(
                     'maxSize'       => '50K',
-                    'maxWidth'=>250,
-                    'maxHeight'=>250,
-                    'minWidth'=>250,
-                    'minWidth'=>250,
+                    /*'maxWidth'=>250,
+                    'maxHeight'=>250,*/
+                    'minWidth'=>200,
+                    'minHeight'=>200,
+                    'allowLandscape'=>false,
+                    'allowSquare'=>true,
+                    'allowPortrait'=>false,
                     'mimeTypes'=>array('image/jpeg')
                 ))
 

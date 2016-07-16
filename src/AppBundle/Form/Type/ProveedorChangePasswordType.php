@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,9 +25,13 @@ class ProveedorChangePasswordType extends AbstractType
     {
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
-            'invalid_message' => 'The password fields must match.',
+            'invalid_message' => 'Los campos de contraseña deben coincidir.',
             'first_options'  => array('label' => 'Password'),
             'second_options' => array('label' => 'Repeat Password'),
+            'constraints' => array(
+                new NotBlank(array('message' => 'La contraseña no debe estar en blanco.')),
+
+            ),
         ));
 
         $builder->add('submit', SubmitType::class);
