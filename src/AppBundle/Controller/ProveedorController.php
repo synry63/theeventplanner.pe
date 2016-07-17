@@ -34,6 +34,7 @@ use Ivory\GoogleMap\Places\Autocomplete;
 use Ivory\GoogleMap\Places\AutocompleteComponentRestriction;
 use Ivory\GoogleMap\Places\AutocompleteType;
 use Ivory\GoogleMap\Helper\Places\AutocompleteHelper;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 
 class ProveedorController extends Controller
@@ -253,12 +254,12 @@ class ProveedorController extends Controller
      * @Route("/negocio/registrar/validacion", name="register_validacion_negocio")
      */
     public function registerValidAction(Request $request){
-        //$proveedor = $this->get('security.token_storage')->getToken()->getUser();
-        //if(is_object($proveedor)){
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
+        if(is_object($proveedor)){
             return $this->render(
                 'negocio_confirmation.html.twig'
             );
-        //}
+        }
     }
     /**
      * @Route("/negocio/registrar", name="register_negocio_start")
@@ -314,6 +315,7 @@ class ProveedorController extends Controller
             $logo->setProveedor($proveedor);
             $proveedor->setLogo($logo);
 
+
             //$logo = $proveedor->getLogo();
             //$logo->setProveedor($proveedor);
 
@@ -338,6 +340,9 @@ class ProveedorController extends Controller
 
             $em->flush();
 
+            // authenticate your user right now
+            $this->authenticateUser($proveedor);
+
             return $this->redirectToRoute('register_validacion_negocio');
         }
 
@@ -349,6 +354,14 @@ class ProveedorController extends Controller
             )
         );
     }
+
+    private function authenticateUser($user)
+    {
+        $providerKey = 'main_proveedor'; // your firewall name
+        $token = new UsernamePasswordToken($user, null, $providerKey, $user->getRoles());
+        $this->container->get('security.context')->setToken($token);
+    }
+
     /**
      * @Route("/{slug_site}/proveedores/{slug_category}/{page}",name="proveedores_category", defaults={"page" = 1},requirements={
      *     "page": "\d+",
@@ -361,7 +374,7 @@ class ProveedorController extends Controller
 
 
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_category));
-        $main_categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
+        //$main_categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
         $proveedores_category_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByCategory($categoria);
 
         $children_categories =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_category);

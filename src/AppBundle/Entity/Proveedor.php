@@ -22,8 +22,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProveedorRepository")
  * @Vich\Uploadable
  * @ORM\Table(name="proveedores")
- * @UniqueEntity(fields="email", message="Email already taken")
- * @UniqueEntity(fields="username", message="Username already taken")
+ * @UniqueEntity(fields="email", message="El correo electrónico fue tomada")
+ * @UniqueEntity(fields="username", message="El usuario ya fue tomado")
  */
 class Proveedor implements AdvancedUserInterface, \Serializable
 {

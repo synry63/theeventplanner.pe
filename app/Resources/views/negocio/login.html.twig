@@ -13,22 +13,20 @@
 
 
 
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
-
-
 <body class="pic_foto">
 <div class="container-fluid" style="margin-top: 10%">
     <div class="row">
         <div class="col-md-3 negocio-form">
 
-            <div class="col-md-12 register-logo">
+            <div class="register-logo">
                 <img src="{{ asset('images/register_logo.png') }}" alt="">
             </div>
             <form novalidate action="{{ path('login_negocio') }}" method="post">
-
-
+                {% if error %}
+                    <div class="alert alert-danger" role="alert" style="margin-bottom: 0px">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    </div>
+                {% endif %}
                 <div class="form-group">
                     <label for="username">Usuario:</label>
                     <input type="text" class="form-control" id="username" placeholder="Usuario" name="_username" value="{{ last_username }}" />

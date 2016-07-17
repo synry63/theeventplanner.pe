@@ -88,14 +88,28 @@ class ProveedorRepository extends EntityRepository
     public function getProveedoresByCategory($cate){
 
 
-        $qb = $this->createQueryBuilder('p')
+        /*$qb = $this->createQueryBuilder('p')
             ->join('p.categoriasListado','cl')
             ->where('cl = :cate')
             ->andWhere('p.isActive = :state')
             ->setParameters(array(
                 'cate' => $cate,
                 'state'=>true
+            ));*/
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('p as proveedor,avg(cp.nota) as mymoy')
+            ->from('AppBundle\Entity\Proveedor', 'p')
+            ->join('p.categoriasListado','cl')
+            ->leftJoin('p.comentariosProveedor','cp')
+            ->where('cl = :cate')
+            ->andWhere('p.isActive = :state')
+            ->setParameters(array(
+                'cate' => $cate,
+                'state'=>true
             ));
+        $qb->addGroupBy('p');
+        $qb->addGroupBy('cp');
         $query = $qb->getQuery();
 
 

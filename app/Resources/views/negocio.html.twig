@@ -22,6 +22,7 @@
     <div class="col-md-10 col-md-offset-1">
 
         {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-check-square" aria-hidden="true"></i> Datos de Acceso
@@ -215,6 +216,11 @@
                 <i class="fa fa-briefcase" aria-hidden="true"></i> Rubro de Actividad
             </div>
             <div class="panel-body">
+                {% if form.categoriasListado.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.categoriasListado) }}</div>
+                    </div>
+                {% endif %}
                 <div class="form-group check-boxs">
                     {% for name, choices in form.categoriasListado.vars.choices %}
                         <div class="col-md-3">

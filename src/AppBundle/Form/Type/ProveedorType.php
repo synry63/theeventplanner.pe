@@ -83,11 +83,13 @@ class ProveedorType extends AbstractType
 
             )
         ));
+
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
-            'invalid_message' => 'The password fields must match.',
+            'invalid_message' => 'Los campos de contraseña deben coincidir.',
             'first_options'  => array('label' => 'Password'),
             'second_options' => array('label' => 'Repeat Password'),
+            'options' => array('always_empty' =>false),
             'constraints' => array(
                 new NotBlank(),
 
@@ -132,7 +134,7 @@ class ProveedorType extends AbstractType
             'constraints' => array(
                 new NotBlank(),
                 new Image(array(
-                    'maxSize'       => '50K',
+                    'maxSize'       => '50ki',
                     /*'maxWidth'=>250,
                     'maxHeight'=>250,*/
                     'minWidth'=>200,
