@@ -34,10 +34,14 @@ class FotoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             // 4) save the Foto !
             $foto->setProveedor($proveedor);
-            $foto->setIsListado(false);
+            if(count($fotos)==0){
+                $foto->setIsListado(true);
+            }
+            else{
+                $foto->setIsListado(false);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($foto);
             $em->flush();
@@ -61,11 +65,18 @@ class FotoController extends Controller
      * })
      */
     public function zonaImagenesUpdateListadoAction(Request $request,$id){
-
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
         $foto = $this->getDoctrine()->getRepository('AppBundle:Foto')->find($id);
         if($foto!=null){
-            $foto->setIsListado(true);
             $em = $this->getDoctrine()->getManager();
+            $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->findBy(
+                array('proveedor'=>$proveedor)
+            );
+            foreach ($fotos as $f) {
+                $f->setIsListado(false);
+                $em->persist($f);
+            }
+            $foto->setIsListado(true);
             $em->persist($foto);
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'Foto de listado actualizado !');

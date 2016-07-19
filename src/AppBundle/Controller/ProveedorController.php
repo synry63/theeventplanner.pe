@@ -504,6 +504,18 @@ class ProveedorController extends Controller
         }
     }
     /**
+     * @Route("/negocio/zona/preview", name="negocio_zona_preview")
+     */
+    public function proveedorPreviewAction(Request $request){
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
+        return $this->render(
+            'negocio/temp.html.twig',array(
+                'proveedor'=>$proveedor,
+            )
+        );
+
+    }
+    /**
      * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/gusta", name="proveedor_me_gusta",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
      * })

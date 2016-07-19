@@ -123,6 +123,10 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [188, 113], mode: inset }
+        thumb_proveedor:
+            quality: 75
+            filters:
+                thumbnail: { size: [352, 211], mode: outbound }
 knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:foundation_v5_pagination.html.twig     # sliding pagination controls template

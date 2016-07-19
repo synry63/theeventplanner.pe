@@ -79,11 +79,24 @@ class UserController extends Controller
     public function userFavoritosProveedoresShowAction(){
 
         $user = $this->container->get('security.context')->getToken()->getUser();
+        $proveedores_w = array();
         $proveedores = $this->getDoctrine()->getRepository('AppBundle:UserProveedorGusta')
             ->findBy(
                 array('user'=>$user),
                 array('updatedAt'=>'DESC')
             );
+        /*foreach ($proveedores as $p){
+            foreach($p->getCategoriasListado() as $c){
+                //$c_p = $c->getParent();
+                if($c->getParent()!=NULL){
+                    $c_p = $c->getParent();
+                    if($c_p->slug=='wedding'){
+                        $proveedores_w[] = $p;
+                    }
+                }
+            }
+        }*/
+
         return $this->render(
             'FOSUserBundle:Profile:show_proveedores_favoritos.html.twig',
             array(
