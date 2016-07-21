@@ -64,7 +64,7 @@ GLOBAL
 ===============*/
 .img-default{
     width: 360px;
-    height: 220px;
+    height: 211px;
     background: rgba(0,0,0,.2);
     display: inline-block;
     text-align: center;
@@ -218,7 +218,6 @@ GLOBAL
 
 .slick_wedding div img{
     width: 100%;
-    margin: 0 5px;
 }
 
 .proveedores a{
@@ -561,7 +560,9 @@ GLOBAL
     box-shadow: 0 0 5px rgba(0,0,0,.4);
 }
 
-
+.title-heading{
+    margin-bottom: 35px;
+}
 
 .slick-prev::before {
     font-family: "flexslider-icon";
@@ -636,9 +637,7 @@ GLOBAL
     position: relative;
     text-align: center;
 }
-.front img{
-    width: 100%;
-}
+
 .logo-circle{
     display:none;
 }
@@ -817,6 +816,13 @@ Profile
     position: relative;
     padding:20px;
 }
+.profile-content h1{
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 .user_show{
     padding: 10px;
     width: 250px;
@@ -932,7 +938,193 @@ Votos GRID
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+/*=============
+ WEDDING
+===============*/
+.music-container iframe{
+    border: solid 5px #35B3B4;
+    padding: 3px;
+}
+.form-wedding-contactenos label{
+    color: #35B3B4;
+}
+.boton-megusta{
+    padding: 0 10px;
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.1);
+}
+.boton-megusta a{
+    color: #35B3B4;
+    font-size: 30px;
+}
+.cotizacion-form-weddings{
+    background: #fff;
+    padding:30px;
+    padding-bottom: 6px;
+}
+.cotizacion-form-weddings h1{
+    font-size: 25px;
+    text-align: center;
+    color: #35b3b4;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+.cotizacion-form-weddings .btn-wedding-entrar{
+    border-radius: 0;
+    width: 100%;
+}
+.cotizacion-form-weddings label{
+    color:#35b3b4;
+}
+.register_wedding_page{
+    font-family: 'Lato', sans-serif;
+    -webkit-animation-name: test;
+    -webkit-animation-duration:20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+}
 
+@-webkit-keyframes test {
+    0% {
+        background:  url("../images/dinner_register.jpg") center/cover no-repeat;
+    }
+    30% {
+        background: url("../images/register_weeding_body.jpg") center/cover no-repeat;
+    }
+    40% {
+        background:url("../images/partyg_register.jpg") center/cover no-repeat;
+    }
+    70% {
+        background: url("../images/party_register.jpg") center/cover no-repeat;
+    }
+    100% {
+        background:  url("../images/dinner_register.jpg") center/cover no-repeat;
+    }
+}
+
+.register-after-background{
+    background: url("../images/crossword.png") ;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.facebook_button{
+    position: absolute;
+    top: 50%;
+    left: 20%;
+}
+.facebook_button button{
+    padding: 12px;
+    padding-left: 40px;
+}
+.facebook_button button i{
+    font-size: 25px;
+    position: absolute;
+    left: 17px;
+}
+
+.facebook_button2{
+    display: none;
+}
+
+.lweddings a, .sweddings a{
+    color: #35b3b4;
+}
+
+
+.btn-coti{
+    margin: 10px 0;
+    font-style: normal;
+    margin-bottom: 10px;
+}
+.btn-wedding-entrar, .btn-coti{
+    border-radius: 0;
+    background:#35b3b4;
+    color: #fff;
+    height: 36px;
+}
+.form-wedding-login{
+    margin-bottom: 20px;
+    padding: 15px;
+}
+.form-wedding-login label{
+    color:#35b3b4;
+}
+
+.wedding-login li a{
+    padding: 10px;
+    color: #35b3b4;
+}
+/* toto */
+.wedding-login{
+    width: 80px;
+    text-align: center;
+    margin: 14px auto;
+}
+
+.wedding-login li{
+    width: 100%;
+}
+
+/* fin toto */
+.wedding .footer li a:hover{
+    color: #35b3b4;
+}
+.proveedores .thumbnail{
+    border: none;
+    position: relative;
+    box-shadow: none;
+    border-bottom: solid 3px #00B3C7;
+}
+
+.proveedores2 .thumbnail{
+    border: none;
+    /*height:360px;*/
+    height: 250px;
+    margin: 20px 0;
+    position: relative;
+    box-shadow: none;
+    border-bottom: solid 3px #00B3C7;
+}
+.proveedores2 .thumbnail .caption{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.btn-tittle{
+    width: 200px;
+    background: none;
+    color: rgba(0,0,0,.5);
+    border: solid 2px #35b3b4;
+    border-radius: 0;
+}
+.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle){
+    border-radius: 0 10px 10px 0;
+}
+.btn-flecha{
+    background: #35b3b4;
+    border: solid 5px #35b3b4;
+    border-radius: 0 10px 10px 0;
+}
+
+.wedding_proveedores{
+    box-sizing: border-box;
+    margin: 5px;
+    text-align: center;
+    border-bottom:solid 3px #35b3b4;
+}
+.wedding_proveedores a{
+    text-decoration: none;
+}
+.wedding_proveedores h1{
+    text-align: center;
+    font-size: 15px;
+    font-family: "OpenSans-Light", serif;
+}
 
 /*=============
 KIDS
@@ -1343,193 +1535,7 @@ CONTACTENOS
     background: rgba(255,255,255,.4);
 }
 
-/*=============
- WEDDING
-===============*/
-.music-container iframe{
-    border: solid 5px #35B3B4;
-    padding: 3px;
-}
-.form-wedding-contactenos label{
-    color: #35B3B4;
-}
-.boton-megusta{
-    padding: 0 10px;
-    position: absolute;
-    z-index: 2;
-    bottom: 10px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,.1);
-}
-.boton-megusta a{
-    color: #35B3B4;
-    font-size: 30px;
-}
-.cotizacion-form-weddings{
-    background: #fff;
-    padding:30px;
-    padding-bottom: 6px;
-}
-.cotizacion-form-weddings h1{
-    font-size: 25px;
-    text-align: center;
-    color: #35b3b4;
-    font-weight: bold;
-    margin: 0 0 15px 0;
-}
-.cotizacion-form-weddings .btn-wedding-entrar{
-    border-radius: 0;
-    width: 100%;
-}
-.cotizacion-form-weddings label{
-    color:#35b3b4;
-}
-.register_wedding_page{
-    font-family: 'Lato', sans-serif;
-    -webkit-animation-name: test;
-    -webkit-animation-duration:20s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease;
-    animation-fill-mode: both;
-}
 
-@-webkit-keyframes test {
-    0% {
-        background:  url("../images/dinner_register.jpg") center/cover no-repeat;
-    }
-    30% {
-        background: url("../images/register_weeding_body.jpg") center/cover no-repeat;
-    }
-    40% {
-        background:url("../images/partyg_register.jpg") center/cover no-repeat;
-    }
-    70% {
-        background: url("../images/party_register.jpg") center/cover no-repeat;
-    }
-    100% {
-        background:  url("../images/dinner_register.jpg") center/cover no-repeat;
-    }
-}
-
-.register-after-background{
-    background: url("../images/crossword.png") ;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-.facebook_button{
-    position: absolute;
-    top: 50%;
-    left: 20%;
-}
-.facebook_button button{
-    padding: 12px;
-    padding-left: 40px;
-}
-.facebook_button button i{
-    font-size: 25px;
-    position: absolute;
-    left: 17px;
-}
-
-.facebook_button2{
-    display: none;
-}
-
-.lweddings a, .sweddings a{
-    color: #35b3b4;
-}
-
-
-.btn-coti{
-    margin: 10px 0;
-    font-style: normal;
-    margin-bottom: 10px;
-}
-.btn-wedding-entrar, .btn-coti{
-    border-radius: 0;
-    background:#35b3b4;
-    color: #fff;
-    height: 36px;
-}
-.form-wedding-login{
-    margin-bottom: 20px;
-    padding: 15px;
-}
-.form-wedding-login label{
-    color:#35b3b4;
-}
-
-.wedding-login li a{
-    padding: 10px;
-    color: #35b3b4;
-}
-/* toto */
-.wedding-login{
-    width: 80px;
-    text-align: center;
-    margin: 14px auto;
-}
-
-.wedding-login li{
-    width: 100%;
-}
-
-/* fin toto */
-.wedding .footer li a:hover{
-    color: #35b3b4;
-}
-.proveedores .thumbnail{
-     border: none;
-     position: relative;
-     box-shadow: none;
-     border-bottom: solid 3px #00B3C7;
- }
-
-.proveedores2 .thumbnail{
-    border: none;
-    /*height:360px;*/
-    height: 250px;
-    margin: 20px 0;
-    position: relative;
-    box-shadow: none;
-    border-bottom: solid 3px #00B3C7;
-}
-.proveedores2 .thumbnail .caption{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-.btn-tittle{
-    width: 200px;
-    background: none;
-    color: rgba(0,0,0,.5);
-    border: solid 2px #35b3b4;
-    border-radius: 0;
-}
-.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle){
-    border-radius: 0 10px 10px 0;
-}
-.btn-flecha{
-    background: #35b3b4;
-    border: solid 5px #35b3b4;
-    border-radius: 0 10px 10px 0;
-}
-
-.wedding_proveedores{
-    box-sizing: border-box;
-    margin: 5px;
-    text-align: center;
-    border-bottom:solid 3px #35b3b4;
-}
-.wedding_proveedores a{
-    text-decoration: none;
-}
-.wedding_proveedores h1{
-    text-align: center;
-    font-size: 15px;
-    font-family: "OpenSans-Light", serif;
-}
 /*=============
 DINNER
 ===============*/
@@ -1713,7 +1719,7 @@ Zona de Negocio
     background: #fff;
     padding: 30px 15px;
     margin-left: 155px;
-    max-width: 318px;
+    max-width: 390px;
     box-shadow: 0 0 10px rgba(0,0,0,.5);
 }
 .frase-negocio{
@@ -1874,7 +1880,7 @@ Zona de Negocio
     width: 100%;
     height: 100%;
 }
-.gest-img a{
+.gest-img a:first-child{
     position: absolute;
     top: 25px;
     right: 45px;
@@ -1882,18 +1888,60 @@ Zona de Negocio
     color: #fff;
     transition: all .5s;
     text-shadow: 2px 2px 5px #000;
+    text-decoration: none;
+}
+.gest-img a:first-child:hover{
+    transform: scale(1.5);
+}
+
+.gest-img .imager{
+    position: absolute;
+    bottom: 109px;
+    right: 192px;
+    font-size: 24px;
+    color: #fff;
+    transition: all .5s;
+    text-shadow: 2px 2px 5px #000;
+    text-decoration: none;
+}
+
+.gest-img .imager:hover{
+    transform: scale(1.5);
+}
+
+.gest-img .imager p{
+    font-size: 12px;
+    position: absolute;
+    width: 170px;
+    right: -75px;
+    opacity: 0;
+    transition: all .5s;
+}
+
+.gest-img .imager:hover p{
+    opacity: 1;
+}
+.gest-img .imagertrue{
+    position: absolute;
+    bottom: 73px;
+    right: 77px;
+    font-size: 24px;
+    color: #fff;
+    transition: all .5s;
+    text-shadow: 2px 2px 5px #000;
+    text-decoration: none;
 }
 
 .gest-img{
     text-align: center;
 }
-.gest-img a:hover{
-    transform: scale(1.5);
 
-}
 .check-boxs{
     width: 100%;
     display: inline-block;
+}
+.check-boxs ul{
+    padding: 0;
 }
 .check-boxs li{
     list-style: none;
@@ -1936,9 +1984,10 @@ Registrar Negocio
     position: absolute;
     left: 50px;
 }
-
-.register_negocio{
+.todo_negocio{
     background: url("../images/crossword.png") ;
+}
+.register_negocio{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1955,7 +2004,7 @@ Registrar Negocio
     text-align: right;
 }
 .negocio_reg .panel-default .panel-body ul li{
-    text-align: center;
+    /*text-align: center;*/
     list-style: none;
 }
 .btn-registro{
@@ -2149,8 +2198,10 @@ MÓVILES PORTAIT
     .frase-negocio{
         margin: 30px 15px;
     }
+
     .pic_foto .negocio-form{
         margin: 10px auto;
+        max-width: 318px;
     }
     .image-contact,.image-contact2,.image-contact3,.image-contact4{
         width: 100%;
