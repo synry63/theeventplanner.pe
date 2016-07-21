@@ -79,12 +79,21 @@ class UserController extends Controller
     public function userFavoritosProveedoresShowAction(){
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $proveedores_w = array();
-        $proveedores = $this->getDoctrine()->getRepository('AppBundle:UserProveedorGusta')
+        /*$proveedores = $this->getDoctrine()->getRepository('AppBundle:UserProveedorGusta')
             ->findBy(
                 array('user'=>$user),
                 array('updatedAt'=>'DESC')
             );
+        */
+        $categoria_wdding = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'wedding'));
+        $categoria_dinner = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'dinner'));
+        $categoria_kids = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'kids'));
+        $categoria_party = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'party'));
+
+        $proveedores_w = $this->getDoctrine()->getRepository('AppBundle:User')->getProveedoresFavotiros($user,$categoria_wdding);
+        $proveedores_d = $this->getDoctrine()->getRepository('AppBundle:User')->getProveedoresFavotiros($user,$categoria_dinner);
+        $proveedores_k = $this->getDoctrine()->getRepository('AppBundle:User')->getProveedoresFavotiros($user,$categoria_kids);
+        $proveedores_p = $this->getDoctrine()->getRepository('AppBundle:User')->getProveedoresFavotiros($user,$categoria_party);
         /*foreach ($proveedores as $p){
             foreach($p->getCategoriasListado() as $c){
                 //$c_p = $c->getParent();
@@ -96,11 +105,13 @@ class UserController extends Controller
                 }
             }
         }*/
-
         return $this->render(
             'FOSUserBundle:Profile:show_proveedores_favoritos.html.twig',
             array(
-                'proveedores_favoritos'=>$proveedores,
+                'proveedores_favoritos_w'=>$proveedores_w,
+                'proveedores_favoritos_d'=>$proveedores_d,
+                'proveedores_favoritos_k'=>$proveedores_k,
+                'proveedores_favoritos_p'=>$proveedores_p,
             )
         );
     }

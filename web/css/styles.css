@@ -1429,6 +1429,14 @@ PARTY
 /*=============
 Profile Change
 ===============*/
+.multiple-items .one-item{
+    width: 150px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.multiple-items .one-item img{
+    width: 100%;
+}
 .change_foto{
     width: 250px;
     margin: 15% auto;
