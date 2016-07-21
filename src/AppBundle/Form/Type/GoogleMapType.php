@@ -27,7 +27,7 @@ class GoogleMapType extends AbstractType
             ->add('ubicacion',HiddenType::class,array(
                 'data' => ' ',
                 'constraints' => array(
-                    new NotBlank(array('message' => 'not blank.')),
+                    new NotBlank(),
                 ),
             ))
             ->add('submit', SubmitType::class)

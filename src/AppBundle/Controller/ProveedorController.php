@@ -34,6 +34,8 @@ use Ivory\GoogleMap\Places\Autocomplete;
 use Ivory\GoogleMap\Places\AutocompleteComponentRestriction;
 use Ivory\GoogleMap\Places\AutocompleteType;
 use Ivory\GoogleMap\Helper\Places\AutocompleteHelper;
+use Ivory\GoogleMap\Overlays\InfoWindow;
+use Ivory\GoogleMap\Events\MouseEvent;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 
@@ -171,13 +173,21 @@ class ProveedorController extends Controller
      * @Route("/negocio/zona/mapa   ", name="negocio_zona_map")
      */
     public function zonaGoogleMapShowAction(Request $request){
-
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
         $form = $this->createForm(new GoogleMapType());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            var_dump($data);
+            $ubicacion = json_decode($data['ubicacion']);
+            $proveedor->setGoogleMapLat($ubicacion->lat);
+            $proveedor->setGoogleMapLng($ubicacion->lng);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($proveedor);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Mapa actualizado !');
+
+            return $this->redirectToRoute('negocio_zona_map');
         }
 
         return $this->render(
@@ -426,6 +436,52 @@ class ProveedorController extends Controller
         );
     }*/
 
+    private function initGoogleMap($proveedor){
+        $map = $this->get('ivory_google_map.map');
+        $map->setLanguage($this->get('request')->getLocale());
+        $map->setCenter($proveedor->getGoogleMapLat(), $proveedor->getGoogleMapLng(), true);
+        $map->setAsync(true);
+        // Sets the zoom
+        $map->setAutoZoom(false);
+        $map->setMapOption('zoom', 16);
+        //$map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
+        $map->setStylesheetOption('width', '100%');
+        $map->setStylesheetOption('height', '300px');
+        $marker = new Marker();
+        $marker->setIcon('https://maps.gstatic.com/mapfiles/ms2/micons/purple-dot.png');
+        // Sets your marker animation
+        //$marker->setAnimation(Animation::DROP);
+
+        //$marker->setAnimation('bounce');
+        $marker->setPosition($proveedor->getGoogleMapLat(), $proveedor->getGoogleMapLng(), true);
+        // Add your marker to the map
+        $map->addMarker($marker);
+
+// Configure your info window options
+
+        $infoWindow = new InfoWindow();
+        $infoWindow->setPrefixJavascriptVariable('info_window_');
+        $infoWindow->setPosition(0, 0, true);
+        $infoWindow->setPixelOffset(1.1, 2.1, 'px', 'pt');
+        $text = $proveedor->getDireccion().'<br/>';
+        $infoWindow->setContent('<p class="info-window">'
+            .$text.'</p>');
+        $infoWindow->setOpen(false);
+        $infoWindow->setAutoOpen(true);
+        $infoWindow->setOpenEvent(MouseEvent::CLICK);
+        $infoWindow->setAutoClose(false);
+        $infoWindow->setOption('disableAutoPan', true);
+        $infoWindow->setOption('zIndex', 10);
+        $infoWindow->setOptions(array(
+            'disableAutoPan' => true,
+            'zIndex'         => 10,
+        ));
+
+        $marker->setInfoWindow($infoWindow);
+
+        return $map;
+    }
+
     /**
      * @Route("/{slug_site}/proveedor/{slug_proveedor}", name="proveedor_detail",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
@@ -438,22 +494,9 @@ class ProveedorController extends Controller
         $moy = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorRating($proveedor);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
 
-
-        $map = $this->get('ivory_google_map.map');
-        $map->setLanguage($this->get('request')->getLocale());
-        $map->setCenter(-12.0552581, -77.080205, true);
-        $map->setMapOption('zoom', 3);
-        $map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
-        $map->setStylesheetOption('width', '100%');
-        $map->setStylesheetOption('height', '300px');
-        $marker = new Marker();
-        // Sets your marker animation
-        $marker->setAnimation(Animation::BOUNCE);
-        $marker->setAnimation('bounce');
-        $marker->setPosition(-12.0552581, -77.080205, true);
-        // Add your marker to the map
-        $map->addMarker($marker);
-
+        if($proveedor->getGoogleMapLat()!=NULL && $proveedor->getGoogleMapLng()!=NULL){
+            $map = $this->initGoogleMap($proveedor);
+        }
         if($moy==NULL) $moy = 0;
 
         $renderOut = array(

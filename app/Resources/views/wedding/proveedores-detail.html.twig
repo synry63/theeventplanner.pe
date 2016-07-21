@@ -145,9 +145,12 @@
                 <!-- Fin Descriptioin Section -->
 
                 <!-- Google Section -->
-                {#
-                {{ google_map(map) }}
-                #}
+
+                {% if map is defined %}
+                    {{ google_map(map) }}
+                {% endif %}
+
+
 
 
                 <!-- Fin Google Section -->

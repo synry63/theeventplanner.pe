@@ -218,10 +218,14 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     private $description;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=255)
+     * @ORM\Column(type="float",nullable=true)
      */
-    private $googlemap;
+    private $googleMapLat;
 
+    /**
+     * @ORM\Column(type="float",nullable=true)
+     */
+    private $googleMapLng;
     /**
      * @ORM\Column(type="string",nullable=true, length=100)
      */
@@ -238,6 +242,40 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     private $fotos;
 
     /**
+     * @param mixed $googleMapLat
+     */
+    public function setGoogleMapLat($googleMapLat)
+    {
+        $this->googleMapLat = $googleMapLat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleMapLat()
+    {
+        return $this->googleMapLat;
+    }
+
+    /**
+     * @param mixed $googleMapLng
+     */
+    public function setGoogleMapLng($googleMapLng)
+    {
+        $this->googleMapLng = $googleMapLng;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleMapLng()
+    {
+        return $this->googleMapLng;
+    }
+
+
+
+    /**
      * @ORM\ManyToMany(targetEntity="CategoriaListado", inversedBy="proveedores")
      * @ORM\JoinTable(name="proveedores_categorias_listado")
      *
@@ -252,6 +290,8 @@ class Proveedor implements AdvancedUserInterface, \Serializable
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+
+
 
     /**
      * @return mixed
@@ -446,25 +486,8 @@ class Proveedor implements AdvancedUserInterface, \Serializable
      */
     public function getEmail()
     {
-        return $this->email;
+       return $this->email;
     }
-
-    /**
-     * @param mixed $googlemap
-     */
-    public function setGooglemap($googlemap)
-    {
-        $this->googlemap = $googlemap;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGooglemap()
-    {
-        return $this->googlemap;
-    }
-
     /**
      * @param mixed $id
      */
