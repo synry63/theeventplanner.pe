@@ -1,4 +1,234 @@
-{{ dump(moy) }}
-{{ dump(favorito_total_usuarios) }}
-{{ dump(mejores_fotos) }}
-{{ dump(comentarios) }}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Preview</title>
+</head>
+
+<body>
+<nav class="navbar navbar-default nav-zonaneg">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" /></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {{ knp_menu_render('AppBundle:Builder:menuNegocio',{ 'template': 'knp_menu.html.twig'}) }}
+            <ul class="nav navbar-nav navbar-right">
+                {% if is_granted('ROLE_USER') %}
+                    <li><a href="{{ path('negocio_logout') }}">Salir</a></li>
+                {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container proveedor-detail-page">
+
+    <div class="row">
+
+        <div class="col-md-4 col-md-push-8 card-prov">
+            <div class="proveedor-fixed">
+                <div class="proveedor-info">
+                    <div class="liston">
+                        <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
+                    </div>
+                    <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
+
+
+                    <div id="rateYo"  data-rating="4"></div>
+
+
+                        <a class="ajax-popup-link" href="#">
+                            <button type="button" class="btn btn-coti">Contactar Empresa</button></a>
+                        <br>
+                        <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
+                        <p>{{ proveedor.telefono }}</p>
+                        <div class="links-proveedores lweddings">
+                            <a href="{{ proveedor.web }}" target="_blank">Página Web</a>
+                        </div>
+
+
+                </div>
+                <div class="proveedor-social sweddings">
+                    <a class="favorite-button ajax-popup-link" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
+
+                    </a>
+
+
+                    <ul>
+                        <li ><a href="{{ proveedor.facebookLink  }}"><img width="50px" src="{{ asset('images/social_facebook.png') }}" alt=""></a></li>
+                        <li ><a href="{{ proveedor.pinteresLink  }}"><img width="50px" src="{{ asset('images/social_pinterest.png') }}" alt=""></a></li>
+                        <li ><a href="{{ proveedor.twitterLink  }}"><img  width="50px"src="{{ asset('images/social_twitter.png') }}" alt=""></a></li>
+                        <li ><a href="{{ proveedor.instagramLink  }}"><img  width="50px" src="{{ asset('images/social_instagram.png') }}" alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-md-pull-4">
+
+            <!-- Slider Section -->
+
+            <div id="slider" class="flexslider">
+                <ul class="slides">
+                    {% for f in proveedor.fotos  %}
+                        <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                            <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div id="carousel" class="flexslider">
+                <ul class="slides flex-control-nav flex-control-thumbs">
+                    {% for f in proveedor.fotos  %}
+                        <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                            <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+
+            <!-- Fin Slider Section -->
+
+
+            <!-- Description Section -->
+
+            <p class="proveedor-content">
+                {{ proveedor.description }}
+            </p>
+
+            <!-- Fin Descriptioin Section -->
+
+            <!-- Google Section -->
+
+
+            {% if map is defined %}
+                {{ google_map(map) }}
+            {% endif %}
+
+
+
+            <!-- Fin Google Section -->
+
+            <!-- Comentarios Section -->
+
+            <div class="comments-box">
+                <h4 class="title-heading">Comentarios <span></span></h4>
+
+
+                <div class="media comment">
+                    <div class="media-left">
+                        <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                    </div>
+                    <div class="media-body">
+
+                        <h5 class="media-heading">
+                            <h3 style="margin-top: 0">Hola</h3>
+                            <div class="rateYo_comments" data-rating="2"></div><span>Jdiaz </span>
+                            <small class="date">15/05/2016</small>
+                        </h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur autem, commodi delectus error, est ipsam iusto molestiae nobis odio quo repudiandae saepe, soluta. Dignissimos expedita hic id quod vel voluptatem.</p>
+                        <div class="col-md-11 respuesta">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A debitis distinctio, eligendi expedita facilis fuga harum impedit libero magnam maxime modi neque numquam omnis placeat quam saepe sed sit, voluptatibus?</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Fin Comentarios Section -->
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap-filestyle.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
+
+
+<script>
+    $("#bs-example-navbar-collapse-1 ul").addClass("nav navbar-nav");
+    $("#select-img input").filestyle('buttonText', 'Seleccionar Foto');
+    $("#select-img input").filestyle('icon', false);
+
+    $("#select-img input").addClass("filestyle");
+    $('.proveedor-fixed').fixTo('body');
+    $('#carousel').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        prevText: "Previous",
+        nextText: "Next",
+        slideshow: false,
+        itemWidth: 210,
+        itemMargin: 5,
+        asNavFor: '#slider'
+    });
+
+    $('#slider').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: true,
+        slideshow: true,
+        sync: "#carousel"
+    });
+
+
+
+    var test = $("#rateYo").attr("data-rating");
+    var color= "#b28500";
+    $("#rateYo").rateYo({
+        rating: test,
+        ratedFill: color,
+        normalFill: "#A0A0A0",
+        readOnly: true
+    });
+
+
+    $( ".rateYo_comments" ).each(function( index ) {
+        $(this).rateYo({
+            rating: $(this).attr("data-rating"),
+            starWidth: "20px",
+            readOnly: true,
+            ratedFill: color,
+            normalFill: "#A0A0A0"
+        });
+    });
+</script>
+
+</body>
+
+
+
+</html>

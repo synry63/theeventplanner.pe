@@ -11,7 +11,7 @@
     <title>Login</title>
 </head>
 
-<body>
+<body class="todo_negocio">
 <nav class="navbar navbar-default nav-zonaneg">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -83,13 +83,27 @@
     {% endfor %}
 
     <div class="fotos_galery">
-
         {% for foto in fotos %}
             <div class="col-md-4 gest-img">
                 <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" href="{{ path('negocio_zona_imagenes_delete',{"id":foto.id}) }}">
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </a>
+                {% if foto.isListado==true  %}
+                    <a class="imagertrue" href="{{ path('negocio_zona_imagen_listado',{"id":foto.id}) }}">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                        <p>Foto principal de listado</p>
+                    </a>
+                {% else %}
+                    <a class="imager" href="{{ path('negocio_zona_imagen_listado',{"id":foto.id}) }}">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                        <p>Seleccionar como foto principal de listado</p>
+                    </a>
+                {% endif %}
+
+
+
                 <img src="{{ vich_uploader_asset(foto, 'imgFile')}}" />
+
             </div>
         {% endfor %}
     </div>

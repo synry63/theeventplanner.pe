@@ -70,7 +70,21 @@ GLOBAL
     text-align: center;
 
 }
+.img-default2{
+    width: 276px;
+    height: 170px;
+    background: rgba(0,0,0,.2);
+    display: inline-block;
+    text-align: center;
 
+}
+.img-default2 img{
+    width: 150px;
+    padding-top: 10px;
+    opacity: .2;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
 .img-default img{
     width: 150px;
     padding-top: 30px;
@@ -240,6 +254,9 @@ GLOBAL
 .proveedor-detail-page{
     margin-top: 30px;
 }
+.proveedor-detail-page .info-window{
+    font-weight: bold;
+}
 .card-prov{
     padding: 0 15px;
 }
@@ -351,6 +368,24 @@ GLOBAL
     background: rgba(53,179,180,.5);
     color: #fff;
 }
+.navigation2{
+    float: right;
+}
+.navigation2 li a{
+    border: solid 2px #23282D;
+    color: #23282D;
+}
+.navigation2 li a:hover{
+    color: #fff;
+    background: rgba(35, 40, 45,.5);
+    border: solid 2px #23282D;
+}
+
+.navigation2 .current a{
+    background: rgba(35, 40, 45,.5);
+    color: #fff;
+}
+
 .filtros_proveedores select{
     width:120px;
     height: 40px;
@@ -588,7 +623,9 @@ GLOBAL
     background: url(../images/insignias/insignias-01.png) center/cover;
     height: 400px;
     width: 400px;
-    padding-top: 116px;
+    color: #fff;
+    padding-top: 80px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.2)
 }
 .image-contact2{
     font-family: "OpenSans-Light", serif;
@@ -597,7 +634,8 @@ GLOBAL
     background: url(../images/insignias/insignias-02.png) center/cover;
     height: 400px;
     width: 400px;
-    padding-top: 116px;
+    color: #fff;
+    padding-top: 80px;
 }
 .image-contact3{
     font-family: "OpenSans-Light", serif;
@@ -606,7 +644,8 @@ GLOBAL
     background: url(../images/insignias/insignias-03.png) center/cover;
     height: 400px;
     width: 400px;
-    padding-top: 116px;
+    color: #fff;
+    padding-top: 80px;
 }
 .image-contact4{
     font-family: "OpenSans-Light", serif;
@@ -615,17 +654,24 @@ GLOBAL
     background: url(../images/insignias/insignias-04.png) center/cover;
     height: 400px;
     width: 400px;
-    padding-top: 116px;
+    color: #fff;
+    padding-top: 80px;
+}
+.image-contact h1, .image-contact2 h1, .image-contact3 h1, .image-contact4 h1{
+    font-size: 30px;
+    margin-top: 23px;
 }
 .image-contact h2, .image-contact2 h2, .image-contact3 h2, .image-contact4 h2{
-    font-size: 20px;
-    padding-top: 6px;
-    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
 }
 .image-contact h3,.image-contact2 h3,.image-contact3 h3, .image-contact4 h3{
-    padding-top: 5px;
-    font-size: 18px;
+
+    font-size: 16px;
 }
+
+
+
 .front{
     position: relative;
 }
@@ -686,6 +732,7 @@ Proveedores-List
     position: relative;
     margin: 20px 0 45px 0;
 }
+
 .image-prov .prov-foto{
     width: 100%;
     border-radius: 0 0 5px 5px;
@@ -1146,10 +1193,7 @@ KIDS
     list-style: none;
 
 }
-.form-kids-contactenos i{
-    padding: 10px;
-    font-size: 12px;
-}
+
 .form-kids-contactenos ul{
     padding-left: 0;
     display: inline-block;
@@ -1290,10 +1334,7 @@ PARTY
     list-style: none;
 
 }
-.form-party-contactenos i{
-    padding: 10px;
-    font-size: 12px;
-}
+
 .form-party-contactenos ul{
     padding-left: 0;
     display: inline-block;
@@ -1565,10 +1606,7 @@ DINNER
     list-style: none;
 
 }
-.form-dinner-contactenos i{
-    padding: 10px;
-    font-size: 12px;
-}
+
 .form-dinner-contactenos ul{
     padding-left: 0;
     display: inline-block;
@@ -1782,7 +1820,7 @@ Zona de Negocio
     margin-top: 25px;
 }
 .nav-zonaneg #bs-example-navbar-collapse-1{
-    margin-left: 15%;
+    margin-left: 10%;
 }
 .nav-zonaneg #bs-example-navbar-collapse-1 a{
     color: #fff;
@@ -2196,8 +2234,15 @@ DASHBOARD ADMIN
 .links-tendencias ul li a:hover{
     background: rgba(0,0,0,.5);
 }
-
-
+.contactenos-formu i{
+    padding: 10px;
+    font-size: 12px;
+}
+.image-prov .prov-foto2{
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    border-bottom: solid 4px rgba(0,0,0,.5);
+}
 /*=============
 MÓVILES PORTAIT
 ===============*/
@@ -2214,7 +2259,7 @@ MÓVILES PORTAIT
     .image-contact,.image-contact2,.image-contact3,.image-contact4{
         width: 100%;
         height: 325px;
-        padding-top: 85px;
+        padding-top: 50px;
     }
     .image-contact h1,.image-contact2 h1,.image-contact3 h1,.image-contact4 h1{
         font-size: 30px;

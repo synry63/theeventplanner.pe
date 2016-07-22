@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Place Autocomplete</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Mapa</title>
     <meta charset="utf-8">
     <style>
         html, body {
@@ -13,6 +18,7 @@
         #map {
             height: 400px;
             width: 799px;
+            margin: 10px auto;
         }
         .controls {
             margin-top: 10px;
@@ -55,16 +61,58 @@
             font-size: 13px;
             font-weight: 300;
         }
+        li{
+            list-style: none;
+        }
 
     </style>
 </head>
-<body>
+<body class="todo_negocio">
+<nav class="navbar navbar-default nav-zonaneg">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" /></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {{ knp_menu_render('AppBundle:Builder:menuNegocio',{ 'template': 'knp_menu.html.twig'}) }}
+            <ul class="nav navbar-nav navbar-right">
+                {% if is_granted('ROLE_USER') %}
+                    <li><a href="{{ path('negocio_logout') }}">Salir</a></li>
+                {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+
+    </div><!-- /.container-fluid -->
+</nav>
 <input id="pac-input" class="controls" type="text" value=""
        placeholder="Introduzca una ubicación">
-<div id="map"></div>
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+<div id="map">
+
+</div>
+<div style="text-align: center">
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_errors(form) }}
+
+    {{ form_widget(form.ubicacion) }}
+    {{ form_errors(form.ubicacion) }}
+
+    {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+
+    {{ form_end(form) }}
+</div>
+
+
+
 <script>
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -131,5 +179,10 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4XGdiqf9GW0TFuQnAKWNIi_reF0fzlt4&signed_in=true&libraries=places&language=es-ES&callback=initMap"
         async defer></script>
+<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+<script>
+    $("#bs-example-navbar-collapse-1 ul").addClass("nav navbar-nav");
+</script>
 </body>
 </html>

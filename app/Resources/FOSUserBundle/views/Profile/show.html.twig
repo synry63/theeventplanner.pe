@@ -5,7 +5,9 @@
     {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'tittle_miperfil.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
-
+{% block selloimage %}
+    <img src="{{ asset('images/logo_header.png') }}" alt="The event Planner">
+{% endblock selloimage %}
 {% block content %}
 
     {% block main_title %}

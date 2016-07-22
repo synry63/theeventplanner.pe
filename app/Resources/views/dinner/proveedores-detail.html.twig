@@ -51,7 +51,7 @@
                     <div class="proveedor-social sdinner">
                         {% if app.user is not null %}
                             {% if favorito is not null%}
-                                <a class="favorite-button-dinner" href="{{ path('proveedor_me_gusta', {'slug_site': 'dinner', 'slug_proveedor': proveedor.slug}) }}">
+                                <a class="favorite-button-dinner"  href="{{ path('proveedor_me_gusta', {'slug_site': 'dinner', 'slug_proveedor': proveedor.slug}) }}">
                                 </a>
                             {% else %}
                                 <a class="favorite-button-dinner" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': 'dinner', 'slug_proveedor': proveedor.slug}) }}">
@@ -61,7 +61,7 @@
 
                         {% else %}
 
-                            <a class="favorite-button-dinner ajax-popup-link" href="{{ path('proveedor_me_gusta', {'slug_site': 'dinner', 'slug_proveedor': proveedor.slug}) }}">
+                            <a class="favorite-button-dinner ajax-popup-link" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': 'dinner', 'slug_proveedor': proveedor.slug}) }}">
 
                             </a>
 
@@ -140,14 +140,18 @@
 
                 <!-- Description Section -->
 
-                <p class="proveedor-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan. Aliquam faucibus mattis nunc eu tempor. Integer euismod diam in fermentum convallis. Vivamus condimentum convallis odio, eget euismod nulla molestie eu. Maecenas id viverra sapien. Vivamus tincidunt tincidunt hendrerit. Nullam sit amet eros a turpis commodo suscipit ut vitae diam. Nunc placerat felis diam, eu tempor est consectetur convallis. Aliquam erat volutpat. Curabitur vitae dapibus purus. Sed rhoncus auctor elit, non pellentesque ex luctus iaculis. Pellentesque velit diam, dignissim in viverra a, ullamcorper vel sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
-
+                <p class="proveedor-content">
+                    {{ proveedor.description }}
+                </p>
                 <!-- Fin Descriptioin Section -->
 
 
                 <!-- Google Section -->
 
-                {{ google_map(map) }}
+                {% if map is defined %}
+                    {{ google_map(map) }}
+                {% endif %}
+
 
                 <!-- Fin Google Section -->
 

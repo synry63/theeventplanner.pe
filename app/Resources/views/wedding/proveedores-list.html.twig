@@ -40,78 +40,42 @@
 
 
         <div class="proveedores2 row">
-            {#
             {% for p in proveedores %}
-                    <div class="col-sm-6 col-md-4 detail-prov">
-                        <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.slug}) }}">
-                            <div class="image-prov">
-                                {% if loop.first %}
-                                    <div class="liston">
-                                        <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
-                                    </div>
-                                {% endif %}
-                                {% if p.fotos is empty %}
-                                    <div class="img-default">
-                                        <img src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
-                                    </div>
-                                {% else %}
-                                    {% for f in p.fotos  %}
+                <div class="col-sm-6 col-md-4">
+                    <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.proveedor.slug}) }}">
+                        <div class="thumbnail">
+                            <div class="card">
+                                <div class="front">
+                                    {% if loop.first %}
+                                        <div class="liston">
+                                            <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
+                                        </div>
+                                    {% endif %}
+                                    {% for f in p.proveedor.fotos  %}
                                         {% if f.isListado %}
-                                            <img class="prov-foto" src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
+                                            <div class="img-circle logo-circle">
+                                                <img id="logo-circle" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
+                                            </div>
+                                            <img src="{{ asset('images/proveedores/fotos/'~f.img)|imagine_filter('thumb_proveedor')}}" alt="{{ f.proveedor.nombre}}">
                                         {% endif %}
                                     {% endfor %}
-                                {% endif %}
-
-                                <div class="logo_tag">
-                                    <img class="img-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
+                                </div>
+                                <div class="back">
+                                    {% if loop.first %}
+                                        <div class="liston">
+                                            <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
+                                        </div>
+                                    {% endif %}
+                                    <img width="60%" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
                                 </div>
                             </div>
-
-                        </a>
-                    </div>
-            {% endfor %}
-            #}
-
-
-            {% for p in proveedores %}
-
-                    <div class="col-sm-6 col-md-4">
-                        <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.proveedor.slug}) }}">
-                            <div class="thumbnail">
-                                <div class="card">
-                                    <div class="front">
-                                        {% if loop.first %}
-                                            <div class="liston">
-                                                <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
-                                            </div>
-                                        {% endif %}
-                                        {% for f in p.proveedor.fotos  %}
-                                            {% if f.isListado %}
-                                                <div class="img-circle logo-circle">
-                                                    <img id="logo-circle" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
-                                                </div>
-                                                <img src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                    <div class="back">
-                                        {% if loop.first %}
-                                            <div class="liston">
-                                                <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
-                                            </div>
-                                        {% endif %}
-                                        <img width="60%" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <h3>{{ p.proveedor.nombre }}</h3>
-                                </div>
+                            <div class="caption">
+                                <h3>{{ p.proveedor.nombre }}</h3>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
+                </div>
             {% endfor %}
-
-
         </div>
 
         <div class="navigation">
