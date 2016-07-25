@@ -49,9 +49,10 @@
 
 <div class="container">
     <div class="col-md-10 body-dashboard">
+
         {% for p in proveedores %}
             <div class="col-sm-6 col-md-4 detail-prov">
-                <a href="{{ path('negocio', {'slug_proveedor': p.slug}) }}">
+                <a href="{{ path('admin_negocio_show', {'id': p.id}) }}">
                     <div class="image-prov">
 
                         {% if p.fotos is empty %}

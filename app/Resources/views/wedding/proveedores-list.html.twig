@@ -40,17 +40,28 @@
 
 
         <div class="proveedores2 row">
+            <div class="no-exist">
+                {% if proveedores|length == 0 %}
+
+                    <h1>¡Oh no!</h1>
+                    <p>Por el momento no existen proveedores en esta categoría.</p>
+                {% endif %}
+            </div>
+
             {% for p in proveedores %}
                 <div class="col-sm-6 col-md-4">
                     <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.proveedor.slug}) }}">
                         <div class="thumbnail">
                             <div class="card">
                                 <div class="front">
+                                    {#
                                     {% if loop.first %}
                                         <div class="liston">
                                             <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
                                         </div>
                                     {% endif %}
+                                    #}
+
                                     {% for f in p.proveedor.fotos  %}
                                         {% if f.isListado %}
                                             <div class="img-circle logo-circle">
@@ -61,11 +72,13 @@
                                     {% endfor %}
                                 </div>
                                 <div class="back">
+                                    {#
                                     {% if loop.first %}
                                         <div class="liston">
                                             <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
                                         </div>
                                     {% endif %}
+                                    #}
                                     <img width="60%" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
                                 </div>
                             </div>

@@ -1,0 +1,49 @@
+<ul>
+    {% if seccions['wedding'] == true %}
+        {% if active_sections == 'wedding' %}
+            <li>
+                <a class="btn btn-default active" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "wedding"}) }}">ver como Wedding</a>
+            </li>
+        {% else %}
+            <li>
+                <a class="btn btn-default" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "wedding"}) }}">ver como Wedding</a>
+            </li>
+        {% endif %}
+    {% endif %}
+    {% if seccions['kids'] == true %}
+        {% if active_sections == 'kids' %}
+            <li>
+                <a class="btn btn-default active" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "kids"}) }}">ver como Kids</a>
+            </li>
+        {% else %}
+            <li>
+                <a class="btn btn-default" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "kids"}) }}">ver como Kids</a>
+            </li>
+        {% endif %}
+
+    {% endif %}
+    {% if seccions['party'] == true %}
+        {% if active_sections == 'party' %}
+            <li>
+                <a class="btn btn-default active" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "party"}) }}">ver como Party</a>
+            </li>
+        {% else %}
+            <li>
+                <a class="btn btn-default" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "party"}) }}">ver como Party</a>
+            </li>
+        {% endif %}
+
+    {% endif %}
+    {% if seccions['dinner'] == true %}
+        {% if active_sections == "dinner" %}
+            <li>
+                <a class="btn btn-default active" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "dinner"}) }}">ver como Dinner</a>
+            </li>
+        {% else %}
+            <li>
+                <a class="btn btn-default" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "dinner"}) }}">ver como Dinner</a>
+            </li>
+        {% endif %}
+
+    {% endif %}
+</ul>

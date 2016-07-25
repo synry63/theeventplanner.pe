@@ -42,28 +42,7 @@
 <div class="container proveedor-detail-page">
 
     <div class="buttons_sections">
-        <ul>
-            {% if seccions['wedding'] == true %}
-                <li>
-                    <a class="btn btn-default" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "wedding"}) }}">ver como Wedding</a>
-                </li>
-            {% endif %}
-            {% if seccions['kids'] == true %}
-                <li>
-                    <a class="btn btn-default" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "kids"}) }}">ver como Kids</a>
-                </li>
-            {% endif %}
-            {% if seccions['party'] == true %}
-                <li>
-                    <a class="btn btn-default" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "party"}) }}">ver como Party</a>
-                </li>
-            {% endif %}
-            {% if seccions['dinner'] == true %}
-                <li>
-                    <a class="btn btn-default" href="{{ path('negocio_zona_preview_seccion', {'slug_site': "dinner"}) }}">ver como Dinner</a>
-                </li>
-            {% endif %}
-        </ul>
+        {{ include('negocio/previews/include_seccions.html.twig', {'active_sections':'wedding'}) }}
     </div>
 
     <div class="row">
@@ -71,23 +50,26 @@
         <div class="col-md-4 col-md-push-8 card-prov">
             <div class="proveedor-fixed">
                 <div class="proveedor-info">
+                    {#
                     <div class="liston">
                         <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
                     </div>
+                    #}
+
                     <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
 
 
                     <div id="rateYo"  data-rating="4"></div>
 
 
-                        <a class="ajax-popup-link" href="#">
-                            <button type="button" class="btn btn-coti">Contactar Empresa</button></a>
-                        <br>
-                        <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
-                        <p>{{ proveedor.telefono }}</p>
-                        <div class="links-proveedores lweddings">
-                            <a href="{{ proveedor.web }}" target="_blank">Página Web</a>
-                        </div>
+                    <a class="ajax-popup-link" href="#">
+                        <button type="button" class="btn btn-coti">Contactar Empresa</button></a>
+                    <br>
+                    <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
+                    <p>{{ proveedor.telefono }}</p>
+                    <div class="links-proveedores lweddings">
+                        <a href="{{ proveedor.web }}" target="_blank">Página Web</a>
+                    </div>
 
 
                 </div>
@@ -110,7 +92,9 @@
         <div class="col-md-8 col-md-pull-4">
 
             <!-- Slider Section -->
-
+            {% if proveedor.fotos|length == 0 %}
+                <img src="http://placehold.it/750x580?text=Slider" alt="">
+            {% endif %}
             <div id="slider" class="flexslider">
                 <ul class="slides">
                     {% for f in proveedor.fotos  %}

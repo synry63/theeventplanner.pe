@@ -7,6 +7,7 @@
 {% endfor %}
 
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
@@ -20,11 +21,12 @@
 </head>
 
 <body>
-<div class="col-md-6 col-md-offset-3 aprobe-buttons">
-    <button class="btn btn-danger">
-        Aprobar
-    </button>
-</div>
+
+
+{{ include('admin/previews_admin/include_aprobar.html.twig') }}
+
+{{ include('admin/previews_admin/include_buttons_seccions.html.twig') }}
+
 
 <div class="container proveedor-detail-page">
 
@@ -54,7 +56,7 @@
 
                 </div>
                 <div class="proveedor-social sweddings">
-                    <a class="favorite-button ajax-popup-link" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': 'wedding', 'slug_proveedor': proveedor.slug}) }}">
+                    <a class="favorite-button ajax-popup-link" style="background-position-x: 33px" href="#">
 
                     </a>
 

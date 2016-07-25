@@ -24,9 +24,12 @@
             <div class="col-md-4 col-md-push-8 card-prov">
                 <div class="proveedor-fixed">
                     <div class="proveedor-info">
+                        {#
                         <div class="liston">
                             <img src="{{ asset('images/liston_kids.png')}}" alt="wedding premium">
                         </div>
+                        #}
+
                         <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
 
                         <div id="rateYo"  data-rating="{{ moy }}"></div>

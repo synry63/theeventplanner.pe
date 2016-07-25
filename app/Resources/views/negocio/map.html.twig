@@ -94,12 +94,22 @@
 
     </div><!-- /.container-fluid -->
 </nav>
+
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ label }}">
+            {{ flash }}
+        </div>
+    {% endfor %}
+{% endfor %}
 <input id="pac-input" class="controls" type="text" value=""
        placeholder="Introduzca una ubicación">
 <div id="map">
 
 </div>
 <div style="text-align: center">
+
+
     {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_errors(form) }}
 
