@@ -436,7 +436,7 @@ class ProveedorController extends Controller
         );
     }*/
 
-    private function initGoogleMap($proveedor){
+    private function initGoogleMap($proveedor,$slug_site){
         $map = $this->get('ivory_google_map.map');
         $map->setLanguage($this->get('request')->getLocale());
         $map->setCenter($proveedor->getGoogleMapLat(), $proveedor->getGoogleMapLng(), true);
@@ -448,7 +448,7 @@ class ProveedorController extends Controller
         $map->setStylesheetOption('width', '100%');
         $map->setStylesheetOption('height', '300px');
         $marker = new Marker();
-        $marker->setIcon('https://maps.gstatic.com/mapfiles/ms2/micons/purple-dot.png');
+        $marker->setIcon('http://theeventplanner.pe/images/markers/'.$slug_site.'_marker.png');
         // Sets your marker animation
         //$marker->setAnimation(Animation::DROP);
 
@@ -494,17 +494,19 @@ class ProveedorController extends Controller
         $moy = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorRating($proveedor);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
 
-        if($proveedor->getGoogleMapLat()!=NULL && $proveedor->getGoogleMapLng()!=NULL){
-            $map = $this->initGoogleMap($proveedor);
-        }
-        if($moy==NULL) $moy = 0;
-
         $renderOut = array(
             'proveedor'=>$proveedor,
             'moy'=>$moy,
             'comentarios'=>$comments,
-            'map'=>$map
         );
+
+        if($proveedor->getGoogleMapLat()!=NULL && $proveedor->getGoogleMapLng()!=NULL){
+            $map = $this->initGoogleMap($proveedor,$slug_site);
+            $renderOut['map'] = $map;
+        }
+        if($moy==NULL) $moy = 0;
+
+
 
         if(is_object($user)){
             $comentarioProveedor = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')
@@ -547,15 +549,94 @@ class ProveedorController extends Controller
         }
     }
     /**
+     * @Route("/negocio/zona/preview/{slug_site}", name="negocio_zona_preview_seccion",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function proveedorPreviewBySeccionAction($slug_site,Request $request){
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
+        $renderOut = array();
+        $renderOut['proveedor'] = $proveedor;
+
+        $seccions_site = array('wedding'=>false,'dinner'=>false,'kids'=>false,'party'=>false);
+        foreach ($proveedor->getCategoriasListado() as $c){
+            if($c->getParent()->getSlug() == 'wedding'){
+                $seccions_site['wedding'] = true;
+            }
+            if($c->getParent()->getSlug() == 'kids'){
+                $seccions_site['kids'] = true;
+            }
+            if($c->getParent()->getSlug() == 'party'){
+                $seccions_site['party'] = true;
+            }
+            if($c->getParent()->getSlug() == 'dinner'){
+                $seccions_site['dinner'] = true;
+            }
+        }
+        $renderOut['seccions'] = $seccions_site;
+
+        if($proveedor->getGoogleMapLat()!=NULL && $proveedor->getGoogleMapLng()!=NULL){
+            $map = $this->initGoogleMap($proveedor,$slug_site);
+            $renderOut['map'] = $map;
+        }
+
+        if($slug_site=='wedding'){
+            return $this->render(
+                'negocio/previews/preview_wedding.html.twig',
+                $renderOut
+            );
+        }
+        else if($slug_site=='dinner'){
+            return $this->render(
+                'negocio/previews/preview_dinner.html.twig',
+                $renderOut
+            );
+        }
+        else if($slug_site=='kids'){
+            return $this->render(
+                'negocio/previews/preview_kids.html.twig',
+                $renderOut
+            );
+        }
+        else if($slug_site=='party'){
+            return $this->render(
+                'negocio/previews/preview_party.html.twig',
+                $renderOut
+            );
+        }
+    }
+    /**
      * @Route("/negocio/zona/preview", name="negocio_zona_preview")
      */
     public function proveedorPreviewAction(Request $request){
         $proveedor = $this->get('security.token_storage')->getToken()->getUser();
-        return $this->render(
-            'negocio/temp.html.twig',array(
-                'proveedor'=>$proveedor,
-            )
-        );
+        $seccions_site = array('wedding'=>false,'dinner'=>false,'kids'=>false,'party'=>false);
+        foreach ($proveedor->getCategoriasListado() as $c){
+            if($c->getParent()->getSlug() == 'wedding'){
+                $seccions_site['wedding'] = true;
+            }
+            if($c->getParent()->getSlug() == 'kids'){
+                $seccions_site['kids'] = true;
+            }
+            if($c->getParent()->getSlug() == 'party'){
+                $seccions_site['party'] = true;
+            }
+            if($c->getParent()->getSlug() == 'dinner'){
+                $seccions_site['dinner'] = true;
+            }
+        }
+        //get first
+        $slug_site = '';
+        foreach ($seccions_site as $key=>$value){
+            if($value==true){
+                $slug_site = $key;
+                break;
+            }
+        }
+        // end get first
+
+        return $this->redirectToRoute('negocio_zona_preview_seccion',array('slug_site'=>$slug_site));
+
 
     }
     /**

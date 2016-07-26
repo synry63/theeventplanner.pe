@@ -16,6 +16,14 @@ use AppBundle\Form\Type\TendenciaType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Ivory\GoogleMap\Overlays\Marker;
+use Ivory\GoogleMap\Overlays\Animation;
+use Ivory\GoogleMap\Places\Autocomplete;
+use Ivory\GoogleMap\Places\AutocompleteComponentRestriction;
+use Ivory\GoogleMap\Places\AutocompleteType;
+use Ivory\GoogleMap\Helper\Places\AutocompleteHelper;
+use Ivory\GoogleMap\Overlays\InfoWindow;
+use Ivory\GoogleMap\Events\MouseEvent;
 use AppBundle\Form\Type\ContactType;
 
 
@@ -252,7 +260,7 @@ class AdminController extends Controller
         $pagination = $paginator->paginate(
             $proveedores_query,
             $page,
-            4
+            6
         //array('wrap-queries'=>true)
         );
 
@@ -308,14 +316,142 @@ class AdminController extends Controller
      * })
      */
     public function adminNegocioShowAction(Request $request,$id){
-        $p =  $this->getDoctrine()->getRepository('AppBundle:Proveedor')->find($id);
 
-        return $this->render(
-            'admin/negocio.html.twig',array(
-                'proveedor'=>$p,
-            )
-        );
+        $proveedor =  $this->getDoctrine()->getRepository('AppBundle:Proveedor')->find($id);
+        $seccions_site = array('wedding'=>false,'dinner'=>false,'kids'=>false,'party'=>false);
+        foreach ($proveedor->getCategoriasListado() as $c){
+            if($c->getParent()->getSlug() == 'wedding'){
+                $seccions_site['wedding'] = true;
+            }
+            if($c->getParent()->getSlug() == 'kids'){
+                $seccions_site['kids'] = true;
+            }
+            if($c->getParent()->getSlug() == 'party'){
+                $seccions_site['party'] = true;
+            }
+            if($c->getParent()->getSlug() == 'dinner'){
+                $seccions_site['dinner'] = true;
+            }
+        }
+        //get first
+        $slug_site = '';
+        foreach ($seccions_site as $key=>$value){
+            if($value==true){
+                $slug_site = $key;
+                break;
+            }
+        }
 
+        // end get first
+        return $this->redirectToRoute('admin_negocio_preview_seccion',array('slug_site'=>$slug_site,'id'=>$id));
+
+
+    }
+
+    private function initGoogleMap($proveedor,$slug_site){
+        $map = $this->get('ivory_google_map.map');
+        $map->setLanguage($this->get('request')->getLocale());
+        $map->setCenter($proveedor->getGoogleMapLat(), $proveedor->getGoogleMapLng(), true);
+        $map->setAsync(true);
+        // Sets the zoom
+        $map->setAutoZoom(false);
+        $map->setMapOption('zoom', 16);
+        //$map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
+        $map->setStylesheetOption('width', '100%');
+        $map->setStylesheetOption('height', '300px');
+        $marker = new Marker();
+        $marker->setIcon('http://theeventplanner.pe/images/markers/'.$slug_site.'_marker.png');
+        // Sets your marker animation
+        //$marker->setAnimation(Animation::DROP);
+
+        //$marker->setAnimation('bounce');
+        $marker->setPosition($proveedor->getGoogleMapLat(), $proveedor->getGoogleMapLng(), true);
+        // Add your marker to the map
+        $map->addMarker($marker);
+
+// Configure your info window options
+
+        $infoWindow = new InfoWindow();
+        $infoWindow->setPrefixJavascriptVariable('info_window_');
+        $infoWindow->setPosition(0, 0, true);
+        $infoWindow->setPixelOffset(1.1, 2.1, 'px', 'pt');
+        $text = $proveedor->getDireccion().'<br/>';
+        $infoWindow->setContent('<p class="info-window">'
+            .$text.'</p>');
+        $infoWindow->setOpen(false);
+        $infoWindow->setAutoOpen(true);
+        $infoWindow->setOpenEvent(MouseEvent::CLICK);
+        $infoWindow->setAutoClose(false);
+        $infoWindow->setOption('disableAutoPan', true);
+        $infoWindow->setOption('zIndex', 10);
+        $infoWindow->setOptions(array(
+            'disableAutoPan' => true,
+            'zIndex'         => 10,
+        ));
+
+        $marker->setInfoWindow($infoWindow);
+
+        return $map;
+    }
+
+    /**
+     * @Route("admin/negocio/preview/{slug_site}/{id}", name="admin_negocio_preview_seccion",requirements={
+     *     "slug_site": "wedding|dinner|kids|party",
+     *      "id": "\d+"
+     * })
+     */
+    public function proveedorPreviewBySeccionAction($slug_site,$id,Request $request){
+
+        $proveedor =  $this->getDoctrine()->getRepository('AppBundle:Proveedor')->find($id);
+        $renderOut = array();
+        $renderOut['proveedor'] = $proveedor;
+
+        $seccions_site = array('wedding'=>false,'dinner'=>false,'kids'=>false,'party'=>false);
+        foreach ($proveedor->getCategoriasListado() as $c){
+            if($c->getParent()->getSlug() == 'wedding'){
+                $seccions_site['wedding'] = true;
+            }
+            if($c->getParent()->getSlug() == 'kids'){
+                $seccions_site['kids'] = true;
+            }
+            if($c->getParent()->getSlug() == 'party'){
+                $seccions_site['party'] = true;
+            }
+            if($c->getParent()->getSlug() == 'dinner'){
+                $seccions_site['dinner'] = true;
+            }
+        }
+        $renderOut['seccions'] = $seccions_site;
+
+        if($proveedor->getGoogleMapLat()!=NULL && $proveedor->getGoogleMapLng()!=NULL){
+            $map = $this->initGoogleMap($proveedor,$slug_site);
+            $renderOut['map'] = $map;
+        }
+
+        if($slug_site=='wedding'){
+            return $this->render(
+                'admin/previews_admin/preview_wedding.html.twig',
+                $renderOut
+            );
+        }
+        else if($slug_site=='dinner'){
+            return $this->render(
+                'admin/previews_admin/preview_dinner.html.twig',
+                $renderOut
+            );
+        }
+        else if($slug_site=='kids'){
+            return $this->render(
+                'admin/previews_admin/preview_kids.html.twig',
+                $renderOut
+            );
+        }
+        else if($slug_site=='party'){
+            return $this->render(
+                'admin/previews_admin/preview_party.html.twig',
+                $renderOut
+            );
+        }
     }
 
 }

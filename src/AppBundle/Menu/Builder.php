@@ -81,6 +81,11 @@ class Builder implements ContainerAwareInterface
                 'label' => 'Comentarios',
             )
         );
+        $menu->addChild('negocio-mapa',array(
+                'route' => 'negocio_zona_map',
+                'label' => 'Mapa',
+            )
+        );
         $menu->addChild('negocio-preview',array(
                 'route' => 'negocio_zona_preview',
                 'label' => 'Preview',
