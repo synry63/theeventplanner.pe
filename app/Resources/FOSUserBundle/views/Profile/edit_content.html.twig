@@ -1,6 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': {novalidate: 'novalidate','class': 'fos_user_profile_edit' } }) }}
+
 <div class="form-login3">
         <div class="form-group">
             {{ form_label(form.username,'Nombre de Usuario') }}
@@ -30,6 +31,12 @@
             {{ form_label(form.apellidos,'Apellidos') }}
             {{ form_errors(form.apellidos) }}
             {{ form_widget(form.apellidos,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.telefono,'Teléfono') }}
+            {{ form_errors(form.telefono) }}
+            {{ form_widget(form.telefono,{ 'attr': {'class': 'form-control'}}) }}
         </div>
 
         <div class="form-group">
