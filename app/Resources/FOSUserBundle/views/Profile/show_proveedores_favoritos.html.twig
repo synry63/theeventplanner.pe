@@ -53,7 +53,10 @@
             </div>
             #}
             <div class="row">
-                <h1>Proveedores Favoritos Wedding</h1>
+                {% if proveedores_favoritos_w == true %}
+                    <h1 class="tittle_prov">Proveedores Favoritos Wedding</h1>
+                {% endif %}
+
                 <div class="multiple-items">
                     {% for pf in proveedores_favoritos_w %}
                         <div class="one-item">
@@ -67,7 +70,10 @@
             </div>
 
             <div class="row">
-                <h1>Proveedores Favoritos Kids</h1>
+                {% if proveedores_favoritos_k == true %}
+                    <h1 class="tittle_prov">Proveedores Favoritos Kids</h1>
+                {% endif %}
+
                 <div class="multiple-items">
                     {% for pf in proveedores_favoritos_k %}
                         <div class="one-item">
@@ -80,7 +86,9 @@
             </div>
 
             <div class="row">
-                <h1>Proveedores Favoritos Party</h1>
+                {% if proveedores_favoritos_p == true %}
+                <h1 class="tittle_prov">Proveedores Favoritos Party</h1>
+                {% endif %}
                 <div class="multiple-items">
                     {% for pf in proveedores_favoritos_p %}
                         <div class="one-item">
@@ -93,7 +101,9 @@
             </div>
 
             <div class="row">
-                <h1>Proveedores Favoritos Dinner</h1>
+                {% if proveedores_favoritos_d == true %}
+                    <h1 class="tittle_prov">Proveedores Favoritos Dinner</h1>
+                {% endif %}
                 <div class="multiple-items">
                     {% for pf in proveedores_favoritos_d %}
                         <div class="one-item">

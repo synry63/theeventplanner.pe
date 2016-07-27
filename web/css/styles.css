@@ -866,12 +866,16 @@ Profile
     position: relative;
     padding:20px;
 }
+
 .profile-content h1{
-    font-size: 15px;
+    font-size: 30px;
     text-align: center;
     margin-bottom: 20px;
     font-weight: bold;
     text-transform: uppercase;
+}
+.profile-content .tittle_prov{
+    font-size: 16px;
 }
 .user_show{
     padding: 10px;
@@ -882,6 +886,7 @@ Profile
 .user_show h1{
     color: #d12768;
     font-family: "PT serif";
+    font-size: 30px;
 }
 .user_show h4{
     font-style: italic;
