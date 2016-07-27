@@ -1103,6 +1103,9 @@ Votos GRID
     color: #fff;
     height: 36px;
 }
+.btn-coti:hover{
+    color: #fff;
+}
 .form-wedding-login{
     margin-bottom: 20px;
     padding: 15px;
@@ -1319,6 +1322,9 @@ KIDS
     color: #fff;
     height: 36px;
 }
+.btn-coti-kids:hover{
+    color:#fff;
+}
 .btn-coti-kids{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -1416,6 +1422,9 @@ PARTY
     margin: 10px 0;
     font-style: normal;
     margin-bottom: 10px;
+}
+.btn-coti-party:hover{
+    color: #fff;
 }
 .image-prov .prov-foto-party{
     width: 100%;
@@ -1732,6 +1741,9 @@ DINNER
     background: #0000ea;
     color: #fff;
     height: 36px;
+}
+.btn-coti-dinner:hover{
+    color: #fff;
 }
 .btn-coti-dinner{
     margin: 10px 0;
