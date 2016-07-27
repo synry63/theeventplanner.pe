@@ -493,7 +493,6 @@ class ProveedorController extends Controller
         $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
         $moy = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorRating($proveedor);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
-
         $renderOut = array(
             'proveedor'=>$proveedor,
             'moy'=>$moy,

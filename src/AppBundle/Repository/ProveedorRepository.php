@@ -58,6 +58,9 @@ class ProveedorRepository extends EntityRepository
         $query = $qb->getQuery();
         $result = $query->getOneOrNullResult();
         if($result!=null) $result = $result['mymoy'];
+        else{
+            $result = 0;
+        }
         return $result;
     }
     public function getProveedorWithRating($proveedor_slug){

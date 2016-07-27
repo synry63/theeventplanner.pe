@@ -144,10 +144,12 @@ GLOBAL
 }
 
 .home-slicks{
-    padding-bottom: 30px;
+    /*padding-bottom: 30px;*/
 }
 .home-slicks a{
     padding: 0 5px;
+    width: 250px; /* MOI */
+    height: 250px; /* MOI */
 }
 .home-slicks2{
     box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
