@@ -1,4 +1,3 @@
-
 <div class="col-md-4 col-md-offset-4 cotizacion-form-weddings">
     <h1>Solicitar Cotización</h1>
     {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
@@ -10,17 +9,17 @@
     <div class="form-group">
         {{ form_label(form.name,'Nombre: ') }}
         {{ form_errors(form.name) }}
-        {{ form_widget(form.name,{ 'attr': {'class': 'form-control','placeholder':'Tu nombre'}}) }}
+        {{ form_widget(form.name,{ 'attr': {'class': 'form-control','placeholder':'Tu nombre','value':app.user.nombres }}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.email,'Email:') }}
         {{ form_errors(form.email) }}
-        {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'Tu email'}}) }}
+        {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'Tu email','value':app.user.email}}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.tel,'Teléfono:') }}
         {{ form_errors(form.tel) }}
-        {{ form_widget(form.tel,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono'}}) }}
+        {{ form_widget(form.tel,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono','value':app.user.telefono}}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.subject,'Asunto:') }}

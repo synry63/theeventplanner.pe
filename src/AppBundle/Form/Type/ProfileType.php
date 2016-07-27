@@ -17,6 +17,7 @@ class ProfileType extends AbstractType
         $builder->add('nombres');
         $builder->add('apellidos');
         $builder->add('dni');
+        $builder->add('telefono');
     }
 
     public function getParent()

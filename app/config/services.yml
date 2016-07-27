@@ -17,7 +17,10 @@ services:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
-
+  swiftmailer.command.spool_send:
+      class: Symfony\Bundle\SwiftmailerBundle\Command\SendEmailCommand
+      calls:
+          - [ setContainer, ["@service_container"] ]
   app.user.login:
           class: AppBundle\EventListener\LoginListener
           arguments: [@service_container]

@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\Type\ContactType;
 use AppBundle\Form\Type\CotizacionType;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 /**
  *
@@ -84,14 +86,49 @@ class DefaultController extends Controller
             // data is an array with "name", "email", and "message" keys
             $data = $form->getData();
 
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Hello Email')
-                ->setFrom('	pmary@ryma-soluciones.com')
-                ->setTo($data['email']);
 
+            // send email to admin
+            $message = \Swift_Message::newInstance()
+                ->setSubject('The Event Planner - Formulario Contacto')
+                ->setFrom('sistema@theeventplanner.pe')
+                ->setTo('jsarabia@theeventplanner.pe')
+                ->setBody(
+                    $this->renderView(
+                        'emails/contacto_admin.html.twig',
+                        array(
+                            'nombre' => $data['name'],
+                            'email' => $data['email'],
+                            'asunto' => $data['subject'],
+                            'telefono' => $data['tel'],
+                            'mensaje' => $data['message']
+                        )
+                    )
+                );
+
+            // send email to user as auto responder
+            $message_user = \Swift_Message::newInstance()
+                ->setSubject('Formulario de Contacto')
+                ->setFrom('sistema@theeventplanner.pe')
+                ->setTo($data['email'])
+                ->setBody(
+                    $this->renderView(
+                        'emails/contacto_user.html.twig',
+                        array(
+                            'nombre' => $data['name'],
+                            'email' => $data['email'],
+                            'asunto' => $data['subject'],
+                            'telefono' => $data['tel'],
+                            'mensaje' => $data['message']
+                        )
+                    )
+                );
+            $message_user->setContentType("text/html");
+            $this->get('mailer')->send($message_user);
+
+            $message->setContentType("text/html");
             $this->get('mailer')->send($message);
 
-            $request->getSession()->getFlashBag()->add('success', 'Your email has been sent! Thanks!');
+            $request->getSession()->getFlashBag()->add('success', '¡Tu correo ha sido enviado! ¡Gracias!');
 
             $routeName = $request->get('_route');
 
@@ -110,8 +147,10 @@ class DefaultController extends Controller
      */
     public function contizacionAction($slug_site,$slug_proveedor,Request $request)
     {
-
         if ($request->isXmlHttpRequest()) {
+            $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
+            $user = $this->container->get('security.context')->getToken()->getUser();
+
             $form = $this->createForm(CotizacionType::class,NULL,array(
                 'action' => $this->generateUrl('cotizacion_negocio',array('slug_site' => $slug_site,'slug_proveedor'=>$slug_proveedor)),
                 'method' => 'POST',
@@ -121,10 +160,58 @@ class DefaultController extends Controller
             if ($form->isSubmitted()) {
 
                if($form->isValid()){
+
                    $url = $this->get('router')->generate('proveedor_detail',array(
                        'slug_site' => $slug_site,
                        'slug_proveedor' => $slug_proveedor,
                     ));
+
+                   $data = $form->getData();
+
+                   // send email to negocio
+                   $message = \Swift_Message::newInstance()
+                       ->setSubject('The Event Planner - Formulario Cotizacion')
+                       ->setFrom('sistema@theeventplanner.pe')
+                       ->setTo($proveedor->getEmail())
+                       ->setBody(
+                           $this->renderView(
+                               'emails/cotizacion_negocio.html.twig',
+                               array(
+                                   'nombre' => $data['name'],
+                                   'email' => $data['email'],
+                                   'asunto' => $data['subject'],
+                                   'proveedor'=>$proveedor,
+                                   'telefono' => $data['tel'],
+                                   'mensaje' => $data['message']
+                               )
+                           )
+                       );
+
+                   // send email to user as auto responder
+                   $message_user = \Swift_Message::newInstance()
+                       ->setSubject('Formulario Cotizacion')
+                       ->setFrom('sistema@theeventplanner.pe')
+                       ->setTo($data['email'])
+                       ->setBody(
+                           $this->renderView(
+                               'emails/cotizacion_user.html.twig',
+                               array(
+                                   'nombre' => $data['name'],
+                                   'email' => $data['email'],
+                                   'asunto' => $data['subject'],
+                                   'proveedor'=>$proveedor,
+                                   'telefono' => $data['tel'],
+                                   'mensaje' => $data['message']
+                               )
+                           )
+                       );
+                   $message_user->setContentType("text/html");
+                   $this->get('mailer')->send($message_user);
+                   $message->setContentType("text/html");
+                   $this->get('mailer')->send($message);
+
+                   $this->get('swiftmailer.command.spool_send')->run(new ArgvInput(array()), new ConsoleOutput());
+
                    $custom_response = new \stdClass();
                    $custom_response->success = true;
                    $custom_response->message = 'Tu solicitud de cotizacion fue enviada correctamente';

@@ -54,9 +54,12 @@
     <script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>
     <script>
         $(document).ready(function() {
+            var dev = "/app_dev.php";
             var cropperOptions = {
-                uploadUrl:'/app_dev.php/profile/image-processing',
-                cropUrl:'/app_dev.php/profile/image-crop',
+                //uploadUrl:dev+'/profile/image-processing',
+                //cropUrl:dev+'/profile/image-crop',
+                uploadUrl:'/profile/image-processing',
+                cropUrl:'/profile/image-crop',
                 modal:false,
                 doubleZoomControls:false,
                 rotateControls: false,
