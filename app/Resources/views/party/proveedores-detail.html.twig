@@ -84,58 +84,60 @@
             <div class="col-md-8 col-md-pull-4">
 
                 <!-- Slider Section -->
-
-                <div id="slider" class="flexslider">
-                    <ul class="slides">
-                        {% for f in proveedor.fotos  %}
-                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-                                {% if app.user is not null %}
-                                    {% set me_gusta = 0 %}
-                                    {% for fu in app.user.fotos  %}
-                                        {% if fu.foto.id==f.id %}
-                                            {% set me_gusta = 1 %}
+                <div class="row slider-section">
+                    <div id="slider" class="flexslider">
+                        <ul class="slides">
+                            {% for f in proveedor.fotos  %}
+                                <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                    <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+                                    {% if app.user is not null %}
+                                        {% set me_gusta = 0 %}
+                                        {% for fu in app.user.fotos  %}
+                                            {% if fu.foto.id==f.id %}
+                                                {% set me_gusta = 1 %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if me_gusta==1 %}
+                                            <div class="boton-megusta_party">
+                                                <a href="{{ path('proveedor_foto_me_gusta',
+                                                {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        {% else %}
+                                            <div class="boton-megusta_party">
+                                                <a href="{{ path('proveedor_foto_me_gusta',
+                                                {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
                                         {% endif %}
-                                    {% endfor %}
-                                    {% if me_gusta==1 %}
-                                        <div class="boton-megusta_party">
-                                            <a href="{{ path('proveedor_foto_me_gusta',
-                                            {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
-                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
                                     {% else %}
                                         <div class="boton-megusta_party">
-                                            <a href="{{ path('proveedor_foto_me_gusta',
+                                            <a class="ajax-popup-link" href="{{ path('proveedor_foto_me_gusta',
                                             {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
                                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
                                             </a>
                                         </div>
                                     {% endif %}
-                                {% else %}
-                                    <div class="boton-megusta_party">
-                                        <a class="ajax-popup-link" href="{{ path('proveedor_foto_me_gusta',
-                                        {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
+                                </li>
+                            {% endfor %}
 
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
 
-                <div id="carousel" class="flexslider">
-                    <ul class="slides flex-control-nav flex-control-thumbs">
-                        {% for f in proveedor.fotos  %}
-                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+                    <div id="carousel" class="flexslider">
+                        <ul class="slides flex-control-nav flex-control-thumbs">
+                            {% for f in proveedor.fotos  %}
+                                <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                    <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
 
-                            </li>
-                        {% endfor %}
+                                </li>
+                            {% endfor %}
 
-                    </ul>
+                        </ul>
+                    </div>
+
                 </div>
 
                 <!-- Fin Slider Section -->
@@ -299,6 +301,7 @@
 
 
         var coment_r = $("#coment-alert").attr("data-coment");
+
         if(coment_r!=undefined)
             noty({
                 text: coment_r,
@@ -331,37 +334,38 @@
             slideshow: true,
             sync: "#carousel"
         });
-        var test = $("#rateYo").attr("data-rating");
-
-        var recuperar = $("#comentario_proveedor_nota").attr("value");
-
-
 
         var color= "#b28500";
 
+        var RatePrin = $("#rateYo").attr("data-rating");
 
         $("#rateYo").rateYo({
-            rating: test,
+            rating: RatePrin,
             ratedFill: color,
             normalFill: "#A0A0A0",
             readOnly: true
         });
 
-        $("#rateYo2").rateYo({
-                    rating: recuperar,
-                    ratedFill: color,
-                    normalFill: "#A0A0A0",
-                    starWidth: "60px",
-                    onChange: function (rating, rateYoInstance) {
-                        $(this).next().text(rating);
-                    }
 
-                })
-                .on("rateyo.set", function (e, data) {
-                    $("#comentario_proveedor_nota").val(data.rating);
-                    $("#rateYo2").rateYo("option", "readOnly", true);
-                    $("#rateYo2").rateYo("option", "ratedFill", "#dea600");
-                });
+
+        var recuperar = $("#comentario_proveedor_nota").attr("value");
+
+
+
+        $("#rateYo2").rateYo({
+            rating: recuperar,
+            ratedFill: color,
+            normalFill: "#A0A0A0",
+            starWidth: "60px",
+            onChange: function (rating, rateYoInstance) {
+                $(this).next().text(rating);
+            }
+        })
+        .on("rateyo.set", function (e, data) {
+            $("#comentario_proveedor_nota").val(data.rating);
+            $("#rateYo2").rateYo("option", "readOnly", true);
+            $("#rateYo2").rateYo("option", "ratedFill", "#dea600");
+        });
 
 
         $("#rateYo2").mouseleave(function(){
@@ -370,6 +374,8 @@
         $("#rateYo2").mouseenter(function(){
             $("#rateYo2").rateYo("option", "ratedFill", color);
         });
+
+
 
 
         $( ".rateYo_comments" ).each(function( index ) {

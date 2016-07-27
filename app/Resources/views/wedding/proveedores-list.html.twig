@@ -49,7 +49,7 @@
             </div>
 
             {% for p in proveedores %}
-                <div class="col-sm-6 col-md-4">
+                <div class="col-md-4 col-sm-6 ">
                     <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.proveedor.slug}) }}">
                         <div class="thumbnail">
                             <div class="card">
@@ -67,7 +67,7 @@
                                             <div class="img-circle logo-circle">
                                                 <img id="logo-circle" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
                                             </div>
-                                            <img src="{{ asset('images/proveedores/fotos/'~f.img)|imagine_filter('thumb_proveedor')}}" alt="{{ f.proveedor.nombre}}">
+                                            <img class="image-port" src="{{ asset('images/proveedores/fotos/'~f.img)|imagine_filter('thumb_proveedor')}}" alt="{{ f.proveedor.nombre}}">
                                         {% endif %}
                                     {% endfor %}
                                 </div>

@@ -26,8 +26,7 @@ Nav bar
     margin-bottom:0;
 }
 .menu-principal .navbar-default{
-    /*toto- margin-left: 11%;*/
-    margin-left: 9% ;
+    margin-left: 11% ;
 }
 .menu-principal .navbar-default li{
     text-transform: uppercase;
@@ -40,11 +39,9 @@ Nav bar
 .menu-principal .navbar-right{
     position: absolute;
     right:0px;
-    /*toto right:106px;*/
 }
 .logo_header{
     margin-top: 30px;
-    /*toto margin-left: 50px;*/
     margin-left: 0px;
     position: absolute;
 }
@@ -462,7 +459,7 @@ GLOBAL
 
 .categorias-list-page{
     margin-top: 30px;
-    min-height: 350px;
+    min-height: 380px;
 }
 
 
@@ -551,8 +548,7 @@ GLOBAL
 .btn-login{
     position: absolute;
     margin-top: 30px;
-    /* toto */
-    right:0;
+    right:-20px;
 }
 .btn-login span{
     padding: 0 10px;
@@ -701,7 +697,6 @@ GLOBAL
 }
 #logo-circle{
     position: absolute;
-    top: 15px;
 }
 .form-control{
     border-radius: 0;
@@ -1113,7 +1108,7 @@ Votos GRID
     padding: 10px;
     color: #35b3b4;
 }
-/* toto */
+
 .wedding-login{
     width: 80px;
     text-align: center;
@@ -1124,7 +1119,6 @@ Votos GRID
     width: 100%;
 }
 
-/* fin toto */
 .wedding .footer li a:hover{
     color: #35b3b4;
 }
@@ -2309,12 +2303,27 @@ DASHBOARD ADMIN
 /*=============
 MÓVILES PORTAIT
 ===============*/
+@media (max-width: 1199px) {
+    .menu-principal .navbar-default li a{
+        padding: 15px 7px;
+    }
+    .menu-principal .navbar-default{
+        margin-left: 8%;
+    }
+
+}
+
 
 @media only screen and (max-width:700px){
+    .image-port{
+        width: 100%;
+    }
     .frase-negocio{
         margin: 30px 15px;
     }
-
+    .slider-section{
+        margin: 20px 0;
+    }
     .pic_foto .negocio-form{
         margin: 10px auto;
         max-width: 318px;
@@ -2333,6 +2342,9 @@ MÓVILES PORTAIT
     .image-contact h3,.image-contact2 h3,.image-contact3 h3,.image-contact4 h3{
         font-size: 15px;
         padding-top: 0;
+        color: #fff;
+        text-decoration: none;
+
     }
     .facebook_button2{
         display: block;
@@ -2420,7 +2432,7 @@ MÓVILES PORTAIT
         display: block;
         width:100px;
         height: 100px;
-        left: 110px;
+        left: 120px;
         top: 160px;
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 2px 2px 5px rgba(0,0,0,.1);

@@ -84,59 +84,61 @@
             <div class="col-md-8 col-md-pull-4">
 
                 <!-- Slider Section -->
-
-                <div id="slider" class="flexslider">
-                    <ul class="slides">
-                        {% for f in proveedor.fotos  %}
-                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-                                {% if app.user is not null %}
-                                    {% set me_gusta = 0 %}
-                                    {% for fu in app.user.fotos  %}
-                                        {% if fu.foto.id==f.id %}
-                                            {% set me_gusta = 1 %}
+                <div class="row slider-section">
+                    <div id="slider" class="flexslider">
+                        <ul class="slides">
+                            {% for f in proveedor.fotos  %}
+                                <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                    <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+                                    {% if app.user is not null %}
+                                        {% set me_gusta = 0 %}
+                                        {% for fu in app.user.fotos  %}
+                                            {% if fu.foto.id==f.id %}
+                                                {% set me_gusta = 1 %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if me_gusta==1 %}
+                                            <div class="boton-megusta_kids">
+                                                <a href="{{ path('proveedor_foto_me_gusta',
+                                                {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        {% else %}
+                                            <div class="boton-megusta_kids">
+                                                <a href="{{ path('proveedor_foto_me_gusta',
+                                                {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
+                                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
                                         {% endif %}
-                                    {% endfor %}
-                                    {% if me_gusta==1 %}
-                                        <div class="boton-megusta_kids">
-                                            <a href="{{ path('proveedor_foto_me_gusta',
-                                            {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
-                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
                                     {% else %}
                                         <div class="boton-megusta_kids">
-                                            <a href="{{ path('proveedor_foto_me_gusta',
+                                            <a class="ajax-popup-link" href="{{ path('proveedor_foto_me_gusta',
                                             {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
                                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
                                             </a>
                                         </div>
                                     {% endif %}
-                                {% else %}
-                                    <div class="boton-megusta_kids">
-                                        <a class="ajax-popup-link" href="{{ path('proveedor_foto_me_gusta',
-                                        {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
+                                </li>
+                            {% endfor %}
 
-                    </ul>
+                        </ul>
+                    </div>
+
+                    <div id="carousel" class="flexslider">
+                        <ul class="slides flex-control-nav flex-control-thumbs">
+                            {% for f in proveedor.fotos  %}
+                                <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
+                                    <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
                 </div>
 
-                <div id="carousel" class="flexslider">
-                    <ul class="slides flex-control-nav flex-control-thumbs">
-                        {% for f in proveedor.fotos  %}
-                            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-
-                            </li>
-                        {% endfor %}
-
-                    </ul>
-                </div>
 
                 <!-- Fin Slider Section -->
 
@@ -330,7 +332,7 @@
             slideshow: true,
             sync: "#carousel"
         });
-        var test = $("#rateYo").attr("data-rating");
+        var RatePrin = $("#rateYo").attr("data-rating");
 
         var recuperar = $("#comentario_proveedor_nota").attr("value");
 
@@ -340,7 +342,7 @@
 
 
         $("#rateYo").rateYo({
-            rating: test,
+            rating: RatePrin,
             ratedFill: color,
             normalFill: "#A0A0A0",
             readOnly: true
