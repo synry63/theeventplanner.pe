@@ -87,7 +87,23 @@
 
     <script>
         $(document).ready(function() {
-            $('.gallery_content').createDiagonalSlider();
+            $.fn.preload = function() {
+                this.each(function(){
+                    $('<img/>')[0].src = this;
+                    ctp_load++;
+                    if(ctp_load>3) {
+                        $('.gallery_content').createDiagonalSlider();
+                    }
+                });
+            }
+            var arr_out = [];
+            var ctp_load = 0;
+            $( ".gallery_content .gallery_item img" ).each(function( index ) {
+                arr_out.push($( this ).attr('src'));
+            });
+
+            // Usage:
+            $(arr_out).preload();
         });
     </script>
 {% endblock %}
