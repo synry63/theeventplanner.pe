@@ -286,7 +286,7 @@ class AdminController extends Controller
             $em->persist($p);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Proveedor is disable !');
+            $request->getSession()->getFlashBag()->add('success', 'DESAPROVADO');
 
             return $this->redirectToRoute('admin_negocio_show',array('id'=>$id));
         }
@@ -305,7 +305,7 @@ class AdminController extends Controller
             $em->persist($p);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Proveedor is enable !');
+            $request->getSession()->getFlashBag()->add('success', 'Aprovado');
 
             return $this->redirectToRoute('admin_negocio_show',array('id'=>$id));
         }

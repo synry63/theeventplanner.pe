@@ -48,6 +48,8 @@ class UserController extends Controller
                 array('user'=>$user),
                 array('updatedAt'=>'DESC')
             );
+
+
         return $this->render(
             'FOSUserBundle:Profile:show_fotos_favoritos.html.twig',
             array(

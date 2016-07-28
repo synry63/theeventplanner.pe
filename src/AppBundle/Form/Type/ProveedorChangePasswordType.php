@@ -23,8 +23,8 @@ class ProveedorChangePasswordType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('plainPassword', RepeatedType::class, array(
-            'type' => PasswordType::class,
+        $builder->add('plainPassword', 'Symfony\Component\Form\Extension\Core\Type\RepeatedType', array(
+            'type' => 'Symfony\Component\Form\Extension\Core\Type\PasswordType',
             'invalid_message' => 'Los campos de contraseña deben coincidir.',
             'first_options'  => array('label' => 'Password'),
             'second_options' => array('label' => 'Repeat Password'),
@@ -34,7 +34,7 @@ class ProveedorChangePasswordType extends AbstractType
             ),
         ));
 
-        $builder->add('submit', SubmitType::class);
+        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     public function configureOptions(OptionsResolver $resolver)
     {

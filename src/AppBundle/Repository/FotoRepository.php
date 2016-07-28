@@ -44,6 +44,7 @@ class FotoRepository extends EntityRepository
             ->join('f.proveedor','fp')
             ->join('fp.categoriasListado','fpc')
             ->where('fpc.parent = :cate')
+            ->andWhere('fp.isAccepted = :state')
             ->setParameter('cate',$cate);
 
         $qb->addOrderBy('f.updatedAt', 'DESC');
@@ -70,10 +71,14 @@ class FotoRepository extends EntityRepository
             ->join('f.proveedor','fp')
             ->join('fp.categoriasListado','cl')
             ->where('cl.parent = :cate')
+            ->andWhere('fp.isAccepted = :state')
             ->setMaxResults( $limit )
-            ->setParameter('cate',$parent_category);
+            ->setParameters(array(
+                'cate' => $parent_category,
+                'state'=>true
+            ));
         $qb->addGroupBy('foto');
-        $qb->addGroupBy('cl');
+        //$qb->addGroupBy('cl');
         $qb->addOrderBy('number', 'DESC');
         $query = $qb->getQuery();
         return $query->getResult();

@@ -39,7 +39,7 @@ class FotoType extends AbstractType
             ),
         ));
 
-        $builder->add('submit', SubmitType::class);
+        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     public function configureOptions(OptionsResolver $resolver)
     {

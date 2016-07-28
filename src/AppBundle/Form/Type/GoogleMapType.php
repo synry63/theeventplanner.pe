@@ -24,13 +24,13 @@ class GoogleMapType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ubicacion',HiddenType::class,array(
+            ->add('ubicacion','Symfony\Component\Form\Extension\Core\Type\HiddenType',array(
                 'data' => ' ',
                 'constraints' => array(
                     new NotBlank(),
                 ),
             ))
-            ->add('submit', SubmitType::class)
+            ->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType')
         ;
     }
     public function getName()
