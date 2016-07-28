@@ -151,6 +151,9 @@ GLOBAL
     width: 250px; /* MOI */
     height: 250px; /* MOI */
 }
+.home-slicks .subtittle-slick{
+    margin-bottom:3px;
+}
 .home-slicks2{
     box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
     background: #F7F6F5;

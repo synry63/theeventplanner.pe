@@ -78,8 +78,7 @@ class DefaultController extends Controller
      */
     public function contactoAction($slug_site,Request $request)
     {
-
-        $form = $this->createForm(ContactType::class);
+        $form = $this->createForm(new ContactType());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -90,7 +89,7 @@ class DefaultController extends Controller
             // send email to admin
             $message = \Swift_Message::newInstance()
                 ->setSubject('The Event Planner - Formulario Contacto')
-                ->setFrom('sistema@theeventplanner.pe')
+                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
                 ->setTo('jsarabia@theeventplanner.pe')
                 ->setBody(
                     $this->renderView(
@@ -108,7 +107,7 @@ class DefaultController extends Controller
             // send email to user as auto responder
             $message_user = \Swift_Message::newInstance()
                 ->setSubject('Formulario de Contacto')
-                ->setFrom('sistema@theeventplanner.pe')
+                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
                 ->setTo($data['email'])
                 ->setBody(
                     $this->renderView(
@@ -151,7 +150,7 @@ class DefaultController extends Controller
             $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
             $user = $this->container->get('security.context')->getToken()->getUser();
 
-            $form = $this->createForm(CotizacionType::class,NULL,array(
+            $form = $this->createForm('Symfony\Component\Form\Extension\Core\Type\CotizacionType',NULL,array(
                 'action' => $this->generateUrl('cotizacion_negocio',array('slug_site' => $slug_site,'slug_proveedor'=>$slug_proveedor)),
                 'method' => 'POST',
             ));
@@ -171,7 +170,7 @@ class DefaultController extends Controller
                    // send email to negocio
                    $message = \Swift_Message::newInstance()
                        ->setSubject('The Event Planner - Formulario Cotizacion')
-                       ->setFrom('sistema@theeventplanner.pe')
+                       ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
                        ->setTo($proveedor->getEmail())
                        ->setBody(
                            $this->renderView(
@@ -190,7 +189,7 @@ class DefaultController extends Controller
                    // send email to user as auto responder
                    $message_user = \Swift_Message::newInstance()
                        ->setSubject('Formulario Cotizacion')
-                       ->setFrom('sistema@theeventplanner.pe')
+                       ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
                        ->setTo($data['email'])
                        ->setBody(
                            $this->renderView(
