@@ -39,6 +39,11 @@
     </div><!-- /.container-fluid -->
 </nav>
 
+{% for label, flash in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ flash }}
+    </div>
+{% endfor %}
 
 <div class="container dashboard">
 
