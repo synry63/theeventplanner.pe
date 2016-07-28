@@ -44,6 +44,7 @@
     if (typeof jQuery != 'undefined'){
         $( document ).ready(function() {
             $('#cotizacion_send').click(function(e){
+                $('#cotizacion_send').prop('disabled', true);
                 e.preventDefault();
                 $.ajax({
                     type        : $('form').attr( 'method' ),
@@ -52,9 +53,10 @@
                     dataType    : "json"
 
                 }).done(function(data) {
+                    $('#cotizacion_send').prop('disabled', false);
                     if(data.success==false){
                         $( "#error-form" ).html("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.message + "</div>"  );
-                        console.log(data);
+                        //console.log(data);
                     }
                     else{
                         noty({
