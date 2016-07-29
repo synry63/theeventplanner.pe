@@ -27,6 +27,8 @@
                     <select class="selectpicker" id="sort_list" name="sort">
                         <option {% if proveedores.isSorted('p.registeredAt') %} selected {% endif %} value="p.registeredAt">Fecha</option>
                         <option {% if proveedores.isSorted('p.nombre') %} selected {% endif %} value="p.nombre">Nombre</option>
+                        <option {% if proveedores.isSorted('cp.nota') %} selected {% endif %} value="cp.nota">Popularidad</option>
+
                     </select>
                     <select class="selectpicker " id="sort_list" name="direction">
                         <option {% if direction=='desc' %} selected {% endif %} value="desc">Descendiente</option>
