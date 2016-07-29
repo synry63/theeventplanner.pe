@@ -58,11 +58,22 @@
         </div>
 
     </div>
-    <a href="{{ app.request.headers.get('referer') }}">
-        <div id="atras">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-        </div>
-    </a>
+    {# {{ app.request.headers.get('referer') }} #}
+    {% set site = app.session.get('site') %}
+    {% if site is null %}
+            <a href="{{ path('selection_start')}}">
+                <div id="atras">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </div>
+            </a>
+        {% else %}
+            <a href="{{ path('site_start',{'slug_site': app.session.get('site')}) }}">
+                <div id="atras">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </div>
+            </a>
+    {% endif %}
+
 
 </div>
 </body>
