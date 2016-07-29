@@ -37,6 +37,8 @@ class DefaultController extends Controller
     public function siteAction($slug_site,Request $request)
     {
 
+        $session = $this->getRequest()->getSession();
+        $session->set('site', $slug_site);
 
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
 

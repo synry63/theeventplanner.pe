@@ -114,7 +114,7 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($tendencia);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('success', 'Your tendencia deleted !');
+            $request->getSession()->getFlashBag()->add('success', 'Su tendencia fue borrada !');
             return $this->redirectToRoute('admin_tendencias');
         }
 
@@ -135,7 +135,7 @@ class AdminController extends Controller
             $em->persist($tendencia);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Your tendencia saved !');
+            $request->getSession()->getFlashBag()->add('success', 'Su tendencia fue guardada !');
             return $this->redirectToRoute('admin_tendencias');
         }
 
@@ -165,7 +165,7 @@ class AdminController extends Controller
             $em->persist($tendencia);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Your tendencia saved !');
+            $request->getSession()->getFlashBag()->add('success', 'Su tendencia fue guardada !');
             return $this->redirectToRoute('admin_tendencia_edit',array('id'=>$id));
         }
 
@@ -178,7 +178,7 @@ class AdminController extends Controller
             //$logo->setProveedor($proveedor);
             $em->persist($inspiracion);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('success', 'Your inspiracion added !');
+            $request->getSession()->getFlashBag()->add('success', 'Su inspiracion fue guardada !');
             return $this->redirectToRoute('admin_tendencia_edit',array('id'=>$id));
         }
 
@@ -224,7 +224,7 @@ class AdminController extends Controller
             $em->persist($inspiracion);
             $em->flush();
             $id = $inspiracion->getTendencia()->getId();
-            $request->getSession()->getFlashBag()->add('success', 'Your inspiracion added !');
+            $request->getSession()->getFlashBag()->add('success', 'Su inspiracion fue guardada !');
             return $this->redirectToRoute('admin_tendencia_inpiraciones',array('id'=>$id));
         }
         return $this->render(
@@ -244,7 +244,7 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($inspiraion);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('success', 'Your inspiraion deleted !');
+            $request->getSession()->getFlashBag()->add('success', 'Su inspiracion fue borrada !');
             return $this->redirectToRoute('admin_tendencia_inspiraciones',array('id'=>$id));
         }
     }
