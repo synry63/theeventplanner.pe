@@ -30,37 +30,37 @@ class ProveedorType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('description',TextareaType::class,array(
+        $builder->add('description','Symfony\Component\Form\Extension\Core\Type\TextareaType',array(
             'constraints' => array(
                 new NotBlank(),
 
             ),
         ));
-        $builder->add('nombre',TextType::class,array(
+        $builder->add('nombre','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
-        $builder->add('direccion',TextType::class,array(
+        $builder->add('direccion','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
-        $builder->add('departamento',TextType::class,array(
+        $builder->add('departamento','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
-        $builder->add('distrito',TextType::class,array(
+        $builder->add('distrito','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
-        $builder->add('telefono',TextType::class,array(
+        $builder->add('telefono','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
@@ -71,21 +71,21 @@ class ProveedorType extends AbstractType
         $builder->add('twitterLink');
         $builder->add('pinteresLink');
         $builder->add('instagramLink');
-        $builder->add('email', EmailType::class,array(
+        $builder->add('email', 'Symfony\Component\Form\Extension\Core\Type\EmailType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
-        $builder->add('username', TextType::class,array(
+        $builder->add('username', 'Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
 
-        $builder->add('plainPassword', RepeatedType::class, array(
-            'type' => PasswordType::class,
+        $builder->add('plainPassword', 'Symfony\Component\Form\Extension\Core\Type\RepeatedType', array(
+            'type' => 'Symfony\Component\Form\Extension\Core\Type\PasswordType',
             'invalid_message' => 'Los campos de contraseña deben coincidir.',
             'first_options'  => array('label' => 'Password'),
             'second_options' => array('label' => 'Repeat Password'),
@@ -119,7 +119,7 @@ class ProveedorType extends AbstractType
                     return $er->createQueryBuilder('c');
                 },
         ));*/
-        $builder->add('categoriasListado',EntityType::class, array(
+        $builder->add('categoriasListado','entity', array(
             'class' => 'AppBundle:CategoriaListado',
             'choice_label' => 'nombre',
             'choices' =>
@@ -134,7 +134,7 @@ class ProveedorType extends AbstractType
             'constraints' => array(
                 new NotBlank(),
                 new Image(array(
-                    'maxSize'       => '50ki',
+                    'maxSize'       => '100ki',
                     /*'maxWidth'=>250,
                     'maxHeight'=>250,*/
                     'minWidth'=>200,
@@ -174,7 +174,7 @@ class ProveedorType extends AbstractType
             'language' => 'es',
         ));*/
 
-        $builder->add('submit', SubmitType::class);
+        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     /*public function getParent()
     {

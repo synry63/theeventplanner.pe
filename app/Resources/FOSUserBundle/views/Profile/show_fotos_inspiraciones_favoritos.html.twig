@@ -2,7 +2,7 @@
 
 
 {% block menuprincipal %}
-    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'tittle_miperfil.png'}) %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuProfile', [], {'site':app.session.get('site'),'image_title': 'tittle_miperfil.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
 {% block selloimage %}

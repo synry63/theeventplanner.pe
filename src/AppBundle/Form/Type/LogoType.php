@@ -27,7 +27,7 @@ class LogoType extends AbstractType
             'constraints' => array(
                 new NotBlank(),
                 new Image(array(
-                    'maxSize'       => '50ki',
+                    'maxSize'       => '100ki',
                     /*'maxWidth'=>250,
                     'maxHeight'=>250,*/
                     'minWidth'=>200,
@@ -40,7 +40,7 @@ class LogoType extends AbstractType
 
             ),
         ));
-        $builder->add('submit', SubmitType::class);
+        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     public function configureOptions(OptionsResolver $resolver)
     {

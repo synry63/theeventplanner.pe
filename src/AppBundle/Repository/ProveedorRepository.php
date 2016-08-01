@@ -106,7 +106,7 @@ class ProveedorRepository extends EntityRepository
             ->join('p.categoriasListado','cl')
             ->leftJoin('p.comentariosProveedor','cp')
             ->where('cl = :cate')
-            ->andWhere('p.isActive = :state')
+            ->andWhere('p.isAccepted = :state')
             ->setParameters(array(
                 'cate' => $cate,
                 'state'=>true

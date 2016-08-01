@@ -174,42 +174,51 @@ class Builder implements ContainerAwareInterface
 
         return $menu;
     }
-    public function mainMenu(FactoryInterface $factory, array $options){
+    public function mainMenuProfile(FactoryInterface $factory, array $options){
 
-        $slug_site = $options['slug_site'];
-
+        $key = $options['site'];
         $menu = $factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-default');
 
+        //$uri = $this->container->get('router')->generate('wedding_start');
         $menu->addChild('home',array(
                 'route' => 'site_start',
                 'label' => 'Inicio',
-                'routeParameters' => array('slug_site' => $slug_site)
+                'routeParameters' => array('slug_site' => $key)
 
             )
         );
         $menu->addChild('proveedores',array(
                 'route' => 'site_categorias',
                 'label' => 'Proveedores',
-                'routeParameters' => array('slug_site' => $slug_site)
+                'routeParameters' => array('slug_site' => $key)
             )
         );
 
+        $menu->addChild('center-image', array(
+            'uri' => '#',
+            'label' => '',
+            'attributes' => array('id' => 'center-image'),
+            'extras' => array(
+                'img' => '/images/'.$options['image_title']
+            )
+        ));
 
         $menu->addChild('inspiraciones',array(
                 'route' => 'inspiraciones_start',
                 'label' => 'Inspiraciones',
-                'routeParameters' => array('slug_site' => $slug_site),
+                'routeParameters' => array('slug_site' => $key),
 
             )
         );
         $menu['inspiraciones']->setLinkAttribute('class', 'external-link');
 
-        //$uri = $this->container->get('router')->generate('wedding_contactenos');
+
+
         $menu->addChild('contactenos',array(
                 'route' => 'site_contactenos',
                 'label' => 'Contáctenos',
-                'routeParameters' => array('slug_site' => $slug_site)
+                'routeParameters' => array('slug_site' => $key)
             )
         );
 

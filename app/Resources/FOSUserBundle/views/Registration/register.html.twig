@@ -21,7 +21,13 @@
     <div class="container-fluid back-register">
         {% include "FOSUserBundle:Registration:register_content.html.twig" %}
     </div>
-
+    <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script>
+        $('#go-register').click(function(e){
+            $(this).prop('disabled', true);
+            $( "form" ).submit();
+        });
+    </script>
     </body>
 
 

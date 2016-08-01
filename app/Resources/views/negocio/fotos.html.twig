@@ -64,7 +64,10 @@
 
                 </div>
                 {{ form_end(form) }}
-                <p>Las imagenes deben ser de 750x450px</p>
+                <p>Las imagenes deben ser de 750x450px<br/>
+                   La Imagen formato Jpg
+                </p>
+
             </div>
         </div>
     </div>
@@ -74,12 +77,10 @@
 
 
 
-    {% for label, flashes in app.session.flashbag.all %}
-        {% for flash in flashes %}
-            <div class="alert alert-{{ label }}">
-                {{ flash }}
-            </div>
-        {% endfor %}
+    {% for label, flash in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flash }}
+        </div>
     {% endfor %}
 
     <div class="fotos_galery">

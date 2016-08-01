@@ -79,6 +79,7 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
     }
     public function onLogoutSuccess(Request $request)
     {
+
         $referer = $request->headers->get('referer');
         //$request->getSession()->setFlash('success', 'Wylogowano');
 

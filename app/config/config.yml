@@ -93,8 +93,8 @@ vich_uploader:
 
 fos_user:
     from_email:
-        address:        pmary@ryma-soluciones.com
-        sender_name:    TEST
+        address:        sistema@theeventplanner.pe
+        sender_name:    The Event Planner
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User

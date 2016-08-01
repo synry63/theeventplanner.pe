@@ -4,11 +4,21 @@
     'attr': {novalidate: 'novalidate','class': 'fos_user_registration_register'}}) }}
 
 <div class="container-fluid">
-    <a href="{{ app.request.headers.get('referer') }}">
-        <div id="atras">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-        </div>
-    </a>
+    {% set site = app.session.get('site') %}
+    {% if site is null %}
+        <a href="{{ path('selection_start')}}">
+            <div id="atras">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </div>
+        </a>
+    {% else %}
+        <a href="{{ path('site_start',{'slug_site': site}) }}">
+            <div id="atras">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </div>
+        </a>
+    {% endif %}
+
 
     <div class="col-md-6  form-login">
         <div class="col-md-12 register-logo">
@@ -102,16 +112,20 @@
 
 
             <div>
-                <input type="submit" class="btn btn-entrar" value="{{ 'registration.submit'|trans }}" />
+                <input type="submit" id="go-register" class="btn btn-entrar" value="{{ 'registration.submit'|trans }}" />
             </div>
 
 
+            {% if site is null %}
 
-
-            <a href="{{ app.request.headers.get('referer') }}">
-                <div class="btn btn-primary atras">Atrás</div>
-            </a>
-
+                <a href="{{ path('selection_start')}}">
+                    <div class="btn btn-primary atras">Atrás</div>
+                </a>
+            {% else %}
+                <a href="{{ path('site_start',{'slug_site': site}) }}">
+                    <div class="btn btn-primary atras">Atrás</div>
+                </a>
+            {% endif %}
 
         </div>
     </div>

@@ -7,27 +7,27 @@
     </div>
 
     <div class="form-group">
-        {{ form_label(form.name,'Nombre: ') }}
+        {{ form_label(form.name,'* Nombre: ') }}
         {{ form_errors(form.name) }}
         {{ form_widget(form.name,{ 'attr': {'class': 'form-control','placeholder':'Tu nombre','value':app.user.nombres }}) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.email,'Email:') }}
+        {{ form_label(form.email,'* Email:') }}
         {{ form_errors(form.email) }}
         {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'Tu email','value':app.user.email}}) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.tel,'Teléfono:') }}
+        {{ form_label(form.tel,'* Teléfono:') }}
         {{ form_errors(form.tel) }}
         {{ form_widget(form.tel,{ 'attr': {'class': 'form-control','placeholder':'Tu Teléfono','value':app.user.telefono}}) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.subject,'Asunto:') }}
+        {{ form_label(form.subject,'* Asunto:') }}
         {{ form_errors(form.subject) }}
         {{ form_widget(form.subject,{ 'attr': {'class': 'form-control','placeholder':'Asunto'}}) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.message,'Mensaje:') }}
+        {{ form_label(form.message,'* Mensaje:') }}
         {{ form_errors(form.message) }}
         {{ form_widget(form.message,{ 'attr': {'class': 'form-control','placeholder':'Mensaje','rows':'6','cols':'6'}}) }}
     </div>
@@ -43,6 +43,7 @@
     if (typeof jQuery != 'undefined'){
         $( document ).ready(function() {
             $('#cotizacion_send').click(function(e){
+                $('#cotizacion_send').prop('disabled', true);
                 e.preventDefault();
                 $.ajax({
                     type        : $('form').attr( 'method' ),
@@ -51,9 +52,10 @@
                     dataType    : "json"
 
                 }).done(function(data) {
+                    $('#cotizacion_send').prop('disabled', false);
                     if(data.success==false){
                         $( "#error-form" ).html("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.message + "</div>"  );
-                        console.log(data);
+                        //console.log(data);
                     }
                     else{
                         noty({

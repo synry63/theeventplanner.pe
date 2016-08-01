@@ -95,12 +95,10 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-{% for label, flashes in app.session.flashbag.all %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ label }}">
-            {{ flash }}
-        </div>
-    {% endfor %}
+{% for label, flash in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ flash }}
+    </div>
 {% endfor %}
 <input id="pac-input" class="controls" type="text" value=""
        placeholder="Introduzca una ubicación">
@@ -136,6 +134,7 @@
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
         var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.setTypes([]); // changetype-all
         autocomplete.bindTo('bounds', map);
 
         var infowindow = new google.maps.InfoWindow();

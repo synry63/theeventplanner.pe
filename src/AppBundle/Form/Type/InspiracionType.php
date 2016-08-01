@@ -32,14 +32,14 @@ class InspiracionType extends AbstractType
         $builder->add('sort');
         $builder->add('imgFile', 'file',array(
             'constraints' => array(
-                new NotBlank(array('message' => 'File should not be blank.')),
+                new NotBlank(),
                 new Image(array(
-                        'maxSize'       => '250K')
+                        'maxSize'       => '300ki')
                 )
 
             ),
         ));
-        $builder->add('submit', SubmitType::class);
+        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -37,12 +37,15 @@ class DefaultController extends Controller
     public function siteAction($slug_site,Request $request)
     {
 
+        $session = $this->getRequest()->getSession();
+        $session->set('site', $slug_site);
 
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
 
         $best_proveedores = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getBestProveedores($categoria);
 
         $best_fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getBestFotos($categoria);
+
 
         $best_inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->getBestInspiraciones();
 
@@ -52,6 +55,7 @@ class DefaultController extends Controller
                 'mejores_proveedores'=>$best_proveedores,
                 'mejores_inspiraciones'=>$best_inspiraciones,
                 'mejores_fotos'=>$best_fotos,
+                'home'=>'home'
             )
         );
 
@@ -78,8 +82,7 @@ class DefaultController extends Controller
      */
     public function contactoAction($slug_site,Request $request)
     {
-
-        $form = $this->createForm(ContactType::class);
+        $form = $this->createForm(new ContactType());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -88,9 +91,10 @@ class DefaultController extends Controller
 
 
             // send email to admin
-            $message = \Swift_Message::newInstance()
-                ->setSubject('The Event Planner - Formulario Contacto')
-                ->setFrom('sistema@theeventplanner.pe')
+            $message = \Swift_Message::newInstance();
+            $imgUrl = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+            $message->setSubject('The Event Planner - Formulario Contacto')
+                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
                 ->setTo('jsarabia@theeventplanner.pe')
                 ->setBody(
                     $this->renderView(
@@ -100,15 +104,17 @@ class DefaultController extends Controller
                             'email' => $data['email'],
                             'asunto' => $data['subject'],
                             'telefono' => $data['tel'],
-                            'mensaje' => $data['message']
+                            'mensaje' => $data['message'],
+                            'logo'=>$imgUrl
                         )
                     )
                 );
 
             // send email to user as auto responder
-            $message_user = \Swift_Message::newInstance()
-                ->setSubject('Formulario de Contacto')
-                ->setFrom('sistema@theeventplanner.pe')
+            $message_user = \Swift_Message::newInstance();
+            $imgUrl_user = $message_user->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+            $message_user->setSubject('Formulario de Contacto')
+                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
                 ->setTo($data['email'])
                 ->setBody(
                     $this->renderView(
@@ -118,7 +124,8 @@ class DefaultController extends Controller
                             'email' => $data['email'],
                             'asunto' => $data['subject'],
                             'telefono' => $data['tel'],
-                            'mensaje' => $data['message']
+                            'mensaje' => $data['message'],
+                            'logo'=>$imgUrl_user
                         )
                     )
                 );
@@ -149,9 +156,8 @@ class DefaultController extends Controller
     {
         if ($request->isXmlHttpRequest()) {
             $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
-            $user = $this->container->get('security.context')->getToken()->getUser();
 
-            $form = $this->createForm(CotizacionType::class,NULL,array(
+            $form = $this->createForm(new CotizacionType(),NULL,array(
                 'action' => $this->generateUrl('cotizacion_negocio',array('slug_site' => $slug_site,'slug_proveedor'=>$slug_proveedor)),
                 'method' => 'POST',
             ));
@@ -169,9 +175,10 @@ class DefaultController extends Controller
                    $data = $form->getData();
 
                    // send email to negocio
-                   $message = \Swift_Message::newInstance()
-                       ->setSubject('The Event Planner - Formulario Cotizacion')
-                       ->setFrom('sistema@theeventplanner.pe')
+                   $message = \Swift_Message::newInstance();
+                   $imgUrl = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+                   $message->setSubject('The Event Planner - Formulario Cotizacion')
+                       ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
                        ->setTo($proveedor->getEmail())
                        ->setBody(
                            $this->renderView(
@@ -182,15 +189,17 @@ class DefaultController extends Controller
                                    'asunto' => $data['subject'],
                                    'proveedor'=>$proveedor,
                                    'telefono' => $data['tel'],
-                                   'mensaje' => $data['message']
+                                   'mensaje' => $data['message'],
+                                   'logo'=>$imgUrl
                                )
                            )
                        );
 
                    // send email to user as auto responder
-                   $message_user = \Swift_Message::newInstance()
-                       ->setSubject('Formulario Cotizacion')
-                       ->setFrom('sistema@theeventplanner.pe')
+                   $message_user = \Swift_Message::newInstance();
+                   $imgUrl_user = $message_user->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+                   $message_user->setSubject('Formulario Cotizacion')
+                       ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
                        ->setTo($data['email'])
                        ->setBody(
                            $this->renderView(
@@ -201,7 +210,8 @@ class DefaultController extends Controller
                                    'asunto' => $data['subject'],
                                    'proveedor'=>$proveedor,
                                    'telefono' => $data['tel'],
-                                   'mensaje' => $data['message']
+                                   'mensaje' => $data['message'],
+                                   'logo'=>$imgUrl_user
                                )
                            )
                        );

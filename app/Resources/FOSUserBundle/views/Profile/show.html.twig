@@ -1,15 +1,15 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 
+
 {% block menuprincipal %}
-    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'tittle_miperfil.png'}) %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuProfile', [], {'site':app.session.get('site'),'image_title': 'tittle_miperfil.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
 {% block selloimage %}
     <img src="{{ asset('images/logo_header.png') }}" alt="The event Planner">
 {% endblock selloimage %}
 {% block content %}
-
     {% block main_title %}
         <div id="tittle_responsive" class="container">
             <div class="row">

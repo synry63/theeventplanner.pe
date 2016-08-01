@@ -24,7 +24,7 @@ security:
             memory:
                 users:
                     admin:
-                      password: admin
+                      password: adeline63
                       roles: 'ROLE_ADMIN'
     firewalls:
         secured_area:

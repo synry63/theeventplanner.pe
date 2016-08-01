@@ -28,7 +28,7 @@ class TendenciaType extends AbstractType
 
         $entity = $builder->getData();
 
-        $builder->add('type', ChoiceType::class,array(
+        $builder->add('type', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
             'choices'  => array(
                 'wedding' => 'Wedding',
                 'dinner' => 'Dinner',
@@ -43,11 +43,11 @@ class TendenciaType extends AbstractType
         if($entity->getId()==NULL){ // so new one
             $builder->add('imgFile', 'file',array(
                 'constraints' => array(
-                    new NotBlank(array('message' => 'File should not be blank.')),
+                    new NotBlank(),
                     new Image(array(
-                        'maxSize'       => '250K',
-                        'maxWidth'=>300,
-                        'maxHeight'=>200
+                        'maxSize'       => '250ki',
+                        'maxWidth'=>300
+                        /*'maxHeight'=>250*/
                         //'mimeTypes'=>array('image/jpeg')
                     ))
 
@@ -58,9 +58,9 @@ class TendenciaType extends AbstractType
             $builder->add('imgFile', 'file',array(
                 'constraints' => array(
                     new Image(array(
-                        'maxSize'       => '250K',
-                        'maxWidth'=>300,
-                        'maxHeight'=>200
+                        'maxSize'       => '250ki',
+                        'maxWidth'=>300
+                        /*'maxHeight'=>250*/
                         //'mimeTypes'=>array('image/jpeg')
                     ))
 
@@ -68,7 +68,7 @@ class TendenciaType extends AbstractType
             ));
         }
 
-        $builder->add('submit', SubmitType::class);
+        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -23,7 +23,7 @@ class CotizacionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array(
+            ->add('name', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'attr' => array(
                     'placeholder' => 'What\'s your name?',
                     'pattern'     => '.{2,}' //minlength
@@ -34,7 +34,7 @@ class CotizacionType extends AbstractType
                 ),
 
             ))
-            ->add('tel', 'text', array(
+            ->add('tel', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'attr' => array(
                     'placeholder' => 'Ingrese un telefono.',
                     'pattern'     => '.{3,}' //minlength
@@ -79,7 +79,7 @@ class CotizacionType extends AbstractType
 
                 ),
             ))
-            ->add('send', SubmitType::class
+            ->add('send', 'Symfony\Component\Form\Extension\Core\Type\SubmitType'
             );
 
     }

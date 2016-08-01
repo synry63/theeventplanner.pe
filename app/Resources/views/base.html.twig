@@ -26,7 +26,11 @@
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
+{% if home is defined %}
+<body id="home">
+{% else %}
+<body>
+{% endif %}
 
         {% block body %}{% endblock %}
 

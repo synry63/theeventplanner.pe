@@ -20,9 +20,9 @@ class ComentarioProveedorType extends AbstractType
             //->add('nota')
             ->add('titulo')
             ->add('comentario')
-            ->add('nota',HiddenType::class, array(
+            ->add('nota','Symfony\Component\Form\Extension\Core\Type\HiddenType', array(
                 'data' => '0'))
-            ->add('submit', SubmitType::class)
+            ->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType')
         ;
     }
 }

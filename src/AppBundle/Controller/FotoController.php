@@ -46,7 +46,7 @@ class FotoController extends Controller
             $em->persist($foto);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Your added an image !');
+            $request->getSession()->getFlashBag()->add('success', 'Su añadió una imagen !');
 
             return $this->redirectToRoute('negocio_zona_imagenes');
         }

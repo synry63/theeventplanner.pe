@@ -170,7 +170,7 @@ class ProveedorController extends Controller
         );
     }
     /**
-     * @Route("/negocio/zona/mapa   ", name="negocio_zona_map")
+     * @Route("/negocio/zona/mapa", name="negocio_zona_map")
      */
     public function zonaGoogleMapShowAction(Request $request){
         $proveedor = $this->get('security.token_storage')->getToken()->getUser();
