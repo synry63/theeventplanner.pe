@@ -134,12 +134,12 @@ class ProveedorType extends AbstractType
             'constraints' => array(
                 new NotBlank(),
                 new Image(array(
-                    'maxSize'       => '100ki',
+                    'maxSize'       => '300ki',
                     /*'maxWidth'=>250,
                     'maxHeight'=>250,*/
-                    'minWidth'=>200,
-                    'minHeight'=>200,
-                    'allowLandscape'=>false,
+                    'minWidth'=>250,
+                    'minHeight'=>250,
+                    'allowLandscape'=>true,
                     'allowSquare'=>true,
                     'allowPortrait'=>false
                     //'mimeTypes'=>array('image/jpeg')
