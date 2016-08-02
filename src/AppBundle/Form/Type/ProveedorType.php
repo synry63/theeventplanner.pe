@@ -141,8 +141,8 @@ class ProveedorType extends AbstractType
                     'minHeight'=>200,
                     'allowLandscape'=>false,
                     'allowSquare'=>true,
-                    'allowPortrait'=>false,
-                    'mimeTypes'=>array('image/jpeg')
+                    'allowPortrait'=>false
+                    //'mimeTypes'=>array('image/jpeg')
                 ))
 
             ),

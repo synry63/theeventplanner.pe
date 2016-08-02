@@ -266,6 +266,54 @@ class ProveedorController extends Controller
     public function registerValidAction(Request $request){
         $proveedor = $this->get('security.token_storage')->getToken()->getUser();
         if(is_object($proveedor)){
+
+            // send email to negocio
+            $message = \Swift_Message::newInstance();
+            $imgUrl = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+            $message->setSubject('Bienvenido a The Event Planner - Business')
+                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
+                ->setTo($proveedor->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'emails/negocio_register_user.html.twig',
+                        array(
+                            'usuario' => $proveedor->getUsername(),
+                            'nombre_negocio' => $proveedor->getNombre(),
+                            'telefono' => $proveedor->getTelefono(),
+                            'email' => $proveedor->getEmail(),
+                            'logo'=>$imgUrl
+                        )
+                    )
+                );
+
+            $message->setContentType("text/html");
+            $this->get('mailer')->send($message);
+
+            // send email to admin
+            $message_admin = \Swift_Message::newInstance();
+            $imgUrl_admin = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+            $message_admin->setSubject('Bienvenido a The Event Planner - Business')
+                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
+                ->setTo($proveedor->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'emails/negocio_register_user.html.twig',
+                        array(
+                            'usuario' => $proveedor->getUsername(),
+                            'nombre_negocio' => $proveedor->getNombre(),
+                            'telefono' => $proveedor->getTelefono(),
+                            'email' => $proveedor->getEmail(),
+                            'logo'=>$imgUrl_admin
+                        )
+                    )
+                );
+
+            $message->setContentType("text/html");
+            $this->get('mailer')->send($message);
+
+            $message_admin->setContentType("text/html");
+            $this->get('mailer')->send($message_admin);
+
             return $this->render(
                 'negocio_confirmation.html.twig'
             );

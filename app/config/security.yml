@@ -23,8 +23,8 @@ security:
         in_memory:
             memory:
                 users:
-                    admin:
-                      password: adeline63
+                    jey:
+                      password: confito0408
                       roles: 'ROLE_ADMIN'
     firewalls:
         secured_area:

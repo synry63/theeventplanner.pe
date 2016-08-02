@@ -35,7 +35,7 @@ class LogoType extends AbstractType
                     'allowLandscape'=>false,
                     'allowSquare'=>true,
                     'allowPortrait'=>false,
-                    'mimeTypes'=>array('image/jpeg')
+                    //'mimeTypes'=>array('image/jpeg')
                 ))
 
             ),
