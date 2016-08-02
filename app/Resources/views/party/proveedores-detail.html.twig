@@ -30,7 +30,7 @@
                         </div>
                         #}
 
-                        <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') }}" alt="{{ proveedor.nombre }}" />
+                        <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') | imagine_filter('logo_thumb') }}" alt="{{ proveedor.nombre }}" />
 
                         <div id="rateYo"  data-rating="{{ moy }}"></div>
 

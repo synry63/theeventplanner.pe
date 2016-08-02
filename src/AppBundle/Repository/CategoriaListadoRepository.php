@@ -13,11 +13,17 @@ use Doctrine\ORM\EntityRepository;
 class CategoriaListadoRepository extends EntityRepository
 {
 
-    function getCategoriasChildren($slug){
+    function getCategoriasChildren($slug)
+    {
+        $parentCategoria = $this->findOneBy(array('slug' => $slug));
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.parent = :cate_parent')
+            ->setParameter('cate_parent', $parentCategoria);
 
-        $weddingParentCategoria = $this->findOneBy(array('slug' => $slug));
+        $qb->addOrderBy('c.nombre', 'ASC');
+        $query = $qb->getQuery();
 
-        return $weddingParentCategoria->getChildren();
+        return $query->getResult();
     }
     function getCategoriasChildrenManaged($categoria_parent){
         $qb = $this->createQueryBuilder('c')

@@ -24,7 +24,7 @@ security:
             memory:
                 users:
                     jey:
-                      password: confito0408
+                      password: fito0408
                       roles: 'ROLE_ADMIN'
     firewalls:
         secured_area:

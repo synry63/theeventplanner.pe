@@ -23,7 +23,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" /></a>
+            <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo')| imagine_filter('logo_thumb') }}" /></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
