@@ -65,10 +65,18 @@
 
 
                     <ul>
-                        <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img width="50px" src="{{ asset('images/social_facebook.png') }}" alt=""></a></li>
-                        <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img width="50px" src="{{ asset('images/social_pinterest.png') }}" alt=""></a></li>
-                        <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img  width="50px"src="{{ asset('images/social_twitter.png') }}" alt=""></a></li>
-                        <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img  width="50px" src="{{ asset('images/social_instagram.png') }}" alt=""></a></li>
+                        {% if proveedor.facebookLink is not null %}
+                            <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img width="50px" src="{{ asset('images/social_facebook.png') }}" alt=""></a></li>
+                        {% endif %}
+                        {% if proveedor.pinteresLink is not null %}
+                            <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img width="50px" src="{{ asset('images/social_pinterest.png') }}" alt=""></a></li>
+                        {% endif %}
+                        {% if proveedor.twitterLink is not null %}
+                            <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img  width="50px"src="{{ asset('images/social_twitter.png') }}" alt=""></a></li>
+                        {% endif %}
+                        {% if proveedor.instagramLink is not null %}
+                            <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img  width="50px" src="{{ asset('images/social_instagram.png') }}" alt=""></a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
