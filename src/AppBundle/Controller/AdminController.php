@@ -11,8 +11,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Inspiracion;
 use AppBundle\Entity\Tendencia;
+use AppBundle\Entity\Voto;
 use AppBundle\Form\Type\InspiracionType;
 use AppBundle\Form\Type\TendenciaType;
+use AppBundle\Form\Type\VotoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,6 +33,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AdminController extends Controller
 {
+    private function menuSelected($key){
+        $default = array('home'=>false,'negocios'=>false,'tendencias'=>false,'votos'=>false);
+        $default[$key] = true;
+        return $default;
+    }
     /**
      * @param $text
      * @return mixed|string
@@ -70,7 +77,8 @@ class AdminController extends Controller
     public function adminZonaAction(){
 
         return $this->render(
-            'admin/home.html.twig'
+            'admin/home.html.twig',
+            array('seccion'=>$this->menuSelected('home'))
         );
     }
     /**
@@ -84,7 +92,8 @@ class AdminController extends Controller
         return $this->render(
             'admin/tendencias.html.twig',
             array(
-                'tendencias'=>$tendencias
+                'tendencias'=>$tendencias,
+                'seccion' => $this->menuSelected('tendencias')
             )
         );
     }
@@ -122,6 +131,47 @@ class AdminController extends Controller
 
     }
     /**
+     * @Route("/admin/voto/delete/{id}", name="admin_voto_delete")
+     */
+    public function adminVotoDeleteAction(Request $request,$id){
+        $voto = $this->getDoctrine()->getRepository('AppBundle:Voto')->find($id);
+
+        if($voto!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($voto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su voto fue borrada !');
+            return $this->redirectToRoute('admin_votos');
+        }
+    }
+    /**
+     * @Route("/admin/voto/add", name="admin_voto_add")
+     */
+    public function adminVotoAddAction(Request $request){
+        $voto = new Voto();
+        $form = $this->createForm(new VotoType(), $voto);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $slug = $this->slugify($voto->getNombre());
+            $voto->setSlug($slug);
+            //$logo->setProveedor($proveedor);
+            $em->persist($voto);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Su voto fue guardada !');
+            return $this->redirectToRoute('admin_votos');
+        }
+
+        return $this->render(
+            'admin/votos_add.html.twig',
+            array(
+                'form' => $form->createView(),
+                'seccion' => $this->menuSelected('votos')
+            )
+        );
+    }
+    /**
      * @Route("/admin/tendencia/add", name="admin_tendencia_add")
      */
     public function adminTendenciaAddAction(Request $request){
@@ -144,13 +194,40 @@ class AdminController extends Controller
             'admin/tendencia_add.html.twig',
             array(
                 'form_tendencia' => $form_tendencia->createView(),
+                'seccion' => $this->menuSelected('tendencias')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/voto/{id}", name="admin_voto_edit")
+     */
+    public function adminVotoEditAction(Request $request,$id){
+        $voto = $this->getDoctrine()->getRepository('AppBundle:Voto')->find($id);
+
+        $form_voto = $this->createForm(new VotoType(), $voto);
+        $form_voto->handleRequest($request);
+        if ($form_voto->isSubmitted() && $form_voto->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $slug = $this->slugify($voto->getNombre());
+            $voto->setSlug($slug);
+            $voto->setUpdatedAt(new \DateTime('now'));
+            $em->persist($voto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su voto fue guardada !');
+            return $this->redirectToRoute('admin_voto_edit',array('id'=>$id));
+        }
+        return $this->render(
+            'admin/votos_edit.html.twig',
+            array(
+                'form' => $form_voto->createView(),
+                'seccion' => $this->menuSelected('votos')
             )
         );
     }
     /**
      * @Route("/admin/tendencia/{id}", name="admin_tendencia_edit")
      */
-    public function adminTendenciaAction(Request $request,$id){
+    public function adminTendenciaEditAction(Request $request,$id){
         $tendencia = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->find($id);
         $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(
             array('tendencia'=>$tendencia),
@@ -190,8 +267,26 @@ class AdminController extends Controller
                 'tendencia'=>$tendencia,
                 'inspiraciones'=>$inspiraciones,
                 'form_tendencia' => $form_tendencia->createView(),
-                'form_inspiracion' => $form_inspiracion->createView()
+                'form_inspiracion' => $form_inspiracion->createView(),
+                'seccion' => $this->menuSelected('tendencias')
 
+            )
+        );
+    }
+    /**
+     * @Route("/admin/votos/sort/list", name="admin_votos_sort_list")
+     */
+    public function adminVotosSortListAction(Request $request){
+        $votos = $this->getDoctrine()->getRepository('AppBundle:Voto')->findBy(
+            array(),
+            array('sort' => 'ASC')
+        );
+
+        return $this->render(
+            'admin/votos_sort.html.twig',
+            array(
+                'votos' => $votos,
+                'seccion' => $this->menuSelected('votos')
             )
         );
     }
@@ -208,9 +303,47 @@ class AdminController extends Controller
         return $this->render(
             'admin/tendencia_inspiraciones.html.twig',
             array(
-                'inspiraciones' => $inspiraciones
+                'inspiraciones' => $inspiraciones,
+                'seccion' => $this->menuSelected('tendencias')
             )
         );
+    }
+    /**
+     * @Route("/admin/votos/sort", name="admin_votos_sort")
+     */
+    public function adminVotosSortAction(Request $request){
+        if($request->isXmlHttpRequest()) {
+            $sort_string = $request->request->get('sort');
+            $arr = explode('&',$sort_string);
+            $arr_ids = array();
+            foreach ($arr as $value){
+                $temp = explode('=',$value)[1];
+                $arr_ids[] = $temp;
+            }
+            $sort = 0;
+            $em = $this->getDoctrine()->getManager();
+            foreach ($arr_ids as $voto_id){
+                $inspiracion = $this->getDoctrine()->getRepository('AppBundle:Voto')->find($voto_id);
+                $inspiracion->setSort($sort);
+                $em->persist($inspiracion);
+                $sort++;
+            }
+            $em->flush();
+            /*$sort = (int)$request->request->get('sort');
+            $id = (int)$request->request->get('id_inspiracion');
+            $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(
+                array(),
+                array('sort' => 'ASC')
+            );*/
+
+            //$inspiracion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($id);
+            //$inspiracion->setSort($sort);
+
+
+
+
+            return new JsonResponse(array('sort' => $sort));
+        }
     }
     /**
      * @Route("/admin/inspiracion/sort", name="admin_tendencia_inpiracion_sort")
@@ -307,6 +440,7 @@ class AdminController extends Controller
         return $this->render(
             'admin/negocios.html.twig',array(
                 'proveedores'=>$pagination,
+                'seccion'=>$this->menuSelected('negocios')
             )
         );
 
@@ -493,5 +627,18 @@ class AdminController extends Controller
             );
         }
     }
+    /**
+     * @Route("/admin/votos", name="admin_votos")
+     */
+    public function adminVotosShowAction(Request $request){
+        $votos = $this->getDoctrine()->getRepository('AppBundle:Voto')->findBy(array(),array('sort'=>'ASC'));
 
+        return $this->render(
+            'admin/votos.html.twig',
+            array(
+                'votos'=>$votos,
+                'seccion' => $this->menuSelected('votos')
+            )
+        );
+    }
 }

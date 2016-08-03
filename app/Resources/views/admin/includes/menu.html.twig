@@ -1,0 +1,37 @@
+<nav id="nav-dashboard" class="navbar navbar-default">
+    <ul class="nav menu-dashboard">
+        <li>
+            <a class="dropdown-toggle {{ seccion["home"] ? 'active' : '' }}" href="{{ path('admin_start') }}">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-toggle {{ seccion["negocios"] ? 'active' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-briefcase" aria-hidden="true"></i> Lista de Negocios
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_negocios') }}">Ver Todo</a></li>
+                <li><a href="#">Agregar Nuevo</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="dropdown-toggle {{ seccion["tendencias"] ? 'active' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-area-chart" aria-hidden="true"></i> Lista de Tendencias
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_tendencias') }}">Ver Todo</a></li>
+                <li><a href="{{ path('admin_tendencia_add') }}">Agregar Nuevo</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="dropdown-toggle {{ seccion["votos"] ? 'active' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-area-chart" aria-hidden="true"></i> Lista de Votos
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_votos') }}">Ver Todo</a></li>
+                <li><a href="{{ path('admin_voto_add') }}">Agregar Nuevo</a></li>
+                <li><a href="{{ path('admin_votos_sort_list') }}">Ordenar</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>

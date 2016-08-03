@@ -33,17 +33,18 @@
             </div>
         {% endfor %}
 
-        <a class="tendencias_return" href="{{ path('admin_tendencias') }}">
+        <a class="tendencias_return" href="{{ path('admin_votos') }}">
             <button class="btn btn-entrar">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Tendencias
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a votos
             </button>
         </a>
 
         <ul class="grid effect-1" id="grid">
-            {% for ifa in inspiraciones %}
-                <li id="{{"insp_"~ ifa.id }}" data-insp="{{ ifa.id }}" class="ui-state-default" style="height: 230px;overflow: hidden;">
+            {% for v in votos %}
+                <li id="{{"voto_"~ v.id }}" data-insp="{{ v.id }}" class="ui-state-default" style="height: 230px;overflow: hidden;">
                     {# <span style="color: white;position: absolute">{{ ifa.sort }}</span> #}
-                    <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
+                    <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': v.id}) }}">{{ v.nombre }}</a></h1>
+                    <p>"{{ v.description }}"</p>
                 </li>
             {% endfor %}
         </ul>
@@ -60,10 +61,10 @@
 <script type="text/javascript" src="{{ asset('js/modernizr.custom.js') }}"></script>
 <script>
     /*new AnimOnScroll( document.getElementById( 'grid' ), {
-        minDuration : 0.4,
-        maxDuration : 0.7,
-        viewportFactor : 0.2
-    } );*/
+     minDuration : 0.4,
+     maxDuration : 0.7,
+     viewportFactor : 0.2
+     } );*/
     var dev = "/app_dev.php";
     $( "#grid" ).sortable({
         update: function( event, ui ) {
@@ -72,9 +73,9 @@
             var sorted = $( "#grid" ).sortable( "serialize" );
             $.ajax({
                 type: "POST",
-                url: dev+'/admin/inspiracion/sort',
+                url: dev+'/admin/votos/sort',
                 data: {
-                   sort:sorted
+                    sort:sorted
                     //sort: ui.item.index(),
                     //id_inspiracion: $(ui.item).attr('data-insp')
 

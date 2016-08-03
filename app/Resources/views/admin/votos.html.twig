@@ -26,27 +26,17 @@
             </div>
         {% endfor %}
 
-        <div class="links-tendencias">
-            <ul>
-                <li><a href="{{ path('admin_tendencias_seccion', {'slug_site': 'wedding'}) }}">Tendencias Weeding</a></li>
-                <li><a href="{{ path('admin_tendencias_seccion', {'slug_site': 'party'}) }}">Tendencias Party</a></li>
-                <li><a href="{{ path('admin_tendencias_seccion', {'slug_site': 'kids'}) }}">Tendencias Kids</a></li>
-                <li><a href="{{ path('admin_tendencias_seccion', {'slug_site': 'dinner'}) }}">Tendencias Dinner</a></li>
-            </ul>
-        </div>
-
         <section id="demo">
-                    {% for t in tendencias  %}
-                        <article class="white-panel wedding_link">
-                            <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_delete', {'id': t.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            <a class="admin_edit" href="{{ path('admin_tendencia_edit', {'id': t.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
-                            <a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">
-                                <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
-                                <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': t.id}) }}">{{ t.nombre }}</a></h1>
-                                <p>"{{ t.description }}"</p>
-                            </a>
-                        </article>
-                    {% endfor %}
+            {% for v in votos  %}
+                <article class="white-panel wedding_link">
+                    <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_voto_delete', {'id': v.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    <a class="admin_edit" href="{{ path('admin_voto_edit', {'id': v.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+                    <a href="{{ path('admin_tendencia_inspiraciones', {'id': v.id}) }}">
+                        <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': v.id}) }}">{{ v.nombre }}</a></h1>
+                        <p>"{{ v.description }}"</p>
+                    </a>
+                </article>
+            {% endfor %}
 
         </section>
 

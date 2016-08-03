@@ -145,7 +145,7 @@ class InspiracionController extends Controller
      */
     public function inspiracionesVotosAction($slug_site){
 
-        $votos = $this->getDoctrine()->getRepository('AppBundle:Voto')->findBy(array(),array('order'=>'ASC'));
+        $votos = $this->getDoctrine()->getRepository('AppBundle:Voto')->findBy(array(),array('sort'=>'ASC'));
         return $this->render(
             $slug_site.'/inspiraciones-votos.html.twig',
             array('votos'=>$votos)

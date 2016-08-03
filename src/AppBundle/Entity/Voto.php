@@ -40,11 +40,15 @@ class Voto
     /**
      * @ORM\Column(type="integer")
      */
-    private $order;
+    private $sort;
+
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
      */
-    private $img;
+    private $updatedAt;
+
     /**
      * @param mixed $description
      */
@@ -69,20 +73,21 @@ class Voto
         $this->nombre = $nombre;
     }
 
+
     /**
-     * @param mixed $img
+     * @param \DateTime $updatedAt
      */
-    public function setImg($img)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->img = $img;
+        $this->updatedAt = $updatedAt;
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
-    public function getImg()
+    public function getUpdatedAt()
     {
-        return $this->img;
+        return $this->updatedAt;
     }
 
     /**
@@ -110,19 +115,19 @@ class Voto
     }
 
     /**
-     * @param mixed $order
+     * @param mixed $sort
      */
-    public function setOrder($order)
+    public function setSort($sort)
     {
-        $this->order = $order;
+        $this->sort = $sort;
     }
 
     /**
      * @return mixed
      */
-    public function getOrder()
+    public function getSort()
     {
-        return $this->order;
+        return $this->sort;
     }
 
     /**
@@ -139,6 +144,9 @@ class Voto
     public function getSlug()
     {
         return $this->slug;
+    }
+    function __construct() {
+        $this->updatedAt = new \DateTime('now');
     }
 
 }

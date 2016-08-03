@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Dashboard</title>
+</head>
+
+<body>
+<!--
+        <nav id="nav-dashboard" class="navbar navbar-default">
+            {{ knp_menu_render('AppBundle:Builder:menuAdmin',{ 'template': 'knp_menu.html.twig'}) }}
+        </nav>
+        -->
+
+{{ include('admin/includes/menu.html.twig', { 'seccions': seccion }) }}
+
+<div class="container">
+    <div class="col-md-10 body-dashboard  dash-edit">
+        {{ form_start(form) }}
+        <h1>Agregar Nueva Voto</h1>
+
+        <div class="form-group">
+            {{ form_label(form.nombre,'Nombre') }}
+            {{ form_errors(form.nombre) }}
+            {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.description,'Descripción') }}
+            {{ form_errors(form.description) }}
+            {{ form_widget(form.description,{ 'attr': {'class': 'form-control','rows':'8'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.sort,'Sort') }}
+            {{ form_errors(form.sort) }}
+            {{ form_widget(form.sort,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
+        </div>
+
+        {{ form_end(form) }}
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
