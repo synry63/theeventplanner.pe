@@ -6,7 +6,13 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/component.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <style>
+        .grid li{
+            opacity: 1;
+        }
+    </style>
     <title>Dashboard</title>
 </head>
 
@@ -61,17 +67,17 @@
 
         <ul class="grid effect-1" id="grid">
             {% for ifa in inspiraciones %}
-                <li>
+                <li data-insp="{{ ifa.id }}" class="ui-state-default" style="height: 230px;">
+                    <span style="color: white;position: absolute">{{ ifa.sort }}</span>
                     <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
                 </li>
             {% endfor %}
-
         </ul>
-
     </div>
 </div>
 
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/imagesloaded.js') }}"></script>
@@ -79,11 +85,33 @@
 <script type="text/javascript" src="{{ asset('js/AnimOnScroll.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/modernizr.custom.js') }}"></script>
 <script>
-    new AnimOnScroll( document.getElementById( 'grid' ), {
+    /*new AnimOnScroll( document.getElementById( 'grid' ), {
         minDuration : 0.4,
         maxDuration : 0.7,
         viewportFactor : 0.2
-    } );
+    } );*/
+    var dev = "/app_dev.php";
+    $( "#grid" ).sortable({
+        update: function( event, ui ) {
+            //var id = $(ui.item).attr('data-insp');
+            //alert("New position: " + ui.item.index());
+            $.ajax({
+                type: "POST",
+                url: dev+'/admin/inspiracion/sort',
+                data: {
+                    sort: ui.item.index(),
+                    id_inspiracion: $(ui.item).attr('data-insp')
+
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response.sort);
+                    $(ui.item).children('span').text(response.sort);
+                }
+            });
+        }
+    });
+    $( "#grid" ).disableSelection();
 </script>
 
 </body>

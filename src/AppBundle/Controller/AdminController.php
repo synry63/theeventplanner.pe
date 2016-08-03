@@ -25,6 +25,7 @@ use Ivory\GoogleMap\Helper\Places\AutocompleteHelper;
 use Ivory\GoogleMap\Overlays\InfoWindow;
 use Ivory\GoogleMap\Events\MouseEvent;
 use AppBundle\Form\Type\ContactType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 
@@ -212,6 +213,25 @@ class AdminController extends Controller
         );
     }
     /**
+     * @Route("/admin/inspiracion/sort", name="admin_tendencia_inpiracion_sort")
+     */
+    public function adminTendenciaInspiracionSortAction(Request $request){
+
+        if($request->isXmlHttpRequest()) {
+            $sort = $request->request->get('sort');
+            $id = $request->request->get('id_inspiracion');
+
+            $inspiracion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($id);
+            $inspiracion->setSort($sort);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($inspiracion);
+            $em->flush();
+
+            return new JsonResponse(array('sort' => $sort));
+        }
+
+    }
+    /**
      * @Route("/admin/tendencia/inspiracion/add", name="admin_tendencia_inpiracion_add")
      */
     public function adminTendenciaInspiracionAddAction(Request $request){
@@ -245,7 +265,7 @@ class AdminController extends Controller
             $em->remove($inspiraion);
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'Su inspiracion fue borrada !');
-            return $this->redirectToRoute('admin_tendencia_inspiraciones',array('id'=>$id));
+            return $this->redirectToRoute('admin_tendencia_edit',array('id'=>$id));
         }
     }
     /**

@@ -121,7 +121,9 @@
 
         <ul class="grid effect-1" id="grid">
             {% for ifa in inspiraciones %}
+
                 <li class="tendencias-images">
+                    <span style="color: white;position: absolute"><b>{{ ifa.sort }}</b></span>
                     <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_inspiracion_delete', {'id': ifa.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
                     <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
                 </li>
