@@ -67,8 +67,8 @@
 
         <ul class="grid effect-1" id="grid">
             {% for ifa in inspiraciones %}
-                <li data-insp="{{ ifa.id }}" class="ui-state-default" style="height: 230px;">
-                    <span style="color: white;position: absolute">{{ ifa.sort }}</span>
+                <li id="{{"insp_"~ ifa.id }}" data-insp="{{ ifa.id }}" class="ui-state-default" style="height: 230px;overflow: hidden;">
+                    {# <span style="color: white;position: absolute">{{ ifa.sort }}</span> #}
                     <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
                 </li>
             {% endfor %}
@@ -95,18 +95,21 @@
         update: function( event, ui ) {
             //var id = $(ui.item).attr('data-insp');
             //alert("New position: " + ui.item.index());
+            var sorted = $( "#grid" ).sortable( "serialize" );
             $.ajax({
                 type: "POST",
                 url: dev+'/admin/inspiracion/sort',
                 data: {
-                    sort: ui.item.index(),
-                    id_inspiracion: $(ui.item).attr('data-insp')
+                   sort:sorted
+                    //sort: ui.item.index(),
+                    //id_inspiracion: $(ui.item).attr('data-insp')
 
                 },
+                //data:sorted,
                 dataType: "json",
                 success: function(response) {
-                    console.log(response.sort);
-                    $(ui.item).children('span').text(response.sort);
+                    //console.log(response.sort);
+                    //$(ui.item).children('span').text(response.sort);
                 }
             });
         }

@@ -218,14 +218,34 @@ class AdminController extends Controller
     public function adminTendenciaInspiracionSortAction(Request $request){
 
         if($request->isXmlHttpRequest()) {
-            $sort = $request->request->get('sort');
-            $id = $request->request->get('id_inspiracion');
-
-            $inspiracion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($id);
-            $inspiracion->setSort($sort);
+            $sort_string = $request->request->get('sort');
+            $arr = explode('&',$sort_string);
+            $arr_ids = array();
+            foreach ($arr as $value){
+                $temp = explode('=',$value)[1];
+                $arr_ids[] = $temp;
+            }
+            $sort = 0;
             $em = $this->getDoctrine()->getManager();
-            $em->persist($inspiracion);
+            foreach ($arr_ids as $insp_id){
+                $inspiracion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($insp_id);
+                $inspiracion->setSort($sort);
+                $em->persist($inspiracion);
+                $sort++;
+            }
             $em->flush();
+            /*$sort = (int)$request->request->get('sort');
+            $id = (int)$request->request->get('id_inspiracion');
+            $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(
+                array(),
+                array('sort' => 'ASC')
+            );*/
+
+            //$inspiracion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($id);
+            //$inspiracion->setSort($sort);
+
+
+
 
             return new JsonResponse(array('sort' => $sort));
         }
