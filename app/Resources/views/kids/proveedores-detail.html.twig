@@ -41,9 +41,11 @@
                             <br>
                             <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
                             <p>{{ proveedor.telefono }}</p>
-                            <div class="links-proveedores lkids">
-                                <a href="{{ proveedor.web }}" target="_blank">Página Web</a>
-                            </div>
+                            {% if proveedor.web is not null %}
+                                <div class="links-proveedores lkids">
+                                    <a href="{{ proveedor.web }}" target="_blank">Página Web</a>
+                                </div>
+                            {% endif %}
                         {% else %}
                             <div class="session-start">
                                 <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a> para ver los datos de la empresa
