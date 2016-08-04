@@ -291,13 +291,13 @@ class ProveedorController extends Controller
 
             // send email to admin
             $message_admin = \Swift_Message::newInstance();
-            $imgUrl_admin = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+            $imgUrl_admin = $message_admin->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
             $message_admin->setSubject('The Event Planner - Business - Nuevo Usuario')
                 ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
                 ->setTo('jsarabia@theeventplanner.pe')
                 ->setBody(
                     $this->renderView(
-                        'emails/negocio_register_user.html.twig',
+                        'emails/negocio_register_admin.html.twig',
                         array(
                             'usuario' => $proveedor->getUsername(),
                             'nombre_negocio' => $proveedor->getNombre(),
