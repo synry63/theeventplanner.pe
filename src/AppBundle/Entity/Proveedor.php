@@ -242,6 +242,35 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     private $fotos;
 
     /**
+     * @ORM\OneToMany(targetEntity="PreguntaFrequente", mappedBy="proveedor",cascade={"persist"})
+     **/
+    private $preguntas;
+
+    /**
+     * @param mixed $preguntas
+     */
+    public function setPreguntas($preguntas)
+    {
+        $this->preguntas = $preguntas;
+    }
+    /**
+     * @param mixed $preguntas
+     */
+    public function addPreguntas($pregunta)
+    {
+        $this->preguntas[] = $pregunta;
+    }
+    /**
+     * @return mixed
+     */
+    public function getPreguntas()
+    {
+        return $this->preguntas;
+    }
+
+
+
+    /**
      * @param mixed $googleMapLat
      */
     public function setGoogleMapLat($googleMapLat)
@@ -386,6 +415,10 @@ class Proveedor implements AdvancedUserInterface, \Serializable
         $this->comentariosProveedor = new ArrayCollection();
         $this->productos = new ArrayCollection();
         $this->categoriasListado = new ArrayCollection();
+        $this->preguntas = new ArrayCollection();
+
+
+
     }
 
     /**

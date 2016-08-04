@@ -91,6 +91,11 @@ class Builder implements ContainerAwareInterface
                 'label' => 'Preview',
             )
         );
+        $menu->addChild('negocio-faq',array(
+                'route' => 'negocio_zona_faq',
+                'label' => 'FAQ',
+            )
+        );
         return $menu;
 
     }
