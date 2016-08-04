@@ -1,5 +1,10 @@
 {% extends 'party/layout.html.twig' %}
 {% block title %}Proveedores{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+{% endblock %}
 {% block main_title %}
     <div id="tittle_responsive" class="container">
         <div class="row">
@@ -168,7 +173,32 @@
                 {% endif %}
 
                 <!-- Fin Google Section -->
+                <!-- Preguntas Section -->
+                {% if proveedor.preguntas|length > 0 %}
+                    <div id="accordion" class="acordion-party">
 
+                        <h3>
+                            Preguntas Frecuentes
+                        </h3>
+
+                        <div>
+                            {% for pre in proveedor.preguntas %}
+                                {% if pre.respuesta is not null and pre.pregunta is not null%}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4>{{ pre.pregunta }}</h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{ pre.respuesta }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                {% endif %}
+                <!-- Fin Preguntas Section -->
                 <!-- Comentarios Section -->
 
                 <div class="comments-box">
@@ -307,8 +337,12 @@
     <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
     <script>
-
+        $( "#accordion" ).accordion({
+            active: false,
+            collapsible: true
+        });
 
         var coment_r = $("#coment-alert").attr("data-coment");
 

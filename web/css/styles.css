@@ -1767,6 +1767,72 @@ DINNER
     border: solid 2px #0000ea;
     border-radius: 0;
 }
+/*=============
+Acordion
+===============*/
+.acordion-wedding h3, .acordion-party h3,.acordion-dinner h3, .acordion-kids h3{
+    padding: 10px;
+}
+.acordion-wedding h4, .acordion-party h4,.acordion-dinner h4, .acordion-kids h4{
+    font-size: 15px;
+    font-weight:bolder;
+}
+.acordion-wedding .row,.acordion-party .row,.acordion-dinner .row,.acordion-kids .row{
+    padding: 10px;
+    border-bottom: solid 1px rgba(0,0,0,.1);
+}
+.acordion-wedding .row:last-child,.acordion-party .row:last-child,.acordion-dinner .row:last-child,.acordion-kids .row:last-child{
+    border-bottom: solid 1px transparent;
+}
+.acordion-wedding .row p,.acordion-party .row p,.acordion-dinner .row p,.acordion-kids .row p{
+    text-align: justify;
+}
+.acordion-wedding.ui-accordion .ui-accordion-content,.acordion-party.ui-accordion .ui-accordion-content, .acordion-dinner.ui-accordion .ui-accordion-content, .acordion-kids.ui-accordion .ui-accordion-content{
+    border-radius:0;
+    background: rgba(0,0,0,.03);
+    font-family: "OpenSans-Light", serif;
+    height: 100%;
+}
+.acordion-wedding.ui-accordion .ui-accordion-header{
+    border-radius:0;
+    border: 1px solid rgb(1, 166, 191);
+    background: #04B4D3;
+    font-weight: 100;
+    font-family: "OpenSans-Light", serif;
+    padding: 15px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+.acordion-kids.ui-accordion .ui-accordion-header{
+    border-radius:0;
+    border: 1px solid rgb(88, 11, 142);
+    background: #8216CE;
+    font-weight: 100;
+    font-family: "OpenSans-Light", serif;
+    padding: 15px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+.acordion-party.ui-accordion .ui-accordion-header{
+    border-radius:0;
+    border: 1px solid rgb(201, 100, 0);
+    background: #EA7901;
+    font-weight: 100;
+    font-family: "OpenSans-Light", serif;
+    padding: 15px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+.acordion-dinner.ui-accordion .ui-accordion-header{
+    border-radius:0;
+    border: 1px solid rgb(3, 22, 191);
+    background: #0114E4;
+    font-weight: 100;
+    font-family: "OpenSans-Light", serif;
+    padding: 15px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
 
 /*=============
 Animates
