@@ -110,7 +110,8 @@ class AdminController extends Controller
         return $this->render(
             'admin/tendencias.html.twig',
             array(
-                'tendencias'=>$tendencias
+                'tendencias'=>$tendencias,
+                'seccion' => $this->menuSelected('tendencias')
             )
         );
     }
