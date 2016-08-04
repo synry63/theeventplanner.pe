@@ -67,9 +67,11 @@ class DefaultController extends Controller
      */
     public function categoriasAction($slug_site){
         $children_categories =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_site);
+        $children_categories_menu =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_site,'ASC');
         return $this->render(
             $slug_site.'/categorias.html.twig',array(
-                'categorias'=>$children_categories
+                'categorias'=>$children_categories,
+                'categorias_menu'=>$children_categories_menu
             )
         );
 

@@ -29,7 +29,7 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    {% for c in categorias %}
+                    {% for c in categorias_menu %}
                         <li><a href="{{ path('proveedores_category', {'slug_site': 'dinner','slug_category': c.slug}) }}">{{ c.nombre }}</a></li>
                     {% endfor %}
                 </ul>
