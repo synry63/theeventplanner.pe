@@ -32,7 +32,18 @@
 {% endblock %}
 
 {% block selloimage %}
-    <img src="{{ asset('images/sello_party.png') }}" alt="The event Planner">
+    <div class="two">
+        <div class="front">
+            <a href="{{ path('selection_start') }}">
+                <img display="block" src="{{ asset('images/sello_party.png') }}" alt="The event Planner">
+            </a>
+        </div>
+        <div class="back">
+            <a href="{{ path('selection_start') }}">
+                <img display="block" src="{{ asset('images/sello_p_home.png') }}" alt="The event Planner">
+            </a>
+        </div>
+    </div>
 {% endblock selloimage %}
 
 {% block user_login %}

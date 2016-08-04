@@ -45,8 +45,13 @@ Nav bar
 }
 .logo_header{
     margin-top: 30px;
-    margin-left: 0px;
-    position: absolute;
+    margin-left: 30px;
+    float: left;
+}
+.two{
+    width: 50px;
+    top:30px;
+
 }
 #center-image a img{
     width: 450px;
@@ -2401,16 +2406,27 @@ MÓVILES PORTAIT
     }
     .menu-principal .navbar-default{
         margin: 0;
+        margin-top: 40px;
     }
     .menu-principal .navbar-default li{
         padding: 10px 0;
         text-align: center;
+    }
+    .total-container .navbar-default ul li:nth-child(4){
+        margin-left: 0;
     }
     .logo_header{
         margin: 10px auto;
         position: relative;
         width: 50px;
         display: block;
+    }
+    .two{
+        top:0;
+        width: 50px;
+        margin-top: 0;
+        margin-left: 43%;
+        display: inline-block;
     }
     .navbar-default{
         height: auto;
