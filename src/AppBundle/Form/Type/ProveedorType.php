@@ -132,7 +132,7 @@ class ProveedorType extends AbstractType
         //$builder->add('logo', LogoType::class);
         $builder->add('tempFile', 'file',array(
             'constraints' => array(
-                //new NotBlank(),
+                new NotBlank(),
                 new Image(array(
                     'maxSize'       => '300ki',
                     /*'maxWidth'=>250,

@@ -105,7 +105,7 @@
                         {{ form_widget(form.description,{ 'attr': {'class': 'form-control'}}) }}
                     </div>
                     <div class="form-group">
-                        {{ form_label(form.tempFile,'Logo') }}
+                        {{ form_label(form.tempFile,'* Logo') }}
                         {% if form.tempFile.vars.errors|length>0 %}
                             <div class="alert alert-danger" role="alert">
                                 <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.tempFile) }}</div>
