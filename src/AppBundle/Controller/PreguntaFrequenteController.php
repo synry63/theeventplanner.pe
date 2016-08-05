@@ -38,7 +38,7 @@ class PreguntaFrequenteController extends Controller
         );
     }
     /**
-     * @Route("/negocio/zona/faq/delete/{id}", name="negocio_zona_faq")
+     * @Route("/negocio/zona/faq/delete/{id}", name="negocio_zona_faq_delete")
      */
     public function zonaComentarioDeleteAction(Request $request,$id){
         $em = $this->getDoctrine()->getManager();
