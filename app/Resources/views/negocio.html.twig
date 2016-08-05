@@ -255,6 +255,14 @@
 
 </div>
 
+
+<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script>
+    $('#proveedor_submit').click(function(e){
+        $(this).prop('disabled', true);
+        $( "form" ).submit();
+    });
+</script>
 </body>
 
 
