@@ -1,1 +1,7 @@
+{% for label, flash in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ flash }}
+    </div>
+{% endfor %}
 {{ dump(preguntas) }}
+{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}

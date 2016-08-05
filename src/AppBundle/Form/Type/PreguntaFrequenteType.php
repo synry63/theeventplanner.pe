@@ -26,18 +26,20 @@ class PreguntaFrequenteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $builder->add('pregunta',array(
+
+        $builder->add('pregunta','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
-        $builder->add('respuesta',array(
+
+        $builder->add('respuesta','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
-
             )
         ));
+
 
 
         $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');

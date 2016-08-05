@@ -24,10 +24,11 @@ class PreguntaFrequenteController extends Controller
         $form = $this->createForm(new PreguntaFrequenteType(), $pregunta);
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $pregunta->setProveedor($proveedor);
             $em = $this->getDoctrine()->getManager();
             $em->persist($pregunta);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('success', 'Se actualizo su pregunta-respuesta !');
+            $request->getSession()->getFlashBag()->add('success', 'Se agrego su pregunta-respuesta !');
             return $this->redirectToRoute('negocio_zona_faq');
         }
         return $this->render(
