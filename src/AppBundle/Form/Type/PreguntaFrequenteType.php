@@ -34,7 +34,7 @@ class PreguntaFrequenteType extends AbstractType
             )
         ));
 
-        $builder->add('respuesta','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+        $builder->add('respuesta','Symfony\Component\Form\Extension\Core\Type\TextareaType',array(
             'constraints' => array(
                 new NotBlank(),
             )

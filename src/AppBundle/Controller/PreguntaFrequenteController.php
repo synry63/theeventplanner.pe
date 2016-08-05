@@ -48,7 +48,7 @@ class PreguntaFrequenteController extends Controller
             $em->remove($pregunta);
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'FAQ suprimida !');
-            return $this->redirectToRoute('negocio_zona_imagenes');
+            return $this->redirectToRoute('negocio_zona_faq');
         }
     }
     /**
