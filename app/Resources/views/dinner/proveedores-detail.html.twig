@@ -28,71 +28,7 @@
 
             <div class="col-md-4 col-md-push-8 card-prov">
                 <div class="proveedor-fixed">
-                    <div class="proveedor-info">
-                        {#
-                        <div class="liston">
-                            <img src="{{ asset('images/liston_dinner.png')}}" alt="dinner premium">
-                        </div>
-                        #}
-
-                        <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile')| imagine_filter('logo_thumb') }}" alt="{{ proveedor.nombre }}" />
-
-                        <div id="rateYo"  data-rating="{{ moy }}"></div>
-
-                        {% if app.user is not null %}
-                            <a class="ajax-popup-link" href="{{ path('cotizacion_negocio',
-                            {'slug_site': app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">
-                                <button type="button" class="btn btn-coti-dinner">Contactar Empresa</button></a>
-                            <br>
-                            <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
-                            <p>{{ proveedor.telefono }}</p>
-                            {% if proveedor.web is not null %}
-                                <div class="links-proveedores ldinner">
-                                    <a href="{{ proveedor.web }}" target="_blank">Página Web</a>
-                                </div>
-                            {% endif %}
-                        {% else %}
-                            <div class="session-start">
-                                <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a> para ver los datos de la empresa
-                            </div>
-                        {% endif %}
-
-                    </div>
-                    <div class="proveedor-social sdinner">
-                        {% if app.user is not null %}
-                            {% if favorito is not null%}
-                                <a class="favorite-button-dinner"  href="{{ path('proveedor_me_gusta', {'slug_site': 'dinner', 'slug_proveedor': proveedor.slug}) }}">
-                                </a>
-                            {% else %}
-                                <a class="favorite-button-dinner" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': 'dinner', 'slug_proveedor': proveedor.slug}) }}">
-
-                                </a>
-                            {% endif %}
-
-                        {% else %}
-
-                            <a class="favorite-button-dinner ajax-popup-link" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': 'dinner', 'slug_proveedor': proveedor.slug}) }}">
-
-                            </a>
-
-                        {% endif %}
-
-
-                        <ul>
-                            {% if proveedor.facebookLink is not null %}
-                                <li><a href="{{ proveedor.facebookLink  }}"><img width="50px" src="{{ asset('images/social_facebook.png') }}" alt=""></a></li>
-                            {% endif %}
-                            {% if proveedor.pinteresLink is not null %}
-                                <li><a href="{{ proveedor.pinteresLink  }}"><img width="50px" src="{{ asset('images/social_pinterest.png') }}" alt=""></a></li>
-                            {% endif %}
-                            {% if proveedor.twitterLink is not null %}
-                                <li><a href="{{ proveedor.twitterLink  }}"><img  width="50px"src="{{ asset('images/social_twitter.png') }}" alt=""></a></li>
-                            {% endif %}
-                            {% if proveedor.instagramLink is not null %}
-                                <li><a href="{{ proveedor.instagramLink  }}"><img  width="50px" src="{{ asset('images/social_instagram.png') }}" alt=""></a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
+                    {{ include('comun_includes/card-prov.html.twig')}}
                 </div>
             </div>
 
@@ -100,58 +36,7 @@
 
                 <!-- Slider Section -->
                 <div class="row slider-section">
-                    <div id="slider" class="flexslider">
-                        <ul class="slides">
-                            {% for f in proveedor.fotos  %}
-                                <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                                    <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-                                    {% if app.user is not null %}
-                                        {% set me_gusta = 0 %}
-                                        {% for fu in app.user.fotos  %}
-                                            {% if fu.foto.id==f.id %}
-                                                {% set me_gusta = 1 %}
-                                            {% endif %}
-                                        {% endfor %}
-                                        {% if me_gusta==1 %}
-                                            <div class="boton-megusta_dinner">
-                                                <a href="{{ path('proveedor_foto_me_gusta',
-                                                {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
-                                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                                </a>
-                                            </div>
-                                        {% else %}
-                                            <div class="boton-megusta_dinner">
-                                                <a href="{{ path('proveedor_foto_me_gusta',
-                                                {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
-                                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                                </a>
-                                            </div>
-                                        {% endif %}
-                                    {% else %}
-                                        <div class="boton-megusta_dinner">
-                                            <a class="ajax-popup-link" href="{{ path('proveedor_foto_me_gusta',
-                                            {'slug_site': app.request.get('slug_site'),"slug_proveedor":proveedor.slug,"id":f.id}) }}">
-                                                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-
-                        </ul>
-                    </div>
-
-                    <div id="carousel" class="flexslider">
-                        <ul class="slides flex-control-nav flex-control-thumbs">
-                            {% for f in proveedor.fotos  %}
-                                <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                                    <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-
-                                </li>
-                            {% endfor %}
-
-                        </ul>
-                    </div>
+                    {{ include('comun_includes/flexslider-detail.html.twig')}}
                 </div>
 
 
@@ -159,54 +44,36 @@
 
 
                 <!-- Description Section -->
+                <hr>
 
+                <h1 class="tittle-slicks">Sobre Nosotros</h1>
                 <p class="proveedor-content">
                     {{ proveedor.description }}
                 </p>
+                <hr>
                 <!-- Fin Descriptioin Section -->
 
 
                 <!-- Google Section -->
 
                 {% if map is defined %}
+                    <h1 class="tittle-slicks" style="margin-bottom: 20px">Ubícanos</h1>
                     {{ google_map(map) }}
+                    <hr>
                 {% endif %}
 
 
                 <!-- Fin Google Section -->
 
                 <!-- Preguntas Section -->
-                {% if proveedor.preguntas|length > 0 %}
-                    <div id="accordion" class="acordion-dinner">
-
-                        <h3>
-                            Preguntas Frecuentes
-                        </h3>
-
-                        <div>
-                            {% for pre in proveedor.preguntas %}
-                                {% if pre.respuesta is not null and pre.pregunta is not null%}
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h4>{{ pre.pregunta }}</h4>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>{{ pre.respuesta }}</p>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-                    </div>
-                {% endif %}
+                {{ include('comun_includes/preguntas_frecuentes.html.twig')}}
                 <!-- Fin Preguntas Section -->
 
 
                 <!-- Comentarios Section -->
-
-                <div class="comments-box">
-                    <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
+                <hr>
+                <div class="comments-box2">
+                    <h4 class="title-heading tittle-slicks">Comentarios <span>({{ comentarios|length }})</span></h4>
                     {% for p in comentarios %}
 
                         <div class="media comment">
@@ -235,9 +102,9 @@
                         </div>
                     {% endfor %}
                 </div>
-
+                <hr>
                 <!-- Fin Comentarios Section -->
-
+                <h1 class="tittle-slicks">Deja Tu comentario</h1>
                 {% if app.user is not null %}
 
 
@@ -362,17 +229,19 @@
         });
 
 
-        $('#carousel').flexslider({
-            animation: "slide",
-            controlNav: false,
-            animationLoop: false,
-            prevText: "Previous",
-            nextText: "Next",
-            slideshow: false,
-            itemWidth: 210,
-            itemMargin: 5,
-            asNavFor: '#slider'
-        });
+        /*
+         $('#carousel').flexslider({
+         animation: "slide",
+         controlNav: false,
+         animationLoop: false,
+         prevText: "Previous",
+         nextText: "Next",
+         slideshow: false,
+         itemWidth: 210,
+         itemMargin: 5,
+         asNavFor: '#slider'
+         });
+         */
 
         $('#slider').flexslider({
             animation: "slide",

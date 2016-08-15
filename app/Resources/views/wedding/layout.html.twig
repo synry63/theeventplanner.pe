@@ -59,7 +59,7 @@
                         {% else %}
                             <img class="img-circle" width="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
                         {% endif %}
-                        <span>{{app.user.nombres}}</span>
+                        <span style="text-transform: capitalize">{{app.user.nombres}}</span>
                     </button>
                 </a>
             </div>
@@ -78,7 +78,7 @@
                 {% else %}
                     <img class="img-circle" width="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
                 {% endif %}
-                <span>{{app.user.nombres}}</span>
+                <span style="text-transform: capitalize">{{app.user.nombres}}</span>
             </button>
             <div class="dropdown-menu dropdown-user">
                 <div class="col-md-4">
@@ -89,7 +89,7 @@
                     {% endif %}
                 </div>
                 <div class="col-md-8 named">
-                    <strong>{{app.user.nombres}} {{app.user.apellidos}}</strong>
+                    <strong style="text-transform: capitalize">{{app.user.nombres}} {{app.user.apellidos}}</strong>
                     <br>
                     {{app.user.email}}
                     <br>

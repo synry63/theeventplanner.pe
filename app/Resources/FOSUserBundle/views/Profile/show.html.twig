@@ -6,9 +6,22 @@
     {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuProfile', [], {'site':app.session.get('site'),'image_title': 'tittle_miperfil.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
+
 {% block selloimage %}
-    <img src="{{ asset('images/logo_header.png') }}" alt="The event Planner">
+    <div class="two">
+        <div class="front">
+            <a href="{{ path('selection_start') }}">
+                <img display="block" src="{{ asset('images/logo_header.png') }}" alt="The event Planner">
+            </a>
+        </div>
+        <div class="back">
+            <a href="{{ path('selection_start') }}">
+                <img display="block" src="{{ asset('images/sellos_home_prin.png') }}" alt="The event Planner">
+            </a>
+        </div>
+    </div>
 {% endblock selloimage %}
+
 {% block content %}
     {% block main_title %}
         <div id="tittle_responsive" class="container">

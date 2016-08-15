@@ -21,7 +21,9 @@
     {{ parent() }}
     {% set direction = proveedores.getDirection() %}
     <div class="container categorias-list-page">
-        <div class="row">
+
+        {#
+         <div class="row">
             <div class="col-md-12 col-xs-12">
                 <form class="filtros_proveedores" action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" method="get" class="form_sort" id="myForm">
                     <select class="selectpicker" id="sort_list" name="sort">
@@ -37,6 +39,8 @@
                 </form>
             </div>
         </div>
+        #}
+
 
 
         <div class="proveedores2 row">

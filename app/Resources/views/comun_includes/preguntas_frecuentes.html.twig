@@ -1,0 +1,25 @@
+{% if proveedor.preguntas|length > 0 %}
+    <div id="accordion" class="acordion-{{ app.request.get('slug_site') }}">
+
+        <h3>
+            Preguntas Frecuentes
+        </h3>
+
+        <div>
+            {% for pre in proveedor.preguntas %}
+                {% if pre.respuesta is not null and pre.pregunta is not null%}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>{{ pre.pregunta }}</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ pre.respuesta }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endif %}
