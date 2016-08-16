@@ -45,7 +45,11 @@ class FotoRepository extends EntityRepository
             ->join('fp.categoriasListado','fpc')
             ->where('fpc.parent = :cate')
             ->andWhere('fp.isAccepted = :state')
-            ->setParameter('cate',$cate);
+            ->setParameters(array(
+                'cate' => $cate,
+                'state'=>true
+            ));
+            //->setParameter('cate',$cate);
 
         $qb->addOrderBy('f.updatedAt', 'DESC');
         $query = $qb->getQuery();
