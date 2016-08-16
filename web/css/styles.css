@@ -29,7 +29,7 @@ Nav bar
     margin-bottom:0;
 }
 .menu-principal .navbar-default{
-    margin-left: 11% ;
+    margin-left: 5% ;
 }
 .menu-principal .navbar-default li{
     text-transform: uppercase;
@@ -60,19 +60,22 @@ Nav bar
     position: relative;
     top: -30px;
     padding-top: 15px;
-    left: -18px;
+    left: 19px;
 }
 
 
 /*=============
 GLOBAL
 ===============*/
+.container-sin{
+    min-height: 387px;
+}
 .no-exist{
     text-align: center;
     position: absolute;
     right: 0;
     left: 0;
-    top:50%;
+    top:45%;
 }
 .img-default{
     width: 360px;
@@ -1597,13 +1600,134 @@ div.rating-container div.counter ::before {
 div.rating-container:hover div.counter {
     display: block;
 }
+/*=============
+Dropdown
+===============*/
+.buscadore{
+    position: absolute;
+    left: 38%;
+    top: 39%;
+    width: 295px;
+}
+.cat-drop-wedding{
+    text-decoration: none !important;
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px 55px;
+    background: rgba(53, 179, 180,.6);
+    color: #fff !important;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    border: solid 3px rgba(53, 179, 180,.8);
+}
 
+.list_categorias-wedding{
+    top: 65px;
+    width: 700px;
+    height: 395px;
+    left: -70%;
+    padding: 10px;
+    border: solid 2px rgba(53, 179, 180,.6);
+}
+.list_categorias-wedding ul, .list_categorias-kids ul, .list_categorias-party ul,.list_categorias-dinner ul{
+    height: auto;
+}
+.list_categorias-wedding ul li, .list_categorias-kids ul li, .list_categorias-party ul li, .list_categorias-dinner ul li{
+    display: inline-block;
+    width: 220px;
+}
+.list_categorias-wedding ul li a, .list_categorias-kids ul li a, .list_categorias-party ul li a, .list_categorias-dinner ul li a{
+    padding: 5px 0;
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,.6);
+    transition: all .5s;
+}
+.list_categorias-wedding ul li a:hover:before{
+    color: rgb(53, 179, 180);
+}
+.list_categorias-wedding ul li a:before, .list_categorias-kids ul li a:before, .list_categorias-party ul li a:before, .list_categorias-dinner ul li a:before{
+    content: '> ';
+
+}
+
+.cat-drop-kids{
+    text-decoration: none !important;
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px 55px;
+    background: rgba(151, 30, 209,.6);
+    color: #fff !important;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    border: solid 3px rgba(151, 30, 209,.8);
+}
+
+.list_categorias-kids{
+    top: 65px;
+    width: 700px;
+    left: -70%;
+    padding: 10px;
+    border: solid 2px  rgba(151, 30, 209,.6);
+}
+
+.list_categorias-kids ul li a:hover:before{
+    color:  rgb(151, 30, 209);
+}
+
+.cat-drop-party{
+    text-decoration: none !important;
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px 55px;
+    background: rgba(255, 134, 12,.6);
+    color: #fff !important;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    border: solid 3px rgba(255, 134, 12,.8);
+}
+
+.list_categorias-party{
+    top: 65px;
+    width: 700px;
+    left: -70%;
+    padding: 10px;
+    border: solid 2px  rgba(255, 134, 12,.6);
+}
+
+.list_categorias-party ul li a:hover:before{
+    color:  rgb(255, 134, 12);
+}
+.cat-drop-dinner{
+    text-decoration: none !important;
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px 55px;
+    background: rgba(6, 6, 229,.6);
+    color: #fff !important;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    border: solid 3px rgba(6, 6, 229,.8);
+}
+
+.list_categorias-dinner{
+    top: 65px;
+    width: 700px;
+    left: -70%;
+    padding: 10px;
+    border: solid 2px  rgba(6, 6, 229,.6);
+}
+
+.list_categorias-dinner ul li a:hover:before{
+    color:  rgb(6, 6, 229);
+}
 /*=============
 Proveedor errors
 ===============*/
-
-
-
 
 .proveedor_comments li{
     list-style: none;
@@ -1904,6 +2028,35 @@ Acordion
     padding: 15px;
     text-transform: uppercase;
     color: #ffffff;
+}
+/*=============
+Inspiraciones
+===============*/
+.inspiraciones_vermas_wedding, .inspiraciones_vermas_kids, .inspiraciones_vermas_party, .inspiraciones_vermas_dinner{
+    margin-top:15px;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+}
+.inspiraciones_vermas_wedding a{
+    text-decoration: none;
+    color: #35B3B4;
+    padding-left: 5px;
+}
+.inspiraciones_vermas_kids a{
+    text-decoration: none;
+    color: #8216CE;
+    padding-left: 5px;
+}
+.inspiraciones_vermas_party a{
+    text-decoration: none;
+    color: #EA7901;
+    padding-left:5px;
+}
+.inspiraciones_vermas_dinner a{
+    text-decoration: none;
+    color: #0114E4;
+    padding-left: 5px;
 }
 
 /*=============

@@ -19,7 +19,13 @@
 {% block content %}
     {{ parent() }}
 
-    <div class="container">
+    <div class="container container-sin">
+        <div class="no-exist">
+            {% if tendencias|length == 0 %}
+                <h1>¡Oh no!</h1>
+                <p>Por el momento no existen tendencias en esta sección.</p>
+            {% endif %}
+        </div>
         <section id="demo">
             {% for t in tendencias  %}
                 <a href="{{ path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug}) }}">

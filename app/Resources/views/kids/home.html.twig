@@ -19,6 +19,21 @@
 
 {% block content %}
     {{ parent() }}
+
+    <div class="buscadore">
+        <a href="javascript:void(0)" id="dropdownMenu1" type="button" data-toggle="dropdown" class="cat-drop-{{ app.request.get('slug_site') }}">¿Qué Buscas? <i class="fa fa-search" aria-hidden="true"></i></a>
+
+        <div class="dropdown-menu list_categorias-{{ app.request.get('slug_site') }}" aria-labelledby="dropdownMenu1">
+                <ul>
+                    {% for c in categorias %}
+                        <li><a href="{{ path('proveedores_category', {'slug_site': app.request.get('slug_site'),'slug_category': c.slug}) }}">{{ c.nombre }}</a></li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="flexslider">
@@ -64,6 +79,9 @@
         </div>
     </div>
 
+
+
+    {#
     <div class="container-fluid home-slicks2">
         <div class="container">
             <h1 class="tittle-slicks">Las Mejores Fotos</h1>
@@ -79,6 +97,9 @@
             </div>
         </div>
     </div>
+
+
+    #}
 
 
 
@@ -97,7 +118,7 @@
             prevText: "Previous",
             nextText: "Next"
         });
-
+        /*
         $('.slick_wedding').slick({
             arrows: true,
             autoplay: true,
@@ -139,6 +160,7 @@
                 // instead of a settings object
             ]
         });
+        */
     </script>
 
 {% endblock %}

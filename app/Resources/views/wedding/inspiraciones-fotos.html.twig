@@ -1,4 +1,5 @@
 {% extends 'wedding/layout.html.twig' %}
+{% block title %}Inspiraciones{% endblock %}
 {% block main_title %}
 
     <div id="tittle_responsive" class="container">
@@ -30,14 +31,14 @@
                             {% endif %}
                         {% endfor %}
                         {% if me_gusta==1 %}
-                            <div class="boton-megusta">
+                            <div class="boton-megusta_wedding">
                                 <a href="{{ path('inspiracion_me_gusta',
                                 {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                 </a>
                             </div>
                         {% else %}
-                            <div class="boton-megusta">
+                            <div class="boton-megusta_wedding">
                                 <a href="{{ path('inspiracion_me_gusta',
                                 {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -46,7 +47,7 @@
                         {% endif %}
 
                     {% else %}
-                        <div class="boton-megusta">
+                        <div class="boton-megusta_wedding">
                             <a class="ajax-popup-link" href="{{ path('inspiracion_me_gusta',
                             {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -62,7 +63,11 @@
     </div>
 
 
-
+    <div class="container inspiraciones_vermas_{{ app.request.get('slug_site') }}">
+        <hr>
+        Encuentra más proveedores de: <a href="javascript:void(0)"><strong> Catering</strong></a>
+        <hr>
+    </div>
 
 {% endblock %}
 {% block javascripts %}

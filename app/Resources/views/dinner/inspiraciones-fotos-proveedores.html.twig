@@ -23,7 +23,13 @@
     {{ dump(fotos_proveedores.params.page) }}
     #}
 
-        <div class="container"> 
+        <div class="container container-sin">
+            <div class="no-exist">
+                {% if fotos_proveedores|length == 0 %}
+                    <h1>¡Oh no!</h1>
+                    <p>Por el momento no existen fotos de proveedores en esta sección.</p>
+                {% endif %}
+            </div> 
             <div class="row">
 
                 {% for fp in fotos_proveedores  %}
