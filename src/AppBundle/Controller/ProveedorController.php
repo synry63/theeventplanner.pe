@@ -595,10 +595,8 @@ class ProveedorController extends Controller
         }
         if($moy==NULL) $moy = 0;
 
-
-
         if(is_object($user)){
-            $comentarioProveedor = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')
+            /*$comentarioProveedor = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')
                 ->findOneBy(array('proveedor'=>$proveedor,'user'=>$user));
             if($comentarioProveedor==null){
                 $comentarioProveedor = new ComentarioProveedor();
@@ -620,7 +618,7 @@ class ProveedorController extends Controller
                     //$this->redirect($request->getReferer());
                 }
                 $renderOut['form'] = $form->createView();
-            }
+            }*/
 
             $userGustaProveedor = $this->getDoctrine()->getRepository('AppBundle:UserProveedorGusta')
                 ->findOneBy(array('proveedor'=>$proveedor,'user'=>$user));
@@ -727,6 +725,48 @@ class ProveedorController extends Controller
         return $this->redirectToRoute('negocio_zona_preview_seccion',array('slug_site'=>$slug_site));
 
 
+    }
+    /**
+     * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/comentar", name="proveedor_me_comentar",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function comentarProveedorUserAction($slug_site,$slug_proveedor,Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
+        if(is_object($user)){
+            //$comentarioProveedor = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')
+               // ->findOneBy(array('proveedor'=>$proveedor,'user'=>$user));
+                $comentarioProveedor = new ComentarioProveedor();
+
+                $form = $this->createForm(new ComentarioProveedorType(),$comentarioProveedor,array(
+                    'action' => $this->generateUrl('proveedor_me_comentar',array('slug_site' => $slug_site,'slug_proveedor'=>$slug_proveedor)),
+                    'method' => 'POST',
+                ));
+                //$form = $this->createForm(new ComentarioProveedorType(), $comentarioProveedor);
+                $form->handleRequest($request);
+                if ($form->isValid()) {
+                    //$data = $form->getData();
+                    $comentarioProveedor->setUser($user);
+                    $comentarioProveedor->setProveedor($proveedor);
+                    //$comentarioProveedor->setNota($data->getNota());
+                    //$comentarioProveedor->setComentario($data->getComentario());
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($comentarioProveedor);
+                    $em->flush();
+
+                    $request->getSession()->getFlashBag()->add('success', 'Gracias por tu comentario !');
+                    return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
+                    //return $this->redirectToRoute('task_success');
+                    //$this->redirect($request->getReferer());
+                }
+                //$renderOut['form'] = $form->createView();
+            return $this->render(
+                $slug_site.'/comentario_add.html.twig',array(
+                    'form'=>$form->createView()
+                )
+            );
+        }
     }
     /**
      * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/gusta", name="proveedor_me_gusta",requirements={

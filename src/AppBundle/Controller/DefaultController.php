@@ -39,7 +39,9 @@ class DefaultController extends Controller
 
         $session = $this->getRequest()->getSession();
         $session->set('site', $slug_site);
-
+        $children_categories =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_site);
+        //var_dump($children_categories);
+        //exit;
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
 
         $best_proveedores = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getBestProveedores($categoria);
@@ -55,6 +57,7 @@ class DefaultController extends Controller
                 'mejores_proveedores'=>$best_proveedores,
                 'mejores_inspiraciones'=>$best_inspiraciones,
                 'mejores_fotos'=>$best_fotos,
+                'categorias'=>$children_categories,
                 'home'=>'home'
             )
         );
