@@ -2081,6 +2081,65 @@ Animates
     margin: 20px auto;
 }
 /*=============
+News Blog
+===============*/
+.news-blog{
+    margin-top: 35px;
+}
+.news-blog a{
+    text-decoration: none;
+}
+.foto-new{
+    text-align: center;
+}
+
+.new h1{
+    margin: 0;
+    margin-bottom: 7px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.new span{
+    font-style: italic;
+    opacity: .5;
+    padding: 0 5px;
+}
+.new p{
+    margin-top: 7px;
+}
+
+.new-principal{
+    padding:0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.tittle-principal{
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    background: rgba(0,0,0,.5);
+    padding: 10px;
+    opacity: 0;
+
+    transition: all .5s;
+}
+.tittle-principal h1{
+    margin: 0;
+    margin-bottom: 7px;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.tittle-principal span{
+    color: #fff;
+    padding: 0 10px;
+}
+.new-principal:hover .tittle-principal{
+    opacity: 1;
+}
+
+
+/*=============
 Zona de Negocio
 ===============*/
 .buttons_sections ul{
@@ -2664,6 +2723,27 @@ MÓVILES PORTAIT
 
 
 @media only screen and (max-width:700px){
+
+    .buscadore{
+        position: relative;
+        display: block;
+        width: 295px;
+        margin: 0 auto;
+        left: 0;
+    }
+    .cat-drop-wedding, .cat-drop-kids, .cat-drop-party, .cat-drop-dinner{
+        position: relative;
+        display: block;
+        margin: 10px auto;
+    }
+    .list_categorias-wedding, .list_categorias-kids, .list_categorias-party, .list_categorias-dinner{
+        width: auto;
+        left: 0;
+        height: auto;
+    }
+
+
+
     .image-port{
         width: 100%;
     }

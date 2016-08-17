@@ -176,12 +176,20 @@
     <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.flip.min.js') }}"></script>
     <script>
+
         $(".two").flip({
-             axis: 'y',
-             trigger: 'hover',
-             speed: 600,
-             reverse: false
+            axis: 'y',
+            trigger: 'manual',
+            speed: 600,
+            reverse: false
         });
+
+        setInterval(function() {
+            $('.two').flip('toggle');
+        },3000);
+
+
+
     </script>
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
     <script>

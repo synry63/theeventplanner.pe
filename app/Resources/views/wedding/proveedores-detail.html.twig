@@ -110,12 +110,34 @@
                 <!-- Fin Comentarios Section -->
 
 
+                {% block flashbag %}
+                    {% for label, flashes in app.session.flashbag.all %}
+                        {% for flash in flashes %}
+                            <div data-coment="{{ flash }}" id="coment-alert"></div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endblock flashbag %}
+
+
+
+
+
                 <h1 class="tittle-slicks"  style="margin-bottom: 20px">Deja Tu comentario</h1>
+                 <span class="text-forcomments">
+                    <p>
+                        Comenta <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">aqui</a>
+                    </p>
+                </span>
+
+
 
                 {% if app.user is not null %}
 
 
-                    <div class="leave-comment-box">
+
+
+                    {#
+                     <div class="leave-comment-box">
 
                         <div class="row">
 
@@ -184,6 +206,9 @@
                         </div>
 
                     </div>
+                    #}
+
+
                 {% else %}
 
                     <span  class="text-forcomments">
@@ -277,29 +302,7 @@
             readOnly: true
         });
 
-        $("#rateYo2").rateYo({
-                    rating: recuperar,
-                    ratedFill: color,
-                    normalFill: "#A0A0A0",
-                    starWidth: "60px",
-                    onChange: function (rating, rateYoInstance) {
-                        $(this).next().text(rating);
-                    }
 
-                })
-                .on("rateyo.set", function (e, data) {
-                    $("#comentario_proveedor_nota").val(data.rating);
-                    $("#rateYo2").rateYo("option", "readOnly", true);
-                    $("#rateYo2").rateYo("option", "ratedFill", "#dea600");
-                });
-
-
-        $("#rateYo2").mouseleave(function(){
-            $("#rateYo2").rateYo("option", "readOnly", false);
-        });
-        $("#rateYo2").mouseenter(function(){
-            $("#rateYo2").rateYo("option", "ratedFill", color);
-        });
 
 
         $( ".rateYo_comments" ).each(function( index ) {

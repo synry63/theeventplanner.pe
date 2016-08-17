@@ -1,69 +1,116 @@
-<div class="leave-comment-box">
+<div class="col-md-8 col-md-offset-2">
+    <div class="leave-comment-box" style="background-color: #fff; padding: 25px">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-xs-12 col-md-12 proveedor_comments">
-            {% block flashbag %}
-                {% for label, flashes in app.session.flashbag.all %}
-                    <!--<h4 class="title-heading">Escribe tu comentario</h4>-->
-                    {% for flash in flashes %}
-                        <div data-coment="{{ flash }}" id="coment-alert"></div>
-                    {% endfor %}
-                {% endfor %}
-            {% endblock flashbag %}
+            <div class="col-xs-12 col-md-12 proveedor_comments">
 
-            {% if form is defined %}
-                {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
 
-                {% if form.vars.errors|length>0 %}
-                    <div class="alert alert-danger" role="alert">
-                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>
+                {% if form is defined %}
+                    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+                    {% if form.vars.errors|length>0 %}
+                        <div class="alert alert-danger" role="alert">
+                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>
+                        </div>
+                    {% endif %}
+
+
+
+                    <div class="rating-container" style="margin-top: 10px">
+                        <div id="rateYo2"></div>
+                        <div class="counter"></div>
                     </div>
+
+                    <div class="form-group" id="1">
+                        {{ form_label(form.titulo,'Título') }}
+                        {% if form.titulo.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'Tu título','rows':'6'}}) }}
+                    </div>
+                    <div class="form-group" id="2">
+                        {{ form_label(form.comentario,'Comentario') }}
+                        {% if form.comentario.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
+                    </div>
+
+                    <div class="form-group" >
+                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+                        <!-- el boton submit No renderiza con esto-->
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_widget(form.nota) }}
+
+                    </div>
+                    {{ form_end(form) }}
+
+
                 {% endif %}
 
 
-
-                <div class="rating-container" style="margin-top: 10px">
-                    <div id="rateYo2"></div>
-                    <div class="counter"></div>
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(form.titulo,'Título') }}
-                    {% if form.titulo.vars.errors|length>0 %}
-                        <div class="alert alert-danger" role="alert">
-                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>
-                        </div>
-                    {% endif %}
-                    {{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'Tu título','rows':'6'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.comentario,'Comentario') }}
-                    {% if form.comentario.vars.errors|length>0 %}
-                        <div class="alert alert-danger" role="alert">
-                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>
-                        </div>
-                    {% endif %}
-                    {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
-                    <!-- el boton submit No renderiza con esto-->
-                </div>
-
-                <div class="form-group">
-                    {{ form_widget(form.nota) }}
-
-                </div>
-                {{ form_end(form) }}
-
-
-            {% endif %}
-
+            </div>
 
         </div>
 
     </div>
 
+    <script>
+        if (typeof jQuery != 'undefined'){
+            $( document ).ready(function() {
+                $('#comentario_proveedor_submit').click(function(e){
+                    $('#comentario_proveedor_submit').prop('disabled', true);
+                    e.preventDefault();
+                    $.ajax({
+                        type        : $('form').attr( 'method' ),
+                        url         : $('form').attr( 'action' ),
+                        data        : $('form').serialize(),
+                        dataType    : "json"
+
+                    }).done(function(data) {
+                        $( "#2 label").after("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.comentario_proveedor_comentario + "</div>"  );
+                        $( "#1 label").after("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.comentario_proveedor_titulo + "</div>"  );
+                        $( "#rateYo2").after("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.global[0] + "</div>"  );
+
+                    });
+                });
+            });
+
+        }
+
+
+        $("#rateYo2").rateYo({
+                    rating: recuperar,
+                    ratedFill: color,
+                    normalFill: "#A0A0A0",
+                    starWidth: "60px",
+                    onChange: function (rating, rateYoInstance) {
+                        $(this).next().text(rating);
+                    }
+
+                })
+                .on("rateyo.set", function (e, data) {
+                    $("#comentario_proveedor_nota").val(data.rating);
+                    $("#rateYo2").rateYo("option", "readOnly", true);
+                    $("#rateYo2").rateYo("option", "ratedFill", "#dea600");
+                });
+
+
+        $("#rateYo2").mouseleave(function(){
+            $("#rateYo2").rateYo("option", "readOnly", false);
+        });
+        $("#rateYo2").mouseenter(function(){
+            $("#rateYo2").rateYo("option", "ratedFill", color);
+        });
+
+
+
+    </script>
 </div>

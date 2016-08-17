@@ -1,1 +1,62 @@
-hello noticias
+{% extends 'wedding/layout.html.twig' %}
+{% block title %}Inspiraciones | Tendencias{% endblock %}
+
+{% block main_title %}
+    <div id="tittle_responsive" class="container">
+        <div class="row">
+            <div class="tittle_base">
+                <img src="{{ asset('images/tittle_inspiraciones.png') }}" alt="Inspiraciones Tittle">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block menuprincipal %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuWedding', [], {'image_title': 'tittle_inspiraciones.png'}) %}
+    {{ knp_menu_render(menuItem) }}
+{% endblock menuprincipal %}
+
+{% block content %}
+    {{ parent() }}
+    
+    <div class="container news-blog">
+        <div class="col-md-8 col-md-offset-2 new-principal">
+            <a href="#"><img width="100%" src="http://placehold.it/760x500" alt=""></a>
+            <div class="tittle-principal">
+                <a href="#"><h1>Titulo de la noticia</h1></a>
+                <span>28 Julio, 2016 </span>
+                <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios (0)</span>
+                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i> Likes (0)</span>
+            </div>
+            <hr>
+        </div>
+
+
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row new">
+                <div class="col-md-5 foto-new">
+                    <a href=""> <img src="http://placehold.it/300x200" alt=""></a>
+                </div>
+                <div class="col-md-7">
+                    <a href=""><h1>Titulo de la noticia</h1></a>
+                    <span>28 Julio, 2016 </span>
+                    <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios (0)</span>
+                    <span><i class="fa fa-thumbs-up" aria-hidden="true"></i> Likes (0)</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque cumque dolore fugiat, ipsam necessitatibus nostrum perferendis provident repellendus, similique tenetur ullam. Itaque minima porro quo? Natus numquam officiis quia.</p>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}
