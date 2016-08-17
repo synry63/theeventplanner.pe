@@ -8,9 +8,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\CategoriaListado;
 use AppBundle\Entity\ComentarioProveedor;
-use AppBundle\Entity\Foto;
 use AppBundle\Entity\Logo;
 use AppBundle\Entity\PreguntaFrequente;
 use AppBundle\Entity\Proveedor;
@@ -18,11 +16,8 @@ use AppBundle\Entity\RespuestaProveedor;
 use AppBundle\Entity\UserProveedorGusta;
 use AppBundle\Form\Type\ComentarioProveedorType;
 use AppBundle\Form\Type\ComentarioRespuestaType;
-use AppBundle\Form\Type\FotoType;
 use AppBundle\Form\Type\GoogleMapType;
-use AppBundle\Form\Type\LogoType;
 use AppBundle\Form\Type\ProveedorChangePasswordType;
-use AppBundle\Form\Type\ProveedorChangeLogoType;
 use AppBundle\Form\Type\ProveedorProfileType;
 use AppBundle\Form\Type\ProveedorType;
 use AppBundle\Form\Type\RespuestaProveedorType;
@@ -38,6 +33,7 @@ use Ivory\GoogleMap\Helper\Places\AutocompleteHelper;
 use Ivory\GoogleMap\Overlays\InfoWindow;
 use Ivory\GoogleMap\Events\MouseEvent;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class ProveedorController extends Controller
@@ -745,20 +741,28 @@ class ProveedorController extends Controller
                 ));
                 //$form = $this->createForm(new ComentarioProveedorType(), $comentarioProveedor);
                 $form->handleRequest($request);
-                if ($form->isValid()) {
-                    //$data = $form->getData();
-                    $comentarioProveedor->setUser($user);
-                    $comentarioProveedor->setProveedor($proveedor);
-                    //$comentarioProveedor->setNota($data->getNota());
-                    //$comentarioProveedor->setComentario($data->getComentario());
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($comentarioProveedor);
-                    $em->flush();
+                if ($form->isSubmitted()) {
+                    if($form->isValid()){
+                        $comentarioProveedor->setUser($user);
+                        $comentarioProveedor->setProveedor($proveedor);
 
-                    $request->getSession()->getFlashBag()->add('success', 'Gracias por tu comentario !');
-                    return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
-                    //return $this->redirectToRoute('task_success');
-                    //$this->redirect($request->getReferer());
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($comentarioProveedor);
+                        $em->flush();
+
+                        $request->getSession()->getFlashBag()->add('success', 'Gracias por tu comentario !');
+                        return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
+                        //return $this->redirectToRoute('task_success');
+                        //$this->redirect($request->getReferer());
+                    }
+                    else{
+                        $errors = $this->get('form_serializer')->serializeFormErrors($form, true, true);
+                        $response = new JsonResponse();
+                        $response->setData(array(
+                            'errors' => $errors
+                        ));
+                        return $response;
+                    }
                 }
                 //$renderOut['form'] = $form->createView();
             return $this->render(
@@ -768,6 +772,7 @@ class ProveedorController extends Controller
             );
         }
     }
+
     /**
      * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/gusta", name="proveedor_me_gusta",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
