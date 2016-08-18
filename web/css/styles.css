@@ -22,6 +22,12 @@ body#home{
 .flex-direction-nav a{
     height: 50px;
 }
+/**** FLEX SLIDER OEVERIGHT ***/
+.flexslider .slides img{
+    width: auto;
+    margin: auto;
+    max-width: 750px;
+}
 /*=============
 Nav bar
 ===============*/

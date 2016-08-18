@@ -28,12 +28,15 @@ class FotoType extends AbstractType
             'constraints' => array(
                 new NotBlank(),
                 new Image(array(
-                    'maxSize'       => '250ki',
-                    'maxWidth'=>750,
-                    'maxHeight'=>450,
-                    'minWidth'=>750,
-                    'minHeight'=>450,
-                    'mimeTypes'=>array('image/jpeg')
+                    'maxSize'       => '350ki',
+                    //'maxWidth'=>750,
+                    //'maxHeight'=>450,
+                    //'minWidth'=>750,
+                    //'minHeight'=>450,
+                    'allowLandscape'=>true,
+                    'allowSquare'=>true,
+                    'allowPortrait'=>true,
+                    //'mimeTypes'=>array('image/jpeg')
                 ))
 
             ),
