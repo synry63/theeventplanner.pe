@@ -1,0 +1,15 @@
+{% for p in proveedores %}
+    <div class="col-sm-6 col-md-4 detail-prov">
+        <a href="{{ path('proveedor_detail', {'slug_site': app.request.get('slug_site'),'slug_proveedor': p.proveedor.slug}) }}">
+            <div class="image-prov">
+                <div class="img-default prov-foto-{{ app.request.get('slug_site') }}">
+                    <img class="prov-foto" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
+                </div>
+                <div class="logo_tag">
+                    <img class="img-circle" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
+                </div>
+            </div>
+
+        </a>
+    </div>
+{% endfor %}

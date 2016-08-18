@@ -50,8 +50,8 @@
                     <p>Por el momento no existen proveedores en esta categoría.</p>
                 {% endif %}
             </div>
-
-            {% for p in proveedores %}
+{#
+{% for p in proveedores %}
 
                 <div class="col-sm-6 col-md-4 detail-prov">
                     <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.proveedor.slug}) }}">
@@ -65,6 +65,11 @@
                                 {% for f in p.proveedor.fotos  %}
                                     {% if f.isListado %}
                                         <img class="prov-foto" src="{{ asset('images/proveedores/fotos/'~f.img)|imagine_filter('thumb_proveedor')}}" alt="{{ f.proveedor.nombre}}">
+                                    {% else %}
+
+                                        <div class="img-default prov-foto">
+                                            <img  src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
+                                        </div>
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
@@ -77,6 +82,9 @@
                     </a>
                 </div>
             {% endfor %}
+#}
+            {{ include('comun_includes/listado_proveedores.html.twig')}}
+
         </div>
 
         <div class="navigation">

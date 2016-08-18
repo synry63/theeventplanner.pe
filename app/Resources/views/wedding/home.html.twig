@@ -20,7 +20,20 @@
 {% block content %}
     {{ parent() }}
 
+    <h1 id="test">Make it Happen
+    </h1>
 
+    <div class="nuevo-buscador">
+        <div class="col-md-9">
+            <a href="#">Dinos lo que necesitas</a>
+        </div>
+        <div class="col-md-3">
+            <a href="" class="search">Buscar</a>
+        </div>
+    </div>
+
+
+    {#
     <div class="buscadore">
         <a href="javascript:void(0)" id="dropdownMenu1" type="button" data-toggle="dropdown" class="cat-drop-{{ app.request.get('slug_site') }}">¿Qué Buscas? <i class="fa fa-search" aria-hidden="true"></i></a>
 
@@ -34,6 +47,8 @@
             </div>
         </div>
     </div>
+    #}
+
 
 
     <div class="container-fluid">
@@ -113,6 +128,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script>
+
         $('.flexslider').flexslider({
             animation: "slide",
             controlNav: true,
