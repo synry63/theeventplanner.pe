@@ -112,6 +112,7 @@ class ProveedorRepository extends EntityRepository
                 'state'=>true
             ));
         $qb->addGroupBy('p');
+        $qb->addOrderBy('mymoy', 'DESC');
         //$qb->addGroupBy('cp');
         $query = $qb->getQuery();
 
