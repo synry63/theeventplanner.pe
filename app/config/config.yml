@@ -90,6 +90,10 @@ vich_uploader:
                 uri_prefix:         /images/proveedores/fotos
                 upload_destination: %kernel.root_dir%/../web/images/proveedores/fotos
                 namer:              vich_uploader.namer_uniqid
+            proveedor_image_listado:
+                uri_prefix:         /images/proveedores/fotos_listado
+                upload_destination: %kernel.root_dir%/../web/images/proveedores/fotos_listado
+                namer:              vich_uploader.namer_uniqid
 
 fos_user:
     from_email:
@@ -128,7 +132,7 @@ liip_imagine:
         thumb_proveedor:
             quality: 75
             filters:
-                thumbnail: { size: [352, 220], mode: outbound }
+                thumbnail: { size: [360, 220], mode: outbound }
         logo_thumb:
             quality: 100
             filters:

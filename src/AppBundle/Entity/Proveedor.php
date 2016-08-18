@@ -427,6 +427,29 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     private $logo;
 
     /**
+     * @ORM\OneToOne(targetEntity="FotoListado",mappedBy="proveedor",cascade={"persist"})
+     */
+    private $fotoListado;
+
+    /**
+     * @param mixed $fotoListado
+     */
+    public function setFotoListado($fotoListado)
+    {
+        $this->fotoListado = $fotoListado;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFotoListado()
+    {
+        return $this->fotoListado;
+    }
+
+
+
+    /**
      * @param mixed $logo
      */
     public function setLogo($logo)

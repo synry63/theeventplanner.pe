@@ -10,8 +10,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\CategoriaListado;
 use AppBundle\Entity\Foto;
+use AppBundle\Entity\FotoListado;
 use AppBundle\Entity\FotoUserGusta;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Form\Type\FotoListadoType;
 use AppBundle\Form\Type\FotoType;
 use AppBundle\Form\Type\ProveedorChangePasswordType;
 use AppBundle\Form\Type\ProveedorChangeLogoType;
@@ -30,6 +32,25 @@ class FotoController extends Controller
         $proveedor = $this->get('security.token_storage')->getToken()->getUser();
         $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getProveedorFotos($proveedor);
         $foto = new Foto();
+
+        $fotoListado = $proveedor->getFotoListado();
+
+        if($fotoListado==NULL){
+            $fotoListado = new FotoListado();
+        }
+        $form_foto_listado = $this->createForm(new FotoListadoType(),$fotoListado);
+        $form_foto_listado->handleRequest($request);
+
+        if ($form_foto_listado->isSubmitted() && $form_foto_listado->isValid()) {
+            $fotoListado->setProveedor($proveedor);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($fotoListado);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su añadió su imagen de listado !');
+
+            return $this->redirectToRoute('negocio_zona_imagenes');
+        }
+
         $form = $this->createForm(new FotoType(),$foto);
         $form->handleRequest($request);
 
@@ -55,7 +76,9 @@ class FotoController extends Controller
             'negocio/fotos.html.twig',
             array(
                 'fotos'=>$fotos,
-                'form'=>$form->createView()
+                'foto_listado'=>$fotoListado,
+                'form'=>$form->createView(),
+                'form_foto_listado'=>$form_foto_listado->createView(),
             )
         );
     }

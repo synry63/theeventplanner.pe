@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: pmary-game
  * Date: 5/11/16
- * Time: 2:42 PM
+ * Time: 11:05 AM
  */
 namespace AppBundle\Form\Type;
 
@@ -16,11 +16,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Constraints\Image;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FotoType extends AbstractType
+class FotoListadoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -28,14 +28,14 @@ class FotoType extends AbstractType
             'constraints' => array(
                 new NotBlank(),
                 new Image(array(
-                    'maxSize'       => '500ki',
-                    //'maxWidth'=>750,
-                    //'maxHeight'=>450,
-                    //'minWidth'=>750,
-                    //'minHeight'=>450,
+                    'maxSize'       => '1M',
+                    /*'maxWidth'=>250,
+                    'maxHeight'=>250,
+                    'minWidth'=>250,
+                    'minHeight'=>250,*/
                     'allowLandscape'=>true,
-                    'allowSquare'=>true,
-                    'allowPortrait'=>true,
+                    'allowSquare'=>false,
+                    'allowPortrait'=>false,
                     //'mimeTypes'=>array('image/jpeg')
                 ))
 
@@ -47,7 +47,7 @@ class FotoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Foto',
+            'data_class' => 'AppBundle\Entity\FotoListado',
         ));
     }
 }
