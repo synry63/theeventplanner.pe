@@ -51,6 +51,7 @@ class Builder implements ContainerAwareInterface
     }
     public function menuNegocio(FactoryInterface $factory, array $options){
         $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav');
         $menu->addChild('negocio-home',array(
                 'route' => 'negocio_zona',
                 'label' => 'Inicio',

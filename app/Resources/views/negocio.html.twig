@@ -104,15 +104,17 @@
                         {% endif %}
                         {{ form_widget(form.description,{ 'attr': {'class': 'form-control'}}) }}
                     </div>
-                    <div class="form-group">
-                        {{ form_label(form.tempFile,'* Logo') }}
-                        {% if form.tempFile.vars.errors|length>0 %}
-                            <div class="alert alert-danger" role="alert">
-                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.tempFile) }}</div>
-                            </div>
-                        {% endif %}
-                        {{ form_widget(form.tempFile,{ 'attr': {'class': 'form-control'}}) }}
-                    </div>
+                    {#
+                        <div class="form-group">
+                            {{ form_label(form.tempFile,'* Logo') }}
+                            {% if form.tempFile.vars.errors|length>0 %}
+                                <div class="alert alert-danger" role="alert">
+                                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ form_errors(form.tempFile) }}</div>
+                                </div>
+                            {% endif %}
+                            {{ form_widget(form.tempFile,{ 'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    #}
                     <div class="form-group">
                         {{ form_label(form.direccion,'* Dirección') }}
                         {% if form.direccion.vars.errors|length>0 %}
@@ -159,7 +161,7 @@
                     <p>* Campos Obligatorios</p>
                     <p>Recibirás las solicitudes de información de usuarios interesados en el email que hayas indicado, así como todas las novedades del portal que te pueden interesar.</p>
                     <p>
-                    <p><strong>Recomendaciones para el Logo:</strong></p>
+                    {#<p><strong>Recomendaciones para el Logo:</strong></p>
                         <ul>
                             <li><p>Recomendamos una imagen cuadrado (ej : 300x300)</p></li>
                             <li><p>Recomendamos una imagen formato JPG o PNG</p></li>
@@ -168,6 +170,7 @@
                             <li><p>Altura minima del logo 250px</p></li>
                         </ul>
                     </p>
+                    #}
                 </div>
             </div>
         </div>

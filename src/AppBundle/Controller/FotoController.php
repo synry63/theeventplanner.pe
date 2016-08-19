@@ -47,7 +47,6 @@ class FotoController extends Controller
             $em->persist($fotoListado);
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'Su añadió su imagen de listado !');
-
             return $this->redirectToRoute('negocio_zona_imagenes');
         }
 
@@ -76,33 +75,25 @@ class FotoController extends Controller
             'negocio/fotos.html.twig',
             array(
                 'fotos'=>$fotos,
-                'foto_listado'=>$fotoListado,
+                //'foto_listado'=>$fotoListado,
                 'form'=>$form->createView(),
                 'form_foto_listado'=>$form_foto_listado->createView(),
             )
         );
     }
     /**
-     * @Route("/negocio/zona/imagenes/update/listado/{id}", name="negocio_zona_imagen_listado",requirements={
+     * @Route("/negocio/zona/imagenes/delete/listado/{id}", name="negocio_zona_delete_imagen_listado",requirements={
      *     "id": "\d+"
      * })
      */
-    public function zonaImagenesUpdateListadoAction(Request $request,$id){
-        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
-        $foto = $this->getDoctrine()->getRepository('AppBundle:Foto')->find($id);
-        if($foto!=null){
-            $em = $this->getDoctrine()->getManager();
-            $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->findBy(
-                array('proveedor'=>$proveedor)
-            );
-            foreach ($fotos as $f) {
-                $f->setIsListado(false);
-                $em->persist($f);
-            }
-            $foto->setIsListado(true);
-            $em->persist($foto);
+    public function zonaImagenesDeleteListadoAction(Request $request,$id){
+        $em = $this->getDoctrine()->getManager();
+        $fotoListado = $this->getDoctrine()->getRepository('AppBundle:FotoListado')->find($id);
+
+        if($fotoListado!=null){
+            $em->remove($fotoListado);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('success', 'Foto de listado actualizado !');
+            $request->getSession()->getFlashBag()->add('success', 'Foto listado suprimida !');
             return $this->redirectToRoute('negocio_zona_imagenes');
         }
     }

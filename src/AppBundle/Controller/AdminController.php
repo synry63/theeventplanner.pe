@@ -11,9 +11,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Inspiracion;
 use AppBundle\Entity\Tendencia;
+use AppBundle\Entity\Video;
 use AppBundle\Entity\Voto;
 use AppBundle\Form\Type\InspiracionType;
 use AppBundle\Form\Type\TendenciaType;
+use AppBundle\Form\Type\VideoType;
 use AppBundle\Form\Type\VotoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -34,7 +36,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class AdminController extends Controller
 {
     private function menuSelected($key){
-        $default = array('home'=>false,'negocios'=>false,'tendencias'=>false,'votos'=>false);
+        $default = array('home'=>false,'negocios'=>false,'tendencias'=>false,'votos'=>false,'videos'=>false);
         $default[$key] = true;
         return $default;
     }
@@ -145,6 +147,7 @@ class AdminController extends Controller
             return $this->redirectToRoute('admin_votos');
         }
     }
+
     /**
      * @Route("/admin/voto/add", name="admin_voto_add")
      */
@@ -171,6 +174,67 @@ class AdminController extends Controller
                 'seccion' => $this->menuSelected('votos')
             )
         );
+    }
+    /**
+     * @Route("/admin/video/{id}", name="admin_video_edit")
+     */
+    public function adminVideoEditAction(Request $request,$id){
+        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->find($id);
+        $form_video = $this->createForm(new VideoType(), $video);
+        $form_video->handleRequest($request);
+        if ($form_video->isSubmitted() && $form_video->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($video);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su video fue guardada !');
+            return $this->redirectToRoute('admin_video_edit',array('id'=>$id));
+        }
+        return $this->render(
+            'admin/video_edit.html.twig',
+            array(
+                'form' => $form_video->createView(),
+                'seccion' => $this->menuSelected('votos')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/video/add", name="admin_video_add")
+     */
+    public function adminVideoAddAction(Request $request){
+        $video = new Video();
+        $form_video = $this->createForm(new VideoType(), $video);
+        $form_video->handleRequest($request);
+        if ($form_video->isSubmitted() && $form_video->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($video);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Su video fue guardado !');
+            return $this->redirectToRoute('admin_videos');
+        }
+        return $this->render(
+            'admin/video_add.html.twig',
+            array(
+                'form' => $form_video->createView(),
+                'seccion' => $this->menuSelected('videos')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/videos", name="admin_videos")
+     */
+    public function adminVideosAction(Request $request){
+        $videos = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(
+            array('sort' => 'ASC')
+        );
+        return $this->render(
+            'admin/videos.html.twig',
+            array(
+                'videos'=>$videos,
+                'seccion' => $this->menuSelected('videos')
+            )
+        );
+
     }
     /**
      * @Route("/admin/tendencia/add", name="admin_tendencia_add")

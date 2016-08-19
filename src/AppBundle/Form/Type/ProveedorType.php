@@ -130,13 +130,14 @@ class ProveedorType extends AbstractType
             /*'mapped' => true*/
         ));
         //$builder->add('logo', LogoType::class);
-        $builder->add('tempFile', 'file',array(
+
+        /*$builder->add('tempFile', 'file',array(
             'constraints' => array(
                 new NotBlank(),
                 new Image(array(
                     'maxSize'       => '1M',
-                    /*'maxWidth'=>250,
-                    'maxHeight'=>250,*/
+                    //'maxWidth'=>250,
+                    //'maxHeight'=>250,
                     'minWidth'=>250,
                     'minHeight'=>250,
                     'allowLandscape'=>true,
@@ -146,7 +147,8 @@ class ProveedorType extends AbstractType
                 ))
 
             ),
-        ));
+        ));*/
+
         /*$builder->add('field', 'places_autocomplete', array(
             'mapped' => false,
             // Javascript prefix variable
