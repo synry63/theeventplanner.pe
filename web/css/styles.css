@@ -36,7 +36,7 @@ nuevo buscador
 #test{
     position: absolute;
     top: 30%;
-    right: 38%;
+    right: 37%;
     text-shadow: 1px 1px 5px rgba(0,0,0,.8);
     z-index: 1;
     color: #fff;
@@ -54,15 +54,20 @@ nuevo buscador
     text-transform: uppercase;
     font-family: 'Bree Serif', serif;
 }
-
+.nuevo-buscador button a{
+    color: rgba(0,0,0,.8);
+    text-decoration: none;
+}
+.nuevo-buscador button:focus{
+    outline: none;
+}
 .nuevo-buscador{
-    width: 500px;
+    width: 400px;
     padding: 10px;
     font-family: "OpenSans-Light", serif;
     position: absolute;
     text-align: center;
     font-size: 20px;
-    line-height:60px;
     background: rgba(255,255,255,.8);
     z-index: 1;
     top: 50%;
@@ -70,7 +75,7 @@ nuevo buscador
     transform: translate(-50%, -89%);
 
 }
-.nuevo-buscador a{
+.nuevo-buscador #dropdownMenu1{
     background: #fff;
     width: 100%;
     font-weight: 400;
@@ -83,17 +88,38 @@ nuevo buscador
     text-decoration: none;
 }
 
-.nuevo-buscador .search{
-    display: inline-block;
-    line-height: 50px;
-    border: none;
-    width: 100%;
-    height: 46px;
-    box-shadow: 0 4px 0 #1ba3a3;
-    background: #39B1B2;
-    color: #fff;
+.list_categorias-wedding{
+    top: 72px;
+    width: 700px;
+    height: 395px;
+    left: -37%;
+    padding: 10px;
+    border: solid 2px rgba(53, 179, 180,.6);
 }
-
+.list_categorias-wedding ul, .list_categorias-kids ul, .list_categorias-party ul,.list_categorias-dinner ul{
+    height: auto;
+}
+.list_categorias-wedding ul li, .list_categorias-kids ul li, .list_categorias-party ul li, .list_categorias-dinner ul li{
+    display: inline-block;
+    padding-left: 20px;
+    width: 220px;
+}
+.list_categorias-wedding ul li a, .list_categorias-kids ul li a, .list_categorias-party ul li a, .list_categorias-dinner ul li a{
+    padding: 5px 0;
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,.6);
+    transition: all .5s;
+}
+.list_categorias-wedding ul li a:hover:before{
+    color: rgb(53, 179, 180);
+}
+.list_categorias-wedding ul li a:before, .list_categorias-kids ul li a:before, .list_categorias-party ul li a:before, .list_categorias-dinner ul li a:before{
+    content: '> ';
+}
+.chevron-wedding{
+    color: rgb(53, 179, 180);
+}
 
 /*=============
 Nav bar
@@ -351,7 +377,7 @@ GLOBAL
     font-weight: bold;
 }
 .card-prov{
-    padding: 0 15px;
+    padding: 0 35px;
 }
 
 
@@ -1687,14 +1713,9 @@ div.rating-container:hover div.counter {
     display: block;
 }
 /*=============
-Dropdown
+Dropdown buscador
 ===============*/
-.buscadore{
-    position: absolute;
-    left: 38%;
-    top: 39%;
-    width: 295px;
-}
+/*
 .cat-drop-wedding{
     text-decoration: none !important;
     position: absolute;
@@ -1811,6 +1832,13 @@ Dropdown
 .list_categorias-dinner ul li a:hover:before{
     color:  rgb(6, 6, 229);
 }
+*/
+
+
+
+
+
+
 /*=============
 Proveedor errors
 ===============*/
@@ -2407,18 +2435,19 @@ Zona de Negocio
     padding: 10px;
     width: 100%;
 }
-#select-img{
+#select-img,#select-img2{
     text-align: center;
 }
-#select-img h2{
+
+#select-img h2,#select-img2 h2{
     font-size:20px;
 }
-#select-img button{
+#select-img button,#select-img2 button{
     margin-top: 10px;
 }
 .alert-success{
     /*margin-top: 58px;*/
-    margin-bottom: 0;
+    margin-bottom: 25px;
 }
 .dashboard .fotos_galery{
     padding: 10px;

@@ -54,43 +54,39 @@
 {% endfor %}
 
 <div class="container dashboard negocio_reg">
-    <div id="select-img" class="col-md-8 col-md-offset-2" >
+    <div id="select-img" class="col-md-6" >
         <div class="panel panel-default">
-            <div id="cropContainerMinimal" style="width: 250px;height: 250px;"></div>
+
             <div class="panel-heading">
                 <i class="fa fa-picture-o" aria-hidden="true"></i> Cambiar Logo
             </div>
             <div class="panel-body">
-                <img width="30%" style="margin-bottom: 10px" src="{{ vich_uploader_asset(logo, 'logoFile','AppBundle\\Entity\\Logo') }}" />
-                <br>
-                {% for label, flashes in app.session.flashbag.all %}
-                    {% for flash in flashes %}
-                        <div class="alert alert-{{ label }}">
-                            {{ flash }}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-
-                {{ form_widget(form.logoFile,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Seleccionar Foto'}) }}
-                {{ form_errors(form.logoFile) }}
-
-                <div>{{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Subir Foto'}) }}</div>
-
-                {{ form_end(form) }}
-                <p>Recomendamos una imagen cuadrado (ej : 300x300)
+                <div id="cropContainerMinimal" style="width: 250px;height: 250px;margin:10px auto"></div>
+                <p>
                     <br>
-                    Recomendamos una imagen formato JPG o PNG
+                    Recomendamos una imagen formato JPG
                     <br>
-                    La imagen no puede pesar mas de 300KB
+                    La imagen no puede pesar mas de 1Mb
                     <br>
-                    Ancho minimo del logo 250px
+                    El Logo debe estar centrado en el circulo
                     <br>
-                    Altura minima del logo 250px</p>
+                    Es recomendable también no dejar espacios en negro
+                </p>
             </div>
         </div>
-
     </div>
+    <div id="select-img2" class="col-md-6" >
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <i class="fa fa-picture-o" aria-hidden="true"></i> Logo Actual
+            </div>
+            <div class="panel-body">
+                <img  style="margin-bottom: 10px" src="{{ vich_uploader_asset(logo, 'logoFile','AppBundle\\Entity\\Logo') }}" />
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
