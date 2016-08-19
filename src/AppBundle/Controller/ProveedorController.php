@@ -34,6 +34,7 @@ use Ivory\GoogleMap\Overlays\InfoWindow;
 use Ivory\GoogleMap\Events\MouseEvent;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Form\FormError;
 
 
 class ProveedorController extends Controller
@@ -359,87 +360,96 @@ class ProveedorController extends Controller
         $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            //$data = $form->getData();
-            //$logo = new Logo();
-            //$logo->setLogoFile($temp_file);
-            $temp_file = $proveedor->getTempFile();
-            $logo = new Logo();
-            $logo->setLogoFile($temp_file);
-            $logo->setProveedor($proveedor);
-            $proveedor->setLogo($logo);
+        if ($form->isSubmitted()) {
+            if($form->isValid()){
+                //$data = $form->getData();
+                //$logo = new Logo();
+                //$logo->setLogoFile($temp_file);
+                $temp_file = $proveedor->getTempFile();
+                $logo = new Logo();
+                $logo->setLogoFile($temp_file);
+                $logo->setProveedor($proveedor);
+                $proveedor->setLogo($logo);
 
 
-            //$logo = $proveedor->getLogo();
-            //$logo->setProveedor($proveedor);
+                //$logo = $proveedor->getLogo();
+                //$logo->setProveedor($proveedor);
 
 
 
-            /*$temp_file = $proveedor->getLogo();
-            $logo = new Logo();
-            $logo->setLogoFile($temp_file);
-            $logo->setLogoName('test');
-            $proveedor->setLogo($logo);*/
-            //var_dump('here');
-            //exit;
-            // 3) Encode the password (you could also do this via Doctrine listener)
-            $proveedor->setSlug($this->slugify($proveedor->getNombre()));
-            $password = $this->get('security.password_encoder')
-                ->encodePassword($proveedor, $proveedor->getPlainPassword());
-            $proveedor->setPassword($password);
+                /*$temp_file = $proveedor->getLogo();
+                $logo = new Logo();
+                $logo->setLogoFile($temp_file);
+                $logo->setLogoName('test');
+                $proveedor->setLogo($logo);*/
+                //var_dump('here');
+                //exit;
+                // 3) Encode the password (you could also do this via Doctrine listener)
+                $proveedor->setSlug($this->slugify($proveedor->getNombre()));
+                $password = $this->get('security.password_encoder')
+                    ->encodePassword($proveedor, $proveedor->getPlainPassword());
+                $proveedor->setPassword($password);
 
-            // 4) save the Proveedor !
-            $em = $this->getDoctrine()->getManager();
+                // 4) save the Proveedor !
+                $em = $this->getDoctrine()->getManager();
 
 
-            //create default preguntas
-            $pf1 = new PreguntaFrequente();
-            $pf1->setPregunta('Que capacidad tienen ? / Que cantidad pueden hacer ?');
-            $pf1->setProveedor($proveedor);
-            $proveedor->addPreguntas($pf1);
+                //create default preguntas
+                $pf1 = new PreguntaFrequente();
+                $pf1->setPregunta('Que capacidad tienen ? / Que cantidad pueden hacer ?');
+                $pf1->setProveedor($proveedor);
+                $proveedor->addPreguntas($pf1);
 
-            $pf2 = new PreguntaFrequente();
-            $pf2->setPregunta('Rango de precios');
-            $pf2->setProveedor($proveedor);
-            $proveedor->addPreguntas($pf2);
+                $pf2 = new PreguntaFrequente();
+                $pf2->setPregunta('Rango de precios');
+                $pf2->setProveedor($proveedor);
+                $proveedor->addPreguntas($pf2);
 
-            $pf3 = new PreguntaFrequente();
-            $pf3->setPregunta('Con que servicios cuentan ?');
-            $pf3->setProveedor($proveedor);
-            $proveedor->addPreguntas($pf3);
+                $pf3 = new PreguntaFrequente();
+                $pf3->setPregunta('Con que servicios cuentan ?');
+                $pf3->setProveedor($proveedor);
+                $proveedor->addPreguntas($pf3);
 
-            $pf4 = new PreguntaFrequente();
-            $pf4->setPregunta('Realizan mas de un evento al dia ?');
-            $pf4->setProveedor($proveedor);
-            $proveedor->addPreguntas($pf4);
+                $pf4 = new PreguntaFrequente();
+                $pf4->setPregunta('Realizan mas de un evento al dia ?');
+                $pf4->setProveedor($proveedor);
+                $proveedor->addPreguntas($pf4);
 
-            $pf5 = new PreguntaFrequente();
-            $pf5->setPregunta('como se efectua el pago ?');
-            $pf5->setProveedor($proveedor);
-            $proveedor->addPreguntas($pf5);
+                $pf5 = new PreguntaFrequente();
+                $pf5->setPregunta('como se efectua el pago ?');
+                $pf5->setProveedor($proveedor);
+                $proveedor->addPreguntas($pf5);
 
-            $pf6 = new PreguntaFrequente();
-            $pf6->setPregunta('cuales son sus politicas de cancelacion ?');
-            $pf6->setProveedor($proveedor);
-            $proveedor->addPreguntas($pf6);
+                $pf6 = new PreguntaFrequente();
+                $pf6->setPregunta('cuales son sus politicas de cancelacion ?');
+                $pf6->setProveedor($proveedor);
+                $proveedor->addPreguntas($pf6);
 
-            $pf7 = new PreguntaFrequente();
-            $pf7->setPregunta('con cuanta anticipación hay que ponerse en contacto con ustedes ?');
-            $pf7->setProveedor($proveedor);
-            $proveedor->addPreguntas($pf7);
+                $pf7 = new PreguntaFrequente();
+                $pf7->setPregunta('con cuanta anticipación hay que ponerse en contacto con ustedes ?');
+                $pf7->setProveedor($proveedor);
+                $proveedor->addPreguntas($pf7);
 
-            $pf8 = new PreguntaFrequente();
-            $pf8->setPregunta('hay pedido minimo ? Cuanto ?');
-            $pf8->setProveedor($proveedor);
-            $proveedor->addPreguntas($pf8);
+                $pf8 = new PreguntaFrequente();
+                $pf8->setPregunta('hay pedido minimo ? Cuanto ?');
+                $pf8->setProveedor($proveedor);
+                $proveedor->addPreguntas($pf8);
 
-            $em->persist($proveedor);
-            $em->flush();
+                $em->persist($proveedor);
+                $em->flush();
 
-            // authenticate your user right now
-            $this->authenticateUser($proveedor);
+                // authenticate your user right now
+                $this->authenticateUser($proveedor);
 
-            return $this->redirectToRoute('register_validacion_negocio');
+                return $this->redirectToRoute('register_validacion_negocio');
+            }
+            else{
+                //$errors = $this->get('form_serializer')->serializeFormErrors($form, true, true);
+                //var_dump($errors);
+                $error = new FormError("El formulario contiene errores, verifique los campos e inténtelo de nuevo.");
+                $form->addError($error);
+            }
+
         }
 
         return $this->render(
