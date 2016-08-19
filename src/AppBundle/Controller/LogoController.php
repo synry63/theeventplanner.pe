@@ -192,7 +192,22 @@ class LogoController extends Controller
             // crop image into selected area
             $final_image = imagecreatetruecolor($cropW, $cropH);
             imagecolortransparent($final_image, imagecolorallocate($final_image, 0, 0, 0));
-            imagecopyresampled($final_image, $cropped_rotated_image, 0, 0, $imgX1, $imgY1, $cropW, $cropH, $cropW, $cropH);
+            // if image width is smaller than defined crop field or not
+            if($imgW < $cropW){
+                $dst_x = $imgX1;
+                $dst_y = $imgY1;
+                $src_x = $src_y = 0;
+                $width = $imgW;
+                $height = $imgH;
+            }else{
+                $dst_x = $dst_y = 0;
+                $src_x = $imgX1;
+                $src_y = $imgY1;
+                $width = $cropW;
+                $height = $cropH;
+            }
+            imagecopyresampled($final_image, $cropped_rotated_image, $dst_x, $dst_y, $src_x, $src_y, $width, $height, $width, $height);
+            //imagecopyresampled($final_image, $cropped_rotated_image, 0, 0, $imgX1, $imgY1, $cropW, $cropH, $cropW, $cropH);
             // finally output png image
             //imagepng($final_image, $output_filename.$type, $png_quality);
             imagejpeg($final_image, $output_filename.$type, $jpeg_quality);
