@@ -100,6 +100,9 @@
         {{ flash }}
     </div>
 {% endfor %}
+{% if app.user.googleMapFormatedAddress is not null%}
+    <p style="text-align: center">Direccion de Google actual : <b>{{ app.user.googleMapFormatedAddress }}</b></p>
+{% endif %}
 <input id="pac-input" class="controls" type="text" value=""
        placeholder="Introduzca una ubicación">
 <div id="map">
@@ -151,9 +154,10 @@
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
+            console.log(place.formatted_address);
             var latitude = place.geometry.location.lat();
             var longitude = place.geometry.location.lng();
-            document.getElementById("googlemap_ubicacion").setAttribute("value", JSON.stringify({lat:latitude,lng:longitude}));
+            document.getElementById("googlemap_ubicacion").setAttribute("value", JSON.stringify({lat:latitude,lng:longitude,formatted_address:place.formatted_address}));
             // If the place has a geometry, then present it on a map.
             if (place.geometry.viewport) {
                 map.fitBounds(place.geometry.viewport);

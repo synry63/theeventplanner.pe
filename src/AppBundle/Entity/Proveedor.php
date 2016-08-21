@@ -116,6 +116,8 @@ class Proveedor implements AdvancedUserInterface, \Serializable
      */
     private $distrito;
 
+
+
     /**
      * @ORM\Column(type="datetime")
      *
@@ -226,6 +228,12 @@ class Proveedor implements AdvancedUserInterface, \Serializable
      * @ORM\Column(type="float",nullable=true)
      */
     private $googleMapLng;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=255)
+     *
+     */
+    private $googleMapFormatedAddress;
     /**
      * @ORM\Column(type="string",nullable=true, length=100)
      */
@@ -268,6 +276,21 @@ class Proveedor implements AdvancedUserInterface, \Serializable
         return $this->preguntas;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getGoogleMapFormatedAddress()
+    {
+        return $this->googleMapFormatedAddress;
+    }
+
+    /**
+     * @param mixed $googleMapFormatedAddress
+     */
+    public function setGoogleMapFormatedAddress($googleMapFormatedAddress)
+    {
+        $this->googleMapFormatedAddress = $googleMapFormatedAddress;
+    }
 
 
     /**

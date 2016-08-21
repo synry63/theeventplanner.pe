@@ -178,8 +178,10 @@ class ProveedorController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $ubicacion = json_decode($data['ubicacion']);
+
             $proveedor->setGoogleMapLat($ubicacion->lat);
             $proveedor->setGoogleMapLng($ubicacion->lng);
+            $proveedor->setGoogleMapFormatedAddress($ubicacion->formatted_address);
             $em = $this->getDoctrine()->getManager();
             $em->persist($proveedor);
             $em->flush();
