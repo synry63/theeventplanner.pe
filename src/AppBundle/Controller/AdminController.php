@@ -742,7 +742,7 @@ class AdminController extends Controller
 
             $request->getSession()->getFlashBag()->add('success', 'Rublo de actividad actualiza !');
 
-            return $this->redirectToRoute('admin_negocio_profile');
+            return $this->redirectToRoute('admin_negocio_profile',array('id'=>$id));
         }
 
         return $this->render(
