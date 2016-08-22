@@ -14,6 +14,7 @@ use AppBundle\Entity\Tendencia;
 use AppBundle\Entity\Video;
 use AppBundle\Entity\Voto;
 use AppBundle\Form\Type\InspiracionType;
+use AppBundle\Form\Type\ProveedorAdminProfileType;
 use AppBundle\Form\Type\TendenciaType;
 use AppBundle\Form\Type\VideoType;
 use AppBundle\Form\Type\VotoType;
@@ -705,5 +706,49 @@ class AdminController extends Controller
                 'seccion' => $this->menuSelected('votos')
             )
         );
+    }
+
+    /**
+     * @Route("admin/negocio/profile/{id}", name="admin_negocio_profile",requirements={
+     *      "id": "\d+"
+     * })
+     */
+    public function adminProveedorProfileAction($id,Request $request){
+        $proveedor =  $this->getDoctrine()->getRepository('AppBundle:Proveedor')->find($id);
+
+        $in = array();
+        // weddings
+        $categoria_wdding = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'wedding'));
+        $in['wedding'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_wdding);
+        // dinners
+        $categoria_dinner = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'dinner'));
+        $in['dinner'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_dinner);
+        // kids
+        $categoria_kids = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'kids'));
+        $in['kids'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_kids);
+        // party
+        $categoria_party = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'party'));
+        $in['party'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_party);
+
+
+        $form = $this->createForm(new ProveedorAdminProfileType($in), $proveedor);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // 4) save the Proveedor !
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($proveedor);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Rublo de actividad actualiza !');
+
+            return $this->redirectToRoute('admin_negocio_profile');
+        }
+
+        return $this->render(
+            'admin/negocio_profile.html.twig',
+            array('form' => $form->createView())
+        );
+
     }
 }
