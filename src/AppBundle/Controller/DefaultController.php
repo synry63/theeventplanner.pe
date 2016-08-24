@@ -64,7 +64,7 @@ class DefaultController extends Controller
 
     }
     /**
-     * @Route("/{slug_site}/categorias/", name="site_categorias",requirements={
+     * @Route("/{slug_site}/proveedores/", name="site_categorias",requirements={
      *     "slug": "wedding|dinner|kids|party"
      * })
      */
