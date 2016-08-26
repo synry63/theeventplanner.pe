@@ -128,6 +128,8 @@ class Logo
     {
         return $this->logoName;
     }
-
+    public function __construct() {
+        $this->updatedAt = new \DateTime('now');
+    }
 
 }

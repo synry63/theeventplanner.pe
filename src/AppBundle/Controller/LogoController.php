@@ -116,6 +116,7 @@ class LogoController extends Controller
      * @Route("/negocio/zona/image-crop", name="crop_negocio_logo")
      */
     public function userFotoProfileCropShowAction(Request $request){
+
         $imgUrl = $_POST['imgUrl'];
         $pieces = explode("/", $imgUrl);
         $filename = $pieces[count($pieces)-1];
@@ -218,11 +219,18 @@ class LogoController extends Controller
                 "url" => $my_path.$filename_out.$type,
                 "targetUrl" => $this->get('router')->generate('negocio_zona_logo')
             );
-
             // PERSISTANCE
             $proveedor = $this->get('security.token_storage')->getToken()->getUser();
             $logo = $proveedor->getLogo();
-            $logo->setLogoName($filename_out.$type);
+            if($logo==null){
+                $logo = new Logo();
+                $logo->setLogoName($filename_out.$type);
+                $logo->setProveedor($proveedor);
+            }
+            else{
+                $logo->setLogoName($filename_out.$type);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($logo);
             $em->flush();
