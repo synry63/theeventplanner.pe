@@ -1,0 +1,19 @@
+{% if app.user.logo is not null %}
+    <div id="logo_true" data-logo="1" style="display: none"></div>
+{% else %}
+    <div id="logo_false" data-logo="0" style="display: none"></div>
+{% endif %}
+
+<a class="popup-with-zoom-anim" href="#small-dialog" style="display:none">Open with fade-zoom animation</a>
+
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide white-popup">
+    <div class="col-md-6">
+        <img src="{{ asset('images/recuerda_que.jpg') }}" alt="">
+    </div>
+    <div class="col-md-6">
+        <h1><i class="fa fa-exclamation-circle" aria-hidden="true"></i></h1>
+        <h4>Recuerda que tener un logo le da mayor credibilidad a tu Negocio.</h4>
+        <a href="{{ path('negocio_zona_logo') }}">Ingresa tu logo aquí</a>
+    </div>
+
+</div>

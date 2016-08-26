@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slick.css') }}"/>
@@ -26,7 +27,9 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo')| imagine_filter('logo_thumb') }}" /></a>
+            {% if app.user.logo is not null %}
+                <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo')| imagine_filter('logo_thumb') }}" /></a>
+            {% endif %}
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,7 +67,13 @@
             {% endif %}
 
             <div class="row slider-section">
-                {{ include('comun_includes/flexslider-detail.html.twig')}}
+                <div class="variable-width">
+                    {% for f in proveedor.fotos  %}
+                        <div>
+                            <img style="max-width: 780px; max-height: 450px;border: solid 5px white;" src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
 
 

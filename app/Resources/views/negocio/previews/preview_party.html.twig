@@ -23,8 +23,9 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo')| imagine_filter('logo_thumb') }}" /></a>
-        </div>
+            {% if app.user.logo is not null %}
+                <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo')| imagine_filter('logo_thumb') }}" /></a>
+            {% endif %}        </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

@@ -698,7 +698,14 @@ GLOBAL
 .named{
     padding-left: 40px;
 }
-
+.white-popup {
+    position: relative;
+    background: #FFF;
+    padding: 20px;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto;
+}
 .flash-success{
     position: absolute;
     background: #C90051;
@@ -706,6 +713,23 @@ GLOBAL
     color: white;
     border-radius: 0 0 10px;
 }
+#small-dialog{
+    text-align: center;
+    min-height: 280px;
+}
+#small-dialog a{
+    text-decoration: none;
+    color: #C90051;
+}
+#small-dialog h1{
+    text-align: center;
+    color: #C90051;
+    font-size: 60px;
+}
+#small-dialog h4{
+    text-align: center;
+}
+
 
 .comment-detail img{
     margin: 0 auto;

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/croppic.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <title>Cambiar Logo</title>
     <style>
@@ -31,7 +32,9 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo')| imagine_filter('logo_thumb') }}" /></a>
+            {% if app.user.logo is not null %}
+                <a class="navbar-brand" href="#"><img class="logo_prov" src="{{ vich_uploader_asset(app.user.logo, 'logoFile','AppBundle\\Entity\\Logo')| imagine_filter('logo_thumb') }}" /></a>
+            {% endif %}
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,6 +57,10 @@
 {% endfor %}
 
 <div class="container dashboard negocio_reg">
+
+    {{ include('negocio/popup_logo.html.twig')}}
+
+
     <div id="select-img" class="col-md-6" >
         <div class="panel panel-default">
 
@@ -82,7 +89,10 @@
                 <i class="fa fa-picture-o" aria-hidden="true"></i> Logo Actual
             </div>
             <div class="panel-body">
-                <img  style="margin-bottom: 10px" src="{{ vich_uploader_asset(logo, 'logoFile','AppBundle\\Entity\\Logo') }}" />
+                {% if app.user.logo is not null %}
+                    <img  style="margin-bottom: 10px" src="{{ vich_uploader_asset(logo, 'logoFile','AppBundle\\Entity\\Logo') }}" />
+
+                {% endif %}
             </div>
         </div>
     </div>
@@ -94,13 +104,24 @@
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap-filestyle.min.js') }}"></script>
 
-
+<script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/croppic_edited.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>
 <script>
-    $("#bs-example-navbar-collapse-1 ul").addClass("nav navbar-nav");
-    $("#select-img input").filestyle('buttonText', 'Seleccionar Foto');
+
+    var logofalse= $('#logo_false').attr('data-logo');
+
+    if (logofalse == 0){
+        $.magnificPopup.open({
+            items: {
+                src: $('#small-dialog'), // can be a HTML string, jQuery object, or CSS selector
+                type: 'inline'
+            }
+        });
+    }
+
+    $("#select-ipumg int").filestyle('buttonText', 'Seleccionar Foto');
     $("#select-img input").filestyle('icon', false);
 
     $("#select-img input").addClass("filestyle");
