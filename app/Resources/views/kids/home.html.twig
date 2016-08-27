@@ -20,19 +20,6 @@
 {% block content %}
     {{ parent() }}
 
-    <div class="buscadore">
-        <a href="javascript:void(0)" id="dropdownMenu1" type="button" data-toggle="dropdown" class="cat-drop-{{ app.request.get('slug_site') }}">¿Qué Buscas? <i class="fa fa-search" aria-hidden="true"></i></a>
-
-        <div class="dropdown-menu list_categorias-{{ app.request.get('slug_site') }}" aria-labelledby="dropdownMenu1">
-                <ul>
-                    {% for c in categorias %}
-                        <li><a href="{{ path('proveedores_category', {'slug_site': app.request.get('slug_site'),'slug_category': c.slug}) }}">{{ c.nombre }}</a></li>
-                    {% endfor %}
-
-                </ul>
-            </div>
-        </div>
-    </div>
 
     <div class="container-fluid">
         <div class="row">
@@ -68,7 +55,11 @@
                 <div class="slick_wedding">
                     {% for p in mejores_proveedores %}
                         <a href="{{ path('proveedor_detail', {'slug_site': 'kids','slug_proveedor': p.proveedor.slug}) }}">
-                            <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo') | imagine_filter('logo_thumb')}}" alt="{{ p.proveedor.nombre }}" />
+                            {% if p.proveedor.logo is not null %}
+                                <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo') | imagine_filter('logo_thumb')}}" alt="{{ p.proveedor.nombre }}" />
+                            {% else %}
+                                <img src="{{ asset('images/logo_default.jpg') }}" alt="">
+                            {% endif %}
                         </a>
 
                     {% endfor %}
