@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <title>Preview</title>
 </head>
@@ -50,51 +52,7 @@
 
         <div class="col-md-4 col-md-push-8 card-prov">
             <div class="proveedor-fixed">
-                <div class="proveedor-info">
-                    {#
-                    <div class="liston">
-                        <img src="{{ asset('images/liston_dinner.png')}}" alt="wedding premium">
-                    </div>
-                    #}
-
-                    <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile')| imagine_filter('logo_thumb') }}" alt="{{ proveedor.nombre }}" />
-
-
-                    <div id="rateYo"  data-rating="4"></div>
-
-
-                    <a  href="javascript: void(0)" style="cursor:not-allowed">
-                        <button type="button"  style="cursor:not-allowed" class="btn btn-coti-dinner">Contactar Empresa</button></a>
-                    <br>
-                    <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
-                    <p>{{ proveedor.telefono }}</p>
-                    <div class="links-proveedores ldinner">
-                        <a style="cursor:not-allowed" href="javascript: void(0)" target="_blank">Página Web</a>
-                    </div>
-
-
-                </div>
-                <div class="proveedor-social sdinner">
-                    <a class="favorite-button-dinner ajax-popup-link" style="background-position-x: 33px; cursor:not-allowed" href="javascript: void(0)">
-
-                    </a>
-
-
-                    <ul>
-                        {% if proveedor.facebookLink is not null %}
-                            <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img width="50px" src="{{ asset('images/social_facebook.png') }}" alt=""></a></li>
-                        {% endif %}
-                        {% if proveedor.pinteresLink is not null %}
-                            <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img width="50px" src="{{ asset('images/social_pinterest.png') }}" alt=""></a></li>
-                        {% endif %}
-                        {% if proveedor.twitterLink is not null %}
-                            <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img  width="50px"src="{{ asset('images/social_twitter.png') }}" alt=""></a></li>
-                        {% endif %}
-                        {% if proveedor.instagramLink is not null %}
-                            <li ><a style="cursor:not-allowed" href="javascript: void(0)"><img  width="50px" src="{{ asset('images/social_instagram.png') }}" alt=""></a></li>
-                        {% endif %}
-                    </ul>
-                </div>
+                {{ include('negocio/previews/card-prov.html.twig',{'favorito':null})}}
             </div>
         </div>
 
@@ -105,26 +63,8 @@
                 <img src="http://placehold.it/750x580?text=Slider" alt="">
             {% endif %}
 
-            <div id="slider" class="flexslider">
-                <ul class="slides">
-                    {% for f in proveedor.fotos  %}
-                        <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                            <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div id="carousel" class="flexslider">
-                <ul class="slides flex-control-nav flex-control-thumbs">
-                    {% for f in proveedor.fotos  %}
-                        <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                            <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-
-                        </li>
-                    {% endfor %}
-
-                </ul>
+            <div class="row slider-section">
+                {{ include('negocio/previews/flexslider-detail.html.twig')}}
             </div>
 
             <!-- Fin Slider Section -->
@@ -194,10 +134,21 @@
 <script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
 
 <script>
-    $("#bs-example-navbar-collapse-1 ul").addClass("nav navbar-nav");
+
+
+    $('.variable-width').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        centerMode: true,
+        variableWidth: true,
+        adaptiveHeight: true
+
+    });
     $("#select-img input").filestyle('buttonText', 'Seleccionar Foto');
     $("#select-img input").filestyle('icon', false);
 

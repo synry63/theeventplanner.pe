@@ -881,7 +881,9 @@ GLOBAL
 /*=============
 slick detail
 ===============*/
-
+.negocio-slick .slick-slide{
+    height:450px;
+}
 .variable-width .slick-slide{
     opacity: .2;
     transition: all 1s;

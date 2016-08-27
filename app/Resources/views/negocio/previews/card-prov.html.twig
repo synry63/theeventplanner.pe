@@ -1,0 +1,81 @@
+<div class="proveedor-info">
+    {#
+    <div class="liston">
+        <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
+    </div>
+    #}
+    {% if app.user.logo is not null %}
+        <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') | imagine_filter('logo_thumb') }}" alt="{{ proveedor.nombre }}" />
+
+    {% endif %}
+
+    <div id="rateYo"  data-rating="0"></div>
+    <a class="ajax-popup-link" href="javascript:void(0)">
+        <button type="button" class="btn btn-coti-{{ app.request.get('slug_site') }}">Contactar Empresa</button></a>
+    <br>
+    <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
+    <p>{{ proveedor.telefono }}</p>
+    {% if proveedor.web is not null %}
+        <div class="links-proveedores l{{ app.request.get('slug_site') }}">
+            <a href="javascript:void (0)" target="_blank">Página Web</a>
+        </div>
+    {% endif %}
+</div>
+
+
+<div class="proveedor-social s{{ app.request.get('slug_site') }}">
+    {% if app.user is not null %}
+        {% if favorito is not null%}
+            <a class="favorite-button-{{ app.request.get('slug_site') }}" href="javascript:void (0)">
+            </a>
+        {% else %}
+            <a class="favorite-button-{{ app.request.get('slug_site') }}" style="background-position-x: 33px" href="javascript:void (0)">
+
+            </a>
+        {% endif %}
+
+    {% else %}
+        <a class="favorite-button-{{ app.request.get('slug_site') }} ajax-popup-link" style="background-position-x: 33px" href="javascript:void (0)">
+        </a>
+    {% endif %}
+
+    <div class="social-icons">
+        {% if proveedor.facebookLink is not null %}
+            <a href="javascript:void (0)">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+            </a>
+        {% endif %}
+
+        {% if proveedor.twitterLink is not null %}
+            <a href="javascript:void (0)">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+            </a>
+        {% endif %}
+
+        {% if proveedor.instagramLink is not null %}
+            <a href="javascript:void (0)">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+            </a>
+        {% endif %}
+
+        {% if proveedor.pinteresLink is not null %}
+            <a href="{{ proveedor.pinteresLink  }}">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+                    </span>
+            </a>
+        {% endif %}
+
+    </div>
+
+</div>

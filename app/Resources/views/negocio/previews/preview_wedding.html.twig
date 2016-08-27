@@ -55,7 +55,7 @@
 
         <div class="col-md-4 col-md-push-8 card-prov">
             <div class="proveedor-fixed">
-                {{ include('comun_includes/card-prov.html.twig',{'moy':0,'favorito':null})}}
+                {{ include('negocio/previews/card-prov.html.twig',{'favorito':null})}}
             </div>
         </div>
 
@@ -67,13 +67,7 @@
             {% endif %}
 
             <div class="row slider-section">
-                <div class="variable-width">
-                    {% for f in proveedor.fotos  %}
-                        <div>
-                            <img style="max-width: 780px; max-height: 450px;border: solid 5px white;" src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-                        </div>
-                    {% endfor %}
-                </div>
+                {{ include('negocio/previews/flexslider-detail.html.twig')}}
             </div>
 
 
@@ -143,8 +137,6 @@
 <script type="text/javascript" src="{{ asset('js/bootstrap-filestyle.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
-
-
 <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
 <script>
 
