@@ -209,11 +209,22 @@
     <script type="text/javascript" src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script>
 
         $( "#accordion" ).accordion({
             active: false,
             collapsible: true
+        });
+        $('.variable-width').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            centerMode: true,
+            variableWidth: true,
+            adaptiveHeight: true
+
         });
         var coment_r = $("#coment-alert").attr("data-coment");
         if(coment_r!=undefined)

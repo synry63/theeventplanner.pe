@@ -50,6 +50,7 @@
                 {% endif %}
             </div>
 
+            {#
             {% for p in proveedores %}
 
                 <div class="col-sm-6 col-md-4 detail-prov">
@@ -76,6 +77,11 @@
                     </a>
                 </div>
             {% endfor %}
+            #}
+            {% for p in proveedores %}
+                {{ include('comun_includes/listado_proveedores.html.twig', { 'p': p.proveedor,'slug_site':app.request.get('slug_site')})}}
+            {% endfor %}
+
         </div>
 
         <div class="navigation-kids">
