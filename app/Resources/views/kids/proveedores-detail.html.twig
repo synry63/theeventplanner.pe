@@ -103,79 +103,26 @@
                 </div>
                 <hr>
                 <!-- Fin Comentarios Section -->
-                <h1 class="tittle-slicks"  style="margin-bottom: 20px">Deja Tu comentario</h1>
+
+                {% block flashbag %}
+                    {% for label, flashes in app.session.flashbag.all %}
+                        {% for flash in flashes %}
+                            <div data-coment="{{ flash }}" id="coment-alert"></div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endblock flashbag %}
+
                 {% if app.user is not null %}
-
-
-                    <div class="leave-comment-box">
-
-                        <div class="row">
-
-                            <div class="col-xs-12 col-md-12 proveedor_comments">
-                                {% block flashbag %}
-                                    {% for label, flashes in app.session.flashbag.all %}
-                                    <!--<h4 class="title-heading">Escribe tu comentario</h4>-->
-                                        {% for flash in flashes %}
-                                            <div data-coment="{{ flash }}" id="coment-alert"></div>
-                                        {% endfor %}
-                                    {% endfor %}
-                                {% endblock flashbag %}
-
-                                {% if form is defined %}
-                                    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-
-                                    {% if form.vars.errors|length>0 %}
-                                        <div class="alert alert-danger" role="alert">
-                                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>
-                                        </div>
-                                    {% endif %}
-
-
-
-                                    <div class="rating-container">
-                                        <div id="rateYo2"></div>
-                                        <div class="counter"></div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ form_label(form.titulo,'Título') }}
-                                        {% if form.titulo.vars.errors|length>0 %}
-                                            <div class="alert alert-danger" role="alert">
-                                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>
-                                            </div>
-                                        {% endif %}
-                                        {{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'Tu título','rows':'6'}}) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form_label(form.comentario,'Comentario') }}
-                                        {% if form.comentario.vars.errors|length>0 %}
-                                            <div class="alert alert-danger" role="alert">
-                                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>
-                                            </div>
-                                        {% endif %}
-                                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
-                                        <!-- el boton submit No renderiza con esto-->
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ form_widget(form.nota) }}
-
-                                    </div>
-                                    {{ form_end(form) }}
-
-
-                                {% endif %}
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <h1 class="tittle-slicks"  style="margin-bottom: 20px">Deja Tu comentario</h1>
+                    <span class="text-forcomments">
+                        <p>
+                            {% if myc is not null %}
+                                <span>gracias por tu reseña</span>
+                            {% else %}
+                                <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
+                            {% endif %}
+                        </p>
+                    </span>
                 {% else %}
 
                     <span  class="text-forcomments">

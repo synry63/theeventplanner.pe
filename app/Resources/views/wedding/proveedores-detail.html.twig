@@ -130,10 +130,14 @@
 
                     <h1 class="tittle-slicks"  style="margin-bottom: 20px">Deja Tu comentario</h1>
                     <span class="text-forcomments">
-                    <p>
-                        <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
-                    </p>
-                </span>
+                        <p>
+                            {% if myc is not null %}
+                                <span>gracias por tu reseña</span>
+                            {% else %}
+                                <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
+                            {% endif %}
+                        </p>
+                    </span>
 
 
                     {#

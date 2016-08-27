@@ -628,12 +628,14 @@ class ProveedorController extends Controller
                 }
                 $renderOut['form'] = $form->createView();
             }*/
+            $comentarioProveedor = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')
+                ->findOneBy(array('proveedor'=>$proveedor,'user'=>$user));
 
             $userGustaProveedor = $this->getDoctrine()->getRepository('AppBundle:UserProveedorGusta')
                 ->findOneBy(array('proveedor'=>$proveedor,'user'=>$user));
 
             $renderOut['favorito'] = $userGustaProveedor;
-
+            $renderOut['myc'] = $comentarioProveedor;
             return $this->render(
                 $slug_site.'/proveedores-detail.html.twig',$renderOut
             );
@@ -764,7 +766,13 @@ class ProveedorController extends Controller
                         $em->flush();
 
                         $request->getSession()->getFlashBag()->add('success', 'Gracias por tu comentario !');
-                        return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
+                        //return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
+                        $url = $this->generateUrl('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
+                        $response = new JsonResponse();
+                        $response->setData(array(
+                            'success' => $url
+                        ));
+                        return $response;
                         //return $this->redirectToRoute('task_success');
                         //$this->redirect($request->getReferer());
                     }
