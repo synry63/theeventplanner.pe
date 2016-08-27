@@ -94,7 +94,11 @@
                 <div class="slick_wedding">
                     {% for p in mejores_proveedores %}
                         <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.proveedor.slug}) }}">
-                            <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo') | imagine_filter('logo_thumb')}}" alt="{{ p.proveedor.nombre }}" />
+                            {% if p.proveedor.logo is not null %}
+                                <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo') | imagine_filter('logo_thumb')}}" alt="{{ p.proveedor.nombre }}" />
+                            {% else %}
+                                <img src="{{ asset('images/logo_default.jpg') }}" alt="">
+                            {% endif %}
                         </a>
 
                     {% endfor %}

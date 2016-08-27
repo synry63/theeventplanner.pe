@@ -4,8 +4,11 @@
         <img src="{{ asset('images/liston_wedding.png')}}" alt="wedding premium">
     </div>
     #}
-
-    <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') | imagine_filter('logo_thumb') }}" alt="{{ proveedor.nombre }}" />
+    {% if proveedor.logo is not null %}
+        <img src="{{ vich_uploader_asset(proveedor.logo, 'logoFile') | imagine_filter('logo_thumb') }}" alt="{{ proveedor.nombre }}" />
+    {% else %}
+        <img src="{{ asset('images/logo_default.jpg') }}" alt="">
+    {% endif %}
 
     <div id="rateYo"  data-rating="{{ moy }}"></div>
     <a class="ajax-popup-link" href="{{ path('cotizacion_negocio',
