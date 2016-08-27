@@ -72,16 +72,16 @@
 
 
                         {{ form_start(form_foto_listado, {'attr': {'novalidate': 'novalidate'}}) }}
-                        {{ form_errors(form_foto_listado.imgFile) }}
+
 
                         {{ form_widget(form_foto_listado.imgFile,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Seleccionar Foto'}) }}
-
+                        {{ form_errors(form_foto_listado.imgFile) }}
                         <div>
                             {{ form_widget(form_foto_listado.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Subir Foto'}) }}
                         </div>
                         {{ form_end(form_foto_listado) }}
                         <p>
-                            La Imagen debe ser formato .Jpg
+                            Se recomienda una imagen en formato .Jpg
                         </p>
 
 
@@ -124,7 +124,7 @@
                         </div>
                         {{ form_end(form) }}
                         <p>
-                            La Imagen debe ser formato .Jpg
+                            Se recomienda una imagen en formato .Jpg
                         </p>
 
                     </div>
