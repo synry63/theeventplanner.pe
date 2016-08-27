@@ -167,12 +167,15 @@
         var logofalse= $('#logo_false').attr('data-logo');
 
         if (logofalse == 0){
-            $.magnificPopup.open({
-                items: {
-                    src: $('#small-dialog'), // can be a HTML string, jQuery object, or CSS selector
-                    type: 'inline'
-                }
-            });
+            setTimeout(function(){
+                $.magnificPopup.open({
+                    items: {
+                        src: $('#small-dialog'), // can be a HTML string, jQuery object, or CSS selector
+                        type: 'inline'
+                    }
+                });
+            }, 1500);
+
         }
 
 

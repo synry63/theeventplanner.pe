@@ -25,29 +25,7 @@
     <div class="col-md-10 body-dashboard">
 
         {% for p in proveedores %}
-            <div class="col-sm-6 col-md-4 detail-prov">
-                <a href="{{ path('admin_negocio_show', {'id': p.id}) }}">
-                    <div class="image-prov">
-
-                        {% if p.fotos is empty %}
-                            <div class="img-default2 prov-foto2">
-                                <img src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
-                            </div>
-                        {% else %}
-                            {% for f in p.fotos  %}
-                                {% if f.isListado %}
-                                    <img class="prov-foto2" src="{{ asset('images/proveedores/fotos/'~f.img)}}" alt="{{ f.proveedor.nombre}}">
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-
-                        <div class="logo_tag">
-                            <img class="img-circle" src="{{ asset('images/proveedores/logo/'~p.logo.logoName)}}" alt="{{ p.nombre }}">
-                        </div>
-                    </div>
-
-                </a>
-            </div>
+            {{ include('comun_includes/listado_proveedores.html.twig', { 'p': p,'slug_site':'wedding','admin':true})}}
         {% endfor %}
 
 

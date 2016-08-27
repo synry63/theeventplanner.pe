@@ -881,8 +881,10 @@ GLOBAL
 /*=============
 slick detail
 ===============*/
-.negocio-slick .slick-slide{
-    height:450px;
+.variable-width img{
+    max-width: 780px;
+    max-height: 450px;
+    border: solid 5px white;
 }
 .variable-width .slick-slide{
     opacity: .2;
@@ -918,6 +920,7 @@ Proveedores-List
 }
 .logo_tag img{
     width: 100px;
+    height: 100px;
     box-shadow: 0 0 10px rgba(0,0,0,.3);
     transition: all .5s;
 }

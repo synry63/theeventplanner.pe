@@ -25,4 +25,15 @@ class BlogController extends Controller
             $slug_site.'/noticias.html.twig'
         );
     }
+    /**
+     * @Route("/{slug_site}/noticia/demo", name="noticia_demo_start",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function noticiaTestAction($slug_site,Request $request)
+    {
+        return $this->render(
+            $slug_site.'/noticia.html.twig'
+        );
+    }
 }

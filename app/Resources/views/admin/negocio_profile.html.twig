@@ -17,7 +17,7 @@
 {% endfor %}
 <ul class="aprobe-buttons">
     <li>
-        <a class="btn btn-default" style="position: absolute;left: 5px; width: 140px; text-align: right;padding-right: 30px" href="{{ app.request.headers.get('referer') }}"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Atrás</a>
+        <a class="btn btn-default" style="position: absolute;left: 5px; width: 140px; text-align: right;padding-right: 30px" href="{{ path('admin_negocio_preview_seccion',{'id':app.request.get('id'),'slug_site':'wedding'}) }}"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Atrás</a>
     </li>
 </ul>
 <div class="panel panel-default" style="padding-top: 60px;">

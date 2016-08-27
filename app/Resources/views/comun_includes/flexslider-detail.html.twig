@@ -1,7 +1,7 @@
 <div class="variable-width">
     {% for f in proveedor.fotos  %}
         <div>
-            <img style="max-width: 780px; max-height: 450px;border: solid 5px white;" src="{{ vich_uploader_asset(f, 'imgFile') }}" />
+            <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
         </div>
     {% endfor %}
 </div>

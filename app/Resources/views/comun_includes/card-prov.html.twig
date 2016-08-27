@@ -42,30 +42,41 @@
     {% endif %}
 
     <div class="social-icons">
-        <a href="{{ proveedor.facebookLink  }}">
+        {% if proveedor.facebookLink is not null %}
+            <a href="{{ proveedor.facebookLink }}">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                     </span>
-        </a>
-        <a href="{{ proveedor.twitterLink  }}">
+            </a>
+        {% endif %}
+
+        {% if proveedor.twitterLink is not null %}
+            <a href="{{ proveedor.twitterLink }}">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
                     </span>
-        </a>
-        <a href="{{ proveedor.instagramLink  }}">
+            </a>
+        {% endif %}
+
+        {% if proveedor.instagramLink is not null %}
+            <a href="{{ proveedor.instagramLink }}">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
                     </span>
-        </a>
-        <a href="{{ proveedor.pinteresLink  }}">
+            </a>
+        {% endif %}
+
+        {% if proveedor.pinteresLink is not null %}
+            <a href="{{ proveedor.pinteresLink  }}">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
                     </span>
-        </a>
+            </a>
+        {% endif %}
     </div>
 
 </div>

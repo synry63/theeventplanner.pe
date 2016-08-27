@@ -83,7 +83,9 @@
                 </div>
             {% endfor %}
 #}
-            {{ include('comun_includes/listado_proveedores.html.twig')}}
+            {% for p in proveedores %}
+                {{ include('comun_includes/listado_proveedores.html.twig', { 'p': p.proveedor,'slug_site':app.request.get('slug_site')})}}
+            {% endfor %}
 
         </div>
 
