@@ -1,10 +1,11 @@
-<div class="col-md-8 col-md-offset-2">
-    <div class="leave-comment-box" style="background-color: #fff; padding: 25px">
+
+    <div class="leave-comment-box" style="background-color: #fff; padding: 20px 35px; width: 462px; margin: 0 auto;    position: relative;">
 
         <div class="row">
 
-            <div class="col-xs-12 col-md-12 proveedor_comments">
+            <div class="proveedor_comments">
 
+                <h1 class="tittle-slicks" style="margin-bottom: 20px">Escribe tu comentario</h1>
 
                 {% if form is defined %}
                     {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
@@ -19,7 +20,6 @@
 
                     <div class="rating-container" style="margin-top: 10px">
                         <div id="rateYo2"></div>
-                        <div class="counter"></div>
                     </div>
 
                     <div class="form-group" id="1">
@@ -75,10 +75,11 @@
                         dataType    : "json"
 
                     }).done(function(data) {
+                        $('#comentario_proveedor_submit').prop('disabled', false);
                         $( "#2 label").after("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.comentario_proveedor_comentario + "</div>"  );
                         $( "#1 label").after("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.comentario_proveedor_titulo + "</div>"  );
-                        $( "#rateYo2").after("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.global[0] + "</div>"  );
-
+                        $( "#rateYo2").before("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.global + "</div>"  );
+                        
                     });
                 });
             });
@@ -113,4 +114,3 @@
 
 
     </script>
-</div>

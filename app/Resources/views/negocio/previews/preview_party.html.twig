@@ -4,11 +4,15 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('css/slick.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <title>Preview</title>
 </head>
@@ -73,9 +77,12 @@
 
             <!-- Description Section -->
 
+            <hr>
+            <h1 class="tittle-slicks">Sobre Nosotros</h1>
             <p class="proveedor-content">
                 {{ proveedor.description }}
             </p>
+            <hr>
 
             <!-- Fin Descriptioin Section -->
 
@@ -83,17 +90,20 @@
 
 
             {% if map is defined %}
+                <h1 class="tittle-slicks" style="margin-bottom: 22px">Ubícanos</h1>
                 {{ google_map(map) }}
             {% endif %}
 
-
+            <hr>
 
             <!-- Fin Google Section -->
+            {{ include('comun_includes/preguntas_frecuentes.html.twig')}}
 
+            <hr>
             <!-- Comentarios Section -->
 
             <div class="comments-box">
-                <h4 class="title-heading">Comentarios <span></span></h4>
+                <h1 class="tittle-slicks" style="margin: 0">Comentarios</h1>
 
 
                 <div class="media comment">
@@ -134,7 +144,8 @@
 <script type="text/javascript" src="{{ asset('js/bootstrap-filestyle.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>7
+<script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
 
 
@@ -149,6 +160,12 @@
         adaptiveHeight: true
 
     });
+    $( "#accordion" ).accordion({
+        active: false,
+        collapsible: true
+    });
+
+
     $("#select-img input").filestyle('buttonText', 'Seleccionar Foto');
     $("#select-img input").filestyle('icon', false);
 
