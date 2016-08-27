@@ -367,11 +367,12 @@ class ProveedorController extends Controller
                 //$data = $form->getData();
                 //$logo = new Logo();
                 //$logo->setLogoFile($temp_file);
-                $temp_file = $proveedor->getTempFile();
-                $logo = new Logo();
-                $logo->setLogoFile($temp_file);
-                $logo->setProveedor($proveedor);
-                $proveedor->setLogo($logo);
+
+                //$temp_file = $proveedor->getTempFile();
+                //$logo = new Logo();
+                //$logo->setLogoFile($temp_file);
+                //$logo->setProveedor($proveedor);
+                //$proveedor->setLogo($logo);
 
 
                 //$logo = $proveedor->getLogo();
