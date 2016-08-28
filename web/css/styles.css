@@ -908,6 +908,7 @@ Proveedores-List
     width: 100%;
     border-radius: 0 0 5px 5px;
     border-bottom: solid 4px #35B3B4;
+    height: 220px;
 }
 .proveedores2 a:hover .logo_tag>img{
     transform: scale(1.2);
@@ -920,7 +921,7 @@ Proveedores-List
 }
 .logo_tag img{
     width: 100px;
-    height: 100px;
+    height: 100px!important;
     box-shadow: 0 0 10px rgba(0,0,0,.3);
     transition: all .5s;
 }
@@ -1465,6 +1466,7 @@ KIDS
     width: 100%;
     border-radius: 0 0 5px 5px;
     border-bottom: solid 4px #971ED1;
+    height: 220px;
 }
 .kids .footer li a:hover{
     color: #971ED1;
@@ -1626,6 +1628,7 @@ PARTY
     width: 100%;
     border-radius: 0 0 5px 5px;
     border-bottom: solid 4px #FF860C;
+    height: 220px;
 }
 .btn-party-entrar, .btn-coti-party{
     border-radius: 0;
@@ -2021,10 +2024,18 @@ DINNER
     padding-left: 43px;
     margin-top: -6px;
 }
+.body-dashboard .image-prov img.prov-foto{
+    max-width: 340px;
+}
+.image-prov img.prov-foto{
+    max-height: 216px;
+    max-width: 360px;
+}
 .image-prov .prov-foto-dinner{
     width: 100%;
     border-radius: 0 0 5px 5px;
     border-bottom: solid 4px #0000ea;
+    height: 220px;
 }
 .dinner .footer li a:hover{
     color: #0000ea;
@@ -2736,8 +2747,12 @@ DASHBOARD ADMIN
     font-size: 18px;
     padding-right: 10px;
 }
+.body-dashboard.negocios-dash{
+    margin-left: 100px;
+}
 .body-dashboard{
     margin-left: 190px;
+
 }
 .dropdown-toggle.active{
     background: #32373C;
