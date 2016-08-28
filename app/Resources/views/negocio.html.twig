@@ -21,7 +21,10 @@
 <div class="container-fluid negocio_reg">
     <div class="col-md-10 col-md-offset-1">
         {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-            {{ form_errors(form) }}
+            <div class="main-error">
+                {{ form_errors(form) }}
+            </div>
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-check-square" aria-hidden="true"></i> Datos de Acceso
