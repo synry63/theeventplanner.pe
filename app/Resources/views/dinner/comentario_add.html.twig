@@ -79,13 +79,14 @@
                         window.location.href = data.success;
                     }
                     else{
+                        console.log(data);
                         $( "form .alert.alert-danger" ).remove();
                         $('#comentario_proveedor_submit').prop('disabled', false);
                         if(data.errors.fields.comentario_proveedor_comentario!=undefined)
                             $( "#2 label").after("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.comentario_proveedor_comentario + "</div>"  );
                         if(data.errors.fields.comentario_proveedor_titulo!=undefined)
                             $( "#1 label").after("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.comentario_proveedor_titulo + "</div>"  );
-                        if(data.errors.global!=undefined)
+                        if(data.errors.global.length>0)
                             $( "#rateYo2").before("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.global[0] + "</div>"  );
 
                     }

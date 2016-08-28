@@ -745,9 +745,31 @@ class AdminController extends Controller
             return $this->redirectToRoute('admin_negocio_profile',array('id'=>$id));
         }
 
+        $seccions_site = "";
+        foreach ($proveedor->getCategoriasListado() as $c){
+            if($c->getParent()->getSlug() == 'wedding'){
+                $seccions_site = 'wedding';
+                break;
+            }
+            else if($c->getParent()->getSlug() == 'kids'){
+                $seccions_site = 'kids';
+                break;
+            }
+            else if($c->getParent()->getSlug() == 'party'){
+                $seccions_site = 'party';
+                break;
+            }
+            else if($c->getParent()->getSlug() == 'dinner'){
+                $seccions_site = 'dinner';
+                break;
+            }
+        }
+
         return $this->render(
             'admin/negocio_profile.html.twig',
-            array('form' => $form->createView())
+            array('form' => $form->createView(),
+                'seccion'=>$seccions_site
+            )
         );
 
     }
