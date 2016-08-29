@@ -28,23 +28,26 @@ body#home{
     margin: auto;
     max-width: 750px;
 }*/
-
+hr{
+    border-top: 1px solid rgba(0,0,0,.2);
+}
 
 /*=============
 nuevo buscador
 ===============*/
 #test{
     position: absolute;
-    top: 30%;
-    right: 37%;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -89%);
     text-shadow: 1px 1px 5px rgba(0,0,0,.8);
     z-index: 1;
     color: #fff;
     font-weight: bold;
     margin: 7px auto;
-    font-size: 36px;
+    font-size: 40px;
     text-transform: uppercase;
-    font-family: "Helvetica Neue", serif;
+    font-family: 'Bree Serif', serif;
 }
 .nuevo-buscador h1{
     color: rgba(0,0,0,.6);
@@ -73,7 +76,6 @@ nuevo buscador
     top: 50%;
     left: 50%;
     transform: translate(-50%, -89%);
-
 }
 .nuevo-buscador #dropdownMenu1{
     background: #fff;
@@ -83,7 +85,7 @@ nuevo buscador
     height: 50px;
     display: inline-block;
     color: rgba(0,0,0,.7);
-    border: solid 1px rgba(0,0,0,.3);
+    border: solid 0px rgba(0,0,0,.3);
     border-radius: 3px;
     text-decoration: none;
 }
@@ -238,7 +240,7 @@ GLOBAL
 
 .tittle-slicks{
     font-size: 25px;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
     color: rgba(0,0,0,.7);
     margin: 35px 35px 0 35px;
@@ -299,6 +301,9 @@ GLOBAL
 }
 .text-forcomments{
     text-align: center;
+}
+.text-forcomments a{
+    color: #000;
 }
 .form-login{
     padding: 20px;
@@ -443,8 +448,9 @@ GLOBAL
 
 .footer{
     font-family: "OpenSans-Light";
-    height: 130px;
+    height: 155px;
     margin-top: 40px;
+    color: #fff;
     padding: 20px;
     background: #edeae6;
     text-align: center;
@@ -459,13 +465,33 @@ GLOBAL
     width:25px;
 }
 .footer li a{
-    color: rgba(0,0,0,.5);
-    background: #fff;
+    color: rgb(255,255,255);
+    background: rgba(255,255,255,.2);
     font-size: 25px;
     padding: 10px 15px;
     border-radius: 100px;
     transition: all .5s;
 }
+
+.footer-wedding{
+    background:#35B3B4 ;
+}
+
+.footer-kids{
+    background:#A70C77 ;
+}
+
+.footer-party{
+    background:#cad538 ;
+}
+
+.footer-dinner{
+    background:#0e6970;
+}
+
+
+
+
 .footer_principal .footer li a:hover{
     color: #C50051;
 }
@@ -607,7 +633,7 @@ GLOBAL
 }
 .proveedor-info{
     padding: 10px;
-    box-shadow: 0px 0px 5px rgba(0,0,0,.1);
+    box-shadow: 0px 0px 5px rgba(0,0,0,.2);
 }
 .proveedor-info>img{
     width: 60%;
@@ -1173,6 +1199,12 @@ Votos GRID
 /*=============
  WEDDING
 ===============*/
+.text-forcomments-wedding a{
+    color: #35B3B4;
+}
+.icon-wedding{
+    color: #35B3B4;
+}
 .music-container iframe{
     border: solid 5px #35B3B4;
     padding: 3px;
@@ -1303,10 +1335,10 @@ Votos GRID
 .wedding-login li{
     width: 100%;
 }
-
+/*
 .wedding .footer li a:hover{
     color: #35b3b4;
-}
+}*/
 .proveedores .thumbnail{
     border: none;
     position: relative;
@@ -1376,15 +1408,22 @@ Details Social icons
 /*=============
 KIDS
 ===============*/
+.text-forcomments-kids a{
+    color: #A70C77;
+}
+.icon-kids{
+    color: #A70C77;
+}
+
 .music-container-kids{
     margin-top: 20px;
 }
 .music-container-kids iframe{
-    border: solid 5px #971ED1;
+    border: solid 5px #A70C77;
     padding: 3px;
 }
 .form-kids-contactenos label{
-    color: #971ED1;
+    color: #A70C77;
 }
 .form-kids-contactenos{
     margin-top: 30px;
@@ -1405,7 +1444,7 @@ KIDS
     border: none;
     position: relative;
     box-shadow: none;
-    border-bottom: solid 3px #971ED1;
+    border-bottom: solid 3px #A70C77;
 }
 .proveedores_kids a{
     text-decoration: none;
@@ -1424,7 +1463,7 @@ KIDS
 .cotizacion-form-kids h1{
     font-size: 25px;
     text-align: center;
-    color: #971ED1;
+    color: #A70C77;
     font-weight: bold;
     margin: 0 0 15px 0;
 }
@@ -1433,10 +1472,10 @@ KIDS
     width: 100%;
 }
 .cotizacion-form-kids label{
-    color:#971ED1;
+    color:#A70C77;
 }
 .lkids a{
-    color: #971ED1;
+    color: #A70C77;
 }
 .boton-megusta_kids{
     padding: 0 10px;
@@ -1446,7 +1485,7 @@ KIDS
     text-shadow: 0px 0px 10px rgba(0,0,0,.5);
 }
 .boton-megusta_kids a{
-    color: #971ED1;
+    color: #A70C77;
     font-size: 30px;
 }
 .skids .favorite-button-kids{
@@ -1454,7 +1493,7 @@ KIDS
     margin-top:10px;
 }
 .lskids a, .skids a{
-    color: #971ED1;
+    color: #A70C77;
 }
 .favorite-button-kids{
     background: url(../images/heart_kids.png);
@@ -1472,15 +1511,16 @@ KIDS
 .image-prov .prov-foto-kids{
     width: 100%;
     border-radius: 0 0 5px 5px;
-    border-bottom: solid 4px #971ED1;
+    border-bottom: solid 4px #A70C77;
     height: 220px;
 }
+/*
 .kids .footer li a:hover{
-    color: #971ED1;
-}
+    color: #A70C77;
+}*/
 .kids-login li a{
     padding: 10px;
-    color: #971ED1;
+    color: #A70C77;
 }
 .categorias_kids{
      width:100%;
@@ -1504,7 +1544,7 @@ KIDS
     border: none;
     position: relative;
     box-shadow: none;
-    border-bottom: solid 3px #971ED1;
+    border-bottom: solid 3px #A70C77;
 }
 .proveedores_kids a{
     text-decoration: none;
@@ -1517,7 +1557,7 @@ KIDS
 }
 .btn-kids-entrar, .btn-coti-kids{
     border-radius: 0;
-    background: #971ED1;
+    background: #A70C77;
     color: #fff;
     height: 36px;
 }
@@ -1532,15 +1572,21 @@ KIDS
     width: 200px;
     background: none;
     color: rgba(0,0,0,.5);
-    border: solid 2px #971ED1;
+    border: solid 2px #A70C77;
     border-radius: 0;
 }
 
 /*=============
 PARTY
 ===============*/
+.text-forcomments-party a{
+    color: #cad538;
+}
+.icon-party{
+    color: #cad538;
+}
 .form-party-contactenos label{
-    color: #FF860C;
+    color: #cad538;
 }
 .form-party-contactenos{
     margin-top: 30px;
@@ -1561,16 +1607,16 @@ PARTY
     float: right;
 }
 .navigation-party li a{
-    border: solid 2px #FF860C;
-    color: #FF860C;
+    border: solid 2px #cad538;
+    color: #cad538;
 }
 
 .navigation-party .current a{
-    background: rgba(223,105,1,.5);
+    background: rgba(202, 213, 56,.5);
     color: #fff;
 }
 .music-container-party iframe{
-    border: solid 5px #FF860C;
+    border: solid 5px #cad538;
     padding: 3px;
 }
 .cotizacion-form-partys{
@@ -1581,7 +1627,7 @@ PARTY
 .cotizacion-form-partys h1{
     font-size: 25px;
     text-align: center;
-    color: #FF860C;
+    color: #cad538;
     font-weight: bold;
     margin: 0 0 15px 0;
 }
@@ -1590,7 +1636,7 @@ PARTY
     width: 100%;
 }
 .cotizacion-form-partys label{
-    color:#FF860C;
+    color:#cad538;
 }
 .spartys .favorite-button-party{
     text-decoration: none;
@@ -1610,7 +1656,7 @@ PARTY
     margin-top: -6px;
 }
 .lparty a, .sparty a{
-    color: #FF860C;
+    color: #cad538;
 }
 .boton-megusta_party{
     padding: 0 10px;
@@ -1620,7 +1666,7 @@ PARTY
     text-shadow: 0px 0px 10px rgba(0,0,0,.5);
 }
 .boton-megusta_party a{
-    color: #FF860C;
+    color: #cad538;
     font-size: 30px;
 }
 .btn-coti-party{
@@ -1634,12 +1680,12 @@ PARTY
 .image-prov .prov-foto-party{
     width: 100%;
     border-radius: 0 0 5px 5px;
-    border-bottom: solid 4px #FF860C;
+    border-bottom: solid 4px #cad538;
     height: 220px;
 }
 .btn-party-entrar, .btn-coti-party{
     border-radius: 0;
-    background:#FF860C;
+    background:#cad538;
     color: #fff;
     height: 36px;
 }
@@ -1647,16 +1693,16 @@ PARTY
     width: 200px;
     background: none;
     color: rgba(0,0,0,.5);
-    border: solid 2px #FF860C;
+    border: solid 2px #cad538;
     border-radius: 0;
 }
-
+/*
 .party .footer li a:hover{
-    color: #FF860C;
-}
+    color: #cad538;
+}*/
 .party-login li a{
     padding: 10px;
-    color: #FF860C;
+    color: #cad538;
 }
 .proveedores_party{
     margin-top:20px;
@@ -1665,7 +1711,7 @@ PARTY
     border: none;
     position: relative;
     box-shadow: none;
-    border-bottom: solid 3px #FF860C;
+    border-bottom: solid 3px #cad538;
 }
 .proveedores_party a{
     text-decoration: none;
@@ -1936,16 +1982,21 @@ CONTACTENOS
 /*=============
 DINNER
 ===============*/
-
+.text-forcomments-dinner a{
+    color: #0e6970;
+}
+.icon-dinner{
+    color: #0e6970;
+}
 .music-container-dinner{
     margin-top: 20px;
 }
 .music-container-dinner iframe{
-    border: solid 5px #0000ea;
+    border: solid 5px #0e6970;
     padding: 3px;
 }
 .form-dinner-contactenos label{
-    color: #0000ea;
+    color: #0e6970;
 }
 .form-dinner-contactenos{
     margin-top: 30px;
@@ -1966,7 +2017,7 @@ DINNER
     border: none;
     position: relative;
     box-shadow: none;
-    border-bottom: solid 3px #0000ea;
+    border-bottom: solid 3px #0e6970;
 }
 .proveedores_dinner a{
     text-decoration: none;
@@ -1985,7 +2036,7 @@ DINNER
 .cotizacion-form-dinner h1{
     font-size: 25px;
     text-align: center;
-    color: #0000ea;
+    color: #0e6970;
     font-weight: bold;
     margin: 0 0 15px 0;
 }
@@ -1994,10 +2045,10 @@ DINNER
     width: 100%;
 }
 .cotizacion-form-dinner label{
-    color:#0000ea;
+    color:#0e6970;
 }
 .ldinner a{
-    color: #0000ea;
+    color: #0e6970;
 }
 .boton-megusta_dinner{
     padding: 0 10px;
@@ -2007,7 +2058,7 @@ DINNER
     text-shadow: 0px 0px 10px rgba(0,0,0,.5);
 }
 .boton-megusta_dinner a{
-    color: #0000ea;
+    color: #0e6970;
     font-size: 30px;
 }
 .sdinner .favorite-button-dinner{
@@ -2015,7 +2066,7 @@ DINNER
     margin-top:10px;
 }
 .ldinner a, .sdinner a{
-    color: #0000ea;
+    color: #0e6970;
 }
 
 .favorite-button-dinner{
@@ -2041,15 +2092,16 @@ DINNER
 .image-prov .prov-foto-dinner{
     width: 100%;
     border-radius: 0 0 5px 5px;
-    border-bottom: solid 4px #0000ea;
+    border-bottom: solid 4px #0e6970;
     height: 220px;
 }
+/*
 .dinner .footer li a:hover{
-    color: #0000ea;
-}
+    color: #0e6970;
+}*/
 .dinner-login li a{
     padding: 10px;
-    color: #0000ea;
+    color: #0e6970;
 }
 .categorias_dinner{
     width:100%;
@@ -2073,7 +2125,7 @@ DINNER
     border: none;
     position: relative;
     box-shadow: none;
-    border-bottom: solid 3px #0000ea;
+    border-bottom: solid 3px #0e6970;
 }
 .proveedores_dinner a{
     text-decoration: none;
@@ -2086,7 +2138,7 @@ DINNER
 }
 .btn-dinner-entrar, .btn-coti-dinner{
     border-radius: 0;
-    background: #0000ea;
+    background: #0e6970;
     color: #fff;
     height: 36px;
 }
@@ -2101,7 +2153,7 @@ DINNER
     width: 200px;
     background: none;
     color: rgba(0,0,0,.5);
-    border: solid 2px #0000ea;
+    border: solid 2px #0e6970;
     border-radius: 0;
 }
 /*=============
@@ -2162,8 +2214,8 @@ Acordion
 }
 .acordion-kids.ui-accordion .ui-accordion-header{
     border-radius:0;
-    border: 1px solid rgb(88, 11, 142);
-    background: #8216CE;
+    border: 1px solid rgb(132, 10, 93);
+    background: #A70C77;
     font-weight: 100;
     font-family: "OpenSans-Light", serif;
     padding: 15px;
@@ -2172,8 +2224,8 @@ Acordion
 }
 .acordion-party.ui-accordion .ui-accordion-header{
     border-radius:0;
-    border: 1px solid rgb(201, 100, 0);
-    background: #EA7901;
+    border: 1px solid rgb(186, 196, 53);
+    background: #cad538;
     font-weight: 100;
     font-family: "OpenSans-Light", serif;
     padding: 15px;
@@ -2182,8 +2234,8 @@ Acordion
 }
 .acordion-dinner.ui-accordion .ui-accordion-header{
     border-radius:0;
-    border: 1px solid rgb(3, 22, 191);
-    background: #0114E4;
+    border: 1px solid rgb(2, 93, 99);
+    background: #046B73;
     font-weight: 100;
     font-family: "OpenSans-Light", serif;
     padding: 15px;
@@ -2206,17 +2258,17 @@ Inspiraciones
 }
 .inspiraciones_vermas_kids a{
     text-decoration: none;
-    color: #8216CE;
+    color: #A70C77;
     padding-left: 5px;
 }
 .inspiraciones_vermas_party a{
     text-decoration: none;
-    color: #EA7901;
+    color: #cad538;
     padding-left:5px;
 }
 .inspiraciones_vermas_dinner a{
     text-decoration: none;
-    color: #0114E4;
+    color: #046B73;
     padding-left: 5px;
 }
 
@@ -2374,6 +2426,7 @@ Zona de Negocio
     width: 100px;
     position: absolute;
     top:0;
+    left: 30px;
     box-shadow: 0 0 5px rgba(0,0,0,.3);
 }
 .nav-zonaneg{

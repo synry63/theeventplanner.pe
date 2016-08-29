@@ -215,7 +215,7 @@
 
                 {% else %}
 
-                    <span  class="text-forcomments">
+                    <span  class="text-forcomments text-forcomments-{{ app.request.get('slug_site') }}">
                         <p>
                             <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
                             ó

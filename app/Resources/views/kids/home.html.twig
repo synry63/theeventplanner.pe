@@ -6,14 +6,14 @@
     <div id="tittle_responsive" class="container">
         <div class="row">
             <div class="tittle_base">
-                <img src="{{ asset('images/tittle_kids.png') }}" alt="Party Tittle">
+                <img src="{{ asset('images/title_kids.png') }}" alt="Kids Title">
             </div>
         </div>
     </div>
 {% endblock %}
 
 {% block menuprincipal %}
-    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuKids', [], {'image_title': 'tittle_kids.png'}) %}
+    {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuKids', [], {'image_title': 'title_kids.png'}) %}
     {{ knp_menu_render(menuItem) }}
 {% endblock menuprincipal %}
 
