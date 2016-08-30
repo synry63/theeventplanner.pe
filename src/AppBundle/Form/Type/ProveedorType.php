@@ -42,12 +42,7 @@ class ProveedorType extends AbstractType
 
             )
         ));
-        $builder->add('direccion','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-            'constraints' => array(
-                new NotBlank(),
-
-            )
-        ));
+        $builder->add('direccion','Symfony\Component\Form\Extension\Core\Type\TextType');
         $builder->add('departamento','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
