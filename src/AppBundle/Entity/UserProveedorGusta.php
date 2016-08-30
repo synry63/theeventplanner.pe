@@ -22,7 +22,7 @@ class UserProveedorGusta
     private $user;
 
     /**
-     * @ORM\Id @ORM\ManyToOne(targetEntity="Proveedor")
+     * @ORM\Id @ORM\ManyToOne(targetEntity="Proveedor",inversedBy="usersGusta")
      **/
     private $proveedor;
 

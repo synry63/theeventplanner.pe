@@ -328,7 +328,12 @@ GLOBAL
 .modal{
     display: inline-block;
 }
-
+.admin-show-name{
+    text-align: center;
+    margin: 0px;
+    position: relative;
+    top: 20px;
+}
 #carousel{
     margin-top: 5px;
     margin-bottom: 20px;

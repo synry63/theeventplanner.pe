@@ -99,7 +99,7 @@ class Proveedor implements AdvancedUserInterface, \Serializable
      */
     private $instagramLink;
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string",nullable=true, length=255)
      *
      */
     private $direccion;
@@ -240,17 +240,22 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="Producto", mappedBy="proveedor")
+     * @ORM\OneToMany(targetEntity="UserProveedorGusta", mappedBy="proveedor",cascade={"persist","remove"})
+     **/
+    private $usersGusta;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Producto", mappedBy="proveedor",cascade={"persist","remove"})
      **/
     private $productos;
 
     /**
-     * @ORM\OneToMany(targetEntity="Foto", mappedBy="proveedor")
+     * @ORM\OneToMany(targetEntity="Foto", mappedBy="proveedor",cascade={"persist","remove"})
      **/
     private $fotos;
 
     /**
-     * @ORM\OneToMany(targetEntity="PreguntaFrequente", mappedBy="proveedor",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="PreguntaFrequente", mappedBy="proveedor",cascade={"persist","remove"})
      **/
     private $preguntas;
 
@@ -328,14 +333,14 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="CategoriaListado", inversedBy="proveedores")
+     * @ORM\ManyToMany(targetEntity="CategoriaListado", inversedBy="proveedores",cascade={"detach"})
      * @ORM\JoinTable(name="proveedores_categorias_listado")
      *
      */
     private $categoriasListado;
 
     /**
-     * @ORM\OneToMany(targetEntity="ComentarioProveedor", mappedBy="proveedor")
+     * @ORM\OneToMany(targetEntity="ComentarioProveedor", mappedBy="proveedor",cascade={"remove"})
      */
     private $comentariosProveedor;
     /**
@@ -445,12 +450,12 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @ORM\OneToOne(targetEntity="Logo",mappedBy="proveedor",cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Logo",mappedBy="proveedor",cascade={"persist","remove"})
      */
     private $logo;
 
     /**
-     * @ORM\OneToOne(targetEntity="FotoListado",mappedBy="proveedor",cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FotoListado",mappedBy="proveedor",cascade={"persist","remove"})
      */
     private $fotoListado;
 
@@ -671,6 +676,22 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     public function setFotos($fotos)
     {
         $this->fotos = $fotos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsersGusta()
+    {
+        return $this->usersGusta;
+    }
+
+    /**
+     * @param mixed $usersGusta
+     */
+    public function setUsersGusta($usersGusta)
+    {
+        $this->usersGusta = $usersGusta;
     }
 
     /**

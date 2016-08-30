@@ -76,9 +76,16 @@ class ProveedorRepository extends EntityRepository
 
         return $query->getResult();
     }
-    public function getProveedoresOrderRecent(){
-        $qb = $this->createQueryBuilder('p')
-            ->orderBy('p.registeredAt', 'DESC');
+    public function getProveedoresOrderBy($order){
+        if($order=="date"){
+            $qb = $this->createQueryBuilder('p')
+                ->orderBy('p.registeredAt', 'DESC');
+        }
+        else if($order=="alfa"){
+            $qb = $this->createQueryBuilder('p')
+                ->orderBy('p.nombre', 'ASC');
+        }
+
 
         $query = $qb->getQuery();
 

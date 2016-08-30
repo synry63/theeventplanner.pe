@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <title>Dashboard</title>
 </head>
-
 <body>
 <!--
         <nav id="nav-dashboard" class="navbar navbar-default">
@@ -23,7 +22,11 @@
 
 <div class="container">
     <div class="col-md-12 body-dashboard negocios-dash">
-
+        {% for label, flash in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flash }}
+            </div>
+        {% endfor %}
         {% for p in proveedores %}
             {{ include('comun_includes/listado_proveedores.html.twig', { 'p': p,'slug_site':'wedding','admin':true})}}
         {% endfor %}

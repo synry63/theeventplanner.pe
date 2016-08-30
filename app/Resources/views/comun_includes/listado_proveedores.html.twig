@@ -5,6 +5,9 @@
         {% else %}
             <a href="{{ path('proveedor_detail', {'slug_site': slug_site,'slug_proveedor': p.slug}) }}">
         {% endif %}
+            {% if admin is defined %}
+                <p class="admin-show-name">{{ p.nombre }}</p>
+            {% endif %}
             <div class="image-prov">
                 {% if p.fotoListado is not null %}
                     <div style="text-align: center; background: rgba(0,0,0,.06)" class="prov-foto-{{ slug_site }}">

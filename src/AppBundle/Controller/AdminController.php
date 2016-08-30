@@ -493,7 +493,7 @@ class AdminController extends Controller
     public function adminNegociosShowAction(Request $request,$page){
 
 
-        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresOrderRecent();
+        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresOrderBy('alfa');
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -707,7 +707,24 @@ class AdminController extends Controller
             )
         );
     }
+    /**
+     * @Route("admin/negocio/delete/{id}", name="admin_negocio_delete",requirements={
+     *      "id": "\d+"
+     * })
+     */
+    public function adminProveedorDeleteAction($id,Request $request){
+        $proveedor =  $this->getDoctrine()->getRepository('AppBundle:Proveedor')->find($id);
 
+        if($proveedor!=NULL){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($proveedor);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Negocio borrado correctamente !');
+
+            return $this->redirectToRoute('admin_negocios');
+        }
+    }
     /**
      * @Route("admin/negocio/profile/{id}", name="admin_negocio_profile",requirements={
      *      "id": "\d+"
