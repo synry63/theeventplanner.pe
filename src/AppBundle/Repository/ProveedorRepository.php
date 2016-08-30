@@ -25,8 +25,12 @@ class ProveedorRepository extends EntityRepository
             ->join('p.comentariosProveedor','cp')
             ->join('p.categoriasListado','cl')
             ->where('cl.parent = :cate')
+            ->andWhere('p.isAccepted = :state')
             ->setMaxResults( $limit )
-            ->setParameter('cate', $parent_category);
+            ->setParameters(array(
+                'cate' => $parent_category,
+                'state'=>true
+            ));
         $qb->addOrderBy('mymoy', 'DESC');
         $qb->addGroupBy('p');
         $query = $qb->getQuery();
