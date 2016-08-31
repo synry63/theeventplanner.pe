@@ -177,7 +177,7 @@ class AdminController extends Controller
         );
     }
     /**
-     * @Route("/admin/video/{id}", name="admin_video_edit")
+     * @Route("/admin/video/edit/{id}", name="admin_video_edit")
      */
     public function adminVideoEditAction(Request $request,$id){
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->find($id);
@@ -194,7 +194,7 @@ class AdminController extends Controller
             'admin/video_edit.html.twig',
             array(
                 'form' => $form_video->createView(),
-                'seccion' => $this->menuSelected('votos')
+                'seccion' => $this->menuSelected('videos')
             )
         );
     }

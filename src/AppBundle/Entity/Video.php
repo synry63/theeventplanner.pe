@@ -39,11 +39,33 @@ class Video
     private $sort;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    private $type;
+
+    /**
      * @param mixed $sort
      */
     public function setSort($sort)
     {
         $this->sort = $sort;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**

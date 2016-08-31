@@ -26,6 +26,14 @@ class VideoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+        $builder->add('type', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
+            'choices'  => array(
+                'wedding' => 'Wedding',
+                'dinner' => 'Dinner',
+                'party' => 'Party',
+                'kids' => 'Kids',
+            ),
+        ));
         $builder->add('url');
         $builder->add('sort');
 

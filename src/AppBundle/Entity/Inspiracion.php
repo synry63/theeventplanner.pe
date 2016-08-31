@@ -70,12 +70,12 @@ class Inspiracion
         return $this->sort;
     }
     /**
-     * @ORM\OneToMany(targetEntity="ComentarioInspiracion", mappedBy="inspiracion")
+     * @ORM\OneToMany(targetEntity="ComentarioInspiracion", mappedBy="inspiracion",cascade={"remove"})
      */
     private $comentariosInspiracion;
 
     /**
-     * @ORM\OneToMany(targetEntity="InspiracionUserGusta", mappedBy="inspiracion")
+     * @ORM\OneToMany(targetEntity="InspiracionUserGusta", mappedBy="inspiracion",cascade={"detach"})
      */
     private $users;
 

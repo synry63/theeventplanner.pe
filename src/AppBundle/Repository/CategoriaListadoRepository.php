@@ -31,6 +31,7 @@ class CategoriaListadoRepository extends EntityRepository
             ->where('c.parent = :cate_parent')
             ->setParameter('cate_parent', $categoria_parent);
 
+        $qb->addOrderBy('c.nombre', 'ASC');
         $query = $qb->getQuery();
 
         return $query->getResult();

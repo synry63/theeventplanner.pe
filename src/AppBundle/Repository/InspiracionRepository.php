@@ -16,17 +16,30 @@ class InspiracionRepository extends EntityRepository
      * @param int $limit
      * @return mixed
      */
-    public function getBestInspiraciones($limit = 5){
+    public function getBestInspiraciones($type,$limit = 5){
 
         $em = $this->getEntityManager();
 
-        $qb = $em->createQueryBuilder();
+        /*$qb = $em->createQueryBuilder();
         $qb->select('i as inspiracion,avg(ci.nota) as mymoy')
             ->from('AppBundle\Entity\Inspiracion', 'i')
             ->join('i.comentariosInspiracion','ci')
             ->setMaxResults( $limit );
         $qb->addOrderBy('mymoy', 'DESC');
+        $qb->addGroupBy('i');*/
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('i as inspiracion,COUNT(ui) as total')
+            ->from('AppBundle\Entity\Inspiracion', 'i')
+             ->join('i.users','ui')
+             ->join('i.tendencia','ti')
+            ->where('ti.type = :type')
+            ->setParameter('type', $type)
+            ->setMaxResults( $limit );
+        //$qb->addGroupBy('ui.inspiracion');
+
         $qb->addGroupBy('i');
+        $qb->addOrderBy('total', 'DESC');
         $query = $qb->getQuery();
 
         return $query->getResult();
