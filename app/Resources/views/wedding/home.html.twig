@@ -21,6 +21,7 @@
     {{ parent() }}
 
     <h1 id="test">Make it Happen</h1>
+    <img style="position: absolute;z-index: 1;right: 37%;top: 39%;" src="{{ asset('images/makeit.png') }}" alt="">
 
     <div class="nuevo-buscador ">
         <button id="dropdownMenu1" type="button" data-toggle="dropdown">
@@ -89,8 +90,10 @@
     <div class="container-fluid home-slicks">
         <div class="container">
             <div class="row">
-                <h1 class="tittle-slicks">Los Mejores Proveedores</h1>
+                <h1 class="tittle-slicks">Nuestros Mejores Proveedores</h1>
+                <!--
                 <h3 class="subtittle-slick">Esperando por tí</h3>
+                -->
                 <div class="slick_wedding">
                     {% for p in mejores_proveedores %}
                         <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': p.proveedor.slug}) }}">
@@ -110,23 +113,22 @@
     </div>
 
 
-    {#
      <div class="container-fluid home-slicks2">
         <div class="container">
-            <h1 class="tittle-slicks">Las Mejores Fotos</h1>
-            <h3 class="subtittle-slick">Inspirate y haz inolvidable "Tu" día</h3>
+            <h1 class="tittle-slicks" style="margin-bottom: 20px">Nuestras Tendencias</h1>
             <div class="slick_wedding">
 
-                {% for f in mejores_fotos %}
-                    <a href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': f.foto.proveedor.slug}) }}">
-                        <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
+
+                {% for mi in mejores_inspiraciones %}
+                    <a href="{{ path('inspiraciones_fotos',{'slug_site':'wedding','tendencia_slug':mi.inspiracion.tendencia.slug}) }}">
+                        <img  src="{{ vich_uploader_asset(mi.inspiracion, 'imgFile') }}" />
                     </a>
                 {% endfor %}
 
             </div>
         </div>
     </div>
-    #}
+
 
 
 
@@ -151,13 +153,13 @@
             nextText: "Next"
         });
 
-        /*
+
         $('.slick_wedding').slick({
             arrows: true,
             autoplay: true,
-            infinite: false,
+            infinite: true,
             speed: 300,
-            variableWidth:true,
+            adaptiveHeight: true,
             slidesToShow: 4,
             slidesToScroll: 4,
             responsive: [
@@ -194,7 +196,7 @@
             ]
         });
 
-        */
+
     </script>
 
 {% endblock %}

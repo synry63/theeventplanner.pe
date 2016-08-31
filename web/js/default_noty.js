@@ -149,16 +149,16 @@ $.noty.themes.defaultTheme = {
         switch(this.options.type) {
             case 'alert':
             case 'kids':
-                this.$bar.css({backgroundColor: '#8802CD', borderColor: '#8802CD', color: '#fff'});
-                this.$buttons.css({borderTop: '1px solid #8802CD'});
+                this.$bar.css({backgroundColor: '#A70C77', borderColor: '#A70C77', color: '#fff'});
+                this.$buttons.css({borderTop: '1px solid #A70C77'});
                 break;
             case 'party':
-                this.$bar.css({backgroundColor: '#FE8104', borderColor: '#FE8104', color: '#fff'});
-                this.$buttons.css({borderTop: '1px solid #FE8104'});
+                this.$bar.css({backgroundColor: '#cad538', borderColor: '#cad538', color: '#fff'});
+                this.$buttons.css({borderTop: '1px solid #cad538'});
                 break;
             case 'dinner':
-                this.$bar.css({backgroundColor: '#0606EA', borderColor: '#0606EA', color: '#FFF'});
-                this.$buttons.css({borderTop: '1px solid #0606EA'});
+                this.$bar.css({backgroundColor: '#0e6970', borderColor: '#0e6970', color: '#FFF'});
+                this.$buttons.css({borderTop: '1px solid #0e6970'});
                 break;
             case 'theevent':
                 this.$bar.css({backgroundColor: '#C30057', borderColor: '#C30057', color: '#FFF'});
