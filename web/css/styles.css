@@ -247,6 +247,17 @@ GLOBAL
     text-rendering: optimizeLegibility;
     font-family: 'Bree Serif', serif;
 }
+
+.tittle-slicks2{
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    color: rgba(0,0,0,.7);
+    margin: 35px 35px 0 35px;
+    text-rendering: optimizeLegibility;
+    font-family: 'Bree Serif', serif;
+}
+
 .subtittle-slick{
     font-size: 17px;
     text-align: center;
@@ -270,6 +281,7 @@ GLOBAL
     box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
     background: #F7F6F5;
     padding-bottom: 30px;
+    margin-top: 10px;
 }
 .home-slicks2 a{
     padding: 0 5px;
@@ -502,7 +514,7 @@ GLOBAL
 }
 
 .btn-entrar{
-    border-radius: 0;
+    border-radius: 3px;
     background: #C70052;
     color: rgba(255,255,255,.7);
     transition: all .5s;
@@ -648,6 +660,18 @@ GLOBAL
     padding: 0 10px;
     font-size: 16px;
 }
+.button-like{
+    border: solid 1px;
+    padding: 5px 10px;
+}
+.button-like:after{
+    content: ' Favorito';
+    font-size: 14px;
+    height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 5px;
+}
 
 .swedding .favorite-button-wedding{
     text-decoration: none;
@@ -669,7 +693,7 @@ GLOBAL
 }
 
 .proveedor-social{
-    padding-top: 10px;
+    padding-top: 16px;
 }
 .proveedor-social ul{
     float: right;
@@ -767,7 +791,9 @@ GLOBAL
 #small-dialog h4{
     text-align: center;
 }
-
+.rateYo_comments{
+    padding: 0 !important;
+}
 
 .comment-detail img{
     margin: 0 auto;
@@ -887,10 +913,11 @@ GLOBAL
 #logo-circle{
     position: absolute;
 }
+/*
 .form-control{
     border-radius: 0;
 }
-
+*/
 
 .fotos_master{
     margin: 10px 0;
@@ -969,21 +996,21 @@ Proveedores-List
 Negocios
 ===============*/
 .negocios a{
-    left: 39px;
+    left: 0px;
+    top: 250px;
     text-rendering: optimizeLegibility;
     position: fixed;
     z-index: 2;
     font-size: 15px;
-    background: #d12768; /* Old browsers */
-    background: -moz-linear-gradient(top,  #d12768 0%, #a50045 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  #d12768 0%,#a50045 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  #d12768 0%,#a50045 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d12768', endColorstr='#a50045',GradientType=0 ); /* IE6-9 */
-
+    background: #d12768;
+    background: -moz-linear-gradient(top, #d12768 0%, #a50045 100%);
+    background: -webkit-linear-gradient(top, #d12768 0%,#a50045 100%);
+    background: linear-gradient(to bottom, #d12768 0%,#a50045 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d12768', endColorstr='#a50045',GradientType=0 );
     padding: 10px;
     opacity: .5;
     color: rgba(255,255,255,.5);
-    transform: rotate(90deg);
+    transform: rotate(270deg);
     transform-origin: left top 0;
     transition: all .5s;
 }
@@ -1241,7 +1268,7 @@ Votos GRID
     margin: 0 0 15px 0;
 }
 .cotizacion-form-weddings .btn-wedding-entrar{
-    border-radius: 0;
+    border-radius: 3px;
     width: 100%;
 }
 .cotizacion-form-weddings label{
@@ -1310,7 +1337,7 @@ Votos GRID
     margin-bottom: 10px;
 }
 .btn-wedding-entrar, .btn-coti-wedding{
-    border-radius: 0;
+    border-radius: 3px;
     background:#35b3b4;
     color: #fff;
     height: 36px;
@@ -1402,11 +1429,11 @@ Details Social icons
 .social-icons{
     display: inline-block;
     float: right;
-    margin-top: 6px;
 }
 
 .social-icons a{
     text-decoration: none;
+    font-size: 13px;
 }
 
 
@@ -1473,7 +1500,7 @@ KIDS
     margin: 0 0 15px 0;
 }
 .cotizacion-form-kids .btn-kids-entrar{
-    border-radius: 0;
+    border-radius: 3px;
     width: 100%;
 }
 .cotizacion-form-kids label{
@@ -1561,7 +1588,7 @@ KIDS
     margin: 0;
 }
 .btn-kids-entrar, .btn-coti-kids{
-    border-radius: 0;
+    border-radius: 3px;
     background: #A70C77;
     color: #fff;
     height: 36px;
@@ -1637,7 +1664,7 @@ PARTY
     margin: 0 0 15px 0;
 }
 .cotizacion-form-partys .btn-wedding-entrar{
-    border-radius: 0;
+    border-radius: 3px;
     width: 100%;
 }
 .cotizacion-form-partys label{
@@ -1689,7 +1716,7 @@ PARTY
     height: 220px;
 }
 .btn-party-entrar, .btn-coti-party{
-    border-radius: 0;
+    border-radius: 3px;
     background:#cad538;
     color: #fff;
     height: 36px;
@@ -2046,7 +2073,7 @@ DINNER
     margin: 0 0 15px 0;
 }
 .cotizacion-form-dinner .btn-dinner-entrar{
-    border-radius: 0;
+    border-radius: 3px;
     width: 100%;
 }
 .cotizacion-form-dinner label{
@@ -2142,7 +2169,7 @@ DINNER
     margin: 0;
 }
 .btn-dinner-entrar, .btn-coti-dinner{
-    border-radius: 0;
+    border-radius: 3px;
     background: #0e6970;
     color: #fff;
     height: 36px;
@@ -2208,7 +2235,7 @@ Acordion
     color: #ffffff;
 }
 .acordion-wedding.ui-accordion .ui-accordion-header{
-    border-radius:0;
+    border-radius:3px;
     border: 1px solid rgb(1, 166, 191);
     background: rgb(53, 179, 180);
     font-weight: 100;
@@ -2218,7 +2245,7 @@ Acordion
     color: #ffffff;
 }
 .acordion-kids.ui-accordion .ui-accordion-header{
-    border-radius:0;
+    border-radius:3px;
     border: 1px solid rgb(132, 10, 93);
     background: #A70C77;
     font-weight: 100;
@@ -2228,7 +2255,7 @@ Acordion
     color: #ffffff;
 }
 .acordion-party.ui-accordion .ui-accordion-header{
-    border-radius:0;
+    border-radius:3px;
     border: 1px solid rgb(186, 196, 53);
     background: #cad538;
     font-weight: 100;
@@ -2238,7 +2265,7 @@ Acordion
     color: #ffffff;
 }
 .acordion-dinner.ui-accordion .ui-accordion-header{
-    border-radius:0;
+    border-radius:3px;
     border: 1px solid rgb(2, 93, 99);
     background: #046B73;
     font-weight: 100;
@@ -2401,7 +2428,7 @@ Zona de Negocio
     box-shadow: 0 0 10px rgba(0,0,0,.5);
 }
 .frase-negocio{
-    margin-top: 20px;
+    margin-top: 40px;
     margin-right: 60px;
     margin-bottom: 20px;
     text-align: right;
@@ -2690,17 +2717,16 @@ Registrar Negocio
 .btn-registro{
     height: 40px;
     margin-top: 10px;
-    background: #6CC6F0;
+    background: #d12768;
     border:none;
-    border-radius: 0;
+    border-radius: 3px;
     color: #fff;
     font-size: 16px;
-    box-shadow: 0 5px 0 rgb(80, 166, 206);
     transition: all .5s;
 }
 .frase-negocio .btn-registro:hover{
     color: #fff;
-    background: rgb(161, 223, 252);
+    background:rgb(173, 1, 70);
 }
 
 .register_negocio .panel-body li{

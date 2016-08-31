@@ -15,7 +15,7 @@
     {'slug_site': app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">
         <button type="button" class="btn btn-coti-{{ app.request.get('slug_site') }}">Contactar Empresa</button></a>
     <br>
-    <p><i class="fa fa-map-marker icon-{{ app.request.get('slug_site') }}" aria-hidden="true"></i> {{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
+    <p style="text-transform: capitalize"><i class="fa fa-map-marker icon-{{ app.request.get('slug_site') }}" aria-hidden="true"></i> {{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
     <p><i class="fa fa-phone icon-{{ app.request.get('slug_site') }}" aria-hidden="true"></i> {{ proveedor.telefono }}</p>
     {% if proveedor.web is not null %}
         <div class="links-proveedores l{{ app.request.get('slug_site') }}">
@@ -28,22 +28,20 @@
 <div class="proveedor-social s{{ app.request.get('slug_site') }}">
     {% if app.user is not null %}
         {% if favorito is not null%}
-            <a class="favorite-button-{{ app.request.get('slug_site') }}" href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}">
-            </a>
-        {% else %}
-            <a class="favorite-button-{{ app.request.get('slug_site') }}" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}">
+            <a style="font-size: 20px;border-radius: 5px" class="button-like" href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
 
-            </a>
+        {% else %}
+            <a style="font-size: 20px ;border-radius: 5px" class="button-like"href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
         {% endif %}
 
     {% else %}
-        <a class="favorite-button-{{ app.request.get('slug_site') }} ajax-popup-link" style="background-position-x: 33px" href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}">
-        </a>
+        <a style="font-size: 20px;border-radius: 5px" class="button-like ajax-popup-link" href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+
     {% endif %}
 
     <div class="social-icons">
         {% if proveedor.facebookLink is not null %}
-            <a href="{{ proveedor.facebookLink }}">
+            <a href="{{ proveedor.facebookLink }}" target="_blank">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -52,7 +50,7 @@
         {% endif %}
 
         {% if proveedor.twitterLink is not null %}
-            <a href="{{ proveedor.twitterLink }}">
+            <a href="{{ proveedor.twitterLink }}" target="_blank">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -61,7 +59,7 @@
         {% endif %}
 
         {% if proveedor.instagramLink is not null %}
-            <a href="{{ proveedor.instagramLink }}">
+            <a href="{{ proveedor.instagramLink }}" target="_blank">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
@@ -70,7 +68,7 @@
         {% endif %}
 
         {% if proveedor.pinteresLink is not null %}
-            <a href="{{ proveedor.pinteresLink  }}">
+            <a href="{{ proveedor.pinteresLink  }}" target="_blank">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>

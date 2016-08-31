@@ -46,7 +46,7 @@
                 <!-- Description Section -->
                 <hr>
 
-                <h1 class="tittle-slicks">Sobre Nosotros</h1>
+                <h1 class="tittle-slicks2">{{ proveedor.nombre }}</h1>
 
                 <p class="proveedor-content">
                     {{ proveedor.description }}
@@ -58,7 +58,7 @@
                 <!-- Google Section -->
 
                 {% if map is defined %}
-                    <h1 class="tittle-slicks" style="margin-bottom: 20px">Ubícanos</h1>
+                    <h1 class="tittle-slicks2" style="margin-bottom: 20px">Ubícanos</h1>
                     {{ google_map(map) }}
                     <hr>
                 {% endif %}
@@ -72,7 +72,7 @@
                 <!-- Comentarios Section -->
                 <hr>
                 <div class="comments-box2">
-                    <h4 class="title-heading tittle-slicks">Comentarios <span>({{ comentarios|length }})</span></h4>
+                    <h4 class="title-heading tittle-slicks2">Comentarios <span>({{ comentarios|length }})</span></h4>
                     {% for p in comentarios %}
 
                         <div class="media comment">
@@ -86,7 +86,7 @@
                             <div class="media-body">
 
                                 <h5 class="media-heading">
-                                    <h3 style="margin-top: 0">{{ p.titulo }}</h3>
+                                    <h3 style="margin-top: 0;font-size: 22px;margin-bottom: 5px">{{ p.titulo }}</h3>
                                     <div class="rateYo_comments" data-rating="{{ p.nota }}"></div><span>{{ p.user }} - </span>
                                     <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
                                 </h5>
@@ -113,11 +113,11 @@
                 {% endblock flashbag %}
 
                 {% if app.user is not null %}
-                    <h1 class="tittle-slicks"  style="margin-bottom: 20px">Deja Tu comentario</h1>
+                    <h1 class="tittle-slicks2"  style="margin-bottom: 20px">Deja tu comentario</h1>
                     <span class="text-forcomments">
                         <p>
                             {% if myc is not null %}
-                                <span>gracias por tu reseña</span>
+                                <span>Gracias por tu Comentario</span>
                             {% else %}
                                 <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
                             {% endif %}

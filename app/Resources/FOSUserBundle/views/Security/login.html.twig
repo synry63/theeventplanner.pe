@@ -17,11 +17,13 @@
             padding-left:10px;
             font-size: 14px;
             border:none;
-            border-radius:0 ;
+            border-radius:3px;
             border:solid 1px rgba(0,0,0,.2);
             margin-bottom: 5px;
         }
-
+        .form-login2 input:focus{
+            outline: none;
+        }
         .form-login2 label{
             color: #C70052;
             display: block;
@@ -54,14 +56,16 @@
             width: 100%;
             height: 35px;
             margin-top: 10px;
-            background: #6CC6F0;
+            background: #fff;
             border:none;
+            text-transform: uppercase;
+            border: solid 2px #D12768;
+            color: #D12768;
             border-radius: 0;
-            color: #fff;
             font-size: 13px;
         }
         .btn-registro:hover{
-            background: #A3DCF6;
+            background: #D12768;
             color: #fff;
         }
         .submit2{
@@ -70,6 +74,7 @@
             margin-top: 10px;
             background: #D12768;
             border: none;
+            text-transform: uppercase;
             color: white;
             font-size: 13px;
         }
@@ -125,7 +130,7 @@
                 <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                 <label id="remember_text" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 <div class="olv-pass">
-                    <a href="{{ path('fos_user_resetting_request') }}">Olvidaste la contraseña</a>
+                    <a href="{{ path('fos_user_resetting_request') }}">¿Olvidaste tu contraseña?</a>
                 </div>
             </div>
 
