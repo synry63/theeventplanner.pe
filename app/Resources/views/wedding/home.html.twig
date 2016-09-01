@@ -20,12 +20,14 @@
 {% block content %}
     {{ parent() }}
 
-    <h1 id="test">Make it Happen</h1>
-    <img style="position: absolute;z-index: 1;right: 37%;top: 39%;" src="{{ asset('images/makeit.png') }}" alt="">
+    <div class="placa">
 
+    </div>
+
+    <h1 id="test">Make it Happen</h1>
     <div class="nuevo-buscador ">
         <button id="dropdownMenu1" type="button" data-toggle="dropdown">
-            <a style="display: block" href="#test2">Dinos lo que necesitas <i class="fa fa-chevron-down chevron-{{ app.request.get('slug_site') }}" aria-hidden="true"></i></a>
+            <a style="display: block" href="#buscador">Dinos lo que necesitas <i class="fa fa-chevron-down chevron-{{ app.request.get('slug_site') }}" aria-hidden="true"></i></a>
         </button>
 
         <div class="dropdown-menu list_categorias-{{ app.request.get('slug_site') }}" aria-labelledby="dropdownMenu1">
@@ -60,7 +62,7 @@
 
     <div  class="container-fluid">
         <div class="row">
-            <div id="test2" class="flexslider">
+            <div id="buscador" class="flexslider">
                 <ul class="slides">
                     <li>
                         <img src="{{ asset('images/banner.jpg') }}" />
@@ -83,7 +85,9 @@
     </div>
 
     <div class="container text-center descripcion">
-        <p>Lorem ipsum dolor sitw amet, consectetur adipiscing elit. Suspendisse vehicula vel ante nec convallis. Vivamus lobortis enim nec metus pharetra, eleifend consectetur elit accumsan Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse venenatis blandit eleifend. Etiam a semper justo, ut dapibus arcu.</p>
+        <p>
+            "El día más importante de tu vida tal cual lo soñaste.” En nuestra sección enfocada a matrimonios, podrás diseñar cada momento y espacio con los mejores proveedores del Perú. Te recomendamos la pestaña de inspiración para que empieces a crear tu board creativo de las ideas más hermosas que tenemos para ti. Recuerda tomarte el tiempo que quieras, aquí nadie te apura.
+        </p>
     </div>
 
 
