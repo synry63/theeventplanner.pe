@@ -11,6 +11,9 @@
     {% endif %}
 
     <div id="rateYo"  data-rating="{{ moy }}"></div>
+
+
+
     <a class="ajax-popup-link" href="{{ path('cotizacion_negocio',
     {'slug_site': app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">
         <button type="button" class="btn btn-coti-{{ app.request.get('slug_site') }}">Contactar Empresa</button></a>
@@ -22,24 +25,9 @@
             <a href="{{ proveedor.web }}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i> Página Web</a>
         </div>
     {% endif %}
-</div>
 
 
-<div class="proveedor-social s{{ app.request.get('slug_site') }}">
-    {% if app.user is not null %}
-        {% if favorito is not null%}
-            <a style="font-size: 20px;border-radius: 5px" class="button-like" href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
-
-        {% else %}
-            <a style="font-size: 20px ;border-radius: 5px" class="button-like"href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-        {% endif %}
-
-    {% else %}
-        <a style="font-size: 20px;border-radius: 5px" class="button-like ajax-popup-link" href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-
-    {% endif %}
-
-    <div class="social-icons">
+    <div class="social-icons s{{ app.request.get('slug_site') }}">
         {% if proveedor.facebookLink is not null %}
             <a href="{{ proveedor.facebookLink }}" target="_blank">
                     <span class="fa-stack fa-lg">
@@ -78,3 +66,43 @@
     </div>
 
 </div>
+
+
+<div class="proveedor-social s{{ app.request.get('slug_site') }}">
+    {% if app.user is not null %}
+        {% if favorito is not null%}
+            <a style="font-size: 20px;border-radius: 5px" class="button-like" href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
+
+        {% else %}
+            <a style="font-size: 20px ;border-radius: 5px" class="button-like"href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+        {% endif %}
+
+    {% else %}
+        <a style="font-size: 20px;border-radius: 5px" class="button-like ajax-popup-link" href="{{ path('proveedor_me_gusta', {'slug_site': app.request.get('slug_site'), 'slug_proveedor': proveedor.slug}) }}"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+
+    {% endif %}
+
+
+    <a id="button-share" style="font-size: 20px ;border-radius: 5px" class="button-share" href="javascript:void(0)"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+    <div class="social-icons2 s{{ app.request.get('slug_site') }}">
+            <a href="" target="_blank">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+            </a>
+            <a href="" target="_blank">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+            </a>
+            <a href="" target="_blank">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-square fa-stack-2x"></i>
+                          <i class="fa fa fa-envelope fa-stack-1x fa-inverse"></i>
+                        </span>
+            </a>
+    </div>
+</div>
+

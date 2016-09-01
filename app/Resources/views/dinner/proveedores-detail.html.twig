@@ -87,8 +87,8 @@
                             <div class="media-body">
 
                                 <h5 class="media-heading">
-                                    <h3 style="margin-top: 0;font-size: 22px;margin-bottom: 5px">{{ p.titulo }}</h3>
-                                    <div class="rateYo_comments" data-rating="{{ p.nota }}"></div><span>{{ p.user }} - </span>
+                                    <h3 style="margin-top: 0;font-size: 21px;margin-bottom: 5px">{{ p.titulo }}</h3>
+                                    <div class="rateYo_comments" data-rating="{{ p.nota }}"></div><span>{{ p.user.nombres }} {{ p.user.apellidos }} - </span>
                                     <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
                                 </h5>
                                 <p>{{ p.comentario }}</p>
@@ -157,7 +157,11 @@
     <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script>
+        $( "#button-share" ).click(function() {
+            $( "#button-share" ).hide();
+            $( ".social-icons2" ).show();
 
+        });
         $( "#accordion" ).accordion({
             active: false,
             collapsible: true
@@ -219,6 +223,8 @@
         $("#rateYo").rateYo({
             rating: RatePrin,
             ratedFill: color,
+            starWidth: "24px",
+            spacing: "2px",
             normalFill: "#A0A0A0",
             readOnly: true
         });

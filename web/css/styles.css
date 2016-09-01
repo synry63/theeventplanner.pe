@@ -287,7 +287,7 @@ GLOBAL
     font-weight: 500;
     text-align: center;
     color: rgba(0,0,0,.7);
-    margin: 35px 35px 0 35px;
+    margin: 35px 35px 15px 35px;
     text-rendering: optimizeLegibility;
     font-family: 'Bree Serif', serif;
 }
@@ -329,6 +329,34 @@ GLOBAL
 }
 .home-slicks2 a{
     padding: 0 5px;
+
+}
+.home-slicks2 a{
+    width:285px;
+    height: 412px;
+    overflow: hidden;
+    display: inline-block;
+}
+.home-slicks2 a img{
+    transition: all .5s;
+    border: solid 5px transparent;
+}
+.home-slicks2 a img:hover{
+    transform: scale(1.1);
+}
+.image-effect{
+    width: 245px;
+    height: 162px;
+    overflow: hidden;
+    display: inline-block;
+}
+.image-effect img{
+    transform: scale(1);
+    transition: all .5s ease-in-out;;
+}
+.image-effect img:hover{
+    transform: scale(1.1);
+
 }
 
 .respuesta{
@@ -422,7 +450,7 @@ GLOBAL
     margin-left: -35px;
 }
 
-.slick_wedding div img{
+.home-slicks2 .slick_wedding div img{
     width: 100%;
 }
 
@@ -697,7 +725,7 @@ GLOBAL
     box-shadow: 0px 0px 5px rgba(0,0,0,.2);
 }
 .proveedor-info>img{
-    width: 60%;
+    width: 55%;
 }
 .links-proveedores a{
     text-decoration: none;
@@ -707,6 +735,9 @@ GLOBAL
 .button-like{
     border: solid 1px;
     padding: 5px 10px;
+    float: left;
+    height: 36px;
+    line-height: 23px;
 }
 .button-like:after{
     content: ' Favorito';
@@ -716,7 +747,21 @@ GLOBAL
     vertical-align: middle;
     padding-left: 5px;
 }
-
+.button-share{
+    border: solid 1px;
+    padding: 5px 10px;
+    float: right;
+    height: 36px;
+    line-height: 23px;
+}
+.button-share:after{
+    content: ' Compartir';
+    font-size: 14px;
+    height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 5px;
+}
 .swedding .favorite-button-wedding{
     text-decoration: none;
     margin-top:10px;
@@ -737,7 +782,7 @@ GLOBAL
 }
 
 .proveedor-social{
-    padding-top: 16px;
+    padding-top: 10px;
 }
 .proveedor-social ul{
     float: right;
@@ -848,6 +893,11 @@ GLOBAL
 }
 .rateYo_comments{
     padding: 0 !important;
+}
+.rateYo_comments+span{
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .comment-detail img{
@@ -1483,7 +1533,8 @@ Details Social icons
 ===============*/
 .social-icons{
     display: inline-block;
-    float: right;
+    margin-top: 10px;
+    /*float: right;*/
 }
 
 .social-icons a{
@@ -1491,7 +1542,23 @@ Details Social icons
     font-size: 13px;
 }
 
+.social-icons2{
+    float: right;
+    display: none;
+}
+.social-icons2 a:first-child{
+    color: #3b5998;
+    text-decoration: none;
+}
 
+.social-icons2 a:nth-child(2){
+    color: #1dcaff;
+    text-decoration: none;
+}
+.social-icons2 a:nth-child(3){
+    color: #C70052;
+    text-decoration: none;
+}
 /*=============
 KIDS
 ===============*/
@@ -2384,6 +2451,32 @@ Animates
 /*=============
 News Blog
 ===============*/
+.news-list .thumbnail .caption h3{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.news-list .thumbnail .caption a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .7);
+    transition: all .5s;
+}
+.news-list .thumbnail .caption .ver-mas-wedding{
+    color: #35B3B4;
+}
+.news-list .thumbnail .caption .ver-mas-kids{
+    color: #A70C77;
+}
+.news-list .thumbnail .caption .ver-mas-party{
+    color: #cad538;
+}
+.news-list .thumbnail .caption .ver-mas-dinner{
+    color: #046B73;
+}
+.news-list .thumbnail .caption a:hover{
+    color: #000;
+}
 .news-blog{
     margin-top: 35px;
 }
