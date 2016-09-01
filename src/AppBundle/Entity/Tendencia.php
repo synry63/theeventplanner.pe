@@ -50,6 +50,7 @@ class Tendencia
      */
     private $description;
 
+
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
@@ -82,12 +83,34 @@ class Tendencia
     private $inspiraciones;
 
     /**
+     * @ORM\OneToMany(targetEntity="Source", mappedBy="tendencia",cascade={"persist","remove"})
+     **/
+    private $sources;
+
+    /**
+     * @param mixed $sources
+     */
+    public function setSources($sources)
+    {
+        $this->sources = $sources;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSources()
+    {
+        return $this->sources;
+    }
+
+    /**
      * @param mixed $inspiraciones
      */
     public function setInspiraciones($inspiraciones)
     {
         $this->inspiraciones = $inspiraciones;
     }
+
 
     /**
      * @return mixed

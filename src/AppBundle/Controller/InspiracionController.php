@@ -43,7 +43,9 @@ class InspiracionController extends Controller
             array('sort'=>'ASC'));
         return $this->render(
             $slug_site.'/inspiraciones-fotos.html.twig',
-            array('inspiraciones'=>$inspiraciones)
+            array('inspiraciones'=>$inspiraciones,
+                  'tendencia'=>$tendencia
+            )
         );
     }
     /**

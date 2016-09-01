@@ -21,29 +21,19 @@ use Symfony\Component\Validator\Constraints\Image;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class VideoType extends AbstractType
+class SourceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $builder->add('type', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
-            'choices'  => array(
-                'wedding' => 'Wedding',
-                'dinner' => 'Dinner',
-                'party' => 'Party',
-                'kids' => 'Kids',
-            ),
-        ));
         $builder->add('url');
         $builder->add('nombre');
-        $builder->add('sort');
-
-        $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
+        //$builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Video',
+            'data_class' => 'AppBundle\Entity\Source',
         ));
     }
 }

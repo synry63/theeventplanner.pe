@@ -14,9 +14,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="videos")
+ * @ORM\Table(name="musicas")
  */
-class Video
+class Musica
 {
     /**
      * @ORM\Column(type="integer")
@@ -67,6 +67,22 @@ class Video
     }
 
     /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
      * @param mixed $id
      */
     public function setId($id)
@@ -83,27 +99,11 @@ class Video
     }
 
     /**
-     * @param mixed $nombre
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-    }
-
-    /**
      * @return mixed
      */
     public function getNombre()
     {
         return $this->nombre;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**

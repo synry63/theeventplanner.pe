@@ -10,10 +10,12 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Inspiracion;
+use AppBundle\Entity\Musica;
 use AppBundle\Entity\Tendencia;
 use AppBundle\Entity\Video;
 use AppBundle\Entity\Voto;
 use AppBundle\Form\Type\InspiracionType;
+use AppBundle\Form\Type\MusicaType;
 use AppBundle\Form\Type\ProveedorAdminProfileType;
 use AppBundle\Form\Type\TendenciaType;
 use AppBundle\Form\Type\VideoType;
@@ -37,7 +39,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class AdminController extends Controller
 {
     private function menuSelected($key){
-        $default = array('home'=>false,'negocios'=>false,'tendencias'=>false,'votos'=>false,'videos'=>false);
+        $default = array('home'=>false,'negocios'=>false,'tendencias'=>false,'votos'=>false,'videos'=>false,'musicas'=>false);
         $default[$key] = true;
         return $default;
     }
@@ -177,6 +179,28 @@ class AdminController extends Controller
         );
     }
     /**
+     * @Route("/admin/musica/edit/{id}", name="admin_musica_edit")
+     */
+    public function adminMusicaEditAction(Request $request,$id){
+        $musica = $this->getDoctrine()->getRepository('AppBundle:Musica')->find($id);
+        $form_musica = $this->createForm(new MusicaType(), $musica);
+        $form_musica->handleRequest($request);
+        if ($form_musica->isSubmitted() && $form_musica->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($musica);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su musica fue guardada !');
+            return $this->redirectToRoute('admin_video_edit',array('id'=>$id));
+        }
+        return $this->render(
+            'admin/musica_edit.html.twig',
+            array(
+                'form' => $form_musica->createView(),
+                'seccion' => $this->menuSelected('musica')
+            )
+        );
+    }
+    /**
      * @Route("/admin/video/edit/{id}", name="admin_video_edit")
      */
     public function adminVideoEditAction(Request $request,$id){
@@ -222,10 +246,52 @@ class AdminController extends Controller
         );
     }
     /**
+     * @Route("/admin/musica/add", name="admin_musica_add")
+     */
+    public function adminMusicaAddAction(Request $request){
+        $musica = new Musica();
+        $form_musica = $this->createForm(new MusicaType(), $musica);
+        $form_musica->handleRequest($request);
+        if ($form_musica->isSubmitted() && $form_musica->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($musica);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su musica fue guardado !');
+            return $this->redirectToRoute('admin_musicas');
+        }
+        return $this->render(
+            'admin/musica_add.html.twig',
+            array(
+                'form' => $form_musica->createView(),
+                'seccion' => $this->menuSelected('videos')
+            )
+        );
+    }
+
+    /**
+     * @Route("/admin/videos/{slug_site}", name="admin_videos_seccion",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function adminVideosSeccionAction(Request $request,$slug_site){
+        $videos = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(
+            array('type'=>$slug_site),
+            array('sort' => 'ASC')
+        );
+        return $this->render(
+            'admin/videos.html.twig',
+            array(
+                'videos'=>$videos,
+                'seccion' => $this->menuSelected('videos')
+            )
+        );
+    }
+    /**
      * @Route("/admin/videos", name="admin_videos")
      */
     public function adminVideosAction(Request $request){
         $videos = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(
+            array(),
             array('sort' => 'ASC')
         );
         return $this->render(
@@ -237,6 +303,24 @@ class AdminController extends Controller
         );
 
     }
+    /**
+     * @Route("/admin/musicas", name="admin_musicas")
+     */
+    public function adminMusicasAction(Request $request){
+        $musicas = $this->getDoctrine()->getRepository('AppBundle:Musica')->findBy(
+            array(),
+            array('sort' => 'ASC')
+        );
+        return $this->render(
+            'admin/musicas.html.twig',
+            array(
+                'musicas'=>$musicas,
+                'seccion' => $this->menuSelected('musicas')
+            )
+        );
+
+    }
+
     /**
      * @Route("/admin/tendencia/add", name="admin_tendencia_add")
      */
@@ -302,6 +386,10 @@ class AdminController extends Controller
         $form_tendencia = $this->createForm(new TendenciaType(), $tendencia);
         $form_tendencia->handleRequest($request);
         if ($form_tendencia->isSubmitted() && $form_tendencia->isValid()) {
+            //$data = $form_tendencia->getData();
+            foreach ($tendencia->getSources() as $src) {
+                $src->setTendencia($tendencia);
+            }
             $em = $this->getDoctrine()->getManager();
             $slug = $this->slugify($tendencia->getNombre());
             $tendencia->setSlug($slug);
@@ -340,6 +428,45 @@ class AdminController extends Controller
         );
     }
     /**
+     * @Route("/admin/videos/sort/list/{slug_site}", name="admin_videos_sort_list",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function adminVideosSortListAction(Request $request,$slug_site){
+        //array('type'=>$slug_site),
+        $videos = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(
+            array('type'=>$slug_site),
+            array('sort' => 'ASC')
+        );
+
+        return $this->render(
+            'admin/videos_sort.html.twig',
+            array(
+                'videos' => $videos,
+                'seccion' => $this->menuSelected('videos')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/musicas/sort/list/{slug_site}", name="admin_musicas_sort_list",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function adminMusicasSortListAction(Request $request,$slug_site){
+        $musicas = $this->getDoctrine()->getRepository('AppBundle:Musica')->findBy(
+            array('type'=>$slug_site),
+            array('sort' => 'ASC')
+        );
+
+        return $this->render(
+            'admin/musicas_sort.html.twig',
+            array(
+                'musicas' => $musicas,
+                'seccion' => $this->menuSelected('musicas')
+            )
+        );
+    }
+    /**
      * @Route("/admin/votos/sort/list", name="admin_votos_sort_list")
      */
     public function adminVotosSortListAction(Request $request){
@@ -373,6 +500,58 @@ class AdminController extends Controller
                 'seccion' => $this->menuSelected('tendencias')
             )
         );
+    }
+    /**
+     * @Route("/admin/musicas/sort", name="admin_videos_sort")
+     */
+    public function adminMusicasSortAction(Request $request){
+        if($request->isXmlHttpRequest()) {
+            $sort_string = $request->request->get('sort');
+            $arr = explode('&',$sort_string);
+            $arr_ids = array();
+            foreach ($arr as $value){
+                $temp = explode('=',$value)[1];
+                $arr_ids[] = $temp;
+            }
+            $sort = 0;
+            $em = $this->getDoctrine()->getManager();
+            foreach ($arr_ids as $musica_id){
+                $musica = $this->getDoctrine()->getRepository('AppBundle:Musica')->find($musica_id);
+                $musica->setSort($sort);
+                $em->persist($musica);
+                $sort++;
+            }
+            $em->flush();
+
+
+            return new JsonResponse(array('sort' => $sort));
+        }
+    }
+    /**
+     * @Route("/admin/videos/sort", name="admin_videos_sort")
+     */
+    public function adminVideosSortAction(Request $request){
+        if($request->isXmlHttpRequest()) {
+            $sort_string = $request->request->get('sort');
+            $arr = explode('&',$sort_string);
+            $arr_ids = array();
+            foreach ($arr as $value){
+                $temp = explode('=',$value)[1];
+                $arr_ids[] = $temp;
+            }
+            $sort = 0;
+            $em = $this->getDoctrine()->getManager();
+            foreach ($arr_ids as $video_id){
+                $video = $this->getDoctrine()->getRepository('AppBundle:Video')->find($video_id);
+                $video->setSort($sort);
+                $em->persist($video);
+                $sort++;
+            }
+            $em->flush();
+
+
+            return new JsonResponse(array('sort' => $sort));
+        }
     }
     /**
      * @Route("/admin/votos/sort", name="admin_votos_sort")

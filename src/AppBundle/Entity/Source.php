@@ -14,9 +14,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="videos")
+ * @ORM\Table(name="sources")
  */
-class Video
+class Source
 {
     /**
      * @ORM\Column(type="integer")
@@ -38,32 +38,25 @@ class Video
     private $url;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
-     * @Assert\GreaterThan(value = 0)
-     */
-    private $sort;
+    @ORM\ManyToOne(targetEntity="Tendencia",inversedBy="sources")
+    @ORM\JoinColumn(name="tendencia_id", referencedColumnName="id")
+     **/
+    private $tendencia;
 
     /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
+     * @param mixed $tendencia
      */
-    private $type;
-
-    /**
-     * @param mixed $sort
-     */
-    public function setSort($sort)
+    public function setTendencia($tendencia)
     {
-        $this->sort = $sort;
+        $this->tendencia = $tendencia;
     }
 
     /**
-     * @param mixed $type
+     * @return mixed
      */
-    public function setType($type)
+    public function getTendencia()
     {
-        $this->type = $type;
+        return $this->tendencia;
     }
 
     /**
@@ -96,22 +89,6 @@ class Video
     public function getNombre()
     {
         return $this->nombre;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSort()
-    {
-        return $this->sort;
     }
 
     /**

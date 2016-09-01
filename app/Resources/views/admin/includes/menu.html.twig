@@ -33,5 +33,41 @@
                 <li><a href="{{ path('admin_votos_sort_list') }}">Ordenar</a></li>
             </ul>
         </li>
+        <li>
+            <a class="dropdown-toggle {{ seccion["videos"] ? 'active' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-area-chart" aria-hidden="true"></i> Lista de Videos
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_videos') }}">Ver Todo</a></li>
+                <li><a href="{{ path('admin_video_add') }}">Agregar Nuevo</a></li>
+                <li class="dropdown-submenu">
+                    <a tabindex="-1" href="#">Ordenar</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('admin_videos_sort_list',{slug_site:"wedding"}) }}">Para Wedding</a></li>
+                        <li><a href="{{ path('admin_videos_sort_list',{slug_site:"party"}) }}">Para Party</a></li>
+                        <li><a href="{{ path('admin_videos_sort_list',{slug_site:"kids"}) }}">Para Kids</a></li>
+                        <li><a href="{{ path('admin_videos_sort_list',{slug_site:"dinner"}) }}">Para Dinner</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="dropdown-toggle {{ seccion["musicas"] ? 'active' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-area-chart" aria-hidden="true"></i> Lista de Musicas
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('admin_musicas') }}">Ver Todo</a></li>
+                <li><a href="{{ path('admin_musica_add') }}">Agregar Nuevo</a></li>
+                <li class="dropdown-submenu">
+                    <a tabindex="-1" href="#">Ordenar</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('admin_musicas_sort_list',{slug_site:"wedding"}) }}">Para Wedding</a></li>
+                        <li><a href="{{ path('admin_musicas_sort_list',{slug_site:"party"}) }}">Para Party</a></li>
+                        <li><a href="{{ path('admin_musicas_sort_list',{slug_site:"kids"}) }}">Para Kids</a></li>
+                        <li><a href="{{ path('admin_musicas_sort_list',{slug_site:"dinner"}) }}">Para Dinner</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
     </ul>
 </nav>

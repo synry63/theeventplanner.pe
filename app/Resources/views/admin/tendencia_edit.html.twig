@@ -42,6 +42,11 @@
             {{ form_widget(form_tendencia.type,{ 'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="form-group">
+            {{ form_row(form_tendencia.sources) }}
+
+            <a href="#" id="add-another-source">Agregar otra fuente</a>
+        </div>
+        <div class="form-group">
             {{ form_label(form_tendencia.nombre,'Nombre') }}
             {{ form_errors(form_tendencia.nombre) }}
             {{ form_widget(form_tendencia.nombre,{ 'attr': {'class': 'form-control'}}) }}
@@ -110,7 +115,6 @@
 </div>
 
 
-
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
 
@@ -125,7 +129,28 @@
         maxDuration : 0.7,
         viewportFactor : 0.2
     } );
+
+    var sourceCount = '{{ form_tendencia.sources | length }}';
+    jQuery('#add-another-source').click(function() {
+        var sourceList = jQuery('#tendencia_sources');
+
+        // grab the prototype template
+        var newWidget = sourceList.attr('data-prototype');
+        // replace the "$$name$$" used in the id and name of the prototype
+        // with a number that's unique to our emails
+        // end name attribute looks like name="contact[emails][2]"
+        newWidget = newWidget.replace(/\_\_name\_\_/g, sourceCount);
+        sourceCount++;
+        //alert(newWidget);
+        // create a new list element and add it to our list
+        //var newLi = jQuery('<li></li>').html(newWidget);
+        //newLi.appendTo(jQuery('#email-fields-list'));
+        jQuery('#tendencia_sources').append(newWidget);
+
+        return false;
+    });
 </script>
+
 </body>
 
 </html>
