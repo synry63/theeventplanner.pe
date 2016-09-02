@@ -49,7 +49,7 @@ class DefaultController extends Controller
         $best_fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getBestFotos($categoria);
 
 
-        $best_inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->getBestInspiraciones($slug_site);
+        $best_inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->getLastInspiraciones($slug_site);
 
 
         return $this->render(

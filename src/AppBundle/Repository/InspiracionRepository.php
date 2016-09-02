@@ -16,6 +16,20 @@ class InspiracionRepository extends EntityRepository
      * @param int $limit
      * @return mixed
      */
+    public function getLastInspiraciones($type,$limit = 5){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('i as inspiracion')
+            ->from('AppBundle\Entity\Inspiracion', 'i')
+            ->join('i.tendencia','ti')
+            ->where('ti.type = :type')
+            ->setParameter('type', $type)
+            ->setMaxResults( $limit );
+        $qb->addOrderBy('i.adedAt', 'DESC');
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
     public function getBestInspiraciones($type,$limit = 5){
 
         $em = $this->getEntityManager();
@@ -40,6 +54,7 @@ class InspiracionRepository extends EntityRepository
 
         $qb->addGroupBy('i');
         $qb->addOrderBy('total', 'DESC');
+        $qb->addOrderBy('i.adedAt', 'DESC');
         $query = $qb->getQuery();
 
         return $query->getResult();

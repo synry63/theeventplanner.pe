@@ -13,7 +13,7 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
         proveedor_db_provider:
             entity:
                 class: AppBundle:Proveedor
@@ -24,7 +24,7 @@ security:
             memory:
                 users:
                     jey:
-                      password: fito0408
+                      password: adeline63
                       roles: 'ROLE_ADMIN'
     firewalls:
         secured_area:

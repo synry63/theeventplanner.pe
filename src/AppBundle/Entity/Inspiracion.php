@@ -47,6 +47,13 @@ class Inspiracion
     private $sort;
 
     /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $adedAt;
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="inspiracion_foto", fileNameProperty="img")
@@ -91,6 +98,22 @@ class Inspiracion
     public function setTendencia($tendencia)
     {
         $this->tendencia = $tendencia;
+    }
+
+    /**
+     * @param \DateTime $adedAt
+     */
+    public function setAdedAt($adedAt)
+    {
+        $this->adedAt = $adedAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getAdedAt()
+    {
+        return $this->adedAt;
     }
 
     /**
@@ -242,6 +265,8 @@ class Inspiracion
     {
         return $this->imgFile;
     }
-
+    function __construct() {
+        $this->adedAt = new \DateTime('now');
+    }
 
 }
