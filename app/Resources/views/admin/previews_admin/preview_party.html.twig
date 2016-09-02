@@ -57,7 +57,7 @@
             <!-- Description Section -->
 
             <hr>
-            <h1 class="tittle-slicks">Sobre Nosotros</h1>
+            <h1 class="tittle-slicks">{{ proveedor.nombre }}</h1>
             <p class="proveedor-content">
                 {{ proveedor.description }}
             </p>
@@ -83,34 +83,29 @@
             <hr>
             <!-- Comentarios Section -->
 
-            <div class="comments-box">
-                <h1 class="tittle-slicks" style="margin: 0">Comentarios</h1>
-
-            <div class="comments-box">
-                <h4 class="title-heading">Comentarios <span></span></h4>
-
+            <div class="comments-box2">
+                <h4 class="title-heading tittle-slicks2">Comentarios <span>(1)</span></h4>
 
                 <div class="media comment">
                     <div class="media-left">
-                        <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                        <img class="img-circle" width="90px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
                     </div>
                     <div class="media-body">
 
                         <h5 class="media-heading">
-                            <h3 style="margin-top: 0">Hola</h3>
-                            <div class="rateYo_comments" data-rating="2"></div><span>Jdiaz </span>
-                            <small class="date">15/05/2016</small>
+                            <h3 style="margin-top: 0;font-size: 21px;margin-bottom: 5px">¡Excelente!</h3>
+                            <div class="rateYo_comments" data-rating="4"></div><span >Patrick Mary - </span>
+                            <small class="date">27, Julio 2016</small>
                         </h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur autem, commodi delectus error, est ipsam iusto molestiae nobis odio quo repudiandae saepe, soluta. Dignissimos expedita hic id quod vel voluptatem.</p>
+                        <p>Que les puedo decir, aparte de que tomaron las mejores fotos del mundo en el día de mi Boda, ahora siendo wedding planner de Boda Inolvidable, los recomiendo a todas mis novias, no solo por el profesionalismo si no que tbm por el talento que tienen.</p>
                         <div class="col-md-11 respuesta">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A debitis distinctio, eligendi expedita facilis fuga harum impedit libero magnam maxime modi neque numquam omnis placeat quam saepe sed sit, voluptatibus?</p>
+                            <p>Estamos para servirte. que bueno que te gusto nuestro servicio</p>
                         </div>
 
                     </div>
                 </div>
 
             </div>
-
             <!-- Fin Comentarios Section -->
 
 
@@ -133,11 +128,12 @@
 
 
 <script>
-    $("#bs-example-navbar-collapse-1 ul").addClass("nav navbar-nav");
-    $("#select-img input").filestyle('buttonText', 'Seleccionar Foto');
-    $("#select-img input").filestyle('icon', false);
+    $( "#button-share" ).click(function() {
+        $( "#button-share" ).hide();
+        $( ".social-icons2" ).show();
 
-    $("#select-img input").addClass("filestyle");
+    });
+
     $('.proveedor-fixed').fixTo('body');
 
     $('.variable-width').slick({

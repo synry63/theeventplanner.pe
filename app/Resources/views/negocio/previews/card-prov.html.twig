@@ -9,7 +9,7 @@
 
     {% endif %}
 
-    <div id="rateYo"  data-rating="0"></div>
+    <div id="rateYo"  data-rating="3"></div>
     <a class="ajax-popup-link" href="javascript:void(0)">
         <button type="button" class="btn btn-coti-{{ app.request.get('slug_site') }}">Contactar Empresa</button></a>
     <br>
@@ -20,28 +20,10 @@
             <a href="javascript:void (0)" target="_blank">Página Web</a>
         </div>
     {% endif %}
-</div>
 
-
-<div class="proveedor-social s{{ app.request.get('slug_site') }}">
-    {% if app.user is not null %}
-        {% if favorito is not null%}
-            <a class="favorite-button-{{ app.request.get('slug_site') }}" href="javascript:void (0)">
-            </a>
-        {% else %}
-            <a class="favorite-button-{{ app.request.get('slug_site') }}" style="background-position-x: 33px" href="javascript:void (0)">
-
-            </a>
-        {% endif %}
-
-    {% else %}
-        <a class="favorite-button-{{ app.request.get('slug_site') }} ajax-popup-link" style="background-position-x: 33px" href="javascript:void (0)">
-        </a>
-    {% endif %}
-
-    <div class="social-icons">
+    <div class="social-icons s{{ app.request.get('slug_site') }}">
         {% if proveedor.facebookLink is not null %}
-            <a href="javascript:void (0)">
+            <a href="javascript:void(0)" target="_blank">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -50,7 +32,7 @@
         {% endif %}
 
         {% if proveedor.twitterLink is not null %}
-            <a href="javascript:void (0)">
+            <a href="javascript:void(0)" target="_blank">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -59,7 +41,7 @@
         {% endif %}
 
         {% if proveedor.instagramLink is not null %}
-            <a href="javascript:void (0)">
+            <a href="javascript:void(0)" target="_blank">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
@@ -68,14 +50,54 @@
         {% endif %}
 
         {% if proveedor.pinteresLink is not null %}
-            <a href="{{ proveedor.pinteresLink  }}">
+            <a href="javascript:void(0)" target="_blank">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
                     </span>
             </a>
         {% endif %}
-
     </div>
 
+
+</div>
+
+
+
+<div class="proveedor-social s{{ app.request.get('slug_site') }}">
+    {% if app.user is not null %}
+        {% if favorito is not null%}
+            <a style="font-size: 20px;border-radius: 5px" class="button-like" href="javascript:void(0)"><i class="fa fa-heart" aria-hidden="true"></i></a>
+
+        {% else %}
+            <a style="font-size: 20px ;border-radius: 5px" class="button-like"href="javascript:void(0)"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+        {% endif %}
+
+    {% else %}
+        <a style="font-size: 20px;border-radius: 5px" class="button-like ajax-popup-link" href="javascript:void(0)"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+
+    {% endif %}
+
+
+    <a id="button-share" style="font-size: 20px ;border-radius: 5px" class="button-share" href="javascript:void(0)"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+    <div class="social-icons2 s{{ app.request.get('slug_site') }}">
+        <a href="" target="_blank">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+        </a>
+        <a href="" target="_blank">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+        </a>
+        <a href="" target="_blank">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-square fa-stack-2x"></i>
+                          <i class="fa fa fa-envelope fa-stack-1x fa-inverse"></i>
+                        </span>
+        </a>
+    </div>
 </div>

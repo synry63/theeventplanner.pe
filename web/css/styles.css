@@ -10,6 +10,10 @@
     font-family: "OpenSans-Light";
     src: url(../fonts/OpenSans-Light.ttf);
 }
+@font-face{
+    font-family: "ModestyFresh";
+    src: url(../fonts/ModestyFreshStyle.ttf);
+}
 
 body{
     font-family: 'Lato', sans-serif;
@@ -73,7 +77,7 @@ nuevo buscador
     margin: 7px auto;
     font-size: 63px;
     /* text-transform: uppercase; */
-    font-family: Modesty, serif;
+    font-family: "ModestyFresh", serif;
 }
 #test:after{
     content: " ";
@@ -142,6 +146,30 @@ nuevo buscador
     padding: 10px;
     border: solid 2px rgba(53, 179, 180,.6);
 }
+.list_categorias-kids{
+    top: 72px;
+    width: 700px;
+    height: auto;
+    left: -37%;
+    padding: 10px;
+    border: solid 2px rgba(167, 12, 119,.6);
+}
+.list_categorias-party{
+    top: 72px;
+    width: 700px;
+    height: auto;
+    left: -37%;
+    padding: 10px;
+    border: solid 2px rgba(202, 213, 56,.6);
+}
+.list_categorias-dinner{
+    top: 72px;
+    width: 700px;
+    height: auto;
+    left: -37%;
+    padding: 10px;
+    border: solid 2px rgba(14, 105, 112,.6);
+}
 .list_categorias-wedding ul, .list_categorias-kids ul, .list_categorias-party ul,.list_categorias-dinner ul{
     height: auto;
 }
@@ -165,6 +193,15 @@ nuevo buscador
 }
 .chevron-wedding{
     color: rgb(53, 179, 180);
+}
+.chevron-kids{
+    color: #A70C77;
+}
+.chevron-party{
+    color: rgb(202, 213, 56);
+}
+.chevron-dinner{
+    color: rgb(14, 105, 112);
 }
 
 /*=============
@@ -847,16 +884,52 @@ GLOBAL
     margin: 10px 0;
 }
 
-.dropdown-categorias{
-    width: 802px;
+
+.dropdown-categorias-wedding{
+    width: 810px;
     left: -230px;
+    border: solid 2px #35B3B4 ;
 }
-.dropdown-categorias li{
+.dropdown-categorias-kids{
+    width: 810px;
+    left: -230px;
+    border: solid 2px #A70C77;
+}
+.dropdown-categorias-party{
+    width: 810px;
+    left: -230px;
+    border: solid 2px #cad538;
+}
+.dropdown-categorias-dinner{
+    width: 810px;
+    left: -230px;
+    border: solid 2px #0e6970;
+}
+
+.dropdown-categorias-wedding li,.dropdown-categorias-kids li,.dropdown-categorias-party li,.dropdown-categorias-dinner li{
     width: 200px;
     float: left;
     display: inline-block;
+    text-align: left;
+}
+.dropdown-categorias-wedding li a,.dropdown-categorias-kids li a,.dropdown-categorias-party li a,.dropdown-categorias-dinner li a{
+    color: rgba(0,0,0,.6);
 }
 
+.dropdown-categorias-wedding li a:before,.dropdown-categorias-kids li a:before,.dropdown-categorias-party li a:before,.dropdown-categorias-dinner li a:before{
+    content: '> ';
+}
+.dropdown-categorias-wedding li a:hover, .dropdown-categorias-kids li a:hover, .dropdown-categorias-party li a:hover, .dropdown-categorias-dinner li a:hover{
+    background: none;
+}
+
+
+
+
+
+.btn-group.open .dropdown-toggle{
+    box-shadow: none;
+}
 .named{
     padding-left: 40px;
 }
@@ -2451,6 +2524,35 @@ Animates
 /*=============
 News Blog
 ===============*/
+.news-relacionadas h1{
+    text-align: center;
+    margin: 10px 0 10px 0;
+    font-size: 18px;
+    font-family: 'Bree Serif', serif;
+}
+.news-relacionadas  .news-rel h2{
+    font-size: 16px;
+    margin:0;
+    margin-bottom: 10px;
+}
+.news-relacionadas  .news-rel .title-wedding{
+    color: #35B3B4;
+}
+.news-relacionadas  .news-rel p{
+    margin: 0;
+    font-size: 12px;
+    font-style: italic;
+}
+.new-detalle h1{
+    font-size: 26px;
+    font-family: 'Bree Serif', serif;
+}
+.new-detalle p{
+    text-align: justify;
+}
+.news-list .thumbnail{
+    min-height: 388px;
+}
 .news-list .thumbnail .caption h3{
     font-weight: bold;
     font-size: 20px;
@@ -2486,7 +2588,18 @@ News Blog
 .foto-new{
     text-align: center;
 }
-
+.titulo-noti-wedding{
+    color: #35B3B4;
+}
+.titulo-noti-kids{
+    color: #A70C77;
+}
+.titulo-noti-party{
+    color: #CAD538;
+}
+.titulo-noti-dinner{
+    color: #0E6970;
+}
 .new h1{
     margin: 0;
     margin-bottom: 7px;

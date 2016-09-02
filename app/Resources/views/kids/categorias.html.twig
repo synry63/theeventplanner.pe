@@ -25,10 +25,10 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="btn-group categorias_kids">
                 <button class="btn btn-tittle_kids categorias2 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Categorias
+                    Categorias de Proveedores
                     <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu dropdown-categorias">
+                <ul class="dropdown-menu dropdown-categorias-{{ app.request.get('slug_site') }}">
                     {% for c in categorias_menu %}
                         <li><a href="{{ path('proveedores_category', {'slug_site': 'kids','slug_category': c.slug}) }}">{{ c.nombre }}</a></li>
                     {% endfor %}

@@ -2,8 +2,22 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+
 {% block content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': email}) }}
-</p>
+
+    <h1 class="tittle-slicks">Reestablecer Contraseña</h1>
+    <hr>
+
+
+    <div class="col-md-8 col-md-offset-2">
+    <img width="300px" style="display: block; margin: 20px auto;" src="{{ asset('images/register_logo.png') }}" alt="">
+
+    <p>
+        {{ 'resetting.check_email'|trans({'%email%': email}) }}
+    </p>
+</div>
+
+{% endblock %}
+{% block footer %}
+
 {% endblock %}

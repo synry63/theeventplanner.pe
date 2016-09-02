@@ -19,10 +19,29 @@
 
 {% block content %}
     {{ parent() }}
+    <div class="placa">
 
+    </div>
+
+    <h1 id="test">Make it Happen</h1>
+    <div class="nuevo-buscador ">
+        <button id="dropdownMenu1" type="button" data-toggle="dropdown">
+            <a style="display: block" href="#buscador">Dinos lo que necesitas <i class="fa fa-chevron-down chevron-{{ app.request.get('slug_site') }}" aria-hidden="true"></i></a>
+        </button>
+
+        <div class="dropdown-menu list_categorias-{{ app.request.get('slug_site') }}" aria-labelledby="dropdownMenu1">
+            <ul>
+                {% for c in categorias %}
+                    <li><a href="{{ path('proveedores_category', {'slug_site': app.request.get('slug_site'),'slug_category': c.slug}) }}">{{ c.nombre }}</a></li>
+                {% endfor %}
+
+            </ul>
+        </div>
+
+    </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="flexslider">
+            <div id="buscador" class="flexslider">
                 <ul class="slides">
                     <li>
                         <img src="{{ asset('images/dinner/portada_dinner_1.jpg') }}" />
@@ -100,7 +119,11 @@
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.smoothscroll.min.js') }}"></script>
     <script>
+        $(function() {
+            $('html').smoothScroll(500);
+        });
         $('.flexslider').flexslider({
             animation: "slide",
             controlNav: true,
