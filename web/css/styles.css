@@ -26,6 +26,9 @@ body#home{
 .flex-direction-nav a{
     height: 50px;
 }
+#buscador{
+    margin-bottom: 0;
+}
 /**** FLEX SLIDER OEVERIGHT **
 .flexslider .slides img{
     width: auto;
@@ -475,8 +478,17 @@ GLOBAL
 
 .descripcion{
     padding: 10px;
+    padding-top: 30px;
     color:rgba(0,0,0,.5);
 }
+.descripcion h1{
+    margin-bottom: 30px;
+    text-rendering: optimizeLegibility;
+    font-size: 50px;
+    color: #C70052;
+    font-family: "ModestyFresh", sans-serif;
+}
+
 .navbar-default{
     background: none;
     box-shadow: none;
@@ -832,7 +844,7 @@ GLOBAL
     display: inline-block;
 }
 .proveedor-content{
-    text-align: center;
+    text-align: justify;
     padding: 20px 0;
 }
 .comments-box{
@@ -1409,6 +1421,18 @@ Votos GRID
 /*=============
  WEDDING
 ===============*/
+.navigation-wedding{
+    float: right;
+}
+.navigation-wedding li a{
+    border: solid 2px #35B3B4;
+    color: #35B3B4;
+}
+
+.navigation-wedding .current a{
+    background: rgba(53, 179, 180,.5);
+    color: #fff;
+}
 .text-forcomments-wedding a{
     color: #35B3B4;
 }
@@ -1633,8 +1657,22 @@ Details Social icons
     text-decoration: none;
 }
 /*=============
-KIDS
+KIDS / color:rgb(167, 12, 119); #A70C77
+
 ===============*/
+.navigation-kids{
+    float: right;
+}
+.navigation-kids li a{
+    border: solid 2px #A70C77;
+    color: #A70C77;
+}
+
+.navigation-kids .current a{
+    background: rgba(167, 12, 119,.5);
+    color: #fff;
+}
+
 .text-forcomments-kids a{
     color: #A70C77;
 }
@@ -2207,8 +2245,20 @@ CONTACTENOS
 
 
 /*=============
-DINNER
+DINNER / color: #0E6970 ; rgb(14, 105, 112)
 ===============*/
+.navigation-dinner{
+    float: right;
+}
+.navigation-dinner li a{
+    border: solid 2px #0E6970;
+    color: #0E6970;
+}
+
+.navigation-dinner .current a{
+    background: rgba(14, 105, 112,.5);
+    color: #fff;
+}
 .text-forcomments-dinner a{
     color: #0e6970;
 }

@@ -50,16 +50,16 @@
             <div id="buscador" class="flexslider">
                 <ul class="slides">
                     <li>
-                        <img src="{{ asset('images/banner.jpg') }}" />
+                        <img src="{{ asset('images/banner4.jpg') }}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('images/banner5.jpg') }}" />
                     </li>
                     <li>
                         <img src="{{ asset('images/banner2.jpg') }}" />
                     </li>
                     <li>
-                        <img src="{{ asset('images/banner3.jpg') }}" />
-                    </li>
-                    <li>
-                        <img src="{{ asset('images/banner4.jpg') }}" />
+                        <img src="{{ asset('images/banner.jpg') }}" />
                     </li>
                 </ul>
             </div>
@@ -70,9 +70,12 @@
     </div>
 
     <div class="container text-center descripcion">
-        <p>
-            "El día más importante de tu vida tal cual lo soñaste.” En nuestra sección enfocada a matrimonios, podrás diseñar cada momento y espacio con los mejores proveedores del Perú. Te recomendamos la pestaña de inspiración para que empieces a crear tu board creativo de las ideas más hermosas que tenemos para ti. Recuerda tomarte el tiempo que quieras, aquí nadie te apura.
-        </p>
+        <div class="col-md-10 col-md-offset-1">
+            <p>
+                "El día más importante de tu vida tal cual lo soñaste.” En nuestra sección enfocada a matrimonios, podrás diseñar cada momento y espacio con los mejores proveedores del Perú. Te recomendamos la pestaña de inspiración para que empieces a crear tu board creativo de las ideas más hermosas que tenemos para ti. Recuerda tomarte el tiempo que quieras, aquí nadie te apura.
+            </p>
+        </div>
+
     </div>
 
 
@@ -106,14 +109,11 @@
         <div class="container">
             <h1 class="tittle-slicks" style="margin-bottom: 20px">Nuestras Tendencias</h1>
             <div class="slick_wedding">
-
-
                 {% for mi in mejores_inspiraciones %}
                     <a href="{{ path('inspiraciones_fotos',{'slug_site':'wedding','tendencia_slug':mi.inspiracion.tendencia.slug}) }}">
                         <img  src="{{ vich_uploader_asset(mi.inspiracion, 'imgFile') }}" />
                     </a>
                 {% endfor %}
-
             </div>
         </div>
     </div>
@@ -195,9 +195,10 @@
         $(function() {
             $('html').smoothScroll(500);
         });
+
         $('.flexslider').flexslider({
             animation: "slide",
-            controlNav: true,
+            controlNav: false,
             directionNav: true,
             prevText: "Previous",
             nextText: "Next"
@@ -209,7 +210,7 @@
             autoplay: true,
             infinite: true,
             speed: 300,
-            adaptiveHeight: true,
+
             slidesToShow: 4,
             slidesToScroll:4,
             responsive: [

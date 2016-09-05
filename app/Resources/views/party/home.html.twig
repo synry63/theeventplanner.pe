@@ -48,13 +48,13 @@
             <div id="buscador" class="flexslider">
                 <ul class="slides">
                     <li>
-                        <img src="{{ asset('images/party/portada_1.jpg') }}" />
+                        <img src="{{ asset('images/party/portada_3.jpg') }}" />
                     </li>
                     <li>
                         <img src="{{ asset('images/party/portada_2.jpg') }}" />
                     </li>
                     <li>
-                        <img src="{{ asset('images/party/portada_3.jpg') }}" />
+                        <img src="{{ asset('images/party/portada_1.jpg') }}" />
                     </li>
                 </ul>
             </div>
@@ -65,8 +65,10 @@
     </div>
 
     <div class="container text-center descripcion">
-        <p>¡Los mejores dj’s de electrónica, pachanga y ochenteras están aquí! No te olvides de ver en la pestaña de inspiración todas las temáticas que tenemos para ti y claro, la hora loca viene con Star Wars, Circos e incluso puedes personalizarla al gusto del celebrado. Recuerda que la decoración y locación son esenciales para la diversión al igual que nuestros proveedores en bebidas alcohólicas y comida.
-        </p>
+        <div class="col-md-10 col-md-offset-1">
+            <p>¡Los mejores dj’s de electrónica, pachanga y ochenteras están aquí! No te olvides de ver en la pestaña de inspiración todas las temáticas que tenemos para ti y claro, la hora loca viene con Star Wars, Circos e incluso puedes personalizarla al gusto del celebrado. Recuerda que la decoración y locación son esenciales para la diversión al igual que nuestros proveedores en bebidas alcohólicas y comida.
+            </p>
+        </div>
     </div>
 
 
@@ -96,23 +98,78 @@
     </div>
 
 
-    {#
     <div class="container-fluid home-slicks2">
         <div class="container">
-            <h1 class="tittle-slicks">Las Mejores Fotos</h1>
-            <h3 class="subtittle-slick">Inspirate y haz inolvidable "Tu" día</h3>
+            <h1 class="tittle-slicks" style="margin-bottom: 20px">Nuestras Tendencias</h1>
             <div class="slick_wedding">
-
-                {% for f in mejores_fotos %}
-                    <a href="{{ path('proveedor_detail', {'slug_site': 'party','slug_proveedor': f.foto.proveedor.slug}) }}">
-                        <img src="{{ vich_uploader_asset(f.foto, 'imgFile')|imagine_filter('thumb') }}" />
+                {% for mi in mejores_inspiraciones %}
+                    <a href="{{ path('inspiraciones_fotos',{'slug_site':'wedding','tendencia_slug':mi.inspiracion.tendencia.slug}) }}">
+                        <img  src="{{ vich_uploader_asset(mi.inspiracion, 'imgFile') }}" />
                     </a>
                 {% endfor %}
-
             </div>
         </div>
     </div>
-    #}
+
+
+
+    <div class="container-fluid news-list">
+        <div class="container">
+            <h1 class="tittle-slicks" style="margin-bottom: 20px">The Event Planner Blog</h1>
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <a class="image-effect" href=""><img src="{{ asset('images/blog_1.jpg') }}" alt="..."></a>
+                    <div class="caption">
+                        <a href="">
+                            <h3>Casarse con una "Boda Temática"</h3>
+                        </a>
+                        <p>Los Matrimonios temáticos están de última tendencia, es una manera de dejar volar nuestra imaginación...
+                            <a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_2.jpg') }}" alt="..."></a>
+                    <div class="caption">
+                        <a href="">
+                            <h3>Decorar el matrimonio con Flores de Papel</h3>
+                        </a>
+                        <p>Hace unos días me reuní con Karen De Sanctis, encargada de convertir el papel en todo un arte floral. Fundadora de la empresa...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_3.jpg') }}" alt="..."></a>
+                    <div class="caption">
+                        <a href="">
+                            <h3>Ritual Unión de Manos “handfasting”</h3>
+                        </a>
+                        <p>Hoy les traigo una tradición para incorporar en la ceremonia de matrimonio  que me viene encantando desde hace ya tiempo por su significado…<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <a   class="image-effect" href=""><img src="{{ asset('images/blog_4.jpg') }}" alt="..."></a>
+                    <div class="caption">
+                        <a href="">
+                            <h3>10 tips sobre cómo elegir los regalos de matrimonio ideales para los invitados</h3>
+                        </a>
+                        <p> ¿Cómo elegir los recuerdos de matrimonio? Los expertos te aconsejan y te dan a conocer las alternativas favoritas.<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -133,12 +190,12 @@
 
         $('.flexslider').flexslider({
             animation: "slide",
-            controlNav: true,
+            controlNav: false,
             directionNav: true,
             prevText: "Previous",
             nextText: "Next"
         });
-        /*
+
         $('.slick_wedding').slick({
             arrows: true,
             autoplay: true,
@@ -180,7 +237,7 @@
                 // instead of a settings object
             ]
         });
-        */
+
     </script>
 
 {% endblock %}
