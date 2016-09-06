@@ -104,7 +104,7 @@
             <h1 class="tittle-slicks" style="margin-bottom: 20px">Nuestras Tendencias</h1>
             <div class="slick_wedding">
                 {% for mi in mejores_inspiraciones %}
-                    <a href="{{ path('inspiraciones_fotos',{'slug_site':'wedding','tendencia_slug':mi.inspiracion.tendencia.slug}) }}">
+                    <a href="{{ path('inspiraciones_fotos',{'slug_site':'kids','tendencia_slug':mi.inspiracion.tendencia.slug}) }}">
                         <img  src="{{ vich_uploader_asset(mi.inspiracion, 'imgFile') }}" />
                     </a>
                 {% endfor %}
@@ -119,12 +119,12 @@
             <h1 class="tittle-slicks" style="margin-bottom: 20px">The Event Planner Blog</h1>
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <a class="image-effect" href=""><img src="{{ asset('images/blog_1.jpg') }}" alt="..."></a>
+                    <a class="image-effect" href=""><img src="{{ asset('images/blog_kids1.jpg') }}" alt="..."></a>
                     <div class="caption">
                         <a href="">
-                            <h3>Casarse con una "Boda Temática"</h3>
+                            <h3>Fiestas maravillosas para bebés</h3>
                         </a>
-                        <p>Los Matrimonios temáticos están de última tendencia, es una manera de dejar volar nuestra imaginación...
+                        <p>Este Post lo teníamos pendiente hace tiempo. En él que mostraremos una pequeña selección que hemos hecho de fiestas para Bebés, Bautizos o los famosos Baby Showers.
                             <a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a>
                         </p>
                     </div>
@@ -132,43 +132,44 @@
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_2.jpg') }}" alt="..."></a>
+                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_kids2.jpg') }}" alt="..."></a>
                     <div class="caption">
                         <a href="">
-                            <h3>Decorar el matrimonio con Flores de Papel</h3>
+                            <h3>Sonny Angels. Las Muñequitas que causan furor, ¡ya están aquí!</h3>
                         </a>
-                        <p>Hace unos días me reuní con Karen De Sanctis, encargada de convertir el papel en todo un arte floral. Fundadora de la empresa...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
-
-
+                        <p>No se si ya conocéis a los Sonny Angels. Yo las llevo viendo hace unos meses coladas en las fotografías de Blogs y en cuentas de Instagram que sigo hace algún tiempo...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_3.jpg') }}" alt="..."></a>
+                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_kids3.jpg') }}" alt="..."></a>
                     <div class="caption">
                         <a href="">
-                            <h3>Ritual Unión de Manos “handfasting”</h3>
+                            <h3>Globos gigantes tendencia en fiestas</h3>
                         </a>
-                        <p>Hoy les traigo una tradición para incorporar en la ceremonia de matrimonio  que me viene encantando desde hace ya tiempo por su significado…<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
+                        <p>Nos fascinan los globos, inspiran diversión, libertad y alegría. llenan de color cualquier lugar, decoran una esquina y si son brillantes y muy grande mejor...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
 
 
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <a   class="image-effect" href=""><img src="{{ asset('images/blog_4.jpg') }}" alt="..."></a>
+                    <a   class="image-effect" href=""><img src="{{ asset('images/blog_kids4.jpg') }}" alt="..."></a>
                     <div class="caption">
                         <a href="">
-                            <h3>10 tips sobre cómo elegir los regalos de matrimonio ideales para los invitados</h3>
+                            <h3>Una fiesta en tonos pastel</h3>
                         </a>
-                        <p> ¿Cómo elegir los recuerdos de matrimonio? Los expertos te aconsejan y te dan a conocer las alternativas favoritas.<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
+                        <p>Los colores pastel son de los más usados para una decorar una fiesta de primera comunión o una boda. La combinación de mint y rosa palo con blanco o el beige y el ...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
 
 
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
