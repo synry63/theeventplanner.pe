@@ -118,12 +118,12 @@
             <h1 class="tittle-slicks" style="margin-bottom: 20px">The Event Planner Blog</h1>
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <a class="image-effect" href=""><img src="{{ asset('images/blog_1.jpg') }}" alt="..."></a>
+                    <a class="image-effect" href=""><img src="{{ asset('images/blog_party1.jpg') }}" alt="..."></a>
                     <div class="caption">
                         <a href="">
-                            <h3>Casarse con una "Boda Temática"</h3>
+                            <h3>Ideas y consejos para decorar una fiesta para "Halloween"</h3>
                         </a>
-                        <p>Los Matrimonios temáticos están de última tendencia, es una manera de dejar volar nuestra imaginación...
+                        <p>¿Quieres hacer una fiesta pero no estás seguro de cómo decorar? Las ideas para decorar una fiesta no son difíciles de proponer.
                             <a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a>
                         </p>
                     </div>
@@ -131,12 +131,12 @@
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_2.jpg') }}" alt="..."></a>
+                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_party2.jpg') }}" alt="..."></a>
                     <div class="caption">
                         <a href="">
-                            <h3>Decorar el matrimonio con Flores de Papel</h3>
+                            <h3>Ideas de comida para el menú de fiesta de adultos</h3>
                         </a>
-                        <p>Hace unos días me reuní con Karen De Sanctis, encargada de convertir el papel en todo un arte floral. Fundadora de la empresa...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
+                        <p>Las mejores ideas de menús para fiestas de adultos hacen aprovechar mejor tu presupuesto y complementan todo el estilo de la fiesta...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
 
 
                     </div>
@@ -144,12 +144,12 @@
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_3.jpg') }}" alt="..."></a>
+                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_party3.jpg') }}" alt="..."></a>
                     <div class="caption">
                         <a href="">
-                            <h3>Ritual Unión de Manos “handfasting”</h3>
+                            <h3>Fiesta Destacada de 40 años</h3>
                         </a>
-                        <p>Hoy les traigo una tradición para incorporar en la ceremonia de matrimonio  que me viene encantando desde hace ya tiempo por su significado…<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
+                        <p>Hoy les traigo una tradición para incorporar una fiesta de 40 años super original…<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
 
 
                     </div>
@@ -160,7 +160,7 @@
                     <a   class="image-effect" href=""><img src="{{ asset('images/blog_4.jpg') }}" alt="..."></a>
                     <div class="caption">
                         <a href="">
-                            <h3>10 tips sobre cómo elegir los regalos de matrimonio ideales para los invitados</h3>
+                            <h3>10 tips sobre cómo elegir los regalos de fiesta ideales para los invitados</h3>
                         </a>
                         <p> ¿Cómo elegir los recuerdos de matrimonio? Los expertos te aconsejan y te dan a conocer las alternativas favoritas.<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
 
@@ -199,11 +199,11 @@
         $('.slick_wedding').slick({
             arrows: true,
             autoplay: true,
-            infinite: false,
+            infinite: true,
             speed: 300,
-            variableWidth:true,
+
             slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToScroll:4,
             responsive: [
                 {
                     breakpoint: 1024,
@@ -237,6 +237,7 @@
                 // instead of a settings object
             ]
         });
+
 
     </script>
 
