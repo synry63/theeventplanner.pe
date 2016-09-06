@@ -72,7 +72,7 @@ nuevo buscador
     position: absolute;
     top: 35%;
     left: 50%;
-    transform: translate(-50%, -89%);
+    transform: translate(-50%, -35%);
     /* text-shadow: 1px 1px 5px rgba(0,0,0,.8); */
     z-index: 1;
     color: #fff;
@@ -126,7 +126,7 @@ nuevo buscador
     z-index: 2;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -89%);
+    transform: translate(-50%, -50%);
 }
 .nuevo-buscador #dropdownMenu1{
     background: #fff;
