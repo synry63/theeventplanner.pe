@@ -39,9 +39,14 @@ class DefaultController extends Controller
 
         $session = $this->getRequest()->getSession();
         $session->set('site', $slug_site);
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        // Simple example
+        $breadcrumbs->addItem("Wedding", $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+
+
         $children_categories =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_site);
-        //var_dump($children_categories);
-        //exit;
+
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
 
         $best_proveedores = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getBestProveedores($categoria);
@@ -71,6 +76,11 @@ class DefaultController extends Controller
     public function categoriasAction($slug_site){
         $children_categories =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_site);
         $children_categories_menu =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_site,'ASC');
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem("Wedding", $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Proveedores", $this->get("router")->generate("site_categorias",array('slug_site'=>$slug_site)));
+
         return $this->render(
             $slug_site.'/categorias.html.twig',array(
                 'categorias'=>$children_categories,

@@ -141,3 +141,6 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:foundation_v5_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+white_october_breadcrumbs:
+  separator:          ''
