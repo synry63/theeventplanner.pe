@@ -3274,8 +3274,9 @@ DASHBOARD ADMIN
     border-bottom: solid 4px rgba(0,0,0,.5);
     border-bottom: solid 4px rgba(0,0,0,.5);
 }
+
 /*=============
-MÓVILES PORTAIT
+MÓVILES RESPONSIVE
 ===============*/
 @media (max-width: 1199px) {
     .menu-principal .navbar-default li a{
@@ -3284,12 +3285,70 @@ MÓVILES PORTAIT
     .menu-principal .navbar-default{
         margin-left: 8%;
     }
+    .image-effect{
+        height: auto;
+    }
+}
+/* iPad in portrait */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    div.two{
+        position: absolute !important;
+        margin-top: 12%;
+    }
+    .menu-principal .navbar-default{
+        margin-top:12%;
+    }
+    .image-effect{
+        width: 100%;
+    }
+    .news-list .thumbnail{
+        min-height: 380px;
+    }
+    .placa{
+        top: 182.5px;
+    }
+    .nuevo-buscador{
+        top:33%;
+    }
+    #test{
+        top:23%;
+        padding: 10px 0;
+    }
+    #center-image{
+        position: absolute;
+        left: 24%;
+    }
+    .btn-login{
+        top:76%;
+    }
+}
+/* iPad in landscape */
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    #center-image a img{
+        width: 350px;
+    }
+    .image-effect{
+        width: 100%;
+    }
+    #test{
+        padding: 10px;
+        top:28%;
+    }
+    .nuevo-buscador{
+        top: 42%;
+    }
 
 }
 
 
-@media only screen and (max-width:700px){
 
+/* iPhone in portrait */
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait) {
+
+    li#center-image{
+        display: none;
+    }
     .buscadore{
         position: relative;
         display: block;
@@ -3422,7 +3481,7 @@ MÓVILES PORTAIT
         display: inline-block;
     }
     #atras{
-       display: none;
+        display: none;
     }
     .back-register .btn-entrar{
         width: 100%;
@@ -3519,5 +3578,10 @@ MÓVILES PORTAIT
         border-radius: 100px;
         transition: all .5s;
     }
+}
+
+/* iPhone in landscape */
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : landscape) {
 
 }

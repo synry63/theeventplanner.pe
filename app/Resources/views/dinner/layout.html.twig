@@ -77,7 +77,7 @@
                 <span style="text-transform: capitalize">{{app.user.nombres}}</span>
             </button>
             <div class="dropdown-menu dropdown-user">
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-5">
                     {% if app.user.profile is not null %}
                         <img class="img-circle" width="90px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                     {% else %}
