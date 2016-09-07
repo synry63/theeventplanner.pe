@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -68,7 +69,7 @@ class ProveedorProfileType extends AbstractType
 
             )
         ));
-        $builder->add('web');
+        $builder->add('web','Symfony\Component\Form\Extension\Core\Type\UrlType');
         $builder->add('facebookLink');
         $builder->add('twitterLink');
         $builder->add('pinteresLink');
