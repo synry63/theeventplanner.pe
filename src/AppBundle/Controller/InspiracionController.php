@@ -23,6 +23,11 @@ class InspiracionController extends Controller
      * })
      */
     public function inspiracionesStartAction($slug_site){
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem($slug_site, $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Inspiraciones", $this->get("router")->generate("inspiraciones_start",array('slug_site'=>$slug_site)));
+
         return $this->render(
             $slug_site.'/inspiraciones-categorias.html.twig'
         );
@@ -37,6 +42,18 @@ class InspiracionController extends Controller
     public function inspiracionesFotosAction($slug_site,$tendencia_slug){
 
         $tendencia = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findOneBy(array('slug'=>$tendencia_slug));
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem($slug_site,$this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Inspiraciones",$this->get("router")->generate("inspiraciones_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Tendencias", $this->get("router")->generate("inspiraciones_tendencias",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem($tendencia->getNombre(), $this->get("router")->generate("inspiraciones_fotos",
+            array(
+                'slug_site'=>$slug_site,
+                'tendencia_slug'=>$tendencia_slug
+            ))
+        );
+
 
         $inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->findBy(
             array('tendencia'=>$tendencia),
@@ -55,6 +72,13 @@ class InspiracionController extends Controller
      * })
      */
     public function inspiracionesTendenciasAction($slug_site){
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem($slug_site,$this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Inspiraciones",$this->get("router")->generate("inspiraciones_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Tendencias", $this->get("router")->generate("inspiraciones_tendencias",array('slug_site'=>$slug_site)));
+
+
         $tendencias = $this->getDoctrine()->getRepository('AppBundle:Tendencia')->findBy(
             array('type'=>$slug_site),
             array('sort'=>'ASC'));
@@ -101,6 +125,12 @@ class InspiracionController extends Controller
      */
     public function inspiracionesFotosProveedoresAction($slug_site,$page){
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem($slug_site,$this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Inspiraciones",$this->get("router")->generate("inspiraciones_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Fotos Proveedores",$this->get("router")->generate("inspiraciones_fotos_proveedores",array('slug_site'=>$slug_site)));
+
+
         $cate = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
         $fotos_proveedores = $this->getDoctrine()->getRepository('AppBundle:Foto')->getFotosByCate($cate);
         $paginator  = $this->get('knp_paginator');
@@ -123,6 +153,12 @@ class InspiracionController extends Controller
      */
     public function inspiracionesVideoAction($slug_site){
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem($slug_site,$this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Inspiraciones",$this->get("router")->generate("inspiraciones_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Videos",$this->get("router")->generate("inspiraciones_videos",array('slug_site'=>$slug_site)));
+
+
         return $this->render(
             $slug_site.'/inspiraciones-video.html.twig'
         );
@@ -134,6 +170,11 @@ class InspiracionController extends Controller
      * })
      */
     public function inspiracionesMusicAction($slug_site){
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem($slug_site,$this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Inspiraciones",$this->get("router")->generate("inspiraciones_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Canciones",$this->get("router")->generate("inspiraciones_music",array('slug_site'=>$slug_site)));
 
         return $this->render(
             $slug_site.'/inspiraciones-music.html.twig'
@@ -148,6 +189,12 @@ class InspiracionController extends Controller
     public function inspiracionesVotosAction($slug_site){
 
         $votos = $this->getDoctrine()->getRepository('AppBundle:Voto')->findBy(array(),array('sort'=>'ASC'));
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem($slug_site,$this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Inspiraciones",$this->get("router")->generate("inspiraciones_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Votos",$this->get("router")->generate("inspiraciones_votos",array('slug_site'=>$slug_site)));
+
         return $this->render(
             $slug_site.'/inspiraciones-votos.html.twig',
             array('votos'=>$votos)

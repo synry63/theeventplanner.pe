@@ -482,11 +482,14 @@ class ProveedorController extends Controller
     {
 
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_category));
+        $session = $this->getRequest()->getSession();
+        $session->set('categoria', $slug_category);
+
         //$main_categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
         $proveedores_category_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByCategory($categoria);
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
-        $breadcrumbs->addItem("Wedding", $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem($slug_site, $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
         $breadcrumbs->addItem("Proveedores", $this->get("router")->generate("site_categorias",array('slug_site'=>$slug_site)));
         $breadcrumbs->addItem($categoria->getNombre(), $this->get("router")->generate("proveedores_category",
             array('slug_site'=>$slug_site,
@@ -604,6 +607,26 @@ class ProveedorController extends Controller
             'proveedor'=>$proveedor,
             'moy'=>$moy,
             'comentarios'=>$comments,
+        );
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem($slug_site, $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Proveedores", $this->get("router")->generate("site_categorias",array('slug_site'=>$slug_site)));
+
+        $session = $this->getRequest()->getSession();
+        $cate_slug = $session->get('categoria');
+        if(!empty($cate_slug)){
+            $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$cate_slug));
+            $breadcrumbs->addItem($categoria->getNombre(), $this->get("router")->generate("proveedores_category",
+                array('slug_site'=>$slug_site,
+                    'slug_category'=>$categoria->getSlug()
+                )
+            ));
+        }
+        $breadcrumbs->addItem($proveedor->getNombre(), $this->get("router")->generate("proveedor_detail",
+            array('slug_site'=>$slug_site,
+                'slug_proveedor'=>$proveedor->getSlug()
+            ))
         );
 
         if($proveedor->getGoogleMapLat()!=NULL && $proveedor->getGoogleMapLng()!=NULL){
