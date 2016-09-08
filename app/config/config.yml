@@ -94,6 +94,14 @@ vich_uploader:
                 uri_prefix:         /images/proveedores/fotos_listado
                 upload_destination: %kernel.root_dir%/../web/images/proveedores/fotos_listado
                 namer:              vich_uploader.namer_uniqid
+            blog_foto_parafos:
+                uri_prefix:         /images/blog/parafos
+                upload_destination: %kernel.root_dir%/../web/images/blog/parafos
+                namer:              vich_uploader.namer_uniqid
+            blog_foto:
+                uri_prefix:         /images/blog
+                upload_destination: %kernel.root_dir%/../web/images/blog
+                namer:              vich_uploader.namer_uniqid
 
 fos_user:
     from_email:

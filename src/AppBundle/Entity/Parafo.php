@@ -2,22 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: pmary-game
- * Date: 8/16/16
- * Time: 2:04 PM
+ * Date: 4/7/16
+ * Time: 1:08 PM
  */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\NoticiaRepository")
- * @ORM\Table(name="noticias")
+ * @ORM\Entity
+ * @ORM\Table(name="parafos")
  */
-class Noticia
+class Parafo
 {
     /**
      * @ORM\Column(type="integer")
@@ -27,15 +27,15 @@ class Noticia
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string",unique=true)
      * @Assert\NotBlank()
      */
-    private $nombre;
+    private $description;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="blog_foto", fileNameProperty="img")
+     * @Vich\UploadableField(mapping="blog_foto_parafos", fileNameProperty="img")
      * @var File
      */
     private $imgFile;
@@ -45,18 +45,29 @@ class Noticia
      */
     private $img;
 
-
     /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime
-     */
-    private $adedAt;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Parafo", mappedBy="noticia")
+    @ORM\ManyToOne(targetEntity="Noticia",inversedBy="parafos")
+    @ORM\JoinColumn(name="noticia_id", referencedColumnName="id")
      **/
-    private $parafos;
+    private $noticia;
+
+    /**
+     * @param mixed $noticia
+     */
+    public function setNoticia($noticia)
+    {
+        $this->noticia = $noticia;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNoticia()
+    {
+        return $this->noticia;
+    }
+
+
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -106,36 +117,19 @@ class Noticia
     }
 
     /**
-     * @param mixed $parafos
+     * @param mixed $id
      */
-    public function setParafos($parafos)
+    public function setId($id)
     {
-        $this->parafos = $parafos;
+        $this->id = $id;
     }
 
     /**
      * @return mixed
      */
-    public function getParafos()
+    public function getId()
     {
-        return $this->parafos;
-    }
-
-
-    /**
-     * @param \DateTime $adedAt
-     */
-    public function setAdedAt($adedAt)
-    {
-        $this->adedAt = $adedAt;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getAdedAt()
-    {
-        return $this->adedAt;
+        return $this->id;
     }
 
     /**
@@ -154,38 +148,5 @@ class Noticia
         return $this->description;
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $nombre
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-    public function __construct() {
-        $this->adedAt = new \DateTime('now');
-    }
 }
