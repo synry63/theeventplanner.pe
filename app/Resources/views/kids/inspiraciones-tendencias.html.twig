@@ -18,7 +18,9 @@
 
 {% block content %}
     {{ parent() }}
-
+    <div class="container breadcrumbs-{{ app.request.get('slug_site') }}">
+        {{ wo_render_breadcrumbs() }}
+    </div>
     <div class="container container-sin">
         <div class="no-exist">
             {% if tendencias|length == 0 %}

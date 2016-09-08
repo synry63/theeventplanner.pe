@@ -22,7 +22,9 @@
      {{ dump(fotos_proveedores) }}
     {{ dump(fotos_proveedores.params.page) }}
     #}
-
+    <div class="container breadcrumbs-{{ app.request.get('slug_site') }}">
+        {{ wo_render_breadcrumbs() }}
+    </div>
         <div class="container container-sin">
             <div class="no-exist">
                 {% if fotos_proveedores|length == 0 %}

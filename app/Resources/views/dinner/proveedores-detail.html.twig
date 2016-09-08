@@ -22,6 +22,13 @@
 {% block content %}
     {{ parent() }}
 
+
+    <div class="container breadcrumbs-{{ app.request.get('slug_site') }}">
+        {{ wo_render_breadcrumbs() }}
+    </div>
+
+
+
     <div class="container proveedor-detail-page">
 
         <div class="row">
@@ -48,7 +55,7 @@
 
                 <h1 class="tittle-slicks2">{{ proveedor.nombre }}</h1>
                 <p class="proveedor-content">
-                    {{ proveedor.description }}
+                    {{ proveedor.description |nl2br}}
                 </p>
                 <hr>
                 <!-- Fin Descriptioin Section -->

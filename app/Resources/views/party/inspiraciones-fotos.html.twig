@@ -16,7 +16,9 @@
 
 {% block content %}
     {{ parent() }}
-
+    <div class="container breadcrumbs-{{ app.request.get('slug_site') }}">
+        {{ wo_render_breadcrumbs() }}
+    </div>
     <div class="container">
         <ul class="grid effect-1" id="grid">
             {% for ifa in inspiraciones %}

@@ -19,6 +19,12 @@
 
 {% block content %}
     {{ parent() }}
+
+    <div class="container breadcrumbs-{{ app.request.get('slug_site') }}">
+        {{ wo_render_breadcrumbs() }}
+    </div>
+
+
     {% set direction = proveedores.getDirection() %}
     <div class="container categorias-list-page">
 

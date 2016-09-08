@@ -611,6 +611,8 @@ GLOBAL
     transition: all .5s;
 }
 
+
+
 .footer-wedding{
     background:#35B3B4 ;
 }
@@ -627,11 +629,24 @@ GLOBAL
     background:#0e6970;
 }
 
+.footer_principal .footer{
+    color: rgba(0,0,0,.7) !important;
+}
+.footer_principal p{
+    color: rgba(0,0,0,.7) !important;
+}
+.footer_principal p a{
+    font-weight: bold;
+    color: rgba(0,0,0,.7) !important;
 
-
+}
+.footer_principal .footer li a{
+    color: #fff;
+    background: #C50051;
+}
 
 .footer_principal .footer li a:hover{
-    color: #C50051;
+    color: #fff;
 }
 
 .btn-entrar{
@@ -640,6 +655,8 @@ GLOBAL
     color: rgba(255,255,255,.7);
     transition: all .5s;
 }
+
+
 .btn-entrar:hover{
     color: #fff;
 }
@@ -951,7 +968,7 @@ GLOBAL
     padding: 20px;
     width: auto;
     max-width: 500px;
-    margin: 20px auto;
+    /*margin: 20px auto;*/
 }
 .flash-success{
     position: absolute;
@@ -1279,6 +1296,7 @@ Profile
     text-align: center;
     position: absolute;
     top:80px;
+    left: 30px;
 }
 .fos_user_user_show{
     padding: 25px;
@@ -1624,6 +1642,9 @@ Votos GRID
     text-align: center;
     font-size: 15px;
     font-family: "OpenSans-Light", serif;
+}
+.proveedores-wedding{
+    margin-top: 20px;
 }
 /*=============
 Details Social icons
@@ -2680,8 +2701,6 @@ News Blog
     width: 100%;
     background: rgba(0,0,0,.5);
     padding: 10px;
-    opacity: 0;
-
     transition: all .5s;
 }
 .tittle-principal h1{
@@ -2695,9 +2714,7 @@ News Blog
     color: #fff;
     padding: 0 10px;
 }
-.new-principal:hover .tittle-principal{
-    opacity: 1;
-}
+
 
 
 /*=============
@@ -3274,7 +3291,50 @@ DASHBOARD ADMIN
     border-bottom: solid 4px rgba(0,0,0,.5);
     border-bottom: solid 4px rgba(0,0,0,.5);
 }
+/*=============
+BREADCUMPD
+===============*/
+.breadcrumbs-wedding ol, .breadcrumbs-kids ol, .breadcrumbs-party ol, .breadcrumbs-dinner ol{
+    margin-bottom: 0;
+    margin-top: 15px;
+    padding: 0;
+    background: none;
+    text-transform: capitalize;
+}
+.breadcrumbs-wedding ol li a, .breadcrumbs-kids ol li a, .breadcrumbs-party ol li a, .breadcrumbs-dinner ol li a{
+    text-decoration: none;
+    color: rgba(0,0,0,.7);
+    transition: all .3s;
+}
+.breadcrumbs-wedding ol li:last-child, .breadcrumbs-kids ol li:last-child, .breadcrumbs-party ol li:last-child, .breadcrumbs-dinner ol li:last-child{
+    font-weight: bold;
+}
+.breadcrumbs-wedding ol li:last-child{
+    color: #35B3B4;
+}
+.breadcrumbs-kids ol li:last-child{
+    color: #A70C77;
+}
+.breadcrumbs-party ol li:last-child{
+    color: #CAD538;
+}
+.breadcrumbs-dinner ol li:last-child{
+    color: #0E6970;
+}
 
+
+.breadcrumbs-wedding ol li a:hover{
+    color: #35B3B4;
+}
+.breadcrumbs-kids ol li a:hover{
+    color: #A70C77;
+}
+.breadcrumbs-party ol li a:hover{
+    color: #CAD538;
+}
+.breadcrumbs-dinner ol li a:hover{
+    color: #0E6970;
+}
 /*=============
 MÓVILES RESPONSIVE
 ===============*/
@@ -3291,6 +3351,18 @@ MÓVILES RESPONSIVE
 }
 /* iPad in portrait */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+    .profile-content #grid {
+        margin-top: 70%;
+    }
+
+    .profile-content .comment-detail .img-responsive{
+        width: 50%;
+    }
+    .cropcontain p{
+        top: -25px;
+        left: 21%;
+    }
     div.two{
         position: absolute !important;
         margin-top: 12%;
@@ -3325,6 +3397,34 @@ MÓVILES RESPONSIVE
 /* iPad in landscape */
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+
+
+    .prov-foto-party img.prov-foto{
+        width: 100%;
+    }
+    .prov-foto-kids img.prov-foto{
+        width: 100%;
+    }
+    .prov-foto-dinner img.prov-foto{
+        width: 100%;
+    }
+    .prov-foto-wedding img.prov-foto{
+        width: 100%;
+    }
+    .image-contact-wedding{
+        width: 400px;
+    }
+    .image-contact-kids{
+        width: 400px;
+    }
+    .image-contact-party{
+        width: 400px;
+    }
+    .image-contact-dinner{
+        width: 400px;
+    }
+
     #center-image a img{
         width: 350px;
     }

@@ -17,7 +17,9 @@
 
 {% block content %}
     {{ parent() }}
-
+    <div class="container breadcrumbs-{{ app.request.get('slug_site') }}">
+        {{ wo_render_breadcrumbs() }}
+    </div>
     <div class="container">
         <div class="proveedores_kids row">
             <div class="col-sm-6 col-md-4">

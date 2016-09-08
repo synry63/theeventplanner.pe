@@ -48,7 +48,7 @@
         <div class="col-md-4 menu_profile">
             {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
         </div>
-        <div class="col-md-8  profile-content">
+        <div class="col-md-6 col-xs-6 profile-content">
             {% if app.request.hasPreviousSession %}
                 {% for label, flash in app.session.flashbag.get('success') %}
                     <div class="alert alert-success">
