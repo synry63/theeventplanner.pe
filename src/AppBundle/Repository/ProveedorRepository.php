@@ -35,7 +35,7 @@ class ProveedorRepository extends EntityRepository
         $qb->addGroupBy('p');
         $query = $qb->getQuery();
 
-        return $query->getResult();
+        return $query;
     }
     public function getProveedorCount($proveedor){
         $em = $this->getEntityManager();

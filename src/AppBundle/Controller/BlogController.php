@@ -15,25 +15,46 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 class BlogController extends Controller
 {
     /**
-     * @Route("/{slug_site}/noticias", name="noticias_start",requirements={
+     * @Route("/{slug_site}/noticias", name="noticias_start",defaults={"page" = 1},requirements={
+     *     "page": "\d+",
      *     "slug_site": "wedding|dinner|kids|party"
      * })
      */
-    public function indexAction($slug_site,Request $request)
+    public function indexAction($slug_site,$page,Request $request)
     {
+        $noticias = $this->getDoctrine()->getRepository('AppBundle:Noticia')->getNoticiasWithCountComments($slug_site);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $noticias,
+            $page,
+            6
+        //array('wrap-queries'=>true)
+        );
+
         return $this->render(
-            $slug_site.'/noticias.html.twig'
+            $slug_site.'/noticias.html.twig',
+            array(
+                'noticias'=>$pagination,
+            )
         );
     }
     /**
-     * @Route("/{slug_site}/noticia/demo", name="noticia_demo_start",requirements={
+     * @Route("/{slug_site}/noticia/{slug_noticia}", name="noticia_start",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
      * })
      */
-    public function noticiaTestAction($slug_site,Request $request)
+    public function noticiaAction($slug_site,$slug_noticia,Request $request)
     {
-        return $this->render(
-            $slug_site.'/noticia.html.twig'
-        );
+
+        $noticia = $this->getDoctrine()->getRepository('AppBundle:Noticia')->findOneBy(array('slug'=>$slug_noticia));
+
+        if($noticia!=NULL){
+            return $this->render(
+                $slug_site.'/noticia.html.twig',
+                array('noticia'=>$noticia)
+            );
+        }
+
     }
 }

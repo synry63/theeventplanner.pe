@@ -1,0 +1,32 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: pmary-game
+ * Date: 4/8/16
+ * Time: 1:13 PM
+ */
+namespace AppBundle\Repository;
+
+use Doctrine\ORM\EntityRepository;
+
+
+class NoticiaRepository extends EntityRepository
+{
+    public function getNoticiasWithCountComments($type){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('n as noticia,COUNT(cn) as total')
+            ->from('AppBundle\Entity\Noticia', 'n')
+            ->leftJoin('n.comentarios','cn')
+            ->where('n.type = :type')
+            ->setParameters(array(
+                'type' => $type,
+            ));
+
+        $qb->addGroupBy('n');
+        $qb->addOrderBy('n.adedAt', 'DESC');
+        $query = $qb->getQuery();
+        return $query->getResult();
+
+    }
+}

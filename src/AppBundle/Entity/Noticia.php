@@ -15,6 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NoticiaRepository")
+ * @Vich\Uploadable
  * @ORM\Table(name="noticias")
  */
 class Noticia
@@ -31,6 +32,17 @@ class Noticia
      * @Assert\NotBlank()
      */
     private $nombre;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    private $type;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -57,6 +69,64 @@ class Noticia
      * @ORM\OneToMany(targetEntity="Parafo", mappedBy="noticia")
      **/
     private $parafos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ComentarioNoticia", mappedBy="noticia")
+     */
+    private $comentarios;
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    /**
+     * @param mixed $comentarios
+     */
+    public function setComentarios($comentarios)
+    {
+        $this->comentarios = $comentarios;
+    }
+
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

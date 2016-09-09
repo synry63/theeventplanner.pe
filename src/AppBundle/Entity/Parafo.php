@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
+ * @Vich\Uploadable
  * @ORM\Table(name="parafos")
  */
 class Parafo
@@ -27,7 +28,7 @@ class Parafo
     private $id;
 
     /**
-     * @ORM\Column(type="string",unique=true)
+     * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
     private $description;
