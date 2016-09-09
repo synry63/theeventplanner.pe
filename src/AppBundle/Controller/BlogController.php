@@ -24,6 +24,10 @@ class BlogController extends Controller
     {
         $noticias = $this->getDoctrine()->getRepository('AppBundle:Noticia')->getNoticiasWithCountComments($slug_site);
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem($slug_site, $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Noticias", $this->get("router")->generate("noticias_start",array('slug_site'=>$slug_site)));
+
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $noticias,
@@ -49,7 +53,17 @@ class BlogController extends Controller
 
         $noticia = $this->getDoctrine()->getRepository('AppBundle:Noticia')->findOneBy(array('slug'=>$slug_noticia));
 
+
+
         if($noticia!=NULL){
+            $breadcrumbs = $this->get("white_october_breadcrumbs");
+            $breadcrumbs->addItem($slug_site, $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
+            $breadcrumbs->addItem("Noticias", $this->get("router")->generate("noticias_start",array('slug_site'=>$slug_site)));
+            $breadcrumbs->addItem($noticia->getNombre(), $this->get("router")->generate("noticia_start",
+                array('slug_site'=>$slug_site,'slug_noticia'=>$slug_noticia)
+
+            ));
+
             return $this->render(
                 $slug_site.'/noticia.html.twig',
                 array('noticia'=>$noticia)
