@@ -9,7 +9,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ComentarioNoticiaRepository")
  * @ORM\Table(name="comentarios_noticias")
  */
 class ComentarioNoticia
@@ -35,6 +35,13 @@ class ComentarioNoticia
      * @ORM\Column(type="text")
      */
     private $comentario;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $adedAt;
 
     /**
      * @return mixed
@@ -68,7 +75,21 @@ class ComentarioNoticia
         $this->noticia = $noticia;
     }
 
+    /**
+     * @param \DateTime $adedAt
+     */
+    public function setAdedAt($adedAt)
+    {
+        $this->adedAt = $adedAt;
+    }
 
+    /**
+     * @return \DateTime
+     */
+    public function getAdedAt()
+    {
+        return $this->adedAt;
+    }
 
 
     /**

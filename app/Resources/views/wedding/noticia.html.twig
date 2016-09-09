@@ -19,6 +19,8 @@
 {% block content %}
     {{ parent() }}
     {{ dump(noticia) }}
+    {{ dump(comentarios) }}
+
     <div class="container news-blog">
         <div class="col-md-8 new-principal new-detalle">
             <a href="#"><img width="100%" src="{{ asset('images/mesa_flores.jpg') }}" alt=""></a>
