@@ -18,7 +18,6 @@
 
 {% block content %}
     {{ parent() }}
-    {{ dump(noticias) }}
     <div class="container news-blog">
         <div class="col-md-8 col-md-offset-2 new-principal">
             <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}"><img width="100%" src="{{ asset('images/mesa_flores.jpg') }}" alt=""></a>

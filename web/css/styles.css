@@ -631,21 +631,22 @@ GLOBAL
 }
 
 .footer_principal .footer{
-    color: rgba(0,0,0,.7) !important;
+    background: #C50051 !important;
 }
 .footer_principal p{
-    color: rgba(0,0,0,.7) !important;
+    color: #fff !important;
 }
 .footer_principal p a{
     font-weight: bold;
-    color: rgba(0,0,0,.7) !important;
-
+    color: #fff !important;
 }
+
 .footer_principal .footer li a{
     color: #fff;
     background: #C50051;
-}
+    background: rgba(255,255,255,.2);
 
+}
 .footer_principal .footer li a:hover{
     color: #fff;
 }
@@ -1528,6 +1529,45 @@ Votos GRID
     width: 100%;
     height: 100%;
 }
+.fb-button-login{
+    background: #5474AB;
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    position: relative;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+}
+.style-eight{
+    padding: 0;
+    border: none;
+    border-top: thin solid rgba(0,0,0,.2);
+    color: rgba(0,0,0,.2);
+    text-align: center;
+}
+hr.style-eight::after {
+    content: "ó";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.2em;
+    padding: 0px 0.25em;
+    background: white;
+}
+
+.fb-button-login i{
+    padding-left: 20px;
+    position: absolute;
+    left: 0;
+    top: 9px;
+    font-size: 24px;
+}
+
+
+
+
+
 .facebook_button{
     position: absolute;
     top: 50%;

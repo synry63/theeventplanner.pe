@@ -91,6 +91,13 @@
         </div>
 
 
+        <div class="fb-button-login">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                Ingresar con <strong>facebook</strong>
+        </div>
+
+            <hr class="style-eight">
+
         <form novalidate action="{{ path("fos_user_security_check") }}" method="post">
             {% for error in app.session.flashbag.get('error') %}
                     <div class="alert alert-danger" role="alert">
