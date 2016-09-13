@@ -587,7 +587,7 @@ GLOBAL
 
 .footer{
     font-family: "OpenSans-Light";
-    height: 155px;
+    height: 170px;
     margin-top: 40px;
     color: #fff;
     padding: 20px;
@@ -615,8 +615,77 @@ GLOBAL
 
 
 .footer-wedding{
-    background:#35B3B4 ;
+    background:#35B3B4;
 }
+
+.footer .socials{
+    margin: 20px auto;
+    height: 59px;
+}
+.footer .socials a i{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    transition: all .5s;
+}
+.footer .socials a{
+    display: inline-block;
+    position: relative;
+    margin: 0 5px;
+    padding: 10px 15px;
+    font-size: 25px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    color: #fff;
+    transition: all .5s;
+}
+.footer .socials a:after{
+    content: " ";
+    width: 57px;
+    height: 57px;
+    display: inline-block;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: -2px;
+    opacity: 0;
+    transform: scale(1.4);
+    transition: all .6s ease;
+}
+.footer .socials a:hover:after{
+    transform: scale(1);
+    z-index: -1;
+    opacity: 1;
+}
+
+.footer .socials a:hover{
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: #fff;
+}
+.footer-wedding .socials a:hover i{
+    color: #35B3B4;
+}
+.footer-kids .socials a:hover i{
+    color: #A70C77;
+}
+.footer-party .socials a:hover i{
+    color: #cad538;
+}
+.footer-dinner .socials a:hover i{
+    color: #0e6970;
+}
+/*
+.footer-wedding li a{
+    background: none;
+}
+.footer-wedding li a:hover{
+    background: rgba(255,255,255,.5);
+    border: solid 1px #fff;
+}*/
+
+
 
 .footer-kids{
     background:#A70C77 ;
