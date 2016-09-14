@@ -162,7 +162,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="toto col-sm-6 col-md-3 col-xs-6">
                 <div class="thumbnail">
                     <a   class="image-effect" href=""><img src="{{ asset('images/blog_4.jpg') }}" alt="..."></a>
                     <div class="caption">
@@ -191,10 +191,15 @@
 
     <script>
 
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            // some code..
+        }else
+        {
+            $(function() {
+                $('html').smoothScroll(500);
+            });
+        }
 
-        $(function() {
-            $('html').smoothScroll(500);
-        });
 
         $('.flexslider').flexslider({
             animation: "slide",

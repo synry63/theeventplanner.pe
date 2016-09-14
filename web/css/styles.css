@@ -243,6 +243,7 @@ Nav bar
     width: 450px;
 }
 #center-image{
+    pointer-events: none;
     position: relative;
     top: -30px;
     padding-top: 15px;
@@ -840,8 +841,11 @@ GLOBAL
 .proveedor-info{
     position: relative;
     text-align: center;
-}
 
+}
+.proveedor-info p{
+    margin-bottom: 5px;
+}
 #rateYo,#rateYo2,#rateYo3{
     margin: 0 auto;
 }
@@ -1662,7 +1666,7 @@ hr.style-eight::after {
 
 
 .btn-coti-wedding{
-    margin: 10px 0;
+    margin: 5px 0;
     font-style: normal;
     margin-bottom: 10px;
 }
@@ -1961,8 +1965,8 @@ KIDS / color:rgb(167, 12, 119); #A70C77
     color:#fff;
 }
 .btn-coti-kids{
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .btn-tittle_kids{
     width: 200px;
@@ -2066,7 +2070,7 @@ PARTY
     font-size: 30px;
 }
 .btn-coti-party{
-    margin: 10px 0;
+    margin: 5px 0;
     font-style: normal;
     margin-bottom: 10px;
 }
@@ -2555,7 +2559,7 @@ DINNER / color: #0E6970 ; rgb(14, 105, 112)
     color: #fff;
 }
 .btn-coti-dinner{
-    margin: 10px 0;
+    margin: 5px 0;
     margin-bottom: 10px;
 }
 .btn-tittle_dinner{
@@ -3555,6 +3559,41 @@ MÓVILES RESPONSIVE
 
 /* iPhone in portrait */
 @media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait) {
+    .footer{
+        height: 200px;
+    }
+    .news-list .thumbnail a{
+        width: 100%;
+    }
+    .list_categorias-wedding ul li, .list_categorias-kids ul li, .list_categorias-party ul li, .list_categorias-dinner ul li{
+        width: 100%;
+        height: 55px;
+        line-height: 55px;
+        border-bottom: 1px solid #f1f1f1;
+    }
+    .nuevo-buscador button{
+        background: rgba(70,70,70,.05) !important;
+    }
+    .list_categorias-wedding ul li a, .list_categorias-kids ul li a, .list_categorias-party ul li a, .list_categorias-dinner ul li a{
+        padding: 0;
+    }
+    .negocios a{
+        left: -5px;
+        z-index: 999;
+    }
+    .placa{
+        display: none;
+    }
+    #test{
+        display: none;
+    }
+    .nuevo-buscador{
+        display: block;
+        position: relative;
+        border: solid 1px #f1f1f1;
+        width: 80%;
+        margin-top: 45px;
+    }
 
     li#center-image{
         display: none;
@@ -3793,5 +3832,61 @@ MÓVILES RESPONSIVE
 /* iPhone in landscape */
 
 @media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : landscape) {
-
+    .list_categorias-wedding, .list_categorias-kids, .list_categorias-party, .list_categorias-dinner{
+        width: 533px;
+        left: 0;
+        height: auto;
+    }
+    .list_categorias-wedding li, .list_categorias-kids li, .list_categorias-party li, .list_categorias-dinner li{
+        height: 50px;
+        width: 49% !important;
+        line-height: 50px;
+        border-bottom: 1px solid #f1f1f1;
+    }
+    .nuevo-buscador button{
+        background: rgba(70,70,70,.05) !important;
+    }
+    .list_categorias-wedding ul li a, .list_categorias-kids ul li a, .list_categorias-party ul li a, .list_categorias-dinner ul li a{
+        padding: 0;
+    }
+    .negocios a{
+        left: -5px;
+        z-index: 999;
+    }
+    .placa{
+        display: none;
+    }
+    #test{
+        display: none;
+    }
+    .nuevo-buscador{
+        display: block;
+        position: relative;
+        border: solid 1px #f1f1f1;
+        width: 80%;
+        margin-top: 45px;
+    }
+    #center-image{
+        display: none;
+    }
+    #tittle_responsive{
+        display: block;
+    }
+    .tittle_base img{
+        width: 50%;
+    }
+    .navbar-default{
+        height: auto;
+    }
+    .menu-principal .navbar-default{
+        margin-top: 65px;
+        text-align: center;
+    }
+    .menu-principal>a{
+        position: absolute;
+        left: 300px;
+    }
+    .menu-principal .navbar-default{
+        margin-left: 0;
+    }
 }
