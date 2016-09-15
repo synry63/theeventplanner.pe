@@ -575,6 +575,7 @@ if (typeof jQuery === 'undefined') {
   }
 
   Collapse.prototype.show = function () {
+
     if (this.transitioning || this.$element.hasClass('in')) return
 
     var activesData
@@ -800,6 +801,7 @@ if (typeof jQuery === 'undefined') {
   }
 
   Dropdown.prototype.toggle = function (e) {
+
     var $this = $(this)
 
     if ($this.is('.disabled, :disabled')) return

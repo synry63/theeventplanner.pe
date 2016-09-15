@@ -184,9 +184,14 @@
     <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.smoothscroll.min.js') }}"></script>
     <script>
-        $(function() {
-            $('html').smoothScroll(500);
-        });
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            // some code..
+        }else
+        {
+            $(function() {
+                $('html').smoothScroll(500);
+            });
+        }
         $('.flexslider').flexslider({
             animation: "slide",
             controlNav: false,

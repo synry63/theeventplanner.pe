@@ -387,7 +387,7 @@ GLOBAL
     transform: scale(1.1);
 }
 .image-effect{
-    width: 245px;
+    width: 100%;
     height: 162px;
     overflow: hidden;
     display: inline-block;
@@ -3463,9 +3463,360 @@ MÓVILES RESPONSIVE
         height: auto;
     }
 }
+@media only screen and (min-width : 320px) and (max-width : 736px){
+    .nav-zonaneg .navbar-nav li{
+        text-align: center;
+    }
+    .logo_prov{
+        width: 70px;
+    }
+    #dropdownMenu1 a{
+        font-size: 16px;
+    }
+    .image-contact-wedding,.image-contact-kids, .image-contact-party, .image-contact-dinner{
+        width: 100%;
+    }
+
+    .foto-new img{
+        width: 100%;
+    }
+    .new h1{
+        font-size: 15px;
+    }
+    .new span{
+        display: block;
+    }
+
+    .footer{
+        height: 200px;
+    }
+    .news-list .thumbnail a{
+        width: 100%;
+    }
+    .list_categorias-wedding ul li, .list_categorias-kids ul li, .list_categorias-party ul li, .list_categorias-dinner ul li{
+        width: 100%;
+        height: 55px;
+        line-height: 55px;
+        border-bottom: 1px solid #f1f1f1;
+    }
+    .nuevo-buscador button{
+        background: rgba(70,70,70,.05) !important;
+    }
+    .list_categorias-wedding ul li a, .list_categorias-kids ul li a, .list_categorias-party ul li a, .list_categorias-dinner ul li a{
+        padding: 0;
+    }
+    .negocios a{
+        left: -5px;
+        z-index: 999;
+    }
+    .placa{
+        display: none;
+    }
+    #test{
+        display: none;
+    }
+    .nuevo-buscador{
+        display: block;
+        position: relative;
+        border: solid 1px #f1f1f1;
+        width: 80%;
+        margin-top: 45px;
+    }
+
+    li#center-image{
+        display: none;
+    }
+    .buscadore{
+        position: relative;
+        display: block;
+        width: 295px;
+        margin: 0 auto;
+        left: 0;
+    }
+    .cat-drop-wedding, .cat-drop-kids, .cat-drop-party, .cat-drop-dinner{
+        position: relative;
+        display: block;
+        margin: 10px auto;
+    }
+    .list_categorias-wedding, .list_categorias-kids, .list_categorias-party, .list_categorias-dinner{
+        width: auto;
+        left: 0;
+        height: auto;
+    }
+
+
+
+    .image-port{
+        width: 100%;
+    }
+    .frase-negocio{
+        margin: 30px 15px;
+    }
+    .slider-section{
+        margin: 20px 0;
+    }
+    .pic_foto .negocio-form{
+        margin: 10px auto;
+        max-width: 318px;
+    }
+    .image-contact,.image-contact2,.image-contact3,.image-contact4{
+        width: 100%;
+        height: 325px;
+        padding-top: 50px;
+    }
+    .image-contact h1,.image-contact2 h1,.image-contact3 h1,.image-contact4 h1{
+        font-size: 30px;
+    }
+    .image-contact h2,.image-contact2 h2,.image-contact3 h2,.image-contact4 h2{
+        font-size: 18px;
+    }
+    .image-contact h3,.image-contact2 h3,.image-contact3 h3,.image-contact4 h3{
+        font-size: 15px;
+        padding-top: 0;
+        color: #fff;
+        text-decoration: none;
+
+    }
+    .facebook_button2{
+        display: block;
+        text-align: center;
+        margin: 15px 0;
+    }
+
+    .facebook_button2 button{
+        padding: 12px;
+        padding-left: 40px;
+        position: relative;
+    }
+    .facebook_button2 button i{
+        font-size: 25px;
+        position: absolute;
+        padding: 0;
+        left: 17px;
+    }
+    .facebook_button{
+        display: none;
+    }
+    .image-prov{
+        margin: 20px 0 55px 0;
+    }
+    .menu-principal .navbar-right{
+        position: initial;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .menu-principal .navbar-default{
+        margin: 0;
+        margin-top: 40px;
+    }
+    .menu-principal .navbar-default li{
+        padding: 10px 0;
+        text-align: center;
+    }
+    .total-container .navbar-default ul li:nth-child(4){
+        margin-left: 0;
+    }
+    .logo_header{
+        margin: 10px auto;
+        position: relative;
+        width: 50px;
+        display: block;
+    }
+    .two{
+        top:0;
+        width: 50px;
+        margin-top: 0;
+        margin-left: 43%;
+        display: inline-block;
+    }
+    .navbar-default{
+        height: auto;
+    }
+
+    #center-image{
+        display: none;
+    }
+    #tittle_responsive{
+        display: block;
+    }
+    .cropcontain{
+        display: inline;
+    }
+    .cropcontain p{
+        top: -40px;
+        left: 35%;
+    }
+    #cropContainerMinimal{
+        margin: 20px auto;
+    }
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+        width: auto;
+    }
+    .atras{
+        margin: 10px 0;
+        width: 84px;
+        display: inline-block;
+    }
+    #atras{
+        display: none;
+    }
+    .back-register .btn-entrar{
+        width: 100%;
+    }
+    .profile-detail{
+        text-align: center;
+        position: relative;
+    }
+    .proveedores2 h3{
+        display: none;
+    }
+    .logo-circle{
+        display: block;
+        width:100px;
+        height: 100px;
+        left: 120px;
+        top: 160px;
+        border: solid 1px rgba(0,0,0,.1);
+        box-shadow: 2px 2px 5px rgba(0,0,0,.1);
+        z-index: 200;
+        position: absolute;
+        background: white;
+    }
+    .register_wedding_page{
+        -webkit-animation-duration:0s;
+    }
+
+    .register-logo img{
+        width: 100%;
+    }
+    .filtros_proveedores{
+        text-align: center;
+    }
+    .btn_login_responsive{
+        display: none;
+    }
+    .user_show{
+        margin:10px auto;
+    }
+    .user-login-responsive{
+        display: block;
+    }
+    .user-login-responsive a{
+        text-decoration: none;
+        color: #000;
+        margin: 0 10px;
+    }
+    .user-login-responsive img{
+
+        display: inline-block;
+    }
+    .menu_profile li{
+        width: 100%;
+    }
+    .music-container iframe{
+        width: 320px;
+        margin: 10px 0;
+    }
+    .music-container{
+        margin: 10px auto;
+    }
+    .music-container-party iframe{
+        width: 320px;
+        margin: 10px 0;
+    }
+    .music-container-party{
+        margin: 10px auto;
+    }
+    .tittle_base img{
+        width: 100%;
+    }
+    .tittle_general img{
+        width: 100%;
+    }
+    .header li{
+        text-align: center;
+        width: 100%;
+    }
+    .wedding .footer li a i{
+        width:20px;
+    }
+    .footer_principal li a i{
+        width:20px;
+    }
+    .form-login{
+        padding: 20px;
+        margin: 150px 0;
+    }
+    .footer li a{
+        color: rgba(0,0,0,.5);
+        background: #fff;
+        font-size: 20px;
+        padding: 10px 15px;
+        border-radius: 100px;
+        transition: all .5s;
+    }
+}
+@media only screen and (min-width : 768px) and (max-width : 1024px){
+
+    .profile-content #grid {
+        margin-top: 70%;
+    }
+
+    .profile-content .comment-detail .img-responsive{
+        width: 50%;
+    }
+    .cropcontain p{
+        top: -25px;
+        left: 21%;
+    }
+    div.two{
+        position: absolute !important;
+        margin-top: 12%;
+    }
+    .menu-principal .navbar-default{
+        margin-top:12%;
+    }
+    .image-effect{
+        width: 100%;
+    }
+    .news-list .thumbnail{
+        min-height: 380px;
+    }
+    .placa{
+        display: none;
+    }
+    .nuevo-buscador{
+        top:45%;
+    }
+    #test{
+        display: none;
+    }
+    #center-image{
+        position: absolute;
+        left: 24%;
+    }
+    .btn-login{
+        top:76%;
+    }
+}
+
+
+
 /* iPad in portrait */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .dashboard .fotos_galery{
+        height: auto;
+    }
 
+    .nav-zonaneg #bs-example-navbar-collapse-1 ul{
+        margin-left: 30px;
+    }
+    .nav-zonaneg #bs-example-navbar-collapse-1{
+        margin-top: 0;
+    }
+    .nav-zonaneg .current{
+        border: 0;
+    }
     .profile-content #grid {
         margin-top: 70%;
     }
@@ -3509,11 +3860,14 @@ MÓVILES RESPONSIVE
     }
 }
 /* iPad in landscape */
-
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 
-
-
+    .nav-zonaneg #bs-example-navbar-collapse-1{
+        margin-top: 0;
+    }
+    .nav-zonaneg .current{
+        border-bottom: 0;
+    }
     .prov-foto-party img.prov-foto{
         width: 100%;
     }
@@ -3558,7 +3912,30 @@ MÓVILES RESPONSIVE
 
 
 /* iPhone in portrait */
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : portrait) {
+    .nav-zonaneg .navbar-nav li{
+        text-align: center;
+    }
+    .logo_prov{
+        width: 70px;
+    }
+    #dropdownMenu1 a{
+        font-size: 16px;
+    }
+    .image-contact-wedding,.image-contact-kids, .image-contact-party, .image-contact-dinner{
+        width: 100%;
+    }
+
+    .foto-new img{
+        width: 100%;
+    }
+    .new h1{
+        font-size: 15px;
+    }
+    .new span{
+        display: block;
+    }
+
     .footer{
         height: 200px;
     }
@@ -3831,9 +4208,18 @@ MÓVILES RESPONSIVE
 
 /* iPhone in landscape */
 
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : landscape) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : landscape) {
+
+    #dropdownMenu1 a{
+        font-size: 16px;
+    }
+
+    .foto-new img{
+        width: 100%;
+    }
+
     .list_categorias-wedding, .list_categorias-kids, .list_categorias-party, .list_categorias-dinner{
-        width: 533px;
+        width: 100%;
         left: 0;
         height: auto;
     }

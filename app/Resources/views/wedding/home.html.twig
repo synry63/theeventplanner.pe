@@ -25,7 +25,7 @@
     </div>
 
     <h1 id="test">Make it Happen</h1>
-    <div class="nuevo-buscador ">
+    <div class="nuevo-buscador">
         <button id="dropdownMenu1" type="button" data-toggle="dropdown">
             <a style="display: block" href="#buscador">Dinos lo que necesitas <i class="fa fa-chevron-down chevron-{{ app.request.get('slug_site') }}" aria-hidden="true"></i></a>
         </button>
@@ -35,7 +35,6 @@
                     {% for c in categorias %}
                         <li><a href="{{ path('proveedores_category', {'slug_site': app.request.get('slug_site'),'slug_category': c.slug}) }}">{{ c.nombre }}</a></li>
                     {% endfor %}
-
                 </ul>
         </div>
 
@@ -162,7 +161,7 @@
                     </div>
                 </div>
             </div>
-            <div class="toto col-sm-6 col-md-3 col-xs-6">
+            <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
                     <a   class="image-effect" href=""><img src="{{ asset('images/blog_4.jpg') }}" alt="..."></a>
                     <div class="caption">
