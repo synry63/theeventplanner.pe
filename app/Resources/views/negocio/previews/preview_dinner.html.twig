@@ -155,9 +155,10 @@
 
     $( "#accordion" ).accordion({
         active: false,
-        collapsible: true
+        collapsible: true|
     });
     $('.variable-width').slick({
+        arrows:false,
         dots: true,
         infinite: true,
         speed: 300,
@@ -167,7 +168,7 @@
         adaptiveHeight: true
 
     });
-    $('.proveedor-fixed').fixTo('body');
+    $('.card-prov').fixTo('body');
 
 
 

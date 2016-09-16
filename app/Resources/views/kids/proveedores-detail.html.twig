@@ -273,6 +273,15 @@
             });
         });
 
-        $('.proveedor-fixed').fixTo('body');
+        $(window).on("orientationchange",function(){
+            if(window.orientation == 0) // Portrait
+            {
+                $('.nofunciona').fixTo('body');
+            }
+            else // Landscape
+            {
+                $('.card-prov').fixTo('body');
+            }
+        });
     </script>
 {% endblock %}

@@ -3804,6 +3804,87 @@ MÓVILES RESPONSIVE
 
 /* iPad in portrait */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .nav-zonaneg .navbar-collapse li{
+        width: 20%;
+        height: 50px;
+        display: table;
+        text-align: center;
+        border-right: 1px solid rgba(255,255,255,.2);
+        border-bottom: 1px solid rgba(255,255,255,.2);
+    }
+    .nav-zonaneg .navbar-collapse li.current{
+        background: rgba(0,0,0,.1);
+    }
+    .nav-zonaneg .navbar-collapse li a{
+        padding: 0;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .nav-zonaneg .navbar-collapse .navbar-right{
+        position: absolute;
+        right: 45px;
+        top: 50px;
+        bottom: 0px;
+    }
+
+    .nav-zonaneg .navbar-collapse .navbar-right li{
+        width: 120px;
+        right: 4px;
+        height: 50px;
+    }
+
+
+    .nav-zonaneg .navbar-collapse .navbar-right{
+        position: absolute;
+        right: 45px;
+        top: 50px;
+        bottom: 0px;
+    }
+
+    .pic_foto .negocio-form{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .frase-negocio{
+        float: none;
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .boton-session a{
+        opacity: 1;
+    }
+    .negocios a{
+        opacity: 1;
+        z-index: 1;
+        color: #fff;
+    }
+    .negocios a{
+        opacity: 1;
+    }
+    .contactenos-formu{
+        margin-top: 50px;
+        padding: 0 120px;
+    }
+    .foto-new a img{
+        width: 100%;
+    }
+    #buscador{
+        margin-top: 80px;
+    }
+    .proveedor-info>img{
+        width: 50%;
+    }
+    .card-prov{
+        width: 350px;
+        margin: 0 auto 40px;
+    }
+
+    .breadcrumbs-wedding ol, .breadcrumbs-kids ol, .breadcrumbs-party ol, .breadcrumbs-dinner ol{
+        margin-top: 70px;
+        text-align: center;
+    }
+
     .dashboard .fotos_galery{
         height: auto;
     }
@@ -3830,7 +3911,8 @@ MÓVILES RESPONSIVE
     }
     div.two{
         position: absolute !important;
-        margin-top: 12%;
+        margin-top: 11%;
+        margin-left: 7%;
     }
     .menu-principal .navbar-default{
         margin-top:12%;
@@ -3845,15 +3927,23 @@ MÓVILES RESPONSIVE
         top: 182.5px;
     }
     .nuevo-buscador{
-        top:33%;
+        top:28%;
     }
     #test{
         top:23%;
         padding: 10px 0;
     }
+    .menu-principal .navbar-default{
+        margin: 12% auto;
+        width: 460px;
+        display: block;
+        float: none;
+    }
+
     #center-image{
         position: absolute;
-        left: 24%;
+        left: 55%;
+        transform: translate(-50%);
     }
     .btn-login{
         top:76%;
@@ -3861,6 +3951,66 @@ MÓVILES RESPONSIVE
 }
 /* iPad in landscape */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    .nav-zonaneg .navbar-collapse li{
+        width: 20%;
+        text-align: center;
+        border-right: 1px solid rgba(255,255,255,.2);
+        border-bottom: 1px solid rgba(255,255,255,.2);
+    }
+    .nav-zonaneg .navbar-collapse li.current{
+        background: rgba(0,0,0,.1);
+    }
+    .nav-zonaneg .navbar-collapse .navbar-right{
+        position: absolute;
+        right: 45px;
+        top: 50px;
+        bottom: 0px;
+    }
+    .nav-zonaneg .navbar-collapse .navbar-right li{
+        width: 172px;
+    }
+
+
+
+
+    .pic_foto .negocio-form{
+        margin-left: 130px;
+    }
+    .negocios a{
+        opacity: 1;
+        z-index: 1;
+        color: #fff;
+    }
+    .boton-session a{
+        opacity: 1;
+    }
+    .contactenos-formu{
+        margin-top: 30px;
+    }
+    .image-contact-wedding{
+       margin-top: 30px;
+    }
+    .foto-new a img{
+        width: 100%;
+    }
+    #buscador{
+        margin-top: 60px;
+    }
+    .breadcrumbs-wedding ol, .breadcrumbs-kids ol, .breadcrumbs-party ol, .breadcrumbs-dinner ol{
+        text-align: center;
+        margin-top: 45px;
+    }
+    .menu-principal .navbar-default{
+        margin: 7% auto;
+        width: 460px;
+        display: block;
+        float: none;
+    }
+    div.two{
+        position: absolute !important;
+        margin-top: 7%;
+        margin-left: 18%;
+    }
 
     .nav-zonaneg #bs-example-navbar-collapse-1{
         margin-top: 0;
@@ -3892,7 +4042,10 @@ MÓVILES RESPONSIVE
     .image-contact-dinner{
         width: 400px;
     }
-
+    #center-image{
+        left: 54%;
+        transform: translate(-50%);
+    }
     #center-image a img{
         width: 350px;
     }
@@ -3913,6 +4066,7 @@ MÓVILES RESPONSIVE
 
 /* iPhone in portrait */
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : portrait) {
+
     .nav-zonaneg .navbar-nav li{
         text-align: center;
     }
@@ -4209,7 +4363,9 @@ MÓVILES RESPONSIVE
 /* iPhone in landscape */
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : landscape) {
-
+    div.two{
+        margin-left: -15%;
+    }
     #dropdownMenu1 a{
         font-size: 16px;
     }

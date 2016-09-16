@@ -260,12 +260,12 @@
         });
 
         $('.variable-width').slick({
+            arrows:false,
             dots: true,
             infinite: true,
             speed: 300,
             slidesToShow: 1,
             centerMode: true,
-
             variableWidth: true,
             adaptiveHeight: true
 
@@ -348,6 +348,17 @@
             });
         });
 
-        $('.proveedor-fixed').fixTo('body');
+
+        $('.card-prov').fixTo('body');
+        /*
+        $(window).on("orientationchange",function(){
+            if (window.orientation !== 0) {
+                $('.card-prov').fixTo('body');
+            }else if (window.orientation == 0){ //cuando es diferente de cero
+                $('.card-prov').fixTo('destroy');
+            }
+        });
+        */
+
     </script>
 {% endblock %}

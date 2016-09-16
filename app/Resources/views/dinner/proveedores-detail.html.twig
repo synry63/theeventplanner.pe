@@ -164,6 +164,9 @@
     <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script>
+
+
+
         $( "#button-share" ).click(function() {
             $( "#button-share" ).hide();
             $( ".social-icons2" ).show();
@@ -271,6 +274,18 @@
             });
         });
 
-        $('.proveedor-fixed').fixTo('body');
+        $(window).on("orientationchange",function(){
+            if(window.orientation == 0) // Portrait
+            {
+                $('.nofunciona').fixTo('body');
+            }
+            else // Landscape
+            {
+                $('.card-prov').fixTo('body');
+            }
+        });
+
+
+
     </script>
 {% endblock %}
