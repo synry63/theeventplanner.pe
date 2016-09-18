@@ -5,6 +5,15 @@ app:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+#HWIOAuthBundle routes
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /secured/connect
+
+facebook_login:
+    path: /secured/login_facebook
+
+
 my_login:
     path:      /login
     defaults:  { _controller: MyUserBundle:Security:login, _method: POST GET }

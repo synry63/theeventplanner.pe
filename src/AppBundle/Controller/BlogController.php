@@ -45,6 +45,18 @@ class BlogController extends Controller
             )
         );
     }
+
+    public function relatedNoticiasAction(Request $request,$type,$id)
+    {
+
+        $noticias = $this->getDoctrine()->getRepository('AppBundle:Noticia')->getNoticiasWithCountCommentsDiff($type,$id);
+
+        return $this->render(
+            'comun_includes/blog_recent_news.html.twig',
+            array('noticias_related'=>$noticias)
+        );
+    }
+
     /**
      * @Route("/{slug_site}/noticia/{slug_noticia}", name="noticia_start",requirements={
      *     "slug_site": "wedding|dinner|kids|party"

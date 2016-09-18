@@ -1,5 +1,22 @@
 {% extends 'wedding/layout.html.twig' %}
 {% block title %}Proveedores{% endblock %}
+{% block metaFacebook %}
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="{{ proveedor.nombre }}" />
+    <meta property="og:description"   content="{{ proveedor.description |nl2br }}" />
+    {#
+        {% if proveedor.fotos|length > 0 %}
+            <meta property="og:image"         content="{{ app.request.getUriForPath(vich_uploader_asset(proveedor.fotos[0], 'imgFile')) }}" />
+        {% endif %}
+    #}
+    {% if proveedor.logo is not null %}
+        <meta property="og:image"         content="{{ vich_uploader_asset(proveedor.logo, 'logoFile')|imagine_filter('logo_thumb') }}" />
+    {% endif %}
+
+    <meta property="fb:app_id"        content="286482508388833">
+    <meta property="og:url"           content={{ app.request.uri }}>
+{% endblock %}
+
 
 {% block stylesheets %}
     {{ parent() }}
@@ -239,7 +256,6 @@
 
 
 
-
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -257,6 +273,14 @@
             $( "#button-share" ).hide();
             $( ".social-icons2" ).show();
 
+        });
+
+        $( "#shareBtnFacebook" ).click(function() {
+            FB.ui({
+                method: 'share',
+                mobile_iframe: true,
+                href: "{{ app.request.uri }}",
+            }, function(response){});
         });
 
         $('.variable-width').slick({

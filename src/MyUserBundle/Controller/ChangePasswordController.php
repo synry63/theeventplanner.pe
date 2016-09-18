@@ -11,6 +11,7 @@
 
 namespace MyUserBundle\Controller;
 
+use AppBundle\Form\Type\ProfileChangePasswordType;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
@@ -50,10 +51,12 @@ class ChangePasswordController extends Controller
         }
 
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
-        $formFactory = $this->get('fos_user.change_password.form.factory');
+        /*$formFactory = $this->get('fos_user.change_password.form.factory');
 
         $form = $formFactory->createForm();
-        $form->setData($user);
+        $form->setData($user);*/
+
+        $form = $this->createForm(new ProfileChangePasswordType(),$user );
 
         $form->handleRequest($request);
 

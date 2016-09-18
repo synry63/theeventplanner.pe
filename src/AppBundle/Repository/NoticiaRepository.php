@@ -27,6 +27,23 @@ class NoticiaRepository extends EntityRepository
         $qb->addOrderBy('n.adedAt', 'DESC');
         $query = $qb->getQuery();
         return $query->getResult();
+    }
+    public function getNoticiasWithCountCommentsDiff($type,$id){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('n as noticia,COUNT(cn) as total')
+            ->from('AppBundle\Entity\Noticia', 'n')
+            ->leftJoin('n.comentarios','cn')
+            ->where('n.type = :type')
+            ->andWhere('n.id != :id')
+            ->setParameters(array(
+                'type' => $type,
+                'id' =>$id
+            ));
 
+        $qb->addGroupBy('n');
+        $qb->addOrderBy('n.adedAt', 'DESC');
+        $query = $qb->getQuery();
+        return $query->getResult();
     }
 }

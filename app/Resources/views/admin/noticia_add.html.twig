@@ -1,0 +1,28 @@
+<body>
+{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<a href="#" id="add-another-parafo">Agregar otro parafo</a>
+<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script>
+
+    var sourceCount = '{{ form.parafos | length }}';
+    jQuery('#add-another-parafo').click(function() {
+        var sourceList = jQuery('#noticia_parafos');
+
+        // grab the prototype template
+        var newWidget = sourceList.attr('data-prototype');
+        // replace the "$$name$$" used in the id and name of the prototype
+        // with a number that's unique to our emails
+        // end name attribute looks like name="contact[emails][2]"
+        newWidget = newWidget.replace(/\_\_name\_\_/g, sourceCount);
+        sourceCount++;
+        //alert(newWidget);
+        // create a new list element and add it to our list
+        //var newLi = jQuery('<li></li>').html(newWidget);
+        //newLi.appendTo(jQuery('#email-fields-list'));
+        jQuery('#noticia_parafos').append(newWidget);
+
+        return false;
+    });
+</script>
+</body>

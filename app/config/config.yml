@@ -152,3 +152,25 @@ knp_paginator:
 
 white_october_breadcrumbs:
   separator:          ''
+
+hwi_oauth:
+    # list of names of the firewalls in which this bundle is active, this setting MUST be set
+    connect:
+        account_connector: my_user_provider
+    firewall_names: [main]
+    fosub:
+        username_iterations: 30
+        properties:
+            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
+            facebook: facebook_id
+    resource_owners:
+            facebook:
+                type:          facebook
+                client_id:     286482508388833
+                client_secret: 49836d578a9f12a1cde755ab86c07acd
+                scope:         "email"
+                infos_url:     "https://graph.facebook.com/me?fields=id,name,first_name,last_name,email,picture.type(normal)"
+                paths:
+                  profilepicture: picture.data.url
+                #options:
+                #    display: popup #dialog is optimized for popup window

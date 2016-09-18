@@ -11,11 +11,13 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Inspiracion;
 use AppBundle\Entity\Musica;
+use AppBundle\Entity\Noticia;
 use AppBundle\Entity\Tendencia;
 use AppBundle\Entity\Video;
 use AppBundle\Entity\Voto;
 use AppBundle\Form\Type\InspiracionType;
 use AppBundle\Form\Type\MusicaType;
+use AppBundle\Form\Type\NoticiaType;
 use AppBundle\Form\Type\ProveedorAdminProfileType;
 use AppBundle\Form\Type\TendenciaType;
 use AppBundle\Form\Type\VideoType;
@@ -38,8 +40,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AdminController extends Controller
 {
+
+
+
     private function menuSelected($key){
-        $default = array('home'=>false,'negocios'=>false,'tendencias'=>false,'votos'=>false,'videos'=>false,'musicas'=>false);
+        $default = array('home'=>false,'negocios'=>false,'tendencias'=>false,'votos'=>false,'videos'=>false,'musicas'=>false,'noticias'=>false);
         $default[$key] = true;
         return $default;
     }
@@ -223,6 +228,20 @@ class AdminController extends Controller
         );
     }
     /**
+     * @Route("/admin/video/delete/{id}", name="admin_video_delete")
+     */
+    public function adminVideoDeleteAction(Request $request,$id){
+        $video = $this->getDoctrine()->getRepository('AppBundle:Video')->find($id);
+        if($video!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($video);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su video fue borrada !');
+            return $this->redirectToRoute('admin_videos');
+        }
+    }
+
+    /**
      * @Route("/admin/video/add", name="admin_video_add")
      */
     public function adminVideoAddAction(Request $request){
@@ -266,6 +285,19 @@ class AdminController extends Controller
                 'seccion' => $this->menuSelected('videos')
             )
         );
+    }
+    /**
+     * @Route("/admin/musica/delete/{id}", name="admin_musica_delete")
+     */
+    public function adminMusicaDeleteAction(Request $request,$id){
+        $musica = $this->getDoctrine()->getRepository('AppBundle:Musica')->find($id);
+        if($musica!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($musica);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su musica fue borrada !');
+            return $this->redirectToRoute('admin_musicas');
+        }
     }
 
     /**
@@ -319,6 +351,96 @@ class AdminController extends Controller
             )
         );
 
+    }
+    /**
+     * @Route("/admin/noticias", name="admin_noticias")
+     */
+    public function adminNoticiasAction(Request $request){
+        $noticias = $this->getDoctrine()->getRepository('AppBundle:Noticia')->findBy(
+            array(),
+            array('adedAt' => 'DESC')
+        );
+        return $this->render(
+            'admin/noticias.html.twig',
+            array(
+                'noticias'=>$noticias,
+                'seccion' => $this->menuSelected('noticias')
+            )
+        );
+    }
+
+    /**
+     * @Route("/admin/noticia/add", name="admin_noticia_add")
+     */
+    public function adminNoticiaAddAction(Request $request){
+        $noticia = new Noticia();
+        $form_noticia = $this->createForm(new NoticiaType(), $noticia);
+        $form_noticia->handleRequest($request);
+        if ($form_noticia->isSubmitted() && $form_noticia->isValid()) {
+            $slug = $this->slugify($noticia->getNombre());
+            $noticia->setSlug($slug);
+
+            foreach ($noticia->getParafos() as $p) {
+                $p->setNoticia($noticia);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($noticia);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su noticia fue guardado !');
+            return $this->redirectToRoute('admin_noticias');
+        }
+        return $this->render(
+            'admin/noticia_add.html.twig',
+            array(
+                'form' => $form_noticia->createView(),
+                'seccion' => $this->menuSelected('noticias')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/noticia/{id}", name="admin_noticia_edit")
+     */
+    public function adminNoticiaEditAction(Request $request,$id){
+
+        $noticia = $this->getDoctrine()->getRepository('AppBundle:Noticia')->find($id);
+        $form_noticia = $this->createForm(new NoticiaType(), $noticia);
+        $form_noticia->handleRequest($request);
+        if ($form_noticia->isSubmitted() && $form_noticia->isValid()) {
+            $slug = $this->slugify($noticia->getNombre());
+            $noticia->setSlug($slug);
+
+            foreach ($noticia->getParafos() as $p) {
+                $p->setNoticia($noticia);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($noticia);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su noticia fue guardado !');
+            return $this->redirectToRoute('admin_noticia_edit',array('id'=>$id));
+        }
+        return $this->render(
+            'admin/noticia_edit.html.twig',
+            array(
+                'form' => $form_noticia->createView(),
+                'noticia'=>$noticia,
+                'seccion' => $this->menuSelected('noticias')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/noticia/delete/{id}", name="admin_noticia_delete")
+     */
+    public function adminNoticiaDeleteAction(Request $request,$id){
+        $noticia = $this->getDoctrine()->getRepository('AppBundle:Noticia')->find($id);
+        if($noticia!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($noticia);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su noticia fue borrada !');
+            return $this->redirectToRoute('admin_noticias');
+        }
     }
 
     /**

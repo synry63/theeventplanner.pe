@@ -42,7 +42,7 @@ class Parafo
     private $imgFile;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64,nullable=true)
      */
     private $img;
 

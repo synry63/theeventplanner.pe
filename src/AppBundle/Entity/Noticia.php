@@ -66,7 +66,7 @@ class Noticia
     private $adedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="Parafo", mappedBy="noticia")
+     * @ORM\OneToMany(targetEntity="Parafo", mappedBy="noticia",cascade={"persist","remove"})
      **/
     private $parafos;
 

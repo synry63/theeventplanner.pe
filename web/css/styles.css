@@ -961,6 +961,8 @@ GLOBAL
 }
 .btn-login img{
     display: inline-block;
+    height: 40px;
+    width: 40px;
 }
 .btn-login{
     position: absolute;
@@ -1378,6 +1380,7 @@ Profile
 }
 .profile-detail img{
     width: 100px;
+    height: 100px;
     margin: 10px auto;
 }
 .profile-content{
@@ -1539,6 +1542,24 @@ Votos GRID
 .form-wedding-contactenos label{
     color: #35B3B4;
 }
+.boton-share-default{
+    padding: 0 10px;
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    left: 45px;
+
+}
+#grid .boton-share-default i.fa-square{
+    font-size: 2em;
+}
+#grid .boton-share-default i.fa-facebook{
+    font-size: 22px;
+}
+.boton-share-default a{
+    color: #3b5998;
+    text-decoration: none;
+}
 .boton-megusta_wedding{
     padding: 0 10px;
     position: absolute;
@@ -1611,6 +1632,7 @@ Votos GRID
     text-align: center;
     line-height: 40px;
     font-size: 16px;
+    cursor: pointer;
 }
 .style-eight{
     padding: 0;

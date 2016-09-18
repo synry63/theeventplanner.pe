@@ -26,7 +26,7 @@
         <ul class="grid effect-1" id="grid">
             {% for ifa in inspiraciones %}
                 <li>
-                    <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
+                    <img  src="{{ asset('images/inspiraciones/'~ifa.img) }}">
                     {% if app.user is not null %}
                         {% set me_gusta = 0 %}
                         {% for fu in app.user.inspiraciones  %}
@@ -58,6 +58,16 @@
                             </a>
                         </div>
 
+                        <div class="boton-share-default">
+                            <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}"
+                               href="javascript:void(0);" class="shareBtnFacebook">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-square fa-stack-2x"></i>
+                                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </div>
+
                     {% endif %}
                 </li>
             {% endfor %}
@@ -66,13 +76,13 @@
 
     </div>
 
-
-    <div class="container inspiraciones_vermas_{{ app.request.get('slug_site') }}">
-        <hr>
-        Encuentra más proveedores de: <a href="javascript:void(0)"><strong> Catering</strong></a>
-        <hr>
-    </div>
-
+    {% if tendencia.masNombre is not null and tendencia.masUrl is not null %}
+        <div class="container inspiraciones_vermas_{{ app.request.get('slug_site') }}">
+            <hr>
+                Encuentra más proveedores de : <a href="{{ tendencia.masUrl }}"><strong> {{ tendencia.masNombre }}</strong></a>
+            <hr>
+        </div>
+    {% endif %}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -87,5 +97,15 @@
             maxDuration : 0.7,
             viewportFactor : 0.2
         } );
+
+        $( ".shareBtnFacebook" ).click(function() {
+            FB.ui({
+                method: 'feed',
+                link: "{{ app.request.uri }}",
+                picture: $(this).attr('data-src'),
+                title: "{{ inspiraciones[1].tendencia.nombre }}",
+
+            }, function(response){});
+        });
     </script>
 {% endblock %}

@@ -85,19 +85,19 @@
 
     <a id="button-share" style="font-size: 20px ;border-radius: 5px" class="button-share" href="javascript:void(0)"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
     <div class="social-icons2 s{{ app.request.get('slug_site') }}">
-            <a href="" target="_blank">
+            <a href="javascript:void(0);" id="shareBtnFacebook">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                     </span>
             </a>
-            <a href="" target="_blank">
+            <a href="{{ 'https://twitter.com/share?text=Encuentra el proveedor : ' ~ proveedor.nombre }}" target="_blank" data-show-count="false">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
                     </span>
-            </a>
-            <a href="" target="_blank">
+            </a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a href="{{ 'mailto:' ~ proveedor.email }}">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-square fa-stack-2x"></i>
                           <i class="fa fa fa-envelope fa-stack-1x fa-inverse"></i>

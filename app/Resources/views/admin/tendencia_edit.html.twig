@@ -57,6 +57,16 @@
             {{ form_widget(form_tendencia.description,{ 'attr': {'class': 'form-control','rows':'8'}}) }}
         </div>
         <div class="form-group">
+            {{ form_label(form_tendencia.masNombre,'Encuentra Mas Nombre') }}
+            {{ form_errors(form_tendencia.masNombre) }}
+            {{ form_widget(form_tendencia.masNombre,{ 'attr': {'class': 'form-control','placeholder':'ej : Catering'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form_tendencia.masUrl,'Encuentra Mas Enlace') }}
+            {{ form_errors(form_tendencia.masUrl) }}
+            {{ form_widget(form_tendencia.masUrl,{ 'attr': {'class': 'form-control','placeholder':'ej : http://theeventplanner.pe/wedding/proveedores/catering-w'}}) }}
+        </div>
+        <div class="form-group">
             {{ form_label(form_tendencia.sort,'Sort') }}
             {{ form_errors(form_tendencia.sort) }}
             {{ form_widget(form_tendencia.sort,{ 'attr': {'class': 'form-control'}}) }}

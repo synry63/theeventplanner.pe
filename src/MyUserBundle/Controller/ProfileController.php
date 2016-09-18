@@ -33,6 +33,13 @@ class ProfileController extends Controller
      */
     public function showAction()
     {
+
+        $session = $this->getRequest()->getSession();
+        $site = $session->get('site');
+        if(empty($site)){
+            $session->set('site', 'wedding');
+        }
+
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');

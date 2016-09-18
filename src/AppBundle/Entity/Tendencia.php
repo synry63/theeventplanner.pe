@@ -88,6 +88,50 @@ class Tendencia
     private $sources;
 
     /**
+     * @ORM\Column(type="string",nullable=true, length=255)
+     */
+    private $masUrl;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=255)
+     */
+    private $masNombre;
+
+    /**
+     * @return mixed
+     */
+    public function getMasUrl()
+    {
+        return $this->masUrl;
+    }
+
+    /**
+     * @param mixed $masUrl
+     */
+    public function setMasUrl($masUrl)
+    {
+        $this->masUrl = $masUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMasNombre()
+    {
+        return $this->masNombre;
+    }
+
+    /**
+     * @param mixed $masNombre
+     */
+    public function setMasNombre($masNombre)
+    {
+        $this->masNombre = $masNombre;
+    }
+
+
+
+    /**
      * @param mixed $sources
      */
     public function setSources($sources)
