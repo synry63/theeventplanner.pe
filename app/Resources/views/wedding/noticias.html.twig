@@ -21,25 +21,26 @@
     <div class="container breadcrumbs-{{ app.request.get('slug_site') }}">
         {{ wo_render_breadcrumbs() }}
     </div>
-    <div class="container news-blog" style="margin-top: 70px">
+    <div class="container news-blog" >
         <div class="col-md-8 col-md-offset-2 new-principal">
             <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}"><img width="100%" src="{{ asset('images/mesa_flores.jpg') }}" alt=""></a>
             <div class="tittle-principal">
                 <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}"><h1>{{ noticias[0].noticia.nombre }}</h1></a>
                 <span>{{ noticias[0].noticia.adedAt|date("d F, Y") }}</span>
-                <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ noticias[0].total|length }})</span>
-                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i> Likes (0)</span>
+                <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ noticias[0].noticia.comentarios|length }})</span>
+                <span><div class="fb-like"
+                           data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}"
+                           data-layout="button_count"
+                           data-action="like"
+                           data-show-faces="false">
+                    </div></span>
+                <span><div class="fb-share-button"
+                           data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}"
+                           data-layout="button">
+                    </div></span>
             </div>
-            <div class="fb-like"
-                 data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}"
-                 data-layout="button_count"
-                 data-action="like"
-                 data-show-faces="false">
-            </div>
-            <div class="fb-share-button"
-                 data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}"
-                 data-layout="button">
-            </div>
+
+
             <hr>
         </div>
 

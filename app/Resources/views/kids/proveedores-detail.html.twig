@@ -77,25 +77,24 @@
 
                 <!-- Comentarios Section -->
                 <hr>
-                <div class="comments-box2">
+                <div class="comments-box2 comments-new">
                     <h4 class="title-heading tittle-slicks2">Comentarios <span>({{ comentarios|length }})</span></h4>
                     {% for p in comentarios %}
 
                         <div class="media comment">
-                            <div class="media-left">
+                            <div class="media-left media-{{ app.request.get('slug_site') }}">
                                 {% if p.user.profile is not null %}
                                     <img class="img-circle"  alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                                 {% else %}
                                     <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
                                 {% endif %}
                             </div>
-                            <div class="media-body">
-
-                                <h5 class="media-heading">
-                                    <h3 style="margin-top: 0;font-size: 21px;margin-bottom: 5px">{{ p.titulo }}</h3>
+                            <div class="media-body media-body-{{ app.request.get('slug_site') }}">
+                                <div>
+                                    <h3>{{ p.titulo }}</h3>
                                     <div class="rateYo_comments" data-rating="{{ p.nota }}"></div><span>{{ p.user.nombres }} {{ p.user.apellidos }} - </span>
                                     <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
-                                </h5>
+                                </div>
                                 <p>{{ p.comentario }}</p>
                                 <div class="col-md-11 respuesta">
                                     {% if p.respuesta is not null %}

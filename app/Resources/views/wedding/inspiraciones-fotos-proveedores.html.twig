@@ -32,57 +32,54 @@
                     <p>Por el momento no existen fotos de proveedores en esta sección.</p>
                 {% endif %}
             </div>
-            <div class="row">
 
-                <div class="container">
-                    <ul class="grid effect-1" id="grid">
-                        {% for fp in fotos_proveedores  %}
-                            <li>
-                                {% if app.user is not null %}
-                                    {% set me_gusta = 0 %}
-                                    {% for fu in app.user.fotos %}
-                                        {% if fu.foto.id==fp.id %}
-                                            {% set me_gusta = 1 %}
-                                        {% endif %}
-                                    {% endfor %}
-                                    {% if me_gusta==1 %}
-                                        <div class="boton-megusta_wedding">
-                                            <a href="{{ path('inspiraciones_proveedor_foto_me_gusta',
-                                            {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
-                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    {% else %}
-                                        <div class="boton-megusta_wedding">
-                                            <a href="{{ path('inspiraciones_proveedor_foto_me_gusta',
-                                            {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
-                                                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    {% endif %}
-                                {% else %}
-                                    <div class="boton-megusta_wedding">
-                                        <a class="ajax-popup-link" href="{{ path('inspiraciones_proveedor_foto_me_gusta',
-                                        {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
+            <ul class="grid effect-1" id="grid">
+                {% for fp in fotos_proveedores  %}
+                    <li>
+                        {% if app.user is not null %}
+                            {% set me_gusta = 0 %}
+                            {% for fu in app.user.fotos %}
+                                {% if fu.foto.id==fp.id %}
+                                    {% set me_gusta = 1 %}
                                 {% endif %}
-                                <a class="popup_proveedores" href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': fp.proveedor.slug}) }}"  title="{{ fp.proveedor.nombre }}">
-                                    <img src="{{ vich_uploader_asset(fp, 'imgFile')}}" alt="">
+                            {% endfor %}
+                            {% if me_gusta==1 %}
+                                <div class="boton-megusta_wedding">
+                                    <a href="{{ path('inspiraciones_proveedor_foto_me_gusta',
+                                    {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="boton-megusta_wedding">
+                                    <a href="{{ path('inspiraciones_proveedor_foto_me_gusta',
+                                    {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="boton-megusta_wedding">
+                                <a class="ajax-popup-link" href="{{ path('inspiraciones_proveedor_foto_me_gusta',
+                                {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 </a>
+                            </div>
+                        {% endif %}
+                        <a class="popup_proveedores" href="{{ path('proveedor_detail', {'slug_site': 'wedding','slug_proveedor': fp.proveedor.slug}) }}"  title="{{ fp.proveedor.nombre }}">
+                            <img src="{{ vich_uploader_asset(fp, 'imgFile')}}" alt="">
+                        </a>
 
-                            </li>
-                        {% endfor %}
+                    </li>
+                {% endfor %}
 
-                    </ul>
+            </ul>
 
-                </div>
-                <div class="navigation-wedding">
-                    {{ knp_pagination_render(fotos_proveedores,'foundation_v5_pagination.html.twig') }}
-                </div>
-
+            <div class="navigation-wedding">
+                {{ knp_pagination_render(fotos_proveedores,'foundation_v5_pagination.html.twig') }}
             </div>
+
+
         </div>
 {% endblock %}
 

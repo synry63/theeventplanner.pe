@@ -22,7 +22,7 @@
     </div>
     <div class="container">
 
-        <h1 class="tittle-slicks2">{{ inspiraciones[1].tendencia.nombre }}</h1>
+        <h1 class="title-tendencias" >{{ inspiraciones[1].tendencia.nombre }}</h1>
         <ul class="grid effect-1" id="grid">
             {% for ifa in inspiraciones %}
                 <li>
@@ -83,6 +83,8 @@
             <hr>
         </div>
     {% endif %}
+
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

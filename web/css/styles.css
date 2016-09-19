@@ -343,7 +343,15 @@ GLOBAL
     text-rendering: optimizeLegibility;
     font-family: 'Bree Serif', serif;
 }
-
+.title-tendencias{
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    color: rgba(0,0,0,.7);
+    margin: 0 35px 0 35px;
+    text-rendering: optimizeLegibility;
+    font-family: 'Bree Serif', serif;
+}
 .subtittle-slick{
     font-size: 17px;
     text-align: center;
@@ -522,9 +530,7 @@ GLOBAL
     margin: 0;
 
 }
-.proveedor-detail-page{
-    margin-top: 30px;
-}
+
 .proveedor-detail-page .info-window{
     font-weight: bold;
 }
@@ -550,7 +556,7 @@ GLOBAL
 }
 .categorias{
     width:100%;
-    padding: 20px 0;
+    padding: 0 0 20px 0;
 }
 .categorias ul{
     /*width: 100%;*/
@@ -640,51 +646,7 @@ GLOBAL
     color: #fff;
     transition: all .5s;
 }
-.footer .socials a:after{
-    content: " ";
-    width: 57px;
-    height: 57px;
-    display: inline-block;
-    border-radius: 50%;
-    background: #fff;
-    position: absolute;
-    top: 0;
-    left: -2px;
-    opacity: 0;
-    transform: scale(1.4);
-    transition: all .6s ease;
-}
-.footer .socials a:hover:after{
-    transform: scale(1);
-    z-index: -1;
-    opacity: 1;
-}
 
-.footer .socials a:hover{
-    border-radius: 50%;
-    border: 2px solid #fff;
-    background: #fff;
-}
-.footer-wedding .socials a:hover i{
-    color: #35B3B4;
-}
-.footer-kids .socials a:hover i{
-    color: #A70C77;
-}
-.footer-party .socials a:hover i{
-    color: #cad538;
-}
-.footer-dinner .socials a:hover i{
-    color: #0e6970;
-}
-/*
-.footer-wedding li a{
-    background: none;
-}
-.footer-wedding li a:hover{
-    background: rgba(255,255,255,.5);
-    border: solid 1px #fff;
-}*/
 
 
 
@@ -833,7 +795,7 @@ GLOBAL
 }
 
 .categorias-list-page{
-    margin-top: 30px;
+
     min-height: 380px;
 }
 
@@ -959,9 +921,9 @@ GLOBAL
 .user-login span{
     display: block;
 }
-.btn-login img{
+.btn-login button img{
     display: inline-block;
-    height: 40px;
+    height: 40px;/* aqui esta el error */
     width: 40px;
 }
 .btn-login{
@@ -1075,7 +1037,7 @@ GLOBAL
 }
 .rateYo_comments+span{
     text-transform: capitalize;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -1091,9 +1053,12 @@ GLOBAL
     border:none;
 }
 .video-general{
-    margin: 20px;
+    margin-bottom: 20px;
     border: solid 5px #fff;
     box-shadow: 0 0 5px rgba(0,0,0,.4);
+}
+.container-sin .grid{
+    margin: 0 auto;
 }
 
 .title-heading{
@@ -1250,7 +1215,7 @@ Proveedores-List
 ===============*/
 .image-prov{
     position: relative;
-    margin: 20px 0 45px 0;
+    margin: 0 0 65px 0;
 }
 
 .image-prov .prov-foto-wedding{
@@ -1473,7 +1438,6 @@ Votos GRID
     position: relative;
     max-width: 100%;
     width: 100%;
-    margin-top: 30px;
     margin-bottom: 50px;
 }
 
@@ -1514,6 +1478,41 @@ Votos GRID
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+/*=============
+New Comments
+===============*/
+.comments-new .media-wedding img{
+    border: solid 1px #35b3b4;
+    padding: 2px;
+}
+
+.comments-new h3{
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: capitalize;
+    display: inline-block;
+    float: left;
+}
+.comments-new .media-body-wedding h3{
+    color: #35B3B4;
+}
+.comments-new .media-body-wedding, .comments-new .media-body-kids,.comments-new .media-body-party{
+    border: solid 1px #f1f1f1;
+    padding: 10px;
+}
+.comments-new .media-body-wedding small, .comments-new .media-body-kids small, .comments-new .media-body-party small{
+    float: right;
+}
+.comments-new .media-body-wedding p, .comments-new .media-body-kids p, .comments-new .media-body-party p{
+    text-align: justify;
+    margin-top: 25px;
+}
+
+
+
 /*=============
  WEDDING
 ===============*/
@@ -1809,7 +1808,7 @@ Details Social icons
     color: #1dcaff;
     text-decoration: none;
 }
-.social-icons2 a:nth-child(3){
+.social-icons2 a:nth-child(4){
     color: #C70052;
     text-decoration: none;
 }
@@ -2791,7 +2790,7 @@ News Blog
     color: #000;
 }
 .news-blog{
-    margin-top: 35px;
+    margin-top: 25px; /* cheka falla*/
 }
 .news-blog a{
     text-decoration: none;
@@ -2825,7 +2824,13 @@ News Blog
 .new p{
     margin-top: 7px;
 }
-
+.new-principal h1{
+    font-family: 'Bree Serif', serif;
+    font-size: 24px;
+}
+.new-principal .title-wedding{
+    color: #35B3B4;
+}
 .new-principal{
     padding:0;
     margin-bottom: 20px;
@@ -3430,9 +3435,11 @@ DASHBOARD ADMIN
 /*=============
 BREADCUMPD
 ===============*/
+.breadcrumbs-wedding, .breadcrumbs-kids, .breadcrumbs-party, .breadcrumbs-dinner{
+    margin-bottom: 20px;
+}
 .breadcrumbs-wedding ol, .breadcrumbs-kids ol, .breadcrumbs-party ol, .breadcrumbs-dinner ol{
     margin-bottom: 0;
-    margin-top: 15px;
     padding: 0;
     background: none;
     text-transform: capitalize;
