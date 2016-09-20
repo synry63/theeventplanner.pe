@@ -41,11 +41,29 @@
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                 </a>
                             </div>
+                            <div class="boton-share-default">
+                                <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}"
+                                   href="javascript:void(0);" class="shareBtnFacebook">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-square fa-stack-2x"></i>
+                                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </div>
                         {% else %}
                             <div class="boton-megusta_wedding">
                                 <a href="{{ path('inspiracion_me_gusta',
                                 {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="boton-share-default">
+                                <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}"
+                                   href="javascript:void(0);" class="shareBtnFacebook">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-square fa-stack-2x"></i>
+                                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
                                 </a>
                             </div>
                         {% endif %}
@@ -57,7 +75,6 @@
                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
                             </a>
                         </div>
-
                         <div class="boton-share-default">
                             <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}"
                                href="javascript:void(0);" class="shareBtnFacebook">
@@ -105,7 +122,7 @@
                 method: 'feed',
                 link: "{{ app.request.uri }}",
                 picture: $(this).attr('data-src'),
-                title: "{{ inspiraciones[1].tendencia.nombre }}",
+                title: $(this).attr('data-name'),
 
             }, function(response){});
         });

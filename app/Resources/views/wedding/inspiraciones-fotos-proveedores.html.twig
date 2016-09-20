@@ -50,11 +50,29 @@
                                         <i class="fa fa-heart" aria-hidden="true"></i>
                                     </a>
                                 </div>
+                                <div class="boton-share-default">
+                                    <a data-name="{{ fp.proveedor.nombre }}" data-src="{{ app.request.getUriForPath(vich_uploader_asset(fp, 'imgFile'))}}"
+                                       href="javascript:void(0);" class="shareBtnFacebook">
+                                        <span class="fa-stack fa-lg">
+                                          <i class="fa fa-square fa-stack-2x"></i>
+                                          <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </div>
                             {% else %}
                                 <div class="boton-megusta_wedding">
                                     <a href="{{ path('inspiraciones_proveedor_foto_me_gusta',
                                     {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="boton-share-default">
+                                    <a data-name="{{ fp.proveedor.nombre }}" data-src="{{ app.request.getUriForPath(vich_uploader_asset(fp, 'imgFile'))}}"
+                                       href="javascript:void(0);" class="shareBtnFacebook">
+                                        <span class="fa-stack fa-lg">
+                                          <i class="fa fa-square fa-stack-2x"></i>
+                                          <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                        </span>
                                     </a>
                                 </div>
                             {% endif %}
@@ -63,6 +81,15 @@
                                 <a class="ajax-popup-link" href="{{ path('inspiraciones_proveedor_foto_me_gusta',
                                 {'slug_site': app.request.get('slug_site'),"id":fp.id,"page":fotos_proveedores.params.page}) }}">
                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="boton-share-default">
+                                <a data-name="{{ fp.proveedor.nombre }}" data-src="{{ app.request.getUriForPath(vich_uploader_asset(fp, 'imgFile'))}}"
+                                   href="javascript:void(0);" class="shareBtnFacebook">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-square fa-stack-2x"></i>
+                                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
                                 </a>
                             </div>
                         {% endif %}
@@ -98,5 +125,16 @@
             maxDuration : 0.7,
             viewportFactor : 0.2
         } );
+
+        $( ".shareBtnFacebook" ).click(function() {
+            FB.ui({
+                method: 'feed',
+                link: "{{ app.request.uri }}",
+                picture: $(this).attr('data-src'),
+                title: $(this).attr('data-name'),
+
+            }, function(response){});
+        });
+
     </script>
 {% endblock %}

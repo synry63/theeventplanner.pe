@@ -152,7 +152,7 @@
                     <span class="text-forcomments">
                         <p>
                             {% if myc is not null %}
-                                <span>Gracias por tu Comentario</span>
+                            <span>Gracias por tu Comentario. <a class="ajax-popup-link" href="{{ path('proveedor_me_edit_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Editar</a>
                             {% else %}
                                 <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
                             {% endif %}
