@@ -34,6 +34,13 @@ class VideoType extends AbstractType
                 'kids' => 'Kids',
             ),
         ));
+        $builder->add('player', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
+            'choices'  => array(
+                'youtube' => 'Youtube',
+                'vimeo' => 'Vimeo'
+            ),
+        ));
+
         $builder->add('url');
         $builder->add('nombre');
         $builder->add('sort');

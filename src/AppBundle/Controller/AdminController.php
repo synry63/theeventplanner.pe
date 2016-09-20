@@ -353,6 +353,25 @@ class AdminController extends Controller
 
     }
     /**
+     * @Route("/admin/musicas/{slug_site}", name="admin_musicas_seccion",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function adminMusicasSeccionAction(Request $request,$slug_site){
+        $musicas = $this->getDoctrine()->getRepository('AppBundle:Musica')->findBy(
+            array('type'=>$slug_site),
+            array('sort' => 'ASC')
+        );
+        return $this->render(
+            'admin/musicas.html.twig',
+            array(
+                'musicas'=>$musicas,
+                'seccion' => $this->menuSelected('musicas')
+            )
+        );
+    }
+
+    /**
      * @Route("/admin/noticias", name="admin_noticias")
      */
     public function adminNoticiasAction(Request $request){
@@ -368,7 +387,24 @@ class AdminController extends Controller
             )
         );
     }
-
+    /**
+     * @Route("/admin/noticias/{slug_site}", name="admin_noticias_seccion",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function adminNoticiasSeccionAction(Request $request,$slug_site){
+        $noticias = $this->getDoctrine()->getRepository('AppBundle:Noticia')->findBy(
+            array('type'=>$slug_site),
+            array('adedAt' => 'DESC')
+        );
+        return $this->render(
+            'admin/noticias.html.twig',
+            array(
+                'noticias'=>$noticias,
+                'seccion' => $this->menuSelected('noticias')
+            )
+        );
+    }
     /**
      * @Route("/admin/noticia/add", name="admin_noticia_add")
      */

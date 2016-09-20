@@ -38,6 +38,12 @@ class Video
     private $url;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    private $player;
+
+    /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      * @Assert\GreaterThan(value = 0)
@@ -49,6 +55,24 @@ class Video
      * @Assert\NotBlank()
      */
     private $type;
+
+    /**
+     * @return mixed
+     */
+    public function getPlayer()
+    {
+        return $this->player;
+    }
+
+    /**
+     * @param mixed $player
+     */
+    public function setPlayer($player)
+    {
+        $this->player = $player;
+    }
+
+
 
     /**
      * @param mixed $sort

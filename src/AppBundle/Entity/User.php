@@ -9,12 +9,24 @@ namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\AttributeOverrides;
+use Doctrine\ORM\Mapping\AttributeOverride;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="usuarios")
+ * @AttributeOverrides({
+ *     @AttributeOverride(name="password",
+ *         column=@ORM\Column(
+ *             name="password",
+ *             type="string",
+ *             length=255,
+ *             nullable=true
+ *         )
+ *     )
+ * })
  */
 class User extends BaseUser
 {

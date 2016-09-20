@@ -13,12 +13,69 @@ use AppBundle\Form\Type\FotoProfileType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Form\Type\ComentarioProveedorType;
 
 
 
 class UserController extends Controller
 {
 
+
+    /**
+     * @Route("/profile/proveedor/{slug_proveedor}/comentar", name="profile_edit_comentar")
+     */
+    public function userCommentsEditAction($slug_proveedor,Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
+
+        if(is_object($user)){
+            $comentarioProveedor = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')
+                ->findOneBy(array('proveedor'=>$proveedor,'user'=>$user));
+            //$comentarioProveedor = new ComentarioProveedor();
+
+            $form = $this->createForm(new ComentarioProveedorType(),$comentarioProveedor,array(
+                'action' => $this->generateUrl('profile_edit_comentar',array('slug_proveedor'=>$slug_proveedor)),
+                'method' => 'POST',
+            ));
+            //$form = $this->createForm(new ComentarioProveedorType(), $comentarioProveedor);
+            $form->handleRequest($request);
+            if ($form->isSubmitted()) {
+                if($form->isValid()){
+                    $comentarioProveedor->setUser($user);
+                    $comentarioProveedor->setProveedor($proveedor);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($comentarioProveedor);
+                    $em->flush();
+
+                    $request->getSession()->getFlashBag()->add('success', 'Comentario editado gracias !');
+                    //return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
+                    $url = $this->generateUrl('show_user_comments');
+                    $response = new JsonResponse();
+                    $response->setData(array(
+                        'success' => $url
+                    ));
+                    return $response;
+                    //return $this->redirectToRoute('task_success');
+                    //$this->redirect($request->getReferer());
+                }
+                else{
+                    $errors = $this->get('form_serializer')->serializeFormErrors($form, true, true);
+                    $response = new JsonResponse();
+                    $response->setData(array(
+                        'errors' => $errors
+                    ));
+                    return $response;
+                }
+            }
+            //$renderOut['form'] = $form->createView();
+            return $this->render(
+                'wedding/comentario_add.html.twig',array(
+                    'form'=>$form->createView()
+                )
+            );
+        }
+    }
     /**
      * @Route("/profile/comments", name="show_user_comments")
      */

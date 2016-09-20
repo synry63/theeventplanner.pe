@@ -1,5 +1,10 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
+{% endblock %}
+
 
 {% block menuprincipal %}
     {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuProfile', [], {'site':app.session.get('site'),'image_title': 'tittle_miperfil.png'}) %}
@@ -49,12 +54,19 @@
             {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
         </div>
         <div class="col-md-7 col-xs-6  profile-content">
+            {% if app.request.hasPreviousSession %}
+                {% for label, flash in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ flash }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             <h3>Comentarios Proveedores ({{ comentarios_proveedores|length }})</h3>
 
         {% for c in comentarios_proveedores  %}
 
             <div class="col-xs-12 col-md-12 comment-detail">
-
+                <a class="ajax-popup-link" href="{{ path('profile_edit_comentar', {'slug_proveedor':c.proveedor.slug}) }}">Editar</a>
                 <div class="col-xs-12 col-md-2">
                     <img class="img-responsive" width="220px" src="{{ vich_uploader_asset(c.proveedor.logo, 'logoFile') }}" alt="{{ c.proveedor.nombre }}" />
                 </div>
@@ -73,3 +85,8 @@
 
 
 {% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
+{% endblock %}

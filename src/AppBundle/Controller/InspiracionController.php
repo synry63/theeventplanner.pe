@@ -158,9 +158,15 @@ class InspiracionController extends Controller
         $breadcrumbs->addItem("Inspiraciones",$this->get("router")->generate("inspiraciones_start",array('slug_site'=>$slug_site)));
         $breadcrumbs->addItem("Videos",$this->get("router")->generate("inspiraciones_videos",array('slug_site'=>$slug_site)));
 
+        $videos = $this->getDoctrine()->getRepository('AppBundle:Video')->findBy(
+            array('type'=>$slug_site),
+            array('sort' => 'ASC')
+        );
+
 
         return $this->render(
-            $slug_site.'/inspiraciones-video.html.twig'
+            $slug_site.'/inspiraciones-video.html.twig',
+            array('videos'=>$videos)
         );
     }
     /**

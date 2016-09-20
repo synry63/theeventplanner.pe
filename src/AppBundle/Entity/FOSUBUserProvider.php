@@ -14,6 +14,39 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class FOSUBUserProvider extends BaseClass
 {
     /**
+     * @param $text
+     * @return mixed|string
+     * slugify a text
+     */
+    private function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text))
+        {
+            return 'n-a';
+        }
+
+        return $text;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function connect(UserInterface $user, UserResponseInterface $response)
@@ -46,8 +79,17 @@ class FOSUBUserProvider extends BaseClass
         $username = $response->getUsername();
         $nombres = $response->getFirstName();
         $apellidos = $response->getLastName();
+
+
+        $email = $response->getEmail();
         //$user = $this->userManager->findUserBy(array('facebookId' => $username));
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
+
+        $another_user = $this->userManager->findUserByEmail($email);
+        if($user==NULL && $another_user!=NULL){
+            echo "el usuario con el email <b>".$email."</b> ya fue registrado";
+            exit;
+        }
         //when the user is registrating
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
@@ -68,9 +110,12 @@ class FOSUBUserProvider extends BaseClass
             $user->$setter_token($response->getAccessToken());
             //I have set all requested data with the user's username
             //modify here with relevant data
+
+            $username = $this->slugify($nombres).'.'.$this->slugify($apellidos).'.'.substr(uniqid(),0,5);
+
             $user->setUsername($username);
-            $user->setEmail($username);
-            $user->setPassword($username);
+            $user->setEmail($email);
+            //$user->setPassword($username);
 
             $user->setNombres($nombres);
             $user->setApellidos($apellidos);
@@ -96,6 +141,9 @@ class FOSUBUserProvider extends BaseClass
         $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
         //update access token
         $user->$setter($response->getAccessToken());
+
+
+
         return $user;
     }
 }

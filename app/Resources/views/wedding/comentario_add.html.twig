@@ -94,10 +94,10 @@
         });
 
     }
-
-
+    if(color==undefined)
+        var color= "#b28500";
     $("#rateYo2").rateYo({
-                rating: recuperar,
+                rating: $("#comentario_proveedor_nota").val(),
                 ratedFill: color,
                 normalFill: "#A0A0A0",
                 starWidth: "60px",
