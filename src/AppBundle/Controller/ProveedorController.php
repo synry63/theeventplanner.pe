@@ -769,7 +769,7 @@ class ProveedorController extends Controller
 
     }
     /**
-     * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/comentar", name="proveedor_me_edit_comentar",requirements={
+     * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/comentar/edit", name="proveedor_me_edit_comentar",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
      * })
      */
@@ -826,11 +826,12 @@ class ProveedorController extends Controller
         }
     }
     /**
-     * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/comentar", name="proveedor_me_comentar",requirements={
+     * @Route("/user-action/{slug_site}/proveedor/{slug_proveedor}/comentar/new", name="proveedor_me_comentar",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
      * })
      */
     public function comentarProveedorUserAction($slug_site,$slug_proveedor,Request $request){
+
         $user = $this->container->get('security.context')->getToken()->getUser();
         $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
         if(is_object($user)){
