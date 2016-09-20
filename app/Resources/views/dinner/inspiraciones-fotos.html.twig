@@ -19,12 +19,12 @@
     <div class="container breadcrumbs-{{ app.request.get('slug_site') }}">
         {{ wo_render_breadcrumbs() }}
     </div>
-    <div class="container">
-        <h1 class="tittle-slicks2">{{ inspiraciones[1].tendencia.nombre }}</h1>
+    <div class="container" style="text-align: center">
+        <h1 class="title-tendencias">{{ inspiraciones[1].tendencia.nombre }}</h1>
         <ul class="grid effect-1" id="grid">
             {% for ifa in inspiraciones %}
                 <li>
-                    <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
+                    <img  src="{{ asset('images/inspiraciones/'~ifa.img) }}">
                     {% if app.user is not null %}
                         {% set me_gusta = 0 %}
                         {% for fu in app.user.inspiraciones  %}
@@ -33,26 +33,67 @@
                             {% endif %}
                         {% endfor %}
                         {% if me_gusta==1 %}
-                            <div class="boton-megusta_dinner">
+                            <div class="boton-megusta_{{ app.request.get('slug_site') }}">
                                 <a href="{{ path('inspiracion_me_gusta',
                                 {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                 </a>
                             </div>
+                            <div class="boton-share-inspiraciones">
+                                <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}"
+                                   href="javascript:void(0);" class="shareBtnFacebook">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                                <a data-src="" href="javascript:void(0);">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </div>
                         {% else %}
-                            <div class="boton-megusta_dinner">
+                            <div class="boton-megusta_{{ app.request.get('slug_site') }}">
                                 <a href="{{ path('inspiracion_me_gusta',
                                 {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 </a>
                             </div>
+                            <div class="boton-share-inspiraciones">
+                                <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}"
+                                   href="javascript:void(0);" class="shareBtnFacebook">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                                <a data-src="" href="javascript:void(0);">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </div>
                         {% endif %}
 
                     {% else %}
-                        <div class="boton-megusta_dinner">
+                        <div class="boton-megusta_{{ app.request.get('slug_site') }}">
                             <a class="ajax-popup-link" href="{{ path('inspiracion_me_gusta',
                             {'slug_site': app.request.get('slug_site'),"id":ifa.id}) }}">
                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="boton-share-inspiraciones">
+                            <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}" href="javascript:void(0);" class="shareBtnFacebook">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                            <a data-src="" href="javascript:void(0);">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+                                    </span>
                             </a>
                         </div>
 
@@ -85,5 +126,14 @@
             maxDuration : 0.7,
             viewportFactor : 0.2
         } );
+        $( ".shareBtnFacebook" ).click(function() {
+            FB.ui({
+                method: 'feed',
+                link: "{{ app.request.uri }}",
+                picture: $(this).attr('data-src'),
+                title: $(this).attr('data-name'),
+
+            }, function(response){});
+        });
     </script>
 {% endblock %}

@@ -96,8 +96,16 @@
     }
     if(color==undefined)
         var color= "#b28500";
+
+    var rating;
+    if($("#comentario_proveedor_nota").val()==""){
+        rating = 0;
+    }
+    else{
+        rating = $("#comentario_proveedor_nota").val();
+    }
     $("#rateYo2").rateYo({
-                rating: $("#comentario_proveedor_nota").val(),
+                rating: rating,
                 ratedFill: color,
                 normalFill: "#A0A0A0",
                 starWidth: "60px",

@@ -77,33 +77,40 @@
 
                 <!-- Comentarios Section -->
                 <hr>
-                <div class="comments-box2">
-
+                <div class="comments-box2 comments-new">
                     <h4 class="title-heading tittle-slicks2">Comentarios <span>({{ comentarios|length }})</span></h4>
                     {% for p in comentarios %}
 
                         <div class="media comment">
-                            <div class="media-left">
+                            <div class="media-left media-{{ app.request.get('slug_site') }}">
                                 {% if p.user.profile is not null %}
-                                    <img class="img-circle"  alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                    <img class="img-circle" width="50px" alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                                 {% else %}
-                                    <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                                    <img class="img-circle" width="50px"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
                                 {% endif %}
                             </div>
-                            <div class="media-body">
-
-                                <h5 class="media-heading">
-                                    <h3 style="margin-top: 0;font-size: 19px;margin-bottom: 5px">{{ p.titulo }}</h3>
-                                    <div class="rateYo_comments" data-rating="{{ p.nota }}"></div><span>{{ p.user.nombres }} {{ p.user.apellidos }} - </span>
+                            <div class="media-body media-body-{{ app.request.get('slug_site') }}">
+                                <div>
+                                    <h3>{{ p.titulo }}</h3>
                                     <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
-                                </h5>
-                                <p>{{ p.comentario }}</p>
+                                </div>
+                                <div style="margin-top: 25px; margin-bottom: 5px" class="rateYo_comments" data-rating="{{ p.nota }}"></div>
+                                <span>{{ p.user.nombres }} {{ p.user.apellidos }}</span>
+                                <p style="margin-top: 0">
+                                    {{ p.comentario }}
+                                    {% if myc is not null %}
+                                        {% if myc.comentario == p.comentario %}
+                                            <span class="edit-button">
+                                                <a class="ajax-popup-link" href="{{ path('proveedor_me_edit_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">| Editar</a>
+                                            </span>
+                                        {% endif %}
+                                    {% endif %}
+                                </p>
                                 <div class="col-md-11 respuesta">
                                     {% if p.respuesta is not null %}
                                         <p>{{ p.respuesta.respuesta }}</p>
                                     {% endif %}
                                 </div>
-
                             </div>
                         </div>
                     {% endfor %}

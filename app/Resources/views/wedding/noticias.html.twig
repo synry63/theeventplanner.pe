@@ -23,7 +23,9 @@
     </div>
     <div class="container news-blog" >
         <div class="col-md-8 col-md-offset-2 new-principal">
-            <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}"><img width="100%" src="{{ asset('images/mesa_flores.jpg') }}" alt=""></a>
+            <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}">
+                <img width="100%" src="{{ vich_uploader_asset(noticias[0].noticia, 'imgFile') }}" alt="">
+            </a>
             <div class="tittle-principal">
                 <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}"><h1>{{ noticias[0].noticia.nombre }}</h1></a>
                 <span>{{ noticias[0].noticia.adedAt|date("d F, Y") }}</span>
@@ -44,55 +46,26 @@
             <hr>
         </div>
 
-
-        <div class="col-md-8 col-md-offset-2">
-            <div class="row new">
-                <div class="col-md-5 col-xs-5 col-sm-5 foto-new">
-                    <a href=""> <img src="{{ asset('images/manos.jpg') }}" alt=""></a>
+        {% for n in noticias[1:] %}
+            <div class="col-md-8 col-md-offset-2">
+                <div class="row new">
+                    <div class="col-md-5 col-xs-5 col-sm-5 foto-new">
+                        <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug}) }}">
+                            <img src="{{ vich_uploader_asset(n.noticia, 'imgFile') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-7 col-xs-7 col-sm-7">
+                        <a class="titulo-noti-{{ app.request.get('slug_site') }}" href=""><h1>{{ n.noticia.nombre }}</h1></a>
+                        <span>{{ n.noticia.adedAt|date("d F, Y") }}</span>
+                        <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ n.noticia.comentarios|length }})</span>
+                        <span><i class="fa fa-thumbs-up" aria-hidden="true"></i> Likes (0)</span>
+                        <p>{{ n.noticia.parafos[0].description }}</p>
+                    </div>
                 </div>
-                <div class="col-md-7 col-xs-7 col-sm-7">
-                    <a class="titulo-noti-{{ app.request.get('slug_site') }}" href=""><h1>Ritual Unión de Manos</h1></a>
-                    <span>28 Julio, 2016 </span>
-                    <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios (0)</span>
-                    <span><i class="fa fa-thumbs-up" aria-hidden="true"></i> Likes (0)</span>
-                    <p>Hoy les traigo una tradición para incorporar en la ceremonia de matrimonio que me viene encantando desde hace ya tiempo por su significado…</p>
-                </div>
+                <hr>
             </div>
-            <hr>
-        </div>
+        {% endfor %}
 
-        <div class="col-md-8 col-md-offset-2">
-            <div class="row new">
-                <div class="col-md-5 col-xs-5 col-sm-5 foto-new">
-                    <a href=""> <img src="{{ asset('images/boda_tematica.jpg') }}" alt=""></a>
-                </div>
-                <div class="col-md-7 col-xs-7 col-sm-7">
-                    <a class="titulo-noti-{{ app.request.get('slug_site') }}" href=""><h1>Casarse con una "Boda Temática"</h1></a>
-                    <span>28 Julio, 2016 </span>
-                    <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios (0)</span>
-                    <span><i class="fa fa-thumbs-up" aria-hidden="true"></i> Likes (0)</span>
-                    <p>Los Matrimonios temáticos están de última tendencia, es una manera de dejar volar nuestra imaginación...…</p>
-
-                </div>
-            </div>
-            <hr>
-        </div>
-
-        <div class="col-md-8 col-md-offset-2">
-            <div class="row new">
-                <div class="col-md-5 col-xs-5 col-sm-5 foto-new">
-                    <a href=""> <img src="{{ asset('images/tips.jpg') }}" alt=""></a>
-                </div>
-                <div class="col-md-7 col-xs-7 col-sm-7">
-                    <a class="titulo-noti-{{ app.request.get('slug_site') }}" href=""><h1>10 tips sobre cómo elegir los regalos de matrimonio ideales para los invitados</h1></a>
-                    <span>28 Julio, 2016 </span>
-                    <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios (0)</span>
-                    <span><i class="fa fa-thumbs-up" aria-hidden="true"></i> Likes (0)</span>
-                    <p>¿Cómo elegir los recuerdos de matrimonio? Los expertos te aconsejan y te dan a conocer las alternativas favoritas</p>
-                </div>
-            </div>
-            <hr>
-        </div>
 
     </div>
 
