@@ -28,17 +28,32 @@ class InspiracionType extends AbstractType
             'class' => 'AppBundle:Tendencia',
             'choice_label' => 'nombre',
         ));*/
+        $entity = $builder->getData();
+
         $builder->add('nombre');
         $builder->add('sort');
-        $builder->add('imgFile', 'file',array(
-            'constraints' => array(
-                new NotBlank(),
-                new Image(array(
-                        'maxSize'       => '300ki')
-                )
 
-            ),
-        ));
+        if($entity->getId()==NULL) { // so new one
+            $builder->add('imgFile', 'file', array(
+                'constraints' => array(
+                    new NotBlank(),
+                    new Image(array(
+                            'maxSize' => '300ki')
+                    )
+
+                ),
+            ));
+        }
+        else{
+            $builder->add('imgFile', 'file', array(
+                'constraints' => array(
+                    new Image(array(
+                            'maxSize' => '300ki')
+                    )
+
+                ),
+            ));
+        }
         $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     public function configureOptions(OptionsResolver $resolver)

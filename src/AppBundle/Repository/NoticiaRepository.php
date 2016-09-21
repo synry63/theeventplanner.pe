@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
 
 class NoticiaRepository extends EntityRepository
 {
-    public function getNoticiasWithCountComments($type){
+    public function getNoticiasWithCountComments($type,$limit = NULL){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
         $qb->select('n as noticia,COUNT(cn) as total')
@@ -22,7 +22,8 @@ class NoticiaRepository extends EntityRepository
             ->setParameters(array(
                 'type' => $type,
             ));
-
+        if($limit!=NULL)
+            $qb->setMaxResults($limit);
         $qb->addGroupBy('n');
         $qb->addOrderBy('n.adedAt', 'DESC');
         $query = $qb->getQuery();

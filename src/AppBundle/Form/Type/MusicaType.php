@@ -34,7 +34,8 @@ class MusicaType extends AbstractType
                 'kids' => 'Kids',
             ),
         ));
-        $builder->add('url');
+        $builder->add('embedUrl');
+        $builder->add('shareUrl');
         $builder->add('nombre');
         $builder->add('sort');
 

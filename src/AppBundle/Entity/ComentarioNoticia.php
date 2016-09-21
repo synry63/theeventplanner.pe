@@ -8,6 +8,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ComentarioNoticiaRepository")
  * @ORM\Table(name="comentarios_noticias")
@@ -33,6 +34,7 @@ class ComentarioNoticia
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $comentario;
 
@@ -107,5 +109,7 @@ class ComentarioNoticia
     {
         return $this->comentario;
     }
-
+    public function __construct() {
+        $this->adedAt = new \DateTime('now');
+    }
 }

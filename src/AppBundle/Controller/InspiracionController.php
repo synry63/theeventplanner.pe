@@ -182,8 +182,14 @@ class InspiracionController extends Controller
         $breadcrumbs->addItem("Inspiraciones",$this->get("router")->generate("inspiraciones_start",array('slug_site'=>$slug_site)));
         $breadcrumbs->addItem("Canciones",$this->get("router")->generate("inspiraciones_music",array('slug_site'=>$slug_site)));
 
+        $musicas = $this->getDoctrine()->getRepository('AppBundle:Musica')->findBy(
+            array('type'=>$slug_site),
+            array('sort' => 'ASC')
+        );
+
         return $this->render(
-            $slug_site.'/inspiraciones-music.html.twig'
+            $slug_site.'/inspiraciones-music.html.twig',
+            array('musicas'=>$musicas)
         );
     }
     /**

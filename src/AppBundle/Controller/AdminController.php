@@ -8,7 +8,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Inspiracion;
 use AppBundle\Entity\Musica;
 use AppBundle\Entity\Noticia;
@@ -35,6 +34,7 @@ use Ivory\GoogleMap\Overlays\InfoWindow;
 use Ivory\GoogleMap\Events\MouseEvent;
 use AppBundle\Form\Type\ContactType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 
@@ -533,6 +533,31 @@ class AdminController extends Controller
         );
     }
     /**
+     * @Route("/admin/inspiracion/{id}", name="admin_inspiracion_edit")
+     */
+    public function adminInspiracionEditAction(Request $request,$id){
+        $inspiracion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($id);
+        $form_inspiracion = $this->createForm(new InspiracionType(), $inspiracion);
+        $form_inspiracion->handleRequest($request);
+        if ($form_inspiracion->isSubmitted() && $form_inspiracion->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            //$logo->setProveedor($proveedor);
+            $em->persist($inspiracion);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su inspiracion fue actualizada !');
+            return $this->redirectToRoute('admin_inspiracion_edit',array('id'=>$id));
+        }
+        return $this->render(
+            'admin/tendencia_inspiracion_edit.html.twig',
+            array(
+                'form' => $form_inspiracion->createView(),
+                'inspiracion'=>$inspiracion,
+                'seccion' => $this->menuSelected('tendencias')
+
+            )
+        );
+    }
+    /**
      * @Route("/admin/tendencia/{id}", name="admin_tendencia_edit")
      */
     public function adminTendenciaEditAction(Request $request,$id){
@@ -541,14 +566,25 @@ class AdminController extends Controller
             array('tendencia'=>$tendencia),
             array('sort' => 'ASC')
         );
+        $originalSource = new ArrayCollection();
+        foreach ($tendencia->getSources() as $s) {
+            $originalSource->add($s);
+        }
         $form_tendencia = $this->createForm(new TendenciaType(), $tendencia);
         $form_tendencia->handleRequest($request);
         if ($form_tendencia->isSubmitted() && $form_tendencia->isValid()) {
             //$data = $form_tendencia->getData();
+            $em = $this->getDoctrine()->getManager();
+            foreach ($originalSource as $src) {
+                if (false === $tendencia->getSources()->contains($src)) {
+                    $em->remove($src);
+                    //$s->setTendencia(null);
+                }
+            }
             foreach ($tendencia->getSources() as $src) {
                 $src->setTendencia($tendencia);
             }
-            $em = $this->getDoctrine()->getManager();
+
             $slug = $this->slugify($tendencia->getNombre());
             $tendencia->setSlug($slug);
             $tendencia->setUpdatedAt(new \DateTime('now'));

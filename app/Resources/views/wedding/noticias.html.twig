@@ -18,6 +18,8 @@
 
 {% block content %}
     {{ parent() }}
+
+
     <div class="container breadcrumbs-{{ app.request.get('slug_site') }}">
         {{ wo_render_breadcrumbs() }}
     </div>
@@ -40,6 +42,7 @@
                            data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}"
                            data-layout="button">
                     </div></span>
+                <a href="{{ 'https://twitter.com/share?text=' ~ noticias[0].noticia.nombre ~' : '~noticias[0].noticia.parafos[0].description }}" class="twitter-share-button" data-show-count="false" target="_blank">Tweet</a>
             </div>
 
 
@@ -66,7 +69,6 @@
             </div>
         {% endfor %}
 
-
     </div>
 
 
@@ -76,5 +78,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endblock %}

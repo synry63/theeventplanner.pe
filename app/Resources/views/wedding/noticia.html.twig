@@ -91,6 +91,29 @@
                 {% endfor %}
             </div>
 
+            {% if app.user is not null %}
+                <h4 class="tittle-slicks2"  style="margin-bottom: 20px">Deja tu comentario</h4>
+                <span class="text-forcomments">
+                    <p>
+                        {% if myc is not null %}
+                        <span>Gracias por tu Comentario. <a class="ajax-popup-link" href="{{ path('noticia_me_comentar_edit', {'slug_site':app.request.get('slug_site'),'slug_noticia':noticia.slug}) }}">Editar</a>
+                            {% else %}
+                                <a class="ajax-popup-link" href="{{ path('noticia_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_noticia':noticia.slug}) }}">Escribir una reseña</a>
+                            {% endif %}
+                    </p>
+                </span>
+
+            {% else %}
+                <span  class="text-forcomments text-forcomments-{{ app.request.get('slug_site') }}">
+                    <p>
+                        <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
+                        ó
+                        <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
+                        para poder comentar
+                    </p>
+            </span>
+            {% endif %}
+
         </div>
 
         <div class="col-md-4 news-relacionadas">

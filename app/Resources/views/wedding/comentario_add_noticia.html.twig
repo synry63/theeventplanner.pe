@@ -1,1 +1,20 @@
 {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<script>
+    if (typeof jQuery != 'undefined'){
+        $( document ).ready(function() {
+            $('#comentario_noticia_submit').click(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type        : $('form').attr( 'method' ),
+                    url         : $('form').attr( 'action' ),
+                    data        : $('form').serialize(),
+                    dataType    : "json"
+
+                }).done(function(data) {
+                    console.log(data);
+                });
+            });
+        });
+    }
+</script>

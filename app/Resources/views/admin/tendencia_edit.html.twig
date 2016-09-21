@@ -134,15 +134,33 @@
 <script type="text/javascript" src="{{ asset('js/AnimOnScroll.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/modernizr.custom.js') }}"></script>
 <script>
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<a href="#">delete this tag</a>');
+        $tagFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+            // remove the div for the tag form
+            $tagFormLi.remove();
+        });
+    }
+
     new AnimOnScroll( document.getElementById( 'grid' ), {
         minDuration : 0.4,
         maxDuration : 0.7,
         viewportFactor : 0.2
     } );
 
+    var sourceList = jQuery('#tendencia_sources');
+
+    jQuery('#tendencia_sources > div').each(function() {
+        addTagFormDeleteLink($(this));
+    });
+
     var sourceCount = '{{ form_tendencia.sources | length }}';
     jQuery('#add-another-source').click(function() {
-        var sourceList = jQuery('#tendencia_sources');
+        sourceList = jQuery('#tendencia_sources');
 
         // grab the prototype template
         var newWidget = sourceList.attr('data-prototype');
@@ -150,12 +168,19 @@
         // with a number that's unique to our emails
         // end name attribute looks like name="contact[emails][2]"
         newWidget = newWidget.replace(/\_\_name\_\_/g, sourceCount);
+
+        //var $removeFormA = '<a href="#">delete this tag</a>';
+        //newWidget+= $removeFormA;
         sourceCount++;
         //alert(newWidget);
         // create a new list element and add it to our list
         //var newLi = jQuery('<li></li>').html(newWidget);
         //newLi.appendTo(jQuery('#email-fields-list'));
         jQuery('#tendencia_sources').append(newWidget);
+
+        jQuery('#tendencia_sources > div:last').each(function() {
+            addTagFormDeleteLink($(this));
+        });
 
         return false;
     });

@@ -12,6 +12,7 @@ use AppBundle\Form\Type\ContactType;
 use AppBundle\Form\Type\CotizacionType;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class BlogController extends Controller
@@ -128,6 +129,58 @@ class BlogController extends Controller
                     $em->flush();
 
                     $request->getSession()->getFlashBag()->add('success', 'Gracias por tu comentario !');
+                    //return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
+                    $url = $this->generateUrl('noticia_start',array('slug_site'=>$slug_site,'slug_noticia'=>$slug_noticia));
+                    $response = new JsonResponse();
+                    $response->setData(array(
+                        'success' => $url
+                    ));
+                    return $response;
+                    //return $this->redirectToRoute('task_success');
+                    //$this->redirect($request->getReferer());
+                }
+                else{
+                    $errors = $this->get('form_serializer')->serializeFormErrors($form, true, true);
+                    $response = new JsonResponse();
+                    $response->setData(array(
+                        'errors' => $errors
+                    ));
+                    return $response;
+                }
+            }
+            //$renderOut['form'] = $form->createView();
+            return $this->render(
+                $slug_site.'/comentario_add_noticia.html.twig',array(
+                    'form'=>$form->createView()
+                )
+            );
+        }
+    }
+    /**
+     * @Route("/user-action/{slug_site}/noticia/{slug_noticia}/comentar/edit", name="noticia_me_comentar_edit",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function comentarNoticiaEditUserAction($slug_site,$slug_noticia,Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $noticia = $this->getDoctrine()->getRepository('AppBundle:Noticia')->findOneBy(array('slug'=>$slug_noticia));
+        if(is_object($user)){
+            $comentarioNoticia = $this->getDoctrine()->getRepository('AppBundle:ComentarioNoticia')
+             ->findOneBy(array('noticia'=>$noticia,'user'=>$user));
+
+            $form = $this->createForm(new ComentarioNoticiaType(),$comentarioNoticia,array(
+                'action' => $this->generateUrl('noticia_me_comentar_edit',array('slug_site' => $slug_site,'slug_noticia'=>$slug_noticia)),
+                'method' => 'POST',
+            ));
+            //$form = $this->createForm(new ComentarioProveedorType(), $comentarioProveedor);
+            $form->handleRequest($request);
+            if ($form->isSubmitted()) {
+                if($form->isValid()){
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($comentarioNoticia);
+                    $em->flush();
+
+                    $request->getSession()->getFlashBag()->add('success', 'Tu comentario fue actualizado gracias !');
                     //return $this->redirectToRoute('proveedor_detail',array('slug_site'=>$slug_site,'slug_proveedor'=>$slug_proveedor));
                     $url = $this->generateUrl('noticia_start',array('slug_site'=>$slug_site,'slug_noticia'=>$slug_noticia));
                     $response = new JsonResponse();

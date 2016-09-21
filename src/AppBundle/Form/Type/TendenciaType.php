@@ -39,7 +39,6 @@ class TendenciaType extends AbstractType
         ));
         $builder->add('nombre');
         $builder->add('description');
-        $builder->add('sources');
         $builder->add('sort');
 
         $builder->add('masNombre');
@@ -50,6 +49,7 @@ class TendenciaType extends AbstractType
             'entry_type'   => 'AppBundle\Form\Type\SourceType',
             // these options are passed to each "email" type
             'allow_add'=>true,
+            'allow_delete'=>true,
             'by_reference' => false
         ));
 

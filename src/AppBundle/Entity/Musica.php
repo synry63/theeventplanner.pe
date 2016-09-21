@@ -35,7 +35,15 @@ class Musica
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
-    private $url;
+    private $embedUrl;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    private $shareUrl;
+
+
 
     /**
      * @ORM\Column(type="integer")
@@ -115,19 +123,35 @@ class Musica
     }
 
     /**
-     * @param mixed $url
+     * @return mixed
      */
-    public function setUrl($url)
+    public function getEmbedUrl()
     {
-        $this->url = $url;
+        return $this->embedUrl;
+    }
+
+    /**
+     * @param mixed $embedUrl
+     */
+    public function setEmbedUrl($embedUrl)
+    {
+        $this->embedUrl = $embedUrl;
     }
 
     /**
      * @return mixed
      */
-    public function getUrl()
+    public function getShareUrl()
     {
-        return $this->url;
+        return $this->shareUrl;
+    }
+
+    /**
+     * @param mixed $shareUrl
+     */
+    public function setShareUrl($shareUrl)
+    {
+        $this->shareUrl = $shareUrl;
     }
 
 

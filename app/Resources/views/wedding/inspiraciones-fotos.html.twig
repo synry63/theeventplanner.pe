@@ -1,5 +1,13 @@
 {% extends 'wedding/layout.html.twig' %}
 {% block title %}Inspiraciones{% endblock %}
+{% block metaFacebook %}
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="{{ inspiraciones[1].tendencia.nombre }}" />
+    <meta property="og:description"   content="{{ inspiraciones[1].tendencia.description |nl2br }}" />
+    <meta property="og:image"         content="{{ app.request.getUriForPath(vich_uploader_asset(inspiraciones[1].tendencia, 'imgFile' ))}}" />
+    <meta property="fb:app_id"        content="286482508388833">
+    <meta property="og:url"           content={{ app.request.uri }}>
+{% endblock %}
 {% block main_title %}
 
     <div id="tittle_responsive" class="container">
@@ -42,14 +50,14 @@
                                 </a>
                             </div>
                             <div class="boton-share-inspiraciones">
-                                <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}"
+                                <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}" data-name="{{ ifa.nombre }}"
                                    href="javascript:void(0);" class="shareBtnFacebook">
                                     <span class="fa-stack fa-lg">
                                       <i class="fa fa-circle fa-stack-2x"></i>
                                       <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
-                                <a data-src="" href="javascript:void(0);">
+                                <a class="pinterest" data-pin-do="buttonPin" data-description="{{ ifa.nombre }}" data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img)) }}" data-pin-custom="true">
                                     <span class="fa-stack fa-lg">
                                       <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
                                     </span>
@@ -63,14 +71,14 @@
                                 </a>
                             </div>
                             <div class="boton-share-inspiraciones">
-                                <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}"
+                                <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}" data-name="{{ ifa.nombre }}"
                                    href="javascript:void(0);" class="shareBtnFacebook">
                                 <span class="fa-stack fa-lg">
                                   <i class="fa fa-circle fa-stack-2x"></i>
                                   <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                                 </span>
                                 </a>
-                                <a data-src="" href="javascript:void(0);">
+                                <a class="pinterest" data-pin-do="buttonPin" data-description="{{ ifa.nombre }}" data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img)) }}" data-pin-custom="true">
                                     <span class="fa-stack fa-lg">
                                       <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
                                     </span>
@@ -86,13 +94,14 @@
                             </a>
                         </div>
                         <div class="boton-share-inspiraciones">
-                            <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}" href="javascript:void(0);" class="shareBtnFacebook">
+                            <a data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img))}}" data-name="{{ ifa.nombre }}"
+                               href="javascript:void(0);" class="shareBtnFacebook">
                                 <span class="fa-stack fa-lg">
                                   <i class="fa fa-circle fa-stack-2x"></i>
                                   <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
-                            <a data-src="" href="javascript:void(0);">
+                            <a class="pinterest" data-pin-do="buttonPin" data-description="{{ ifa.nombre }}" data-src="{{ app.request.getUriForPath(asset('images/inspiraciones/'~ifa.img)) }}" data-pin-custom="true">
                                     <span class="fa-stack fa-lg">
                                       <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
                                     </span>
@@ -139,6 +148,13 @@
                 title: $(this).attr('data-name'),
 
             }, function(response){});
+        });
+
+        $( ".pinterest" ).click(function() {
+            PinUtils.pinOne({
+                media: $(this).attr('data-src'),
+                description:$(this).attr('data-description')
+            });
         });
     </script>
 {% endblock %}

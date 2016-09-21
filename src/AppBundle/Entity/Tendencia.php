@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -128,7 +129,10 @@ class Tendencia
     {
         $this->masNombre = $masNombre;
     }
-
+    public function removeSource(Source $s)
+    {
+        $this->sources->removeElement($s);
+    }
 
 
     /**
@@ -323,5 +327,8 @@ class Tendencia
         $this->updatedAt = $updatedAt;
     }
 
-
+    public function __construct()
+    {
+        $this->sources = new ArrayCollection();
+    }
 }
