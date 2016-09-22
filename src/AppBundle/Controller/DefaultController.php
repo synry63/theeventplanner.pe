@@ -42,7 +42,7 @@ class DefaultController extends Controller
 
 
 
-        $children_categories =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_site);
+        $children_categories =  $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_site,'ASC');
 
         $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_site));
 
@@ -88,7 +88,28 @@ class DefaultController extends Controller
         );
 
     }
-
+    /**
+     * @Route("/{slug_site}/quienes-somos", name="site_nosotros",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function nosotrosAction($slug_site,Request $request)
+    {
+        return $this->render(
+            $slug_site.'/nosotros.html.twig'
+        );
+    }
+    /**
+     * @Route("/{slug_site}/aspectos-legales", name="site_legal",requirements={
+     *     "slug_site": "wedding|dinner|kids|party"
+     * })
+     */
+    public function legalAction($slug_site,Request $request)
+    {
+        return $this->render(
+            $slug_site.'/legal.html.twig'
+        );
+    }
     /**
      * @Route("/{slug_site}/contactenos", name="site_contactenos",requirements={
      *     "slug_site": "wedding|dinner|kids|party"

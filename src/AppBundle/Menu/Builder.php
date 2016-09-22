@@ -497,4 +497,64 @@ class Builder implements ContainerAwareInterface
 
         return $menu;
     }
+    public function mainMenuFooter(FactoryInterface $factory, array $options)
+    {
+        $key = $options['site'];
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-default');
+
+        //$uri = $this->container->get('router')->generate('wedding_start');
+        $menu->addChild('home',array(
+                'route' => 'site_start',
+                'label' => 'Inicio',
+                'routeParameters' => array('slug_site' => $key)
+
+            )
+        );
+        $menu->addChild('proveedores',array(
+                'route' => 'site_categorias',
+                'label' => 'Proveedores',
+                'routeParameters' => array('slug_site' => $key)
+            )
+        );
+        $menu->addChild('noticias',array(
+                'route' => 'noticias_start',
+                'label' => 'Blog',
+                'routeParameters' => array('slug_site' => $key)
+            )
+        );
+
+        $menu->addChild('inspiraciones',array(
+                'route' => 'inspiraciones_start',
+                'label' => 'Inspiraciones',
+                'routeParameters' => array('slug_site' => $key),
+
+            )
+        );
+        $menu['inspiraciones']->setLinkAttribute('class', 'external-link');
+
+
+
+        $menu->addChild('contactenos',array(
+                'route' => 'site_contactenos',
+                'label' => 'Contáctenos',
+                'routeParameters' => array('slug_site' => $key)
+            )
+        );
+        $menu->addChild('quienes-somos',array(
+                'route' => 'site_nosotros',
+                'label' => 'Quiénes somos',
+                'routeParameters' => array('slug_site' => $key)
+            )
+        );
+
+        $menu->addChild('aspectos-legales',array(
+                'route' => 'site_legal',
+                'label' => 'Aspectos legales',
+                'routeParameters' => array('slug_site' => $key)
+            )
+        );
+        return $menu;
+
+    }
 }

@@ -42,7 +42,7 @@ security:
                         default_target_path: negocio_zona
             logout:
                         path:   /negocio/logout
-                        target: /
+                        target: login_negocio
         main:
             pattern: ^/.*
             oauth:
