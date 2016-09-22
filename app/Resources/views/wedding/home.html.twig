@@ -19,7 +19,7 @@
 
 {% block content %}
     {{ parent() }}
-    {{ dump(ultimas_noticias) }}
+
     <div class="placa">
 
     </div>
@@ -122,58 +122,26 @@
     <div class="container-fluid news-list">
         <div class="container">
             <h1 class="tittle-slicks" style="margin-bottom: 20px">The Event Planner Blog</h1>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a class="image-effect" href=""><img src="{{ asset('images/blog_1.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Casarse con una "Boda Temática"</h3>
-                        </a>
-                        <p>Los Matrimonios temáticos están de última tendencia, es una manera de dejar volar nuestra imaginación...
-                            <a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a>
-                        </p>
+
+
+            {% for un in ultimas_noticias %}
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <a class="image-effect" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><img src="{{ vich_uploader_asset(un.noticia, 'imgFile') }}" alt="..."></a>
+                        <div class="caption">
+                            <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}">
+                                <h3>{{ un.noticia.nombre }}</h3>
+                            </a>
+                            <p>{{ un.noticia.parafos[0].description| truncate(150)}}
+                            </p>
+                            <a style="color: #fff;" class="ver-mas-button btn btn-{{ app.request.get('slug_site') }}-entrar" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><i class="fa fa-plus" aria-hidden="true"></i> Ver Más</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_2.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Decorar el matrimonio con Flores de Papel</h3>
-                        </a>
-                        <p>Hace unos días me reuní con Karen De Sanctis, encargada de convertir el papel en todo un arte floral. Fundadora de la empresa...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
+            {% endfor %}
 
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_3.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Ritual Unión de Manos “handfasting”</h3>
-                        </a>
-                        <p>Hoy les traigo una tradición para incorporar en la ceremonia de matrimonio  que me viene encantando desde hace ya tiempo por su significado…<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
 
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a   class="image-effect" href=""><img src="{{ asset('images/blog_4.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>10 tips sobre cómo elegir los regalos de matrimonio ideales para los invitados</h3>
-                        </a>
-                        <p> ¿Cómo elegir los recuerdos de matrimonio? Los expertos te aconsejan y te dan a conocer las alternativas favoritas.<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
-
-
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 

@@ -35,7 +35,7 @@
     </div>
     <div class="container news-blog">
         <div class="col-md-8 new-principal">
-            <a href="#"><img width="100%" src="{{ vich_uploader_asset(noticia, 'imgFile') }}" alt=""></a>
+            <img width="100%" src="{{ vich_uploader_asset(noticia, 'imgFile') }}" alt="">
             <h1 class="title-{{ app.request.get('slug_site') }}">{{ noticia.nombre }}</h1>
             <span>{{ noticia.adedAt|date("d F, Y") }} </span>
             <a href="#coments" style="color: rgba(0,0,0,.7);"><span style="padding: 0 5px"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ comentarios|length }})</span></a>

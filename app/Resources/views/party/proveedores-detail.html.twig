@@ -98,11 +98,13 @@
                                 <span>{{ p.user.nombres }} {{ p.user.apellidos }}</span>
                                 <p style="margin-top: 0">
                                     {{ p.comentario }}
-                                    {% if myc is not null %}
-                                        {% if myc.comentario == p.comentario %}
-                                            <span class="edit-button">
+                                    {% if app.user is not null %}
+                                        {% if myc is not null %}
+                                            {% if myc.comentario == p.comentario %}
+                                                <span class="edit-button">
                                                 <a class="ajax-popup-link" href="{{ path('proveedor_me_edit_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">| Editar</a>
                                             </span>
+                                            {% endif %}
                                         {% endif %}
                                     {% endif %}
                                 </p>
