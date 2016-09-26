@@ -51,15 +51,3 @@
 #}
 
 
-{#
-<div id="carousel" class="flexslider">
-    <ul class="slides flex-control-nav flex-control-thumbs">
-        {% for f in proveedor.fotos  %}
-            <li data-thumb="{{ vich_uploader_asset(f, 'imgFile')|imagine_filter('thumb_fotos') }}">
-                <img src="{{ vich_uploader_asset(f, 'imgFile') }}" />
-            </li>
-        {% endfor %}
-
-    </ul>
-</div>
-#}

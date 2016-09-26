@@ -180,7 +180,25 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.flip.min.js') }}"></script>
+    <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
     <script>
+        $(".menu-footer ul li:nth-child(6) a").attr("href", "#quienes");
+
+        $(".menu-footer ul li:nth-child(6) a").click(function() {
+            $("#quienes").toggle( "blind", { direction: "down" });
+        });
+
+        $("#close").click(function() {
+            $("#quienes").hide( "blind", { direction: "down" });
+        });
+        $("html").click(function() {
+            $("#quienes").hide( "blind", { direction: "down" });
+        });
+        $('.footer').click(function(e){
+            e.stopPropagation();
+        });
+
 
         $(".two").flip({
             axis: 'y',

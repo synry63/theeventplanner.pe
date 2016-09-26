@@ -1,6 +1,5 @@
 <h1>Noticias Relacionadas</h1>
 
-
 {% for noti in noticias_related %}
     <div class="row">
         <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noti.noticia.slug}) }}" class="news-rel">
@@ -10,8 +9,7 @@
             <div class="col-md-6">
                 <h2 class="title-{{ app.request.get('slug_site') }}">{{ noti.noticia.nombre }}</h2>
                 <p>{{ noti.noticia.adedAt|date("d F, Y") }}</p>
-                <p><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ noti.total|length }})</p>
-                <p><i class="fa fa-thumbs-up" aria-hidden="true"></i> Likes (0)</p>
+                <p><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ noti.total }})</p>
             </div>
         </a>
     </div>

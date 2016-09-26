@@ -1,5 +1,27 @@
 <div class="footer footer-{{ app.request.get('slug_site') }}">
-        Síguenos en:
+
+
+        <div id="quienes" class="quienes-somos-{{ app.request.get('slug_site') }}">
+            <a id="close" href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
+            <div class="col-md-6">
+                <h1>Quienes Somos</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, odio quasi? Alias aspernatur at, atque culpa cupiditate dolores dolorum est excepturi fugiat illo maxime pariatur perferendis quam quasi qui rerum?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, odio quasi? Alias aspernatur at, atque culpa cupiditate dolores dolorum est excepturi fugiat illo maxime pariatur perferendis quam quasi qui rerum?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, odio quasi? Alias aspernatur at, atque culpa cupiditate dolores dolorum est excepturi fugiat illo maxime pariatur perferendis quam quasi qui rerum?
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, odio quasi? Alias aspernatur at, atque culpa cupiditate dolores dolorum est excepturi fugiat illo maxime pariatur perferendis quam quasi qui rerum?</p>
+
+            </div>
+            <div class="col-md-6">
+                <img src="http://placehold.it/500x350" alt=""/>
+            </div>
+
+        </div>
+
+
+        <div class="menu-footer">
+            {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuFooter', [], {'site':app.request.get('slug_site')}) %}
+            {{ knp_menu_render(menuItem) }}
+        </div>
+
 
         <div class="socials">
             <a href="https://goo.gl/z9agQw" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -8,15 +30,6 @@
             <a href="https://goo.gl/ULV46P" target="_blank"><i class="fa fa-spotify" aria-hidden="true"></i></a>
         </div>
 
-
-
-    <!--
-        <ul>
-            <li><a href="https://goo.gl/z9agQw" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-            <li><a href="https://goo.gl/TzsxfX" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-            <li><a href="https://goo.gl/5EW00m" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="https://goo.gl/ULV46P" target="_blank"><i class="fa fa-spotify" aria-hidden="true"></i></a></li>
-        </ul>-->
-        <p style="color:white;">Todos los derechos Reservados &copy - Powered by <a style="text-transform: uppercase;text-decoration: none;color:white;font-style: italic"  href="http://www.gecko-btl.com" target="_blank">Gecko</a></p>
+        <p style="color:white;margin-top: 30px">Todos los derechos Reservados &copy - Powered by <a style="text-transform: uppercase;text-decoration: none;color:white;font-style: italic"  href="http://www.gecko-btl.com" target="_blank">Gecko</a></p>
 </div>
 
