@@ -25,16 +25,17 @@
             {% for m in musicas %}
                 <div class="col-md-4 col-xs-12">
                     <iframe src="{{ m.embedUrl }}" width="320" height="640" frameborder="0" allowtransparency="true"></iframe>
-                </div>
-                <div class="boton-share-default">
-                    <a data-nombre="{{ m.nombre }}" data-src="{{ m.shareUrl }}"
-                       href="javascript:void(0);" class="shareBtnFacebook">
+                    <div class="boton-share-music">
+                        <a data-nombre="{{ m.nombre }}" data-src="{{ m.shareUrl }}"
+                           href="javascript:void(0);" class="shareBtnFacebook">
                                 <span class="fa-stack fa-lg">
                                   <i class="fa fa-square fa-stack-2x"></i>
                                   <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                                 </span>
-                    </a>
+                        </a>
+                    </div>
                 </div>
+
             {% endfor %}
 
         </div>

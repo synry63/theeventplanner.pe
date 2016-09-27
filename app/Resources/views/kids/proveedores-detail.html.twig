@@ -129,11 +129,14 @@
                 {% endblock flashbag %}
 
                 {% if app.user is not null %}
-                    <h1 class="tittle-slicks2"  style="margin-bottom: 20px">Deja tu comentario</h1>
+                    {% if myc is  null %}
+                        <hr>
+                        <h4 class="tittle-slicks2"  style="margin-bottom: 20px">Deja tu comentario</h4>
+                    {% endif %}
                     <span class="text-forcomments">
                         <p>
                             {% if myc is not null %}
-                                <span>Gracias por tu Comentario</span>
+
                             {% else %}
                                 <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
                             {% endif %}
@@ -173,7 +176,11 @@
     <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script>
-
+        $("#telefono").hide();
+        $("#telefono-link").click(function(){
+            $("#telefono-link").hide();
+            $("#telefono").show();
+        });
         $( "#button-share" ).click(function() {
             $( "#button-share" ).hide();
             $( ".social-icons2" ).show();

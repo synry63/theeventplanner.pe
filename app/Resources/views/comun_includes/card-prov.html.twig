@@ -19,12 +19,24 @@
         <button type="button" class="btn btn-coti-{{ app.request.get('slug_site') }}">Contactar Empresa</button></a>
     <br>
     <p style="text-transform: capitalize"><i class="fa fa-map-marker icon-{{ app.request.get('slug_site') }}" aria-hidden="true"></i> {{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
-    <p><i class="fa fa-phone icon-{{ app.request.get('slug_site') }}" aria-hidden="true"></i> {{ proveedor.telefono }}</p>
     {% if proveedor.web is not null %}
-        <div class="links-proveedores l{{ app.request.get('slug_site') }}">
+        <span class="links-proveedores l{{ app.request.get('slug_site') }}">
             <a href="{{ proveedor.web }}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i> Página Web</a>
-        </div>
+        </span>
+        <span>|</span>
     {% endif %}
+    {% if proveedor.web is null %}
+        <div class="links-proveedores l{{ app.request.get('slug_site') }}">
+            <a id="telefono-link" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Teléfono</a>
+            <a id="telefono" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> {{ proveedor.telefono }}</a>
+        </div>
+    {% else %}
+        <span class="links-proveedores l{{ app.request.get('slug_site') }}">
+            <a id="telefono-link" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Teléfono</a>
+            <a id="telefono" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> {{ proveedor.telefono }}</a>
+        </span>
+    {% endif %}
+
 
 
     <div class="social-icons s{{ app.request.get('slug_site') }}">
@@ -106,4 +118,3 @@
             </a>
     </div>
 </div>
-

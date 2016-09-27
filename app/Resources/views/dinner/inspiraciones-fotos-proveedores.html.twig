@@ -67,6 +67,20 @@
                                         </a>
                                     </div>
                                 {% endif %}
+                                <div class="boton-share-inspiraciones">
+                                    <a data-name="{{ fp.proveedor.nombre }}" data-src="{{ app.request.getUriForPath(vich_uploader_asset(fp, 'imgFile'))}}"
+                                       href="javascript:void(0);" class="shareBtnFacebook">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    </a>
+                                    <a class="pinterest" data-pin-do="buttonPin" data-description="{{ fp.proveedor.nombre }}" data-src="{{ app.request.getUriForPath(vich_uploader_asset(fp, 'imgFile')) }}" data-pin-custom="true">
+                                        <span class="fa-stack fa-lg">
+                                          <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </div>
                                 <a class="popup_proveedores" href="{{ path('proveedor_detail', {'slug_site': 'dinner','slug_proveedor': fp.proveedor.slug}) }}"  title="{{ fp.proveedor.nombre }}">
                                     <img src="{{ vich_uploader_asset(fp, 'imgFile')}}" alt="">
                                 </a>
@@ -101,6 +115,21 @@
             maxDuration : 0.7,
             viewportFactor : 0.2
         } );
+        $( ".shareBtnFacebook" ).click(function() {
+            FB.ui({
+                method: 'feed',
+                link: "{{ app.request.uri }}",
+                picture: $(this).attr('data-src'),
+                title: $(this).attr('data-name'),
+
+            }, function(response){});
+        });
+        $( ".pinterest" ).click(function() {
+            PinUtils.pinOne({
+                media: $(this).attr('data-src'),
+                description:$(this).attr('data-description'),
+            });
+        });
     </script>
 {% endblock %}
 

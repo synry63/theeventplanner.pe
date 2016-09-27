@@ -138,7 +138,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <hr>
+
                 <!-- Fin Comentarios Section -->
 
 
@@ -150,100 +150,20 @@
                     {% endfor %}
                 {% endblock flashbag %}
 
-
-
-
-
-
-
-
-
                 {% if app.user is not null %}
-
-                    <h4 class="tittle-slicks2"  style="margin-bottom: 20px">Deja tu comentario</h4>
+                    {% if myc is  null %}
+                        <hr>
+                         <h4 class="tittle-slicks2"  style="margin-bottom: 20px">Deja tu comentario</h4>
+                    {% endif %}
                     <span class="text-forcomments">
                         <p>
                             {% if myc is not null %}
-                            <span>Gracias por tu Comentario. <a class="ajax-popup-link" href="{{ path('proveedor_me_edit_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Editar</a></span>
+
                             {% else %}
                                 <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
                             {% endif %}
                         </p>
                     </span>
-
-
-                    {#
-                     <div class="leave-comment-box">
-
-                        <div class="row">
-
-                            <div class="col-xs-12 col-md-12 proveedor_comments">
-                                {% block flashbag %}
-                                    {% for label, flashes in app.session.flashbag.all %}
-                                    <!--<h4 class="title-heading">Escribe tu comentario</h4>-->
-                                        {% for flash in flashes %}
-                                            <div data-coment="{{ flash }}" id="coment-alert"></div>
-                                        {% endfor %}
-                                    {% endfor %}
-                                {% endblock flashbag %}
-
-                                {% if form is defined %}
-                                    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-
-                                    {% if form.vars.errors|length>0 %}
-                                        <div class="alert alert-danger" role="alert">
-                                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>
-                                        </div>
-                                    {% endif %}
-
-
-
-                                    <div class="rating-container" style="margin-top: 10px">
-                                        <div id="rateYo2"></div>
-                                        <div class="counter"></div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ form_label(form.titulo,'Título') }}
-                                        {% if form.titulo.vars.errors|length>0 %}
-                                            <div class="alert alert-danger" role="alert">
-                                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>
-                                            </div>
-                                        {% endif %}
-                                        {{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'Tu título','rows':'6'}}) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form_label(form.comentario,'Comentario') }}
-                                        {% if form.comentario.vars.errors|length>0 %}
-                                            <div class="alert alert-danger" role="alert">
-                                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>
-                                            </div>
-                                        {% endif %}
-                                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
-                                        <!-- el boton submit No renderiza con esto-->
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ form_widget(form.nota) }}
-
-                                    </div>
-                                    {{ form_end(form) }}
-
-
-                                {% endif %}
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    #}
-
 
                 {% else %}
 
@@ -279,7 +199,11 @@
     <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script>
 
-
+        $("#telefono").hide();
+        $("#telefono-link").click(function(){
+            $("#telefono-link").hide();
+            $("#telefono").show();
+        });
         $( "#button-share" ).click(function() {
             $( "#button-share" ).hide();
             $( ".social-icons2" ).show();

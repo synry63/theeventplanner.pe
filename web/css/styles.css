@@ -346,7 +346,7 @@ GLOBAL
     font-weight: 500;
     text-align: center;
     color: rgba(0,0,0,.7);
-    margin: 35px 35px 15px 35px;
+    margin: 35px;
     text-rendering: optimizeLegibility;
     font-family: 'Bree Serif', serif;
 }
@@ -628,56 +628,38 @@ GLOBAL
     margin: 0 auto;
 }
 .quienes-somos-wedding{
-    border-left: 3px solid #35B3B4;
-    border-right: 3px solid #35B3B4;
-    border-top: 3px solid #35B3B4;
+    border: 3px solid #35B3B4;
 }
 .quienes-somos-kids{
-    border-left: 3px solid #A70C77;
-    border-right: 3px solid #A70C77;
-    border-top: 3px solid #A70C77;
+    border: 3px solid #A70C77;
 }
-
 .quienes-somos-party{
-    border-left: 3px solid #95c11f;
-    border-right: 3px solid #95c11f;
-    border-top: 3px solid #95c11f;
+    border: 3px solid #95c11f;
 }
 .quienes-somos-dinner{
-    border-left: 3px solid #0E6970;
-    border-right: 3px solid #0E6970;
-    border-top: 3px solid #0E6970;
+    border: 3px solid #0E6970;
 }
 
 
 .quienes-somos-wedding h1, .quienes-somos-kids h1, .quienes-somos-party h1, .quienes-somos-dinner h1{
     font-family: 'Bree Serif', serif;
     color: rgba(0,0,0,.7);
+    text-align: center;
     margin-bottom: 30px;
     font-size: 20px;
 }
-#close{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 2;
-    font-size: 20px;
-    color: rgba(0,0,0,.7);
-}
+
 .quienes-somos-wedding,.quienes-somos-kids, .quienes-somos-party, .quienes-somos-dinner{
-    display: none;
     color: #000;
     padding: 20px;
     width: 1170px;
-    position: absolute;
-    left: 0;
-    right: 0;
+    z-index: 2;
+    position: relative;
     margin: 0 auto;
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px;
     background: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
     height: 400px;
-    bottom: 234px;
 }
 
 
@@ -1207,7 +1189,7 @@ GLOBAL
     text-align: center;
     margin: 0 auto;
     background: url(../images/contactenos_body.jpg) center/cover;
-    height: 550px;
+    height: 615px;
     width: 500px;
     color: #fff;
     padding-top: 80px;
@@ -1218,7 +1200,7 @@ GLOBAL
     text-align: center;
     margin: 0 auto;
     background: url(../images/contactenos_kids_img.jpg) center/cover;
-    height: 550px;
+    height: 615px;
     width: 500px;
     color: #fff;
     padding-top: 80px;
@@ -1228,7 +1210,7 @@ GLOBAL
     text-align: center;
     margin: 0 auto;
     background: url(../images/contactenos_party_img.jpg) center/cover;
-    height: 550px;
+    height: 615px;
     width: 500px;
     color: #fff;
     padding-top: 80px;
@@ -1238,7 +1220,7 @@ GLOBAL
     text-align: center;
     margin: 0 auto;
     background: url(../images/contactenos_dinner_img.jpg) center/cover;
-    height: 550px;
+    height: 615px;
     width: 500px;
     color: #fff;
     padding-top: 80px;
@@ -1539,8 +1521,38 @@ User Login Responsive
 .user-login-responsive{
     display: none;
 }
+/*=============
+Popup Magnific
+===============*/
 
-
+.mfp-zoom-out {
+    /* start state */
+    /* animate in */
+    /* animate out */
+}
+.mfp-zoom-out .mfp-with-anim {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.3);
+}
+.mfp-zoom-out.mfp-bg {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+.mfp-zoom-out.mfp-ready .mfp-with-anim {
+    opacity: 1;
+    transform: scale(1);
+}
+.mfp-zoom-out.mfp-ready.mfp-bg {
+    opacity: 0.8;
+}
+.mfp-zoom-out.mfp-removing .mfp-with-anim {
+    transform: scale(1.3);
+    opacity: 0;
+}
+.mfp-zoom-out.mfp-removing.mfp-bg {
+    opacity: 0;
+}
 
 /*=============
 Votos GRID
@@ -1695,24 +1707,74 @@ New Comments
 .form-wedding-contactenos label{
     color: #35B3B4;
 }
-.boton-share-default{
+
+
+
+.boton-share-video{
     padding: 0 10px;
     position: absolute;
     z-index: 2;
-    bottom: 10px;
-    left: 45px;
-
+    right: 19px;
+    bottom: 160px;
 }
-#grid .boton-share-default i.fa-square{
+#grid .boton-share-video i.fa-square{
     font-size: 2em;
 }
-#grid .boton-share-default i.fa-facebook{
+#grid .boton-share-video i.fa-facebook{
     font-size: 22px;
 }
-.boton-share-default a{
+.boton-share-video a{
     color: #3b5998;
     text-decoration: none;
 }
+
+
+.boton-share-votos{
+    padding: 0 10px 0 0;
+    z-index: 2;
+}
+#grid .boton-share-votos i.fa-square{
+    font-size: 2em;
+}
+#grid .boton-share-votos i.fa-facebook{
+    font-size: 22px;
+}
+.boton-share-votos a{
+    color: #3b5998;
+    text-decoration: none;
+}
+.boton-share-votos a:last-child{
+    color: #4099FF;
+}
+
+
+.boton-share-music{
+    padding: 0 10px 0 0;
+    z-index: 2;
+}
+.boton-share-music:after{
+    content: " ";
+    display: inline-block;
+    width: 40%;
+    border-bottom: solid 1px rgba(0,0,0,.2);
+}
+.boton-share-music:before{
+    content: " ";
+    display: inline-block;
+    width: 40%;
+    border-bottom: solid 1px rgba(0,0,0,.2);
+}
+#grid .boton-share-music i.fa-square{
+    font-size: 2em;
+}
+#grid .boton-share-music i.fa-facebook{
+    font-size: 22px;
+}
+.boton-share-music a{
+    color: #3b5998;
+    text-decoration: none;
+}
+
 
 
 .boton-share-inspiraciones{
@@ -2850,6 +2912,9 @@ Animates
 /*=============
 News Blog
 ===============*/
+#comentario_noticia_comentario{
+    resize: none;
+}
 .news-relacionadas hr:last-child{
     display: none;
 }
@@ -3581,9 +3646,11 @@ BREADCUMPD
 }
 .breadcrumbs-wedding ol li:last-child, .breadcrumbs-kids ol li:last-child, .breadcrumbs-party ol li:last-child, .breadcrumbs-dinner ol li:last-child{
     font-weight: bold;
+    text-transform: ca;
 }
 .breadcrumbs-wedding ol li:last-child span, .breadcrumbs-kids ol li:last-child span, .breadcrumbs-party ol li:last-child span, .breadcrumbs-dinner ol li:last-child span{
     border-bottom: solid 1px;
+    
 }
 
 .breadcrumbs-wedding ol li:last-child{

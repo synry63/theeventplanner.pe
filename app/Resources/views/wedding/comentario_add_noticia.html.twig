@@ -1,5 +1,46 @@
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div class="leave-comment-box" style="background-color: #fff; padding: 20px 40px; width: 462px; margin: 0 auto;    position: relative;">
 
+    <div class="row">
+
+        <div class="proveedor_comments">
+
+            <h1 class="tittle-slicks" style="margin-bottom: 20px">Escribe tu comentario</h1>
+
+            {% if form is defined %}
+                {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+                {% if form.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group" id="1">
+                    {{ form_label(form.comentario,'Comentario') }}
+                    {% if form.comentario.vars.errors|length>0 %}
+                        <div class="alert alert-danger" role="alert">
+                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>
+                        </div>
+                    {% endif %}
+                    {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6', 'cols':'10'}}) }}
+                </div>
+
+                <div class="form-group" >
+                    {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+                    <!-- el boton submit No renderiza con esto-->
+                </div>
+
+                {{ form_end(form) }}
+
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+
+</div>
 <script>
     if (typeof jQuery != 'undefined'){
         $( document ).ready(function() {
@@ -13,6 +54,15 @@
 
                 }).done(function(data) {
                     console.log(data);
+                    if(data.success!=undefined){
+                        window.location.href = data.success;
+                    }
+                    else{
+                        $( "form .alert.alert-danger" ).remove();
+                        $('#comentario_noticia_submit').prop('disabled', false);
+                        if(data.errors.fields.comentario_noticia_comentario!=undefined)
+                            $( "#1 label").after("<div class='alert alert-danger' role='alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.comentario_noticia_comentario + "</div>"  );
+                    }
                 });
             });
         });

@@ -100,7 +100,7 @@
 
     <div class="container-fluid home-slicks2">
         <div class="container">
-            <h1 class="tittle-slicks" style="margin-bottom: 20px">Nuestras Tendencias</h1>
+            <h1 class="tittle-slicks" >Nuestras Tendencias</h1>
             <div class="slick_wedding">
                 {% for mi in mejores_inspiraciones %}
                     <a href="{{ path('inspiraciones_fotos',{'slug_site':'wedding','tendencia_slug':mi.inspiracion.tendencia.slug}) }}">
@@ -111,11 +111,33 @@
         </div>
     </div>
 
+    {% if ultimas_noticias is not null %}
+        <div class="container-fluid news-list">
+            <div class="container">
+                <h1 class="tittle-slicks">The Event Planner Blog</h1>
+                {% for un in ultimas_noticias %}
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <a class="image-effect" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><img src="{{ vich_uploader_asset(un.noticia, 'imgFile') }}" alt="..."></a>
+                            <div class="caption">
+                                <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}">
+                                    <h3>{{ un.noticia.nombre }}</h3>
+                                </a>
+                                <p>{{ un.noticia.parafos[0].description| truncate(150)}}
+                                </p>
+                                <a style="color: #fff;" class="ver-mas-button btn btn-{{ app.request.get('slug_site') }}-entrar" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><i class="fa fa-plus" aria-hidden="true"></i> Ver Más</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
 
+           </div>
+        </div>
+    {% endif %}
 
-    <div class="container-fluid news-list">
+    {#<div class="container-fluid news-list">
         <div class="container">
-            <h1 class="tittle-slicks" style="margin-bottom: 20px">The Event Planner Blog</h1>
+            <h1 class="tittle-slicks">The Event Planner Blog</h1>
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
                     <a class="image-effect" href=""><img src="{{ asset('images/blog_party1.jpg') }}" alt="..."></a>
@@ -169,7 +191,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>#}
 
 
 

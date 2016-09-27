@@ -22,15 +22,22 @@
         {{ wo_render_breadcrumbs() }}
     </div>
         <div class="container music-container-party" style="margin-top: 30px"> 
-            <div class="col-md-4 col-xs-12">
-                <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12163228073%3Aplaylist%3A77jJUt6EGc07iV7VBwQj38&theme=white" width="320" height="640" frameborder="0" allowtransparency="true"></iframe>
-            </div>
-            <div class="col-md-4 col-xs-12">
-                <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12163228073%3Aplaylist%3A77jJUt6EGc07iV7VBwQj38&theme=white" width="320" height="640" frameborder="0" allowtransparency="true"></iframe>
-            </div>
-            <div class="col-md-4 col-xs-12">
-                <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12163228073%3Aplaylist%3A77jJUt6EGc07iV7VBwQj38&theme=white" width="320" height="640" frameborder="0" allowtransparency="true"></iframe>
-            </div>
+            {% for m in musicas %}
+                <div class="col-md-4 col-xs-12">
+                    <iframe src="{{ m.embedUrl }}" width="320" height="640" frameborder="0" allowtransparency="true"></iframe>
+                    <div class="boton-share-music">
+                        <a data-nombre="{{ m.nombre }}" data-src="{{ m.shareUrl }}"
+                           href="javascript:void(0);" class="shareBtnFacebook">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-square fa-stack-2x"></i>
+                                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </div>
+                </div>
+
+            {% endfor %}
+
 
 
         </div>

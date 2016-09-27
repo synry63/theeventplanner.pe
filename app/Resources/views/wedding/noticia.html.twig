@@ -40,16 +40,23 @@
             <span>{{ noticia.adedAt|date("d F, Y") }} </span>
             <a href="#coments" style="color: rgba(0,0,0,.7);"><span style="padding: 0 5px"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ comentarios|length }})</span></a>
 
-            <span style="padding: 0 5px"><div class="fb-share-button"
+            <span style="padding: 0 5px">
+                <div class="fb-share-button"
                        data-href="{{ app.request.uri }}"
                        data-layout="button">
-                </div></span>
-            <span style="padding: 0 5px"><div class="fb-like"
+                </div>
+            </span>
+            <span style="padding: 0 5px">
+                <div class="fb-like"
                        data-href="{{ app.request.uri }}"
                        data-layout="button_count"
                        data-action="like"
                        data-show-faces="false">
-                </div></span>
+                </div>
+            </span>
+             <span style="position: absolute;display: inline-block;padding-left: 10px;">
+                    <a href="{{ 'https://twitter.com/share?text=' ~ noticia.nombre ~' : '~noticia.parafos[0].description }}" class="twitter-share-button" data-show-count="false" target="_blank">Tweet</a>
+             </span>
             <br>
             <br>
 
@@ -85,27 +92,50 @@
                                 <h3>{{ co.user.nombres }} {{ co.user.apellidos }}</h3>
                                 <small>{{ co.adedAt|date("d F, Y") }}</small>
                             </div>
-                            <p>{{ co.comentario }}</p>
+                            <p>{{ co.comentario }}
+                                {% if app.user is not null %}
+                                    {% if myc is not null %}
+                                        {% if myc.comentario == co.comentario %}
+                                            <span class="edit-button">
+                                                 <a class="ajax-popup-link" href="{{ path('noticia_me_comentar_edit', {'slug_site':app.request.get('slug_site'),'slug_noticia':noticia.slug}) }}">| Editar</a>
+                                            </span>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            </p>
+
+
                         </div>
                     </div>
                 {% endfor %}
             </div>
 
+            {% block flashbag %}
+                {% for label, flashes in app.session.flashbag.all %}
+                    {% for flash in flashes %}
+                        <div data-coment="{{ flash }}" id="coment-alert"></div>
+                    {% endfor %}
+                {% endfor %}
+            {% endblock flashbag %}
+
+
             {% if app.user is not null %}
-                <h4 class="tittle-slicks2"  style="margin-bottom: 20px">Deja tu comentario</h4>
+                {% if myc is null %}
+                    <h4 class="tittle-slicks2"  style="margin-bottom: 20px">Deja tu comentario</h4>
+                {% endif %}
                 <span class="text-forcomments">
                     <p>
                         {% if myc is not null %}
-                        <span>Gracias por tu Comentario. <a class="ajax-popup-link" href="{{ path('noticia_me_comentar_edit', {'slug_site':app.request.get('slug_site'),'slug_noticia':noticia.slug}) }}">Editar</a>
-                            {% else %}
-                                <a class="ajax-popup-link" href="{{ path('noticia_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_noticia':noticia.slug}) }}">Escribir una reseña</a>
-                            {% endif %}
+
+                        {% else %}
+                            <a class="ajax-popup-link" href="{{ path('noticia_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_noticia':noticia.slug}) }}">Escribir una reseña</a>
+                        {% endif %}
                     </p>
                 </span>
 
             {% else %}
                 <span  class="text-forcomments text-forcomments-{{ app.request.get('slug_site') }}">
-                    <p>
+                    <p style="margin-top: 20px">
                         <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
                         ó
                         <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
@@ -134,11 +164,30 @@
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.smoothscroll.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
         $('.news-relacionadas').fixTo('body');
 
         $(function() {
             $('html').smoothScroll(500);
         });
+
+
+        var coment_r = $("#coment-alert").attr("data-coment");
+        if(coment_r!=undefined)
+            noty({
+                text: coment_r,
+                'layout':'bottom',
+                timeout:2000,
+                type:'wedding'
+
+            });
+        var n = noty({
+            theme: 'default_noty'
+        });
+
+
     </script>
 {% endblock %}

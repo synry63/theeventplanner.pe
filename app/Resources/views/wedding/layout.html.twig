@@ -33,14 +33,14 @@
 
 {% block selloimage %}
     <a href="{{ path('selection_start') }}">
-    <div class="two">
-        <div class="front">
+        <div class="two">
+            <div class="front">
                 <img display="block" src="{{ asset('images/sello_wedding.png') }}" alt="The event Planner">
-        </div>
-        <div class="back">
+            </div>
+            <div class="back">
                 <img display="block" src="{{ asset('images/sello_w_home.png') }}" alt="The event Planner">
+            </div>
         </div>
-    </div>
     </a>
 {% endblock selloimage %}
 
@@ -93,12 +93,12 @@
                     <br>
                     <a href="{{ path('fos_user_profile_show') }}">
                         <button type="button" class="btn btn-entrar">
-                           Mi Perfil
+                            Mi Perfil
                         </button>
                     </a>
                     <a href="{{ path('fos_user_security_logout') }}">
                         <button type="button" class="btn btn-entrar">
-                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                         </button>
                     </a>
 

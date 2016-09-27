@@ -101,7 +101,7 @@
 
     <div class="container-fluid home-slicks2">
         <div class="container">
-            <h1 class="tittle-slicks" style="margin-bottom: 20px">Nuestras Tendencias</h1>
+            <h1 class="tittle-slicks">Nuestras Tendencias</h1>
             <div class="slick_wedding">
                 {% for mi in mejores_inspiraciones %}
                     <a href="{{ path('inspiraciones_fotos',{'slug_site':'kids','tendencia_slug':mi.inspiracion.tendencia.slug}) }}">
@@ -116,7 +116,7 @@
 
     <div class="container-fluid news-list">
         <div class="container">
-            <h1 class="tittle-slicks" style="margin-bottom: 20px">The Event Planner Blog</h1>
+            <h1 class="tittle-slicks">The Event Planner Blog</h1>
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
                     <a class="image-effect" href=""><img src="{{ asset('images/blog_kids1.jpg') }}" alt="..."></a>
