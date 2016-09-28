@@ -861,6 +861,48 @@ class AdminController extends Controller
         }
     }
     /**
+     * @Route("/admin/negocios/acceptados/{page}", name="admin_negocios_acceptados", defaults={"page" = 1})
+     */
+    public function adminNegociosAcceptadosShowAction(Request $request,$page){
+        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByState(true);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $proveedores_query,
+            $page,
+            6
+        //array('wrap-queries'=>true)
+        );
+
+        return $this->render(
+            'admin/negocios.html.twig',array(
+                'proveedores'=>$pagination,
+                'seccion'=>$this->menuSelected('negocios')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/negocios/en-espera/{page}", name="admin_negocios_espera", defaults={"page" = 1})
+     */
+    public function adminNegociosEnEsperaShowAction(Request $request,$page){
+        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByState(false);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $proveedores_query,
+            $page,
+            6
+        //array('wrap-queries'=>true)
+        );
+
+        return $this->render(
+            'admin/negocios.html.twig',array(
+                'proveedores'=>$pagination,
+                'seccion'=>$this->menuSelected('negocios')
+            )
+        );
+    }
+    /**
      * @Route("/admin/negocios/{page}", name="admin_negocios", defaults={"page" = 1})
      */
     public function adminNegociosShowAction(Request $request,$page){

@@ -7,7 +7,7 @@
  */
 namespace AppBundle\Controller;
 
-
+use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\ComentarioProveedor;
 use AppBundle\Entity\Logo;
 use AppBundle\Entity\PreguntaFrequente;
@@ -215,11 +215,56 @@ class ProveedorController extends Controller
         $categoria_party = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>'party'));
         $in['party'] = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildrenManaged($categoria_party);
 
-
+        $originalCategorias = new ArrayCollection();
+        foreach ($proveedor->getCategoriasListado() as $c) {
+            $originalCategorias->add($c);
+        }
         $form = $this->createForm(new ProveedorProfileType($in), $proveedor);
         $form->handleRequest($request);
-
+        $haveChanged = false;
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if(count($proveedor->getCategoriasListado())!=count($originalCategorias)){
+                $haveChanged = true;
+
+            }
+            else{
+                $totalToFound = count($originalCategorias);
+                foreach ($proveedor->getCategoriasListado() as $value1){
+                    foreach ($originalCategorias as $value2){
+                        if($value1->getId()==$value2->getId()){
+                            $totalToFound = $totalToFound-1;
+                            break;
+                        }
+                    }
+                }
+                if($totalToFound>0)
+                    $haveChanged = true;
+
+
+            }
+            // send email if proveedor had changed
+            if($haveChanged){
+                $proveedor->setIsAccepted(false);
+                // send email to admin
+                $message = \Swift_Message::newInstance();
+                $imgUrl = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+                $message->setSubject('The Event Planner - Cambio Rublo de Negocio')
+                    ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
+                    ->setTo('jsarabia@theeventplanner.pe')
+                    ->setBody(
+                        $this->renderView(
+                            'emails/negocio_cambio_rublo_admin.html.twig',
+                            array(
+                                'proveedor' => $proveedor,
+                                'logo'=>$imgUrl
+                            )
+                        )
+                    );
+                $message->setContentType("text/html");
+                $this->get('mailer')->send($message);
+
+            }
             // 4) save the Proveedor !
             $em = $this->getDoctrine()->getManager();
             $em->persist($proveedor);

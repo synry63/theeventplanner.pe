@@ -37,6 +37,18 @@ class ProveedorRepository extends EntityRepository
 
         return $query->getResult();
     }
+    public function getProveedoresByState($state){
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.isAccepted = :state')
+            ->setParameters(array(
+                'state'=>$state
+            ))
+            ->orderBy('p.nombre', 'ASC');
+        ;
+        $query = $qb->getQuery();
+
+        return $query;
+    }
     public function getProveedorCount($proveedor){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
@@ -81,6 +93,7 @@ class ProveedorRepository extends EntityRepository
         return $query->getResult();
     }
     public function getProveedoresOrderBy($order){
+
         if($order=="date"){
             $qb = $this->createQueryBuilder('p')
                 ->orderBy('p.registeredAt', 'DESC');
