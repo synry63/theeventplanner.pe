@@ -105,6 +105,18 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     private $direccion;
 
     /**
+     * @ORM\Column(type="integer",nullable=true)
+     *
+     */
+    private $countCotizar;
+
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     *
+     */
+    private $countVerTelefono;
+
+    /**
      * @ORM\Column(type="string", length=64)
      *
      */
@@ -154,6 +166,40 @@ class Proveedor implements AdvancedUserInterface, \Serializable
     {
         $this->facebookLink = $facebookLink;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCountCotizar()
+    {
+        return $this->countCotizar;
+    }
+
+    /**
+     * @param mixed $countCotizar
+     */
+    public function setCountCotizar($countCotizar)
+    {
+        $this->countCotizar = $countCotizar;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountVerTelefono()
+    {
+        return $this->countVerTelefono;
+    }
+
+    /**
+     * @param mixed $countVerTelefono
+     */
+    public function setCountVerTelefono($countVerTelefono)
+    {
+        $this->countVerTelefono = $countVerTelefono;
+    }
+
+
 
     /**
      * @return mixed

@@ -911,5 +911,26 @@ class ProveedorController extends Controller
         }
 
     }
-
+    /**
+     * @Route("/proveedor/telefono/count", name="proveedor_count_telefono")
+     */
+    public function countTelefonoAction(Request $request){
+        if($request->isXmlHttpRequest()) {
+            $id_p = $request->request->get('negocio');
+            $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('id' => $id_p));
+            if (empty($proveedor->getCountVerTelefono())) {
+                $proveedor->setCountVerTelefono(1);
+            } else {
+                $proveedor->setCountVerTelefono($proveedor->getCountVerTelefono() + 1);
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($proveedor);
+            $em->flush();
+            $response = new JsonResponse();
+            $response->setData(array(
+                'success' => 'ok'
+            ));
+            return $response;
+        }
+    }
 }

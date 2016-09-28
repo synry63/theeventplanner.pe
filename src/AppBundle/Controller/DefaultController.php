@@ -192,6 +192,17 @@ class DefaultController extends Controller
         if ($request->isXmlHttpRequest()) {
             $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
 
+            // count cotizar
+            if (empty($proveedor->getCountCotizar())) {
+                $proveedor->setCountCotizar(1);
+            } else {
+                $proveedor->setCountCotizar($proveedor->getCountCotizar() + 1);
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($proveedor);
+            $em->flush();
+            //end count cotizar
+
             $form = $this->createForm(new CotizacionType(),NULL,array(
                 'action' => $this->generateUrl('cotizacion_negocio',array('slug_site' => $slug_site,'slug_proveedor'=>$slug_proveedor)),
                 'method' => 'POST',
