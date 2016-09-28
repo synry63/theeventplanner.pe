@@ -48,6 +48,19 @@
             {{ form_widget(form_tendencia.imgFile,{ 'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="form-group">
+            {{ form_label(form_tendencia.masNombre,'Ver Más Nombre') }}
+            {{ form_errors(form_tendencia.masNombre) }}
+            {{ form_widget(form_tendencia.masNombre,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form_tendencia.masUrl,'Ver Más Url') }}
+            {{ form_errors(form_tendencia.masUrl) }}
+            {{ form_widget(form_tendencia.masUrl,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form_tendencia.sources) }}
+        </div>
+        <div class="form-group">
             {{ form_widget(form_tendencia.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
         </div>
 

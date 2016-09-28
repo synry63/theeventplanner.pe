@@ -11,7 +11,7 @@ group:
         deleted: 'El grupo ha sido borrado'
 security:
     login:
-        username: 'Nombre de usuario'
+        username: 'Usuario  o  Email'
         password: Contraseña
         remember_me: Recordar
         submit: Entrar

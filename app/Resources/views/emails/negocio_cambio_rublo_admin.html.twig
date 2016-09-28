@@ -1,2 +1,17 @@
-{{ dump(proveedor) }}
-{{ dump(logo) }}
+<html>
+
+<body>
+    <div>
+        <img width="250px" src="{{logo}}" alt="logo event planner">
+        <p>El Proveedor <strong>{{ proveedor.nombre }}</strong> a cambiado el rubro de su negocio,</p>
+        <p>ingresa a tu <a href="{{ absolute_url(path('admin_negocios')) }}" target="_blank">Panel de Administrador</a> para verificar y aprobar dicho negocio.</p>
+        <br/>
+        <br>
+        <p style="font-style: italic; color: rgba(0,0,0,.5);">"Este es un mensaje automático del sistema y no es necesario responder."</p>
+    </div>
+</body>
+
+
+</html>
+
+

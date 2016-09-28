@@ -10,11 +10,12 @@
     <title>Dashboard</title>
 </head>
 <body>
-<!--
-        <nav id="nav-dashboard" class="navbar navbar-default">
-            {{ knp_menu_render('AppBundle:Builder:menuAdmin',{ 'template': 'knp_menu.html.twig'}) }}
-        </nav>
-        -->
+{#
+<nav id="nav-dashboard" class="navbar navbar-default">
+    {{ knp_menu_render('AppBundle:Builder:menuAdmin',{ 'template': 'knp_menu.html.twig'}) }}
+</nav>
+#}
+
 
 {{ include('admin/includes/menu.html.twig', { 'seccions': seccion }) }}
 
@@ -27,13 +28,13 @@
                 {{ flash }}
             </div>
         {% endfor %}
+
+
+        {{ include('admin/buttons_proveedores.html.twig')}}
+
         {% for p in proveedores %}
             {{ include('comun_includes/listado_proveedores.html.twig', { 'p': p,'slug_site':'wedding','admin':true})}}
         {% endfor %}
-
-
-
-
 
     </div>
     <div class="navigation2">

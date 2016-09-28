@@ -143,7 +143,7 @@
                         </p>
                     </span>
                 {% else %}
-
+                    <br/>
                     <span  class="text-forcomments text-forcomments-{{ app.request.get('slug_site') }}">
                         <p>
                             <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
@@ -178,6 +178,19 @@
     <script>
         $("#telefono").hide();
         $("#telefono-link").click(function(){
+
+            var id_p = '{{ proveedor.id }}';
+            //count click
+            $.ajax({
+                type        : 'POST',
+                url         : '{{ path("proveedor_count_telefono") }}',
+                data        : {negocio:id_p},
+                dataType    : "json"
+
+            }).done(function(data) {
+                //console.log(data);
+            });
+
             $("#telefono-link").hide();
             $("#telefono").show();
         });

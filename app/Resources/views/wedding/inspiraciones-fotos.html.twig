@@ -116,6 +116,16 @@
 
     </div>
 
+    {% if tendencia.sources|length >0 %}
+        <div class="container sources-{{ app.request.get('slug_site') }}">
+            <strong>SOURCES: </strong>
+            {% for sour in tendencia.sources %}
+                <a href="{{ sour.url }}">{{ sour.nombre }}</a>,
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
     {% if tendencia.masNombre is not null and tendencia.masUrl is not null %}
         <div class="container inspiraciones_vermas_{{ app.request.get('slug_site') }}">
             <hr>

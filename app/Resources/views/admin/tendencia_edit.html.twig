@@ -41,11 +41,13 @@
             {{ form_errors(form_tendencia.type) }}
             {{ form_widget(form_tendencia.type,{ 'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="form-group">
-            {{ form_row(form_tendencia.sources) }}
 
-            <a href="#" id="add-another-source">Agregar otra fuente</a>
+        <div class="form-group group-sources">
+
+            {{ form_row(form_tendencia.sources) }}
+            <a class="btn btn-success" href="#" id="add-another-source"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro Source</a>
         </div>
+
         <div class="form-group">
             {{ form_label(form_tendencia.nombre,'Nombre') }}
             {{ form_errors(form_tendencia.nombre) }}
@@ -134,8 +136,11 @@
 <script type="text/javascript" src="{{ asset('js/AnimOnScroll.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/modernizr.custom.js') }}"></script>
 <script>
+
+
+
     function addTagFormDeleteLink($tagFormLi) {
-        var $removeFormA = $('<a href="#">delete this tag</a>');
+        var $removeFormA = $('<a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar este Source</a>');
         $tagFormLi.append($removeFormA);
 
         $removeFormA.on('click', function(e) {

@@ -166,7 +166,7 @@
                     </span>
 
                 {% else %}
-
+                    <br/>
                     <span  class="text-forcomments text-forcomments-{{ app.request.get('slug_site') }}">
                         <p>
                             <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
@@ -200,6 +200,7 @@
     <script>
 
         $("#telefono").hide();
+
         $("#telefono-link").click(function(){
 
             var id_p = '{{ proveedor.id }}';
@@ -217,6 +218,8 @@
             $("#telefono-link").hide();
             $("#telefono").show();
         });
+
+
         $( "#button-share" ).click(function() {
             $( "#button-share" ).hide();
             $( ".social-icons2" ).show();

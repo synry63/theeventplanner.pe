@@ -4,8 +4,8 @@
         {{ knp_menu_render(menuItem) }}
     </div>
     <div id="quienes" class="quienes-somos-{{ app.request.get('slug_site') }} zoom-anim-dialog mfp-hide">
-        <div class="col-md-6">
-            <h1>Quienes Somos</h1>
+        <div style="padding: 4%;text-align: center;" class="col-md-6">
+            <h1>¿Quiénes Somos?</h1>
             <p>
                 ¡Llegó al Perú la única plataforma digital que te permite hacer realidad cualquier tipo de evento!
             </p>
@@ -15,7 +15,7 @@
             </p>
         </div>
         <div class="col-md-6">
-            <img src="http://placehold.it/500x350" alt=""/>
+            <img style="position: absolute;top: 24px;" src="{{ asset('images/about_us.jpg') }}" alt=""/>
         </div>
 
     </div>
