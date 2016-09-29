@@ -130,7 +130,9 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row" style="text-align: center">
+                <a href="{{ path('negocio_zona_fotos_list') }}" class="btn btn-success"><i class="fa fa-sort" aria-hidden="true"></i> &nbsp Ordenar Fotos</a>
+            </div>
 
             <div class="fotos_galery">
                 {% for foto in fotos %}
@@ -141,6 +143,8 @@
                         <img src="{{ vich_uploader_asset(foto, 'imgFile')}}" />
                     </div>
                 {% endfor %}
+
+
             </div>
 
         </div>

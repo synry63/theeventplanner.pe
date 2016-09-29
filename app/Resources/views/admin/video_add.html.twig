@@ -18,9 +18,21 @@
 
 <div class="container">
     <div class="col-md-10 body-dashboard">
+        {% for label, flash in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flash }}
+            </div>
+        {% endfor %}
+
+        <a class="tendencias_return" href="{{ path('admin_videos') }}">
+            <button class="btn btn-entrar">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>  Regresar a Lista de Videos
+            </button>
+        </a>
+
         {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-        <h1>Agregar Nuevo Video</h1>
+        <h1 class="admin_h1">Agregar Nuevo Video</h1>
         <div class="form-group">
             {{ form_label(form.type,'Tipo') }}
             {{ form_errors(form.type) }}

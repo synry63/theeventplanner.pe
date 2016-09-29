@@ -1,1 +1,61 @@
-{{ dump(musicas) }}
+
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+{{ include('admin/includes/menu.html.twig', { 'seccions': seccion }) }}
+
+<div class="container">
+    <div class="links-tendencias">
+        <ul>
+            <li><a href="{{ path('admin_musicas_seccion', {'slug_site': 'wedding'}) }}">Musicas Weeding</a></li>
+            <li><a href="{{ path('admin_musicas_seccion', {'slug_site': 'party'}) }}">Musicas Party</a></li>
+            <li><a href="{{ path('admin_musicas_seccion', {'slug_site': 'kids'}) }}">Musicas Kids</a></li>
+            <li><a href="{{ path('admin_musicas_seccion', {'slug_site': 'dinner'}) }}">Musicas Dinner</a></li>
+        </ul>
+    </div>
+
+
+    <div class="col-md-10 body-dashboard" style="margin-top: 30px">
+
+        {% for m in musicas %}
+            <div class=" col-md-4 col-xs-12" style="margin: 5px 0;padding: 5px">
+                <a onclick="return confirm('¿Estas seguro de eliminar este playlist?');" class="admin_delete3" href="{{ path('admin_musica_delete', {'id': m.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <a class="admin_edit" href="{{ path('admin_musica_edit', {'id': m.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+                <iframe src="{{ m.embedUrl }}" width="300" height="500" frameborder="0" allowtransparency="true"></iframe>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

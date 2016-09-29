@@ -21,7 +21,7 @@
 
 </nav>
 <div class="container">
-    <div class="col-md-10 body-dashboard dash-edit">
+    <div class="col-md-10 body-dashboard">
         {% for label, flash in app.session.flashbag.get('success') %}
             <div class="alert alert-success">
                 {{ flash }}
@@ -29,10 +29,10 @@
         {% endfor %}
         <a class="tendencias_return" href="{{ path('admin_tendencias') }}">
             <button class="btn btn-entrar">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Tendencias
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Lista de Tendencias
             </button>
         </a>
-        <h1>
+        <h1 class="admin_h1">
             Editar Tendencia
         </h1>
         {{ form_start(form_tendencia,{'attr': {'novalidate': 'novalidate'}}) }}
@@ -43,7 +43,6 @@
         </div>
 
         <div class="form-group group-sources">
-
             {{ form_row(form_tendencia.sources) }}
             <a class="btn btn-success" href="#" id="add-another-source"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro Source</a>
         </div>
@@ -85,8 +84,8 @@
 
         {{ form_end(form_tendencia) }}
 
-
-        <h1>
+        <hr/>
+        <h1 class="admin_h1">
             Agregar Inspiraciones
         </h1>
 

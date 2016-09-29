@@ -16,10 +16,20 @@
 {{ include('admin/includes/menu.html.twig', { 'seccions': seccion }) }}
 
 <div class="container">
+    <div class="links-tendencias">
+        <ul>
+            <li><a href="{{ path('admin_videos_seccion', {'slug_site': 'wedding'}) }}">Videos Weeding</a></li>
+            <li><a href="{{ path('admin_videos_seccion', {'slug_site': 'party'}) }}">Videos Party</a></li>
+            <li><a href="{{ path('admin_videos_seccion', {'slug_site': 'kids'}) }}">Videos Kids</a></li>
+            <li><a href="{{ path('admin_videos_seccion', {'slug_site': 'dinner'}) }}">Videos Dinner</a></li>
+        </ul>
+    </div>
+
     <div class="col-md-10 body-dashboard" style="padding: 20px 0">
 
         {% for v in videos %}
             <div class="col-md-6">
+                <a class="admin_edit" href="{{ path('admin_video_edit', {'id': v.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
                 <a onclick="return confirm('¿Estas seguro de eliminar este video?');" class="admin_delete3" href="{{ path('admin_video_delete', {'id': v.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <div class="embed-responsive embed-responsive-16by9 video-general">
                     <iframe class="embed-responsive-item" src="{{ v.url }}"></iframe>

@@ -1,0 +1,121 @@
+<div class="container news-blog">
+    <div class="col-md-8 new-principal">
+        <img width="100%" src="{{ vich_uploader_asset(noticia, 'imgFile') }}" alt="">
+        <h1 class="title-{{ slug_site }}">{{ noticia.nombre }}</h1>
+        <span>{{ noticia.adedAt|date("d F, Y") }} </span>
+        <a href="#coments" style="color: rgba(0,0,0,.7);"><span style="padding: 0 5px"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ comentarios|length }})</span></a>
+
+            <span style="padding: 0 5px">
+                <div class="fb-share-button"
+                     data-href="{{ app.request.uri }}"
+                     data-layout="button">
+                </div>
+            </span>
+            <span style="padding: 0 5px">
+                <div class="fb-like"
+                     data-href="{{ app.request.uri }}"
+                     data-layout="button_count"
+                     data-action="like"
+                     data-show-faces="false">
+                </div>
+            </span>
+             <span style="position: absolute;display: inline-block;padding-left: 10px;">
+                    <a href="{{ 'https://twitter.com/share?text=' ~ noticia.nombre ~' : '~noticia.parafos[0].description }}" class="twitter-share-button" data-show-count="false" target="_blank">Tweet</a>
+             </span>
+        <br>
+        <br>
+
+        {% for p in noticia.parafos %}
+            <p>{{ p.description }}</p>
+            {% if p.img is not null %}
+                <img width="80%" style="margin-bottom: 20px" src="{{ vich_uploader_asset(p, 'imgFile') }}" alt=""/>
+            {% endif %}
+
+        {% endfor %}
+
+
+        {% if comentarios is not null  %}
+            <hr id="coments">
+        {% endif %}
+
+        <div class="comments-box2 comments-new">
+            {% if comentarios is not null  %}
+                <h4 class="title-heading tittle-slicks2">Comentarios <span>({{ comentarios|length }})</span></h4>
+            {% endif %}
+
+            {% for co in noticia.comentarios %}
+                <div class="media comment">
+                    <div class="media-left media-{{ slug_site }}">
+                        {% if co.user.profile is not null %}
+                            <img class="img-circle" width="50px" alt="user icon" src="{{ vich_uploader_asset(co.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                        {% else %}
+                            <img class="img-circle" width="50px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                        {% endif %}
+                    </div>
+                    <div class="media-body media-body-{{ slug_site }}">
+                        <div>
+                            <h3>{{ co.user.nombres }} {{ co.user.apellidos }}</h3>
+                            <small>{{ co.adedAt|date("d F, Y") }}</small>
+                        </div>
+                        <p>{{ co.comentario }}
+                            {% if app.user is not null %}
+                                {% if myc is not null %}
+                                    {% if myc.comentario == co.comentario %}
+                                        <span class="edit-button">
+                                                 <a class="ajax-popup-link" href="{{ path('noticia_me_comentar_edit', {'slug_site':app.request.get('slug_site'),'slug_noticia':noticia.slug}) }}">| Editar</a>
+                                            </span>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        </p>
+
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% block flashbag %}
+            {% for label, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    <div data-coment="{{ flash }}" id="coment-alert"></div>
+                {% endfor %}
+            {% endfor %}
+        {% endblock flashbag %}
+
+
+        {% if app.user is not null %}
+            {% if myc is null %}
+                <h4 class="tittle-slicks2"  style="margin-bottom: 20px">Deja tu comentario</h4>
+            {% endif %}
+            <span class="text-forcomments">
+                    <p>
+                        {% if myc is not null %}
+
+                        {% else %}
+                            <a class="ajax-popup-link" href="{{ path('noticia_me_comentar', {'slug_site':slug_site,'slug_noticia':noticia.slug}) }}">Escribir una reseña</a>
+                        {% endif %}
+                    </p>
+                </span>
+
+        {% else %}
+            <span  class="text-forcomments text-forcomments-{{ slug_site }}">
+                    <p style="margin-top: 20px">
+                        <a href="{{ path('fos_user_registration_register') }}">Regístrate</a>
+                        ó
+                        <a class="ajax-popup-link" href="{{ path('fos_user_security_login') }}">Inicia Sessión</a>
+                        para poder comentar
+                    </p>
+            </span>
+        {% endif %}
+
+    </div>
+
+    <div class="col-md-4 news-relacionadas">
+        {{ render(controller('AppBundle:Blog:relatedNoticias',{'type': noticia.type,'id':noticia.id,'slug_site':slug_site })) }}
+    </div>
+
+
+
+
+</div>

@@ -47,83 +47,109 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="container-fluid dashboard">
+    <div class="container-fluid dashboard ">
 
         {{ include('negocio/popup_logo.html.twig')}}
 
         <div class="row">
 
-            <div class="col-md-4 best_pics">
-                <div class="dashboard-section-icons">
-                    <i class="fa fa-picture-o" aria-hidden="true"></i>
-                </div>
-                <p>Fotos Destacadas</p>
-                {% for p in mejores_fotos  %}
-                    <div class="col-md-6 foto_favorite">
-                        <img src="{{ vich_uploader_asset(p.foto, 'imgFile')}}" alt="">
+            <div class="col-md-4 best_pics negocio_reg">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i> Fotos Destacadas
                     </div>
-                {% endfor %}
+                    <div class="panel-body">
+                        {% for p in mejores_fotos  %}
+                            <div class="col-md-6 foto_favorite">
+                                <img src="{{ vich_uploader_asset(p.foto, 'imgFile')}}" alt="">
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4  negocio_reg">
 
                 <div class="col-md-12 moy">
-                    <div class="dashboard-section-icons">
-                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-star" aria-hidden="true"></i> Calificacion
+                        </div>
+                        <div class="panel-body">
+                            <span>{{ moy|round(1, 'floor') }}</span>
+                            <div id="rateYo2" data-moy="{{ moy }}"></div>
+                        </div>
+
                     </div>
-                    <p>CALIFICACIÓN</p>
-                    <span>{{ moy|round(1, 'floor') }}</span>
-                    <div id="rateYo2" data-moy="{{ moy }}"></div>
                 </div>
 
                 <div class="col-md-12 total_users">
-                    <div class="dashboard-section-icons">
-                        <i class="fa fa-users" aria-hidden="true"></i>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-users" aria-hidden="true"></i> Seguidores
+                        </div>
+                        <div class="panel-body">
+                            <span id="lines2" data-total="{{favorito_total_usuarios}}">0</span>
+                            <br/>
+                            <span>Seguidores</span>
+                        </div>
+
                     </div>
-                    <span id="lines2" data-total="{{favorito_total_usuarios}}">0</span>
-                    <p>Seguidores</p>
+
                 </div>
             </div>
 
-            <div class="col-md-4 comments-negocio">
-                <div class="dashboard-section-icons">
-                    <i class="fa fa-comments" aria-hidden="true"></i>
-                </div>
+            <div class="col-md-4 comments-negocio negocio_reg">
 
-                    <div class="comments-box">
-                        <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
-                        {% for c in comentarios %}
-                            <a class="links-comments" href="{{ path('negocio_zona_comentario',{"id":c.id}) }}">
-                                <div class="media comment">
-                                    <div class="media-left">
-                                        {% if c.user.profile is not null %}
-                                            <img class="img-circle"  alt="user icon" src="{{ vich_uploader_asset(c.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
-                                        {% else %}
-                                            <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                                        {% endif %}
-                                    </div>
-                                    <div class="media-body">
-
-                                        <h5 class="media-heading">
-                                            <h3 style="margin-top: 0">{{ c.titulo }}</h3>
-                                            <div class="rateYo_comments" data-rating="{{ c.nota }}"></div><span>{{ c.user }} - </span>
-                                            <small class="date">{{ c.adedAt|date("d F, Y") }}</small>
-                                        </h5>
-                                        <p>{{ c.comentario }}</p>
-                                        <div class="col-md-11 respuesta">
-                                            {% if c.respuesta is not null %}
-                                                <p>{{ c.respuesta.respuesta }}</p>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ comentarios|length }})
+                    </div>
+                    <div class="panel-body">
+                        <div class="comments-box">
+                            {% for c in comentarios %}
+                                <a class="links-comments" href="{{ path('negocio_zona_comentario',{"id":c.id}) }}">
+                                    <div class="media comment">
+                                        <div class="media-left">
+                                            {% if c.user.profile is not null %}
+                                                <img class="img-circle"  alt="user icon" src="{{ vich_uploader_asset(c.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                            {% else %}
+                                                <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
                                             {% endif %}
                                         </div>
+                                        <div class="media-body">
 
+                                            <h5 class="media-heading">
+                                                <h3 style="margin-top: 0">{{ c.titulo }}</h3>
+                                                <div class="rateYo_comments" data-rating="{{ c.nota }}"></div><span>{{ c.user }} - </span>
+                                                <small class="date">{{ c.adedAt|date("d F, Y") }}</small>
+                                            </h5>
+                                            <p>{{ c.comentario }}</p>
+                                            <div class="col-md-11 respuesta">
+                                                {% if c.respuesta is not null %}
+                                                    <p>{{ c.respuesta.respuesta }}</p>
+                                                {% endif %}
+                                            </div>
+
+                                        </div>
+                                        <button class="btn btn-responder">Responder</button>
                                     </div>
-                                    <button class="btn btn-responder">Responder</button>
-                                </div>
-                            </a>
+                                </a>
 
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
+
+                </div>
+
+
             </div>
 
         </div>

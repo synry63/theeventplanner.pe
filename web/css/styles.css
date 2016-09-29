@@ -3167,48 +3167,42 @@ Zona de Negocio
     text-transform: uppercase;
     font-size: 12px;
 }
+.dashboard .moy .panel-body  span{
+    font-size: 90px;
+    display: block;
+    text-align: center;
+}
 .dashboard .moy{
     position: relative;
     height: 43%;
-    font-size: 90px;
-    text-align: center;
-    box-shadow: 0 0 5px rgba(0,0,0,.2);
-    padding: 10px;
 }
 .dashboard .total_users{
     position: relative;
     height: 43%;
-    font-size: 90px;
-    text-align: center;
-    box-shadow: 0 0 5px rgba(0,0,0,.2);
-    padding: 10px;
-    margin-top: 10px;
 }
 .dashboard .comments-negocio .comments-box{
     padding: 20px;
     overflow-x: auto;
-    height: 90%;
 }
-.dashboard .comments-negocio{
-    position: relative;
+.comments-negocio .panel-default{
     overflow-x: auto;
-    box-shadow: 0 0 5px rgba(0,0,0,.2);
 }
 .dashboard .moy p{
     font-weight: bold;
     font-size: 17px;
 }
-.dashboard .total_users p{
-    font-size: 50px;
-}
-.dashboard .best_pics{
-    position: relative;
-    height: 90%;
-    overflow-x: auto;
-    padding-top: 40px;
+.dashboard .total_users{
     text-align: center;
-    box-shadow: 0 0 5px rgba(0,0,0,.2);
 }
+.dashboard .total_users .panel-body span:first-child{
+    font-size: 90px;
+}
+.dashboard .total_users .panel-body span:last-child{
+    font-size: 50px;
+    font-style: normal;
+    color: rgba(0,0,0,.7);
+}
+
 .dashboard .best_pics p{
     margin-top: 10px;
     text-transform: uppercase;
@@ -3265,7 +3259,7 @@ Zona de Negocio
     padding: 10px;
     margin: 20px;
     width: 100%;
-    height: 100%;
+
 }
 .gest-img a:first-child{
     position: absolute;
@@ -3453,6 +3447,8 @@ SOURCES
 #tendencia_sources > div > label{
     display: none;
 }
+
+
 #tendencia_sources input{
     display: block;
     width: 100%;
@@ -3566,7 +3562,15 @@ DASHBOARD ADMIN
 .menu-dashboard .dropdown-menu li a:hover{
     background: #32373C;
 }
-
+.admin_h1{
+    font-size: 24px;
+    display: inline-block;
+    font-weight: bold;
+    color: #C70052;
+    padding: 5px 0;
+    border-top: solid 1px rgba(0,0,0,.1);
+    border-bottom: solid 1px rgba(0,0,0,.1);
+}
 .menu-dashboard i{
     font-size: 18px;
     padding-right: 10px;
@@ -3602,6 +3606,31 @@ DASHBOARD ADMIN
     position: absolute;
     text-shadow: 0px 0px 10px #000;
     transition: all .5s;
+}
+#noticia_parafos > div{
+    border: solid 1px rgba(35, 40, 45,.5);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+#noticia_parafos > div > label{
+    display: none;
+}
+
+#noticia_parafos textarea{
+    display: block;
+    width: 100%;
+    height: 200px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
 .admin_delete2{
     font-size: 20px;
@@ -3647,6 +3676,32 @@ DASHBOARD ADMIN
     text-shadow: 2px 2px 5px #000;
     transition: all .5s;
     text-decoration: none;
+}
+.admin_edit{
+    font-size: 20px;
+    color: #fff;
+    top:16%;
+    right: 35%;
+    z-index: 9999;
+    padding: 10px;
+    position: absolute;
+    border-radius: 10px;
+    background: rgba(0,0,0,.5);
+    text-shadow: 2px 2px 5px #000;
+    transition: all .5s;
+    text-decoration: none;
+}
+.admin_edit:hover{
+    text-decoration: none;
+    color: #fff;
+
+}
+#preview a{
+    text-decoration: none;
+    color: rgba(0,0,0,.8);
+}
+#preview .fb-share-button, #preview .fb-like,#preview .twitter-share-button, #preview .text-forcomments, #preview .tittle-slicks2,#preview .comments-new, #preview .news-relacionadas{
+    display: none;
 }
 
 .acordion-default .admin_edit2{

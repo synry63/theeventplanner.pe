@@ -11,17 +11,11 @@
 </head>
 
 <body>
-<!--
-        <nav id="nav-dashboard" class="navbar navbar-default">
-            {{ knp_menu_render('AppBundle:Builder:menuAdmin',{ 'template': 'knp_menu.html.twig'}) }}
-        </nav>
-        -->
-
 {{ include('admin/includes/menu.html.twig', { 'seccions': seccion }) }}
 
 </nav>
 <div class="container">
-    <div class="col-md-10 body-dashboard dash-edit">
+    <div class="col-md-10 body-dashboard">
         {% for label, flash in app.session.flashbag.get('success') %}
             <div class="alert alert-success">
                 {{ flash }}
@@ -29,10 +23,10 @@
         {% endfor %}
         <a class="tendencias_return" href="{{ path('admin_votos') }}">
             <button class="btn btn-entrar">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Votos
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Lista de Votos
             </button>
         </a>
-        <h1>
+        <h1 class="admin_h1">
             Editar Voto
         </h1>
         {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
@@ -66,7 +60,6 @@
 
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
-
 <script type="text/javascript" src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/imagesloaded.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>

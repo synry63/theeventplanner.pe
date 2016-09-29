@@ -33,9 +33,9 @@
             </div>
         {% endfor %}
 
-        <a class="tendencias_return" href="{{ path('admin_votos') }}">
+        <a class="tendencias_return" href="{{ path('admin_musicas') }}">
             <button class="btn btn-entrar">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a votos
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Musicas
             </button>
         </a>
 
@@ -43,8 +43,8 @@
             {% for m in musicas %}
                 <li id="{{"voto_"~ m.id }}" data-insp="{{ m.id }}" class="ui-state-default" style="height: 230px;overflow: hidden;">
                     {# <span style="color: white;position: absolute">{{ ifa.sort }}</span> #}
-                    <h1><a href="{{ path('admin_tendencia_inspiraciones', {'id': m.id}) }}">{{ m.nombre }}</a></h1>
-                    <p>"{{ m.url }}"</p>
+                    <h1><a href="javascript:void(0)">{{ m.nombre }}</a></h1>
+                    <p>"{{ m.shareUrl }}"</p>
                 </li>
             {% endfor %}
         </ul>

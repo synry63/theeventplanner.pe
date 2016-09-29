@@ -104,25 +104,27 @@
             <hr>
             <!-- Comentarios Section -->
 
-            <div class="comments-box2">
+            <div class="comments-box2 comments-new">
                 <h4 class="title-heading tittle-slicks2">Comentarios <span>(1)</span></h4>
 
-                <div class="media comment">
-                    <div class="media-left">
-                        <img class="img-circle" width="90px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                    </div>
-                    <div class="media-body">
 
-                        <h5 class="media-heading">
-                            <h3 style="margin-top: 0;font-size: 21px;margin-bottom: 5px">¡Excelente!</h3>
-                            <div class="rateYo_comments" data-rating="4"></div><span >Patrick Mary - </span>
+                <div class="media comment">
+                    <div class="media-left media-{{ app.request.get('slug_site') }}">
+                        <img class="img-circle" width="50px"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                    </div>
+                    <div class="media-body media-body-{{ app.request.get('slug_site') }}">
+                        <div>
+                            <h3>¡Excelente!</h3>
                             <small class="date">27, Julio 2016</small>
-                        </h5>
-                        <p>Que les puedo decir, aparte de que tomaron las mejores fotos del mundo en el día de mi Boda, ahora siendo wedding planner de Boda Inolvidable, los recomiendo a todas mis novias, no solo por el profesionalismo si no que tbm por el talento que tienen.</p>
+                        </div>
+                        <div style="margin-top: 25px; margin-bottom: 5px" class="rateYo_comments" data-rating="5"></div>
+                        <span>Patrick Mary</span>
+                        <p style="margin-top: 0">
+                            Que les puedo decir, aparte de que tomaron las mejores fotos del mundo en el día de mi Boda, ahora siendo wedding planner de Boda Inolvidable, los recomiendo a todas mis novias, no solo por el profesionalismo si no que tbm por el talento que tienen.
+                        </p>
                         <div class="col-md-11 respuesta">
                             <p>Estamos para servirte. que bueno que te gusto nuestro servicio</p>
                         </div>
-
                     </div>
                 </div>
 
@@ -148,7 +150,12 @@
 <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
 <script>
+    $("#telefono").hide();
 
+    $("#telefono-link").click(function(){
+        $("#telefono-link").hide();
+        $("#telefono").show();
+    });
     $( "#button-share" ).click(function() {
         $( "#button-share" ).hide();
         $( ".social-icons2" ).show();

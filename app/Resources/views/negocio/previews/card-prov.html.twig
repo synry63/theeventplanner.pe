@@ -14,11 +14,22 @@
         <button type="button" class="btn btn-coti-{{ app.request.get('slug_site') }}">Contactar Empresa</button></a>
     <br>
     <p>{{ proveedor.direccion }}, {{ proveedor.distrito }} - {{ proveedor.departamento }}</p>
-    <p>{{ proveedor.telefono }}</p>
     {% if proveedor.web is not null %}
+        <span class="links-proveedores l{{ app.request.get('slug_site') }}">
+            <a href="{{ proveedor.web }}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i> Página Web</a>
+        </span>
+        <span>|</span>
+    {% endif %}
+    {% if proveedor.web is null %}
         <div class="links-proveedores l{{ app.request.get('slug_site') }}">
-            <a href="javascript:void (0)" target="_blank">Página Web</a>
+            <a id="telefono-link" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Teléfono</a>
+            <a id="telefono" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> {{ proveedor.telefono }}</a>
         </div>
+    {% else %}
+        <span class="links-proveedores l{{ app.request.get('slug_site') }}">
+            <a id="telefono-link" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Teléfono</a>
+            <a id="telefono" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> {{ proveedor.telefono }}</a>
+        </span>
     {% endif %}
 
     <div class="social-icons s{{ app.request.get('slug_site') }}">
