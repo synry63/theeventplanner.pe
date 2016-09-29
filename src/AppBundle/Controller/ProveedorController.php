@@ -195,6 +195,7 @@ class ProveedorController extends Controller
             array('form' => $form->createView())
         );
     }
+
     /**
      * @Route("/negocio/zona/cambiar-perfile", name="negocio_zona_perfil")
      */
@@ -646,10 +647,12 @@ class ProveedorController extends Controller
 
         $user = $this->container->get('security.context')->getToken()->getUser();
         $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
+        $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getProveedorFotos($proveedor,'sort');
         $moy = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedorRating($proveedor);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProveedor')->getAllComments($proveedor);
         $renderOut = array(
             'proveedor'=>$proveedor,
+            'fotos'=>$fotos,
             'moy'=>$moy,
             'comentarios'=>$comments,
         );
@@ -729,9 +732,10 @@ class ProveedorController extends Controller
      */
     public function proveedorPreviewBySeccionAction($slug_site,Request $request){
         $proveedor = $this->get('security.token_storage')->getToken()->getUser();
+        $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getProveedorFotos($proveedor,'sort');
         $renderOut = array();
         $renderOut['proveedor'] = $proveedor;
-
+        $renderOut['fotos'] = $fotos;
         $seccions_site = array('wedding'=>false,'dinner'=>false,'kids'=>false,'party'=>false);
         foreach ($proveedor->getCategoriasListado() as $c){
             if($c->getParent()->getSlug() == 'wedding'){

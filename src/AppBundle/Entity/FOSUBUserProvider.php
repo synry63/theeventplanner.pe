@@ -80,18 +80,23 @@ class FOSUBUserProvider extends BaseClass
         $nombres = $response->getFirstName();
         $apellidos = $response->getLastName();
 
-
         $email = $response->getEmail();
         //$user = $this->userManager->findUserBy(array('facebookId' => $username));
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
-
-        $another_user = $this->userManager->findUserByEmail($email);
-        if($user==NULL && $another_user!=NULL){
-            echo "el usuario con el email <b>".$email."</b> ya fue registrado";
-            exit;
+        $user_test_email = null;
+        if($user==null){
+            $user_test_email = $this->userManager->findUserByEmail($email);
         }
+
+
+        /*if($user==NULL && $another_user!=NULL){
+            echo "Estas ingresando con con facebook con el siguientes email que ya fue
+            registrado : <b>".$email."</b> ya fue registrado.<br/>
+            ";
+            exit;
+        }*/
         //when the user is registrating
-        if (null === $user) {
+        if (null === $user && $user_test_email===null) {
             $service = $response->getResourceOwner()->getName();
             $setter = 'set'.ucfirst($service);
             $setter_id = $setter.'Id';
@@ -132,18 +137,30 @@ class FOSUBUserProvider extends BaseClass
 
             return $user;
         }
+        else if(null === $user && $user_test_email!=null){ //if user exists via email allready
+            $service = $response->getResourceOwner()->getName();
+            $setter = 'set'.ucfirst($service);
+            $setter_id = $setter.'Id';
+            $setter_token = $setter.'AccessToken';
+            $user_test_email->$setter_id($username);
+            $user_test_email->$setter_token($response->getAccessToken());
+            $this->userManager->updateUser($user_test_email);
 
-        //if user exists - go with the HWIOAuth way
-        $user = parent::loadUserByOAuthUserResponse($response);
+            return $user_test_email;
 
-        $serviceName = $response->getResourceOwner()->getName();
+        }
+        else{ //if user exists via facebook - go with the HWIOAuth way
 
-        $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
-        //update access token
-        $user->$setter($response->getAccessToken());
+            $user = parent::loadUserByOAuthUserResponse($response);
 
+            $serviceName = $response->getResourceOwner()->getName();
 
+            $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
+            //update access token
+            $user->$setter($response->getAccessToken());
 
-        return $user;
+            return $user;
+        }
+
     }
 }

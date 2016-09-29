@@ -17,9 +17,18 @@ class FotoRepository extends EntityRepository
      * @param int $limit
      * @return mixed
      */
-    public function getProveedorFotos($proveedor){
+    public function getProveedorFotos($proveedor,$orderBy = null){
 
-        $fotos = $this->findBy(array('proveedor'=>$proveedor));
+        if($orderBy=="sort"){
+            $fotos = $this->findBy(
+                array('proveedor'=>$proveedor),
+                array('sort'=>'ASC')
+            );
+        }
+        else{
+            $fotos = $this->findBy(array('proveedor'=>$proveedor));
+        }
+
 
         return $fotos;
 

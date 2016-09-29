@@ -49,6 +49,11 @@ class Foto
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $sort;
+
+    /**
     @ORM\ManyToOne(targetEntity="Proveedor",inversedBy="fotos")
     @ORM\JoinColumn(name="proveedor_id", referencedColumnName="id")
      **/
@@ -62,7 +67,7 @@ class Foto
     /**
      * @var boolean
      */
-    /** @ORM\Column(type="boolean",options={"default": false}) **/
+    /** @ORM\Column(type="boolean",nullable=true,options={"default": false}) **/
     private $isListado;
 
     /**
@@ -87,6 +92,22 @@ class Foto
     public function getIsListado()
     {
         return $this->isListado;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param mixed $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
     }
 
     /**

@@ -21,10 +21,52 @@ use AppBundle\Form\Type\ProveedorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class FotoController extends Controller
 {
+
+    /**
+     * @Route("/negocio/zona/imagenes/list", name="negocio_zona_fotos_list")
+     */
+    public function zonaFotosListAction(Request $request){
+        $proveedor = $this->get('security.token_storage')->getToken()->getUser();
+        $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getProveedorFotos($proveedor,'sort');
+
+        return $this->render(
+            'negocio/fotos_sort.html.twig',
+            array(
+                'fotos' => $fotos,
+            )
+        );
+    }
+    /**
+     * @Route("/negocio/zona/imagenes/sort", name="negocio_zona_fotos_sort")
+     */
+    public function adminFotosSortAction(Request $request){
+        if($request->isXmlHttpRequest()) {
+            $sort_string = $request->request->get('sort');
+            $arr = explode('&',$sort_string);
+            $arr_ids = array();
+            foreach ($arr as $value){
+                $temp = explode('=',$value)[1];
+                $arr_ids[] = $temp;
+            }
+            $sort = 0;
+            $em = $this->getDoctrine()->getManager();
+            foreach ($arr_ids as $foto_id){
+                $foto = $this->getDoctrine()->getRepository('AppBundle:Foto')->find($foto_id);
+                $foto->setSort($sort);
+                $em->persist($foto);
+                $sort++;
+            }
+            $em->flush();
+
+
+            return new JsonResponse(array('sort' => $sort));
+        }
+    }
     /**
      * @Route("/negocio/zona/imagenes", name="negocio_zona_imagenes")
      */
@@ -32,6 +74,8 @@ class FotoController extends Controller
         $proveedor = $this->get('security.token_storage')->getToken()->getUser();
         $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getProveedorFotos($proveedor);
         $foto = new Foto();
+
+
 
         $fotoListado = $proveedor->getFotoListado();
 
@@ -54,14 +98,15 @@ class FotoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             // 4) save the Foto !
             $foto->setProveedor($proveedor);
-            if(count($fotos)==0){
+            /*if(count($fotos)==0){
                 $foto->setIsListado(true);
             }
             else{
                 $foto->setIsListado(false);
-            }
+            }*/
             $em = $this->getDoctrine()->getManager();
             $em->persist($foto);
             $em->flush();
