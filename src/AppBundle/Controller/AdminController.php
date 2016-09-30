@@ -195,7 +195,7 @@ class AdminController extends Controller
             $em->persist($musica);
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'Su musica fue guardada !');
-            return $this->redirectToRoute('admin_video_edit',array('id'=>$id));
+            return $this->redirectToRoute('admin_musica_edit',array('id'=>$id));
         }
         return $this->render(
             'admin/musica_edit.html.twig',
@@ -440,12 +440,24 @@ class AdminController extends Controller
     public function adminNoticiaEditAction(Request $request,$id){
 
         $noticia = $this->getDoctrine()->getRepository('AppBundle:Noticia')->find($id);
+
+        $originalParafos = new ArrayCollection();
+        foreach ($noticia->getParafos() as $p) {
+            $originalParafos->add($p);
+        }
+
         $form_noticia = $this->createForm(new NoticiaType(), $noticia);
         $form_noticia->handleRequest($request);
         if ($form_noticia->isSubmitted() && $form_noticia->isValid()) {
             $slug = $this->slugify($noticia->getNombre());
             $noticia->setSlug($slug);
-
+            $em = $this->getDoctrine()->getManager();
+            foreach ($originalParafos as $p) {
+                if (false === $noticia->getParafos()->contains($p)) {
+                    $em->remove($p);
+                    //$s->setTendencia(null);
+                }
+            }
             foreach ($noticia->getParafos() as $p) {
                 $p->setNoticia($noticia);
             }
@@ -1058,8 +1070,10 @@ class AdminController extends Controller
     public function proveedorPreviewBySeccionAction($slug_site,$id,Request $request){
 
         $proveedor =  $this->getDoctrine()->getRepository('AppBundle:Proveedor')->find($id);
+        $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getProveedorFotos($proveedor,'sort');
         $renderOut = array();
         $renderOut['proveedor'] = $proveedor;
+        $renderOut['fotos'] = $fotos;
 
         $seccions_site = array('wedding'=>false,'dinner'=>false,'kids'=>false,'party'=>false);
         foreach ($proveedor->getCategoriasListado() as $c){

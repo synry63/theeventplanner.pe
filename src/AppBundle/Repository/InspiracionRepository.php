@@ -25,7 +25,7 @@ class InspiracionRepository extends EntityRepository
             ->where('ti.type = :type')
             ->setParameter('type', $type)
             ->setMaxResults( $limit );
-        $qb->addOrderBy('i.adedAt', 'DESC');
+        $qb->addOrderBy('i.updatedAt', 'DESC');
 
         $query = $qb->getQuery();
         return $query->getResult();

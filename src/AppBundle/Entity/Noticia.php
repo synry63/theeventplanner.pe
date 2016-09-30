@@ -257,5 +257,6 @@ class Noticia
     }
     public function __construct() {
         $this->adedAt = new \DateTime('now');
+        $this->parafos = new ArrayCollection();
     }
 }

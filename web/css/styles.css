@@ -3607,15 +3607,20 @@ DASHBOARD ADMIN
     text-shadow: 0px 0px 10px #000;
     transition: all .5s;
 }
-#noticia_parafos > div{
+#noticia_parafos{
+    padding: 0px;
+}
+#noticia_parafos > li{
     border: solid 1px rgba(35, 40, 45,.5);
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
+    list-style: none outside none;
+
 }
-#noticia_parafos > div > label{
+/*#noticia_parafos > div > label{
     display: none;
-}
+}*/
 
 #noticia_parafos textarea{
     display: block;

@@ -53,6 +53,13 @@ class Parafo
     private $noticia;
 
     /**
+     * @ORM\Column(type="datetime",nullable=true)
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
      * @param mixed $noticia
      */
     public function setNoticia($noticia)
@@ -83,6 +90,7 @@ class Parafo
      */
     public function setImgFile(File $image = null)
     {
+
         $this->imgFile = $image;
 
         if ($image) {

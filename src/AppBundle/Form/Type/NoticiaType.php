@@ -26,6 +26,8 @@ class NoticiaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+        $entity = $builder->getData();
+
         $builder->add('type', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
             'choices'  => array(
                 'wedding' => 'Wedding',
@@ -35,21 +37,37 @@ class NoticiaType extends AbstractType
             ),
         ));
         $builder->add('nombre');
-        $builder->add('imgFile', 'file',array(
-            'constraints' => array(
-                new NotBlank(),
-                new Image(array(
-                        'maxSize'       => '300ki')
-                )
 
-            ),
-        ));
+        if($entity->getId()==NULL) { // so new one
+            $builder->add('imgFile', 'file',array(
+                'constraints' => array(
+                    new NotBlank(),
+                    new Image(array(
+                            'maxSize'       => '300ki')
+                    )
+
+                ),
+            ));
+        }
+        else{
+            $builder->add('imgFile', 'file',array(
+                'constraints' => array(
+                    new Image(array(
+                            'maxSize'       => '300ki')
+                    )
+
+                ),
+            ));
+        }
+
+
 
         $builder->add('parafos', 'Symfony\Component\Form\Extension\Core\Type\CollectionType', array(
             // each entry in the array will be an "source" field
             'entry_type'   => 'AppBundle\Form\Type\ParafoType',
             // these options are passed to each "email" type
             'allow_add'=>true,
+            'allow_delete'=>true,
             'by_reference' => false
         ));
 

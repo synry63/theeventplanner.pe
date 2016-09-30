@@ -1,6 +1,10 @@
 <div class="footer footer-{{ app.request.get('slug_site') }}">
     <div class="menu-footer">
-        {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuFooter', [], {'site':app.session.get('site')}) %}
+        {% if profile is defined %}
+            {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuFooter', [], {'site':app.session.get('site')}) %}
+        {% else %}
+            {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuFooter', [], {'site':app.request.get('slug_site')}) %}
+        {% endif %}
         {{ knp_menu_render(menuItem) }}
     </div>
     <div id="quienes" class="quienes-somos-{{ app.request.get('slug_site') }} zoom-anim-dialog mfp-hide">

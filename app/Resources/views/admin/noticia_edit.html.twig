@@ -43,14 +43,24 @@
             </div>
             <div class="form-group">
 
-                {{ form_label(form.imgFile,'Imagen Principal') }}}
+                {{ form_label(form.imgFile,'Imagen Principal') }}
                 <img style="display: block;margin: 5px 0" width="20%" src="{{ vich_uploader_asset(noticia, 'imgFile') }}" alt="">
                 {{ form_errors(form.imgFile) }}
                 {{ form_widget(form.imgFile,{ 'attr': {'class': 'form-control'}}) }}
 
             </div>
             <div class="form-group">
-                {{ form_row(form.parafos) }}
+                {#{{ form_row(form.parafos) }}#}
+                <label class="required">Parafos</label>
+                <ul id="noticia_parafos" data-prototype="{{ form_widget(form.parafos.vars.prototype)|e('html_attr') }}">
+                {% for key,p in form.parafos %}
+                    <li>{{ form_row(p.description) }}
+                        <img width="50" height="50" style="float: right" src="{{ vich_uploader_asset(noticia.parafos[key], 'imgFile') }}" alt=""/>
+                        {{ form_row(p.imgFile) }}
+                    </li>
+                {% endfor %}
+                </ul>
+
             </div>
             <div class="form-group">
                 {{ form_widget(form.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
@@ -83,13 +93,13 @@
     var sourceCount = '{{ form.parafos | length }}';
     jQuery('#add-another-parafo').click(function() {
         var sourceList = jQuery('#noticia_parafos');
-
         // grab the prototype template
         var newWidget = sourceList.attr('data-prototype');
         // replace the "$$name$$" used in the id and name of the prototype
         // with a number that's unique to our emails
         // end name attribute looks like name="contact[emails][2]"
         newWidget = newWidget.replace(/\_\_name\_\_/g, sourceCount);
+        newWidget= "<li>"+newWidget+"</li>";
         sourceCount++;
         //alert(newWidget);
         // create a new list element and add it to our list

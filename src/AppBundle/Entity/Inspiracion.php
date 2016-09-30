@@ -51,7 +51,7 @@ class Inspiracion
      *
      * @var \DateTime
      */
-    private $adedAt;
+    private $updatedAt;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -101,20 +101,21 @@ class Inspiracion
     }
 
     /**
-     * @param \DateTime $adedAt
+     * @return \DateTime
      */
-    public function setAdedAt($adedAt)
+    public function getUpdatedAt()
     {
-        $this->adedAt = $adedAt;
+        return $this->updatedAt;
     }
 
     /**
-     * @return \DateTime
+     * @param \DateTime $updatedAt
      */
-    public function getAdedAt()
+    public function setUpdatedAt($updatedAt)
     {
-        return $this->adedAt;
+        $this->updatedAt = $updatedAt;
     }
+
 
     /**
      * @return mixed
@@ -266,7 +267,7 @@ class Inspiracion
         return $this->imgFile;
     }
     function __construct() {
-        $this->adedAt = new \DateTime('now');
+        $this->updatedAt = new \DateTime('now');
     }
 
 }
