@@ -86,9 +86,9 @@
                         <div class="media comment">
                             <div class="media-left media-{{ app.request.get('slug_site') }}">
                                 {% if p.user.profile is not null %}
-                                    <img class="img-circle" width="50px" alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                    <img class="img-circle" width="50px" height="50px" alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                                 {% else %}
-                                    <img class="img-circle" width="50px"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                                    <img class="img-circle" width="50px"  height="50px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
                                 {% endif %}
                             </div>
                             <div class="media-body media-body-{{ app.request.get('slug_site') }}">
@@ -119,7 +119,9 @@
                         </div>
                     {% endfor %}
                 </div>
-                <hr>
+
+
+
                 <!-- Fin Comentarios Section -->
                 {% block flashbag %}
                     {% for label, flashes in app.session.flashbag.all %}
@@ -304,16 +306,31 @@
             });
         });
 
-        $(window).on("orientationchange",function(){
-            if(window.orientation == 0) // Portrait
-            {
-                $('.nofunciona').fixTo('body');
+
+
+
+        if( /Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            if ( /Android|iPhone|iPod/i.test(navigator.userAgent) ){
+
+            }else{
+
+                $(window).on("orientationchange",function(){
+                    if(window.orientation == 0) // Portrait
+                    {
+                        $('.card-prov').fixTo('destroy');
+                    }
+                    else // Landscape
+                    {
+                        $('.card-prov').fixTo('body');
+
+                    }
+                });
             }
-            else // Landscape
-            {
-                $('.card-prov').fixTo('body');
-            }
-        });
+
+        }else
+        {
+            $('.card-prov').fixTo('body');
+        }
 
 
 

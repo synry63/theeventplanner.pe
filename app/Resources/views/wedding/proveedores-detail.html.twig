@@ -104,9 +104,9 @@
                         <div class="media comment">
                             <div class="media-left media-{{ app.request.get('slug_site') }}">
                                 {% if p.user.profile is not null %}
-                                    <img class="img-circle" width="50px" alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                    <img class="img-circle" width="50px" height="50px" alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                                 {% else %}
-                                    <img class="img-circle" width="50px"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                                    <img class="img-circle" width="50px" height="50px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
                                 {% endif %}
                             </div>
                             <div class="media-body media-body-{{ app.request.get('slug_site') }}">
@@ -129,12 +129,29 @@
                                     {% endif %}
 
                                 </p>
-                                <div class="col-md-11 respuesta">
-                                    {% if p.respuesta is not null %}
-                                        <p>{{ p.respuesta.respuesta }}</p>
-                                    {% endif %}
-                                </div>
+
+
+
                             </div>
+
+                            {% if p.respuesta is not null %}
+                                <div class="col-md-11 respuesta">
+
+
+                                    <div class="media-left">
+                                        <img class="img-circle" width="50px"  alt="user icon" src="{{ asset('images/logo_header.png') }}">
+                                    </div>
+
+                                    <div class="media-body media-body-{{ app.request.get('slug_site') }}">
+
+                                            <p>{{ p.respuesta.respuesta }}</p>
+
+                                    </div>
+
+
+
+                                </div>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
@@ -310,16 +327,32 @@
         });
 
 
-        $('.card-prov').fixTo('body');
-        /*
-        $(window).on("orientationchange",function(){
-            if (window.orientation !== 0) {
-                $('.card-prov').fixTo('body');
-            }else if (window.orientation == 0){ //cuando es diferente de cero
-                $('.card-prov').fixTo('destroy');
+
+
+        if( /Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            if ( /Android|iPhone|iPod/i.test(navigator.userAgent) ){
+
+            }else{
+
+                $(window).on("orientationchange",function(){
+                    if(window.orientation == 0) // Portrait
+                    {
+                        $('.card-prov').fixTo('destroy');
+                    }
+                    else // Landscape
+                    {
+                        $('.card-prov').fixTo('body');
+
+                    }
+                });
             }
-        });
-        */
+
+        }else
+        {
+            $('.card-prov').fixTo('body');
+        }
+
+
 
     </script>
 {% endblock %}

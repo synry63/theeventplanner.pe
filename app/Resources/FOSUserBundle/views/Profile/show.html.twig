@@ -1,7 +1,5 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
-
-
 {% block menuprincipal %}
     {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenuProfile', [], {'site':app.session.get('site'),'image_title': 'tittle_miperfil.png'}) %}
     {{ knp_menu_render(menuItem) }}
@@ -23,6 +21,8 @@
 {% endblock selloimage %}
 
 {% block content %}
+
+
     {% block main_title %}
         <div id="tittle_responsive" class="container">
             <div class="row">
@@ -36,6 +36,10 @@
 
 
     {{ parent() }}
+
+
+
+
     <div class="container-fluid portada-profile">
         <div class="container profile-detail">
             <div class="col-sm-4 col-xs-12">
@@ -51,6 +55,9 @@
 
 
     <div class="container">
+
+        {{ include('comun_includes/popup_password.html.twig')}}
+
         <div class="col-md-4 menu_profile">
             {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
         </div>
@@ -60,5 +67,27 @@
     </div>
 
 {% endblock content %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    <script>
 
+        var Passwordfalse= $('#password_false').attr('data-password');
+
+        if (Passwordfalse == 0){
+            setTimeout(function(){
+                $.magnificPopup.open({
+                    items: {
+                        src: $('#small-dialog'), // can be a HTML string, jQuery object, or CSS selector
+                        type: 'inline'
+                    }
+                });
+            }, 500);
+
+        }
+
+
+
+    </script>
+{% endblock %}
 

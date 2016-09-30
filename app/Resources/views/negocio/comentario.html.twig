@@ -62,45 +62,72 @@
         {% endfor %}
     {% endfor %}
 
-    <div class="col-md-6 col-md-offset-3">
-        <div class="comments-box">
 
-                <div class="media comment">
-                    <div class="media-left">
-                        {% if comentario.user.profile is not null %}
-                            <img class="img-circle"  alt="user icon" src="{{ vich_uploader_asset(comentario.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
-                        {% else %}
-                            <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                        {% endif %}
+
+    <div class="col-md-6 col-md-offset-3 negocio_reg">
+
+        <a class="tendencias_return" href="{{ path('negocio_zona_comentarios') }}" style="display: inline-block;margin-bottom: 20px">
+            <button class="btn btn-entrar">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Comentarios
+            </button>
+        </a>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-comments" aria-hidden="true"></i> Responder Comentario
+            </div>
+            <div class="panel-body">
+                <div class="comments-box2 comments-new" style="padding-top: 30px">
+
+
+                    <div class="media comment">
+                        <div class="media-left media-wedding">
+                            {% if comentario.user.profile is not null %}
+                                <img class="img-circle" width="50px" alt="user icon" src="{{ vich_uploader_asset(comentario.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                            {% else %}
+                                <img class="img-circle" width="50px"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                            {% endif %}
+                        </div>
+                        <div class="media-body media-body-wedding">
+                            <div>
+                                <h3>{{ comentario.titulo }}</h3>
+                                <small class="date">{{ comentario.adedAt|date("d F, Y") }}</small>
+                            </div>
+                            <div style="margin-top: 25px; margin-bottom: 5px" class="rateYo_comments" data-rating="{{ comentario.nota }}"></div>
+                            <span>{{ comentario.user.nombres }} {{ comentario.user.apellidos }}</span>
+                            <p style="margin-top: 0">
+                                {{ comentario.comentario }}
+                            </p>
+                            <div class="col-md-11 respuesta">
+                                {% if comentario.respuesta is not null %}
+                                    <p>{{ comentario.respuesta.respuesta }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                    <div class="media-body">
 
-                        <h5 class="media-heading">
-                            <h3 style="margin-top: 0">{{ comentario.titulo }}</h3>
-                            <div class="rateYo_comments" data-rating="{{ comentario.nota }}"></div><span>{{ comentario.user }} - </span>
-                            <small class="date">{{ comentario.adedAt|date("d F, Y") }}</small>
-                        </h5>
-                        <p>{{ comentario.comentario }}</p>
 
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.respuesta,'Respuesta') }}
+                        {{ form_errors(form.respuesta) }}
+                        {{ form_widget(form.respuesta,{ 'attr': {'class': 'form-control'}}) }}
                     </div>
+                    <div class="form-group">
+                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Responder'}) }}
+                    </div>
+                    {{ form_end(form) }}
+
+
                 </div>
 
-        </div>
-    </div>
+            </div>
 
-    <div class="col-md-6 col-md-offset-3">
-        {{ form_start(form) }}
-        <div class="form-group">
-            {{ form_label(form.respuesta,'Respuesta') }}
-            {{ form_errors(form.respuesta) }}
-            {{ form_widget(form.respuesta,{ 'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="form-group">
-            {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Responder'}) }}
-        </div>
-        {{ form_end(form) }}
-    </div>
 
+
+
+    </div>
 
 </div>
 

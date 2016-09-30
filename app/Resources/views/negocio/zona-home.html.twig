@@ -51,25 +51,51 @@
 
         {{ include('negocio/popup_logo.html.twig')}}
 
+
+
+
         <div class="row">
 
             <div class="col-md-4 best_pics negocio_reg">
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-picture-o" aria-hidden="true"></i> Fotos Destacadas
-                    </div>
-                    <div class="panel-body">
-                        {% for p in mejores_fotos  %}
-                            <div class="col-md-6 foto_favorite">
-                                <img src="{{ vich_uploader_asset(p.foto, 'imgFile')}}" alt="">
+                    <div class="col-md-12 moy2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-mouse-pointer" aria-hidden="true"></i> Clicks en Cotizar
                             </div>
-                        {% endfor %}
+                            <div class="panel-body">
+
+
+                                <span id="countCotizar" data-total="{{app.user.countCotizar}}">0</span>
+
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-12 moy2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-mouse-pointer" aria-hidden="true"></i> Clicks en Telefono
+                            </div>
+                            <div class="panel-body">
+                                <span id="countVerTelefono" data-total="{{ app.user.countVerTelefono }}">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i> Foto destacada
+                            </div>
+                            <div class="panel-body foto_best" >
 
-                </div>
+                                <img width="100%" src="{{ vich_uploader_asset(mejores_fotos[0].foto, 'imgFile')}}" alt="">
+                                <div class="cant">
+                                    <p>{{ mejores_fotos[0].number }}</p>
+                                    <p>Me gusta</p>
+                                </div>
 
-
+                            </div>
+                        </div>
+                    </div>
             </div>
 
             <div class="col-md-4  negocio_reg">
@@ -93,10 +119,11 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-users" aria-hidden="true"></i> Seguidores
+                            <i class="fa fa-heart" aria-hidden="true"></i> Seguidores
                         </div>
                         <div class="panel-body">
                             <span id="lines2" data-total="{{favorito_total_usuarios}}">0</span>
+
                             <br/>
                             <span>Seguidores</span>
                         </div>
@@ -112,39 +139,48 @@
                     <div class="panel-heading">
                         <i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ comentarios|length }})
                     </div>
-                    <div class="panel-body">
-                        <div class="comments-box">
-                            {% for c in comentarios %}
-                                <a class="links-comments" href="{{ path('negocio_zona_comentario',{"id":c.id}) }}">
+                    <div class="panel-body" style=" overflow-y: scroll; height: 80%;">
+                        <div class="comments-box2 comments-new">
+
+                            {% for p in comentarios %}
+                                <a class="links-comments" href="{{ path('negocio_zona_comentario',{"id":p.id}) }}">
                                     <div class="media comment">
-                                        <div class="media-left">
-                                            {% if c.user.profile is not null %}
-                                                <img class="img-circle"  alt="user icon" src="{{ vich_uploader_asset(c.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                        <div class="media-left media-wedding">
+                                            {% if p.user.profile is not null %}
+                                                <img class="img-circle" width="50px" height="50px" alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                                             {% else %}
-                                                <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                                                <img class="img-circle" width="50px"  height="50px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
                                             {% endif %}
                                         </div>
-                                        <div class="media-body">
-
-                                            <h5 class="media-heading">
-                                                <h3 style="margin-top: 0">{{ c.titulo }}</h3>
-                                                <div class="rateYo_comments" data-rating="{{ c.nota }}"></div><span>{{ c.user }} - </span>
-                                                <small class="date">{{ c.adedAt|date("d F, Y") }}</small>
-                                            </h5>
-                                            <p>{{ c.comentario }}</p>
+                                        <div class="media-body media-body-wedding">
+                                            <div>
+                                                <h3>{{ p.titulo }}</h3>
+                                                <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
+                                            </div>
+                                            <div style="margin-top: 25px; margin-bottom: 5px" class="rateYo_comments" data-rating="{{ p.nota }}"></div>
+                                            <span>{{ p.user.nombres }} {{ p.user.apellidos }}</span>
+                                            <p style="margin-top: 0">
+                                                {{ p.comentario }}
+                                            </p>
                                             <div class="col-md-11 respuesta">
-                                                {% if c.respuesta is not null %}
-                                                    <p>{{ c.respuesta.respuesta }}</p>
+                                                {% if p.respuesta is not null %}
+                                                    <p>{{ p.respuesta.respuesta }}</p>
                                                 {% endif %}
                                             </div>
-
                                         </div>
-                                        <button class="btn btn-responder">Responder</button>
+                                        {% if p.respuesta is not null %}
+                                            <button class="btn btn-responder">Editar Respuesta</button>
+                                        {% else %}
+                                            <button class="btn btn-responder">Responder</button>
+                                        {% endif %}
                                     </div>
+
                                 </a>
+
 
                             {% endfor %}
                         </div>
+
                     </div>
 
                 </div>
@@ -168,12 +204,15 @@
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     <script>
-        $("#bs-example-navbar-collapse-1 ul").addClass("nav navbar-nav");
 
+        var countVerTelefono=$('#countVerTelefono').attr("data-total");
+        var countCotizar=$('#countCotizar').attr("data-total");
         var totallikes=$('#lines2').attr("data-total");
         var recuperar= $("#rateYo2").attr("data-moy");
 
         $('#lines2').animateNumber({ number: totallikes });
+        $('#countCotizar').animateNumber({ number: countCotizar });
+        $('#countVerTelefono').animateNumber({ number: countVerTelefono });
 
         $("#rateYo2").rateYo({
                     rating: recuperar,

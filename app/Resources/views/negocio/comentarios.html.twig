@@ -49,45 +49,59 @@
 
 <div class="container dashboard">
     {{ include('negocio/popup_logo.html.twig')}}
-    <div class="col-md-8 col-md-offset-2 comments-negocio2">
-        <div class="comments-box">
-            <h4 class="title-heading">Comentarios <span>({{ comentarios|length }})</span></h4>
+    <div class="col-md-8 col-md-offset-2 comments-negocio2 negocio_reg">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-picture-o" aria-hidden="true"></i> Comentarios
+            </div>
+            <div class="panel-body" >
+                <div class="comments-box2 comments-new">
 
-            {% for c in comentarios %}
-                <a class="links-comments" href="{{ path('negocio_zona_comentario',{"id":c.id}) }}">
-                    <div class="media comment">
-                        <div class="media-left">
-                            {% if c.user.profile is not null %}
-                                <img class="img-circle"  alt="user icon" src="{{ vich_uploader_asset(c.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
-                            {% else %}
-                                <img class="img-circle"  alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                            {% endif %}
-                        </div>
-                        <div class="media-body">
-
-                            <h5 class="media-heading">
-                                <h3 style="margin-top: 0">{{ c.titulo }}</h3>
-                                <div class="rateYo_comments" data-rating="{{ c.nota }}"></div><span>{{ c.user }} - </span>
-                                <small class="date">{{ c.adedAt|date("d F, Y") }}</small>
-                            </h5>
-                            <p>{{ c.comentario }}</p>
-                            <div class="col-md-11 respuesta">
-                                {% if c.respuesta is not null %}
-                                    <p>{{ c.respuesta.respuesta }}</p>
+                    {% for p in comentarios %}
+                        <a class="links-comments" href="{{ path('negocio_zona_comentario',{"id":p.id}) }}">
+                            <div class="media comment">
+                                <div class="media-left media-wedding">
+                                    {% if p.user.profile is not null %}
+                                        <img class="img-circle" width="50px" height="50px" alt="user icon" src="{{ vich_uploader_asset(p.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                    {% else %}
+                                        <img class="img-circle" width="50px"  height="50px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                                    {% endif %}
+                                </div>
+                                <div class="media-body media-body-wedding">
+                                    <div>
+                                        <h3>{{ p.titulo }}</h3>
+                                        <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
+                                    </div>
+                                    <div style="margin-top: 25px; margin-bottom: 5px" class="rateYo_comments" data-rating="{{ p.nota }}"></div>
+                                    <span>{{ p.user.nombres }} {{ p.user.apellidos }}</span>
+                                    <p style="margin-top: 0">
+                                        {{ p.comentario }}
+                                    </p>
+                                    <div class="col-md-11 respuesta">
+                                        {% if p.respuesta is not null %}
+                                            <p>{{ p.respuesta.respuesta }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if p.respuesta is not null %}
+                                    <button class="btn btn-responder">Editar Respuesta</button>
+                                {% else %}
+                                    <button class="btn btn-responder">Responder</button>
                                 {% endif %}
                             </div>
 
-                        </div>
-                        {% if c.respuesta is null %}
-                            <button class="btn btn-responder">Responder</button>
-                        {% else %}
-                            <button class="btn btn-responder">Editar Respuesta</button>
-                        {% endif %}
-                    </div>
-                </a>
+                        </a>
 
-            {% endfor %}
+
+                    {% endfor %}
+                </div>
+
+            </div>
         </div>
+
+
+
+
     </div>
 
 

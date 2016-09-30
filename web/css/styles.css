@@ -445,6 +445,8 @@ GLOBAL
 }
 
 .respuesta{
+    margin: 10px 0;
+    padding: 0;
     float: right;
     font-style: italic;
 }
@@ -773,9 +775,6 @@ GLOBAL
 
 .footer_principal .footer li a{
     color: #fff;
-    background: #C50051;
-    background: rgba(255,255,255,.2);
-
 }
 .footer_principal .footer li a:hover{
     color: #fff;
@@ -1383,8 +1382,14 @@ Negocios
     opacity: 1;
 }
 
-
-
+/*=============
+Profile Popup
+===============*/
+#pass-popup{
+    width: 400px;
+    height: 400px;
+    background: red;
+}
 /*=============
 Profile
 ===============*/
@@ -1673,7 +1678,7 @@ New Comments
 }
 .comments-new .media-body-wedding p, .comments-new .media-body-kids p, .comments-new .media-body-party p, .comments-new .media-body-dinner p{
     text-align: justify;
-    margin-top: 25px;
+
 }
 .media-body-wedding .edit-button a{
     color: #35B3B4;
@@ -3167,6 +3172,14 @@ Zona de Negocio
     text-transform: uppercase;
     font-size: 12px;
 }
+.dashboard .moy2{
+    position: relative;
+}
+.dashboard .moy2 .panel-body  span{
+    font-size: 40px;
+    display: block;
+    text-align: center;
+}
 .dashboard .moy .panel-body  span{
     font-size: 90px;
     display: block;
@@ -3174,11 +3187,30 @@ Zona de Negocio
 }
 .dashboard .moy{
     position: relative;
-    height: 43%;
+}
+ .dashboard .foto_best{
+    position: relative;
+ }
+.dashboard .cant{
+    position: absolute;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    padding: 10px;
+    bottom: 30px;
+    left: 0;
+    font-weight: bold;
+    right: 0;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 28%;
+    text-align: center;
+}
+.dashboard .cant p:first-child{
+    font-size: 24px;
+    margin: 0;
 }
 .dashboard .total_users{
     position: relative;
-    height: 43%;
 }
 .dashboard .comments-negocio .comments-box{
     padding: 20px;
@@ -3191,7 +3223,7 @@ Zona de Negocio
     font-weight: bold;
     font-size: 17px;
 }
-.dashboard .total_users{
+.dashboard .total_users .panel-body{
     text-align: center;
 }
 .dashboard .total_users .panel-body span:first-child{
@@ -3203,16 +3235,7 @@ Zona de Negocio
     color: rgba(0,0,0,.7);
 }
 
-.dashboard .best_pics p{
-    margin-top: 10px;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 17px;
-}
-.dashboard .best_pics .foto_favorite img{
-    width: 100%;
-    margin: 10px;
-}
+
 .comments-negocio .links-comments{
     text-decoration: none;
     color: rgba(0,0,0,.7);
@@ -3377,8 +3400,6 @@ Registrar Negocio
     display: none;
 }
 .negocio_reg .panel-body p{
-    font-style: italic;
-    opacity: .5;
     font-size: 15px;
 }
 .negocio_reg .btn-entrar{

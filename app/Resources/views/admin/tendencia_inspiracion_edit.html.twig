@@ -1,3 +1,75 @@
-{{ dump(inspiracion) }}
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,100italic,700,700italic,400italic,300,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/component.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Dashboard</title>
+</head>
+
+<body>
+{{ include('admin/includes/menu.html.twig', { 'seccions': seccion }) }}
+
+</nav>
+<div class="container">
+    <div class="col-md-10 body-dashboard">
+
+
+        {% for label, flash in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flash }}
+            </div>
+        {% endfor %}
+
+        <a class="tendencias_return" href="{{ path('admin_tendencia_edit',{ 'id':inspiracion.tendencia.id}) }}">
+            <button class="btn btn-entrar">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a la Tendencia
+            </button>
+        </a>
+        <h1 class="admin_h1">
+            Editar Inspiración
+        </h1>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+        <div class="form-group">
+            {{ form_label(form.nombre,'Nombre de la Inspiración') }}
+            {{ form_errors(form.nombre) }}
+            {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control','placeholder':'Título de la Inspiración'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.sort,'Sort') }}
+            {{ form_errors(form.sort) }}
+            {{ form_widget(form.sort,{ 'attr': {'class': 'form-control','placeholder':'Título de la Inspiración'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.imgFile,'Imagen') }}
+            <img style="display: block;margin: 5px 0" width="20%" src="{{ vich_uploader_asset(inspiracion, 'imgFile') }}" alt="">
+            {{ form_errors(form.imgFile) }}
+            {{ form_widget(form.imgFile,{ 'attr': {'class': 'form-control','placeholder':'Título de la Inspiración'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+
+<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
 

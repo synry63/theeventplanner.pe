@@ -116,6 +116,7 @@
 
                 <li class="tendencias-images">
                     <span style="color: white;position: absolute"><b>{{ ifa.sort }}</b></span>
+                    <a class="admin_edit" href="{{ path('admin_inspiracion_edit', {'id': ifa.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
                     <a onclick="return confirm('¿Estas seguro de eliminar esta foto?');" class="admin_delete" href="{{ path('admin_tendencia_inspiracion_delete', {'id': ifa.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
                     <img src="{{ asset('images/inspiraciones/'~ifa.img) }}">
                 </li>
