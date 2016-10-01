@@ -84,6 +84,7 @@ class Tendencia
     private $inspiraciones;
 
     /**
+     * @Assert\Valid
      * @ORM\OneToMany(targetEntity="Source", mappedBy="tendencia",cascade={"persist","remove"})
      **/
     private $sources;

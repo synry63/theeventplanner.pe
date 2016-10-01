@@ -32,7 +32,7 @@
             </button>
         </a>
 
-        {{ form_start(form_tendencia) }}
+        {{ form_start(form_tendencia,{'attr': {'novalidate': 'novalidate'}}) }}
         <h1 class="admin_h1">Agregar Nueva Tendencia</h1>
         <div class="form-group">
             {{ form_label(form_tendencia.type,'Tipo') }}
@@ -71,6 +71,7 @@
         </div>
         <div class="form-group">
             {{ form_row(form_tendencia.sources) }}
+            <a class="btn btn-success" href="#" id="add-another-source"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro Source</a>
         </div>
         <div class="form-group">
             {{ form_widget(form_tendencia.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
@@ -85,7 +86,47 @@
 
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+<script>
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar este Source</a>');
+        $tagFormLi.append($removeFormA);
 
+        $removeFormA.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+            // remove the div for the tag form
+            $tagFormLi.remove();
+        });
+    }
+
+    var sourceCount = '{{ form_tendencia.sources | length }}';
+    jQuery('#add-another-source').click(function() {
+        sourceList = jQuery('#tendencia_sources');
+
+        // grab the prototype template
+        var newWidget = sourceList.attr('data-prototype');
+        // replace the "$$name$$" used in the id and name of the prototype
+        // with a number that's unique to our emails
+        // end name attribute looks like name="contact[emails][2]"
+        newWidget = newWidget.replace(/\_\_name\_\_/g, sourceCount);
+
+        //var $removeFormA = '<a href="#">delete this tag</a>';
+        //newWidget+= $removeFormA;
+        sourceCount++;
+        //alert(newWidget);
+        // create a new list element and add it to our list
+        //var newLi = jQuery('<li></li>').html(newWidget);
+        //newLi.appendTo(jQuery('#email-fields-list'));
+        jQuery('#tendencia_sources').append(newWidget);
+
+        jQuery('#tendencia_sources > div:last').each(function() {
+            addTagFormDeleteLink($(this));
+        });
+
+        return false;
+    });
+
+</script>
 </body>
 
 </html>

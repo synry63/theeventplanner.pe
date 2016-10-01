@@ -85,10 +85,26 @@
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
 <script>
 
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<a href="javascript:void(0)"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar este Parafo</a>');
+        $tagFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+            // remove the div for the tag form
+            $tagFormLi.remove();
+        });
+    }
 
     $("#preview a").click(function(){
         return false;
     })
+
+    jQuery('#noticia_parafos > li').each(function() {
+        addTagFormDeleteLink($(this));
+    });
+
 
     var sourceCount = '{{ form.parafos | length }}';
     jQuery('#add-another-parafo').click(function() {
@@ -106,6 +122,10 @@
         //var newLi = jQuery('<li></li>').html(newWidget);
         //newLi.appendTo(jQuery('#email-fields-list'));
         jQuery('#noticia_parafos').append(newWidget);
+
+        jQuery('#noticia_parafos > li:last').each(function() {
+            addTagFormDeleteLink($(this));
+        });
 
         return false;
     });

@@ -505,6 +505,8 @@ GLOBAL
     position: relative;
     top: 20px;
     z-index: 40;
+    background: rgba(255, 255, 255, 0.80);
+    color: black;
 }
 #carousel{
     margin-top: 5px;
@@ -3488,7 +3490,15 @@ SOURCES
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
-
+#noticia_parafos > li >  a,#noticia_parafos > div >  a{
+    background: #C30050;
+    padding: 5px 13px;
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    margin: 10px 0;
+    border-radius: 5px;
+}
 #tendencia_sources > div > div + a{
     background: #C30050;
     padding: 5px 13px;
@@ -3631,17 +3641,23 @@ DASHBOARD ADMIN
 #noticia_parafos{
     padding: 0px;
 }
+#noticia_parafos > div{
+    border: solid 1px rgba(35, 40, 45,.5);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    list-style: none outside none;
+}
 #noticia_parafos > li{
     border: solid 1px rgba(35, 40, 45,.5);
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
     list-style: none outside none;
-
 }
-/*#noticia_parafos > div > label{
+#noticia_parafos > div > label{
     display: none;
-}*/
+}
 
 #noticia_parafos textarea{
     display: block;

@@ -502,6 +502,11 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $slug = $this->slugify($tendencia->getNombre());
             $tendencia->setSlug($slug);
+
+            foreach ($tendencia->getSources() as $src) {
+                $src->setTendencia($tendencia);
+            }
+
             //$logo->setProveedor($proveedor);
             $em->persist($tendencia);
             $em->flush();

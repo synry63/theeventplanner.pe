@@ -2,9 +2,9 @@
 {% block title %}Inspiraciones{% endblock %}
 {% block metaFacebook %}
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="{{ inspiraciones[1].tendencia.nombre }}" />
-    <meta property="og:description"   content="{{ inspiraciones[1].tendencia.description |nl2br }}" />
-    <meta property="og:image"         content="{{ app.request.getUriForPath(vich_uploader_asset(inspiraciones[1].tendencia, 'imgFile' ))}}" />
+    <meta property="og:title"         content="{{ inspiraciones[0].tendencia.nombre }}" />
+    <meta property="og:description"   content="{{ inspiraciones[0].tendencia.description |nl2br }}" />
+    <meta property="og:image"         content="{{ app.request.getUriForPath(vich_uploader_asset(inspiraciones[0].tendencia, 'imgFile' ))}}" />
     <meta property="fb:app_id"        content="286482508388833">
     <meta property="og:url"           content={{ app.request.uri }}>
 {% endblock %}

@@ -66,6 +66,7 @@ class Noticia
     private $adedAt;
 
     /**
+     * @Assert\Valid
      * @ORM\OneToMany(targetEntity="Parafo", mappedBy="noticia",cascade={"persist","remove"})
      **/
     private $parafos;
