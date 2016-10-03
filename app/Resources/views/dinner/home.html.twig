@@ -124,8 +124,9 @@
                                 </a>
                                 <p>{{ un.noticia.parafos[0].description| truncate(150)}}
                                 </p>
-                                <a style="color: #fff;" class="ver-mas-button btn btn-{{ app.request.get('slug_site') }}-entrar" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><i class="fa fa-plus" aria-hidden="true"></i> Ver Más</a>
                             </div>
+                            <a style="color: #fff;" class="ver-mas-button btn btn-{{ app.request.get('slug_site') }}-entrar" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><i class="fa fa-plus" aria-hidden="true"></i> Ver Más</a>
+
                         </div>
                     </div>
                 {% endfor %}

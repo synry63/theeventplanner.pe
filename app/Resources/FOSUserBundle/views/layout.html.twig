@@ -147,18 +147,30 @@
             </nav>
     </div>
 
-            <div class="negocios">
+
+
+
+            <div class="animationload">
+                <div class="loader"></div>
+            </div>
+
+
+
+        {% if app.user is not null %}
+            <div class="negocios2 a-{{ app.request.get('slug_site') }}">
                 <a href="{{ path('negocio_zona') }}">
                     <i class="fa fa-briefcase" aria-hidden="true"></i>&nbsp Área Proveedores
                 </a>
             </div>
 
 
-
-        {% if app.user is not null %}
-
         {% else %}
-            <div class="boton-session">
+            <div class="negocios a-{{ app.request.get('slug_site') }}">
+                <a href="{{ path('negocio_zona') }}">
+                    <i class="fa fa-briefcase" aria-hidden="true"></i>&nbsp Área Proveedores
+                </a>
+            </div>
+            <div class="boton-session b-{{ app.request.get('slug_site') }}">
                 <a href="{{ path('fos_user_security_login') }}" class="ajax-popup-link">
                     <i class="fa fa-user" aria-hidden="true"></i> Iniciar Sesión
                 </a>
@@ -187,6 +199,8 @@
     <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
     <script>
+        $(".loader").delay(400).fadeOut();
+        $(".animationload").delay(400).fadeOut("fast");
 
         $(".two").flip({
             axis: 'y',

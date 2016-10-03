@@ -1,0 +1,26 @@
+<a href="{{ path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug}) }}">
+    <article class="white-panel">
+        <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
+        <div class="boton-share-tendencias">
+            <a data-src="{{ app.request.getUriForPath(path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug})) }}" href="javascript:void(0);" class="shareBtnFacebook">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+            </a>
+            <a class="pinterest" data-pin-do="buttonPin" data-url="{{ app.request.getUriForPath(path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug})) }}" data-description="{{ t.description }}" data-src="{{ app.request.getUriForPath(asset('images/tendencias/'~t.img)) }}" data-pin-custom="true">
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+                                </span>
+            </a>
+            <a href="{{ 'https://twitter.com/share?text=' ~ t.nombre ~' : '~t.description }}" target="_blank" data-show-count="false">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+            </a>
+
+        </div>
+        <h1><a href="{{ path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug}) }}">{{ t.nombre }}</a></h1>
+        <p>"{{ t.description }}"</p>
+    </article>

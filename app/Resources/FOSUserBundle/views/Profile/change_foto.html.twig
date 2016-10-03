@@ -37,10 +37,11 @@
         <div class="container profile-detail">
             <div class="col-sm-4 col-xs-12">
                 {% if app.user.profile is not null %}
-                    <img class="img-circle" width="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                    <img class="img-circle" width="40px" height="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                 {% else %}
                     <img class="img-circle" width="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                {% endif %}            </div>
+                {% endif %}
+            </div>
 
         </div>
     </div>
@@ -49,12 +50,16 @@
         <div class="col-md-4 menu_profile">
             {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
         </div>
-        <div class="col-md-6 col-xs-4 cropcontain">
-            <div class="col-md-6 col-md-offset-3">
-                <p>Seleccione una foto</p>
-                <div id="cropContainerMinimal"></div>
-            </div>
+        <div class="col-md-8 cropcontain caja-content">
+            <div class="panel panel-default">
 
+                <div class="panel-heading">
+                    <i class="fa fa-camera" aria-hidden="true"></i> Cambiar foto de Perfil
+                </div>
+                <div class="panel-body foto_caja">
+                    <div id="cropContainerMinimal"></div>
+                </div>
+             </div>
         </div>
     </div>
 

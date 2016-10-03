@@ -208,16 +208,7 @@
             active: false,
             collapsible: true
         });
-        $('.variable-width').slick({
-            dots: true,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 1,
-            centerMode: true,
-            variableWidth: true,
-            adaptiveHeight: true
 
-        });
         var coment_r = $("#coment-alert").attr("data-coment");
         if(coment_r!=undefined)
             noty({
@@ -231,28 +222,6 @@
             theme: 'default_noty',
         });
 
-
-        /*
-         $('#carousel').flexslider({
-         animation: "slide",
-         controlNav: false,
-         animationLoop: false,
-         prevText: "Previous",
-         nextText: "Next",
-         slideshow: false,
-         itemWidth: 210,
-         itemMargin: 5,
-         asNavFor: '#slider'
-         });
-         */
-
-        $('#slider').flexslider({
-            animation: "slide",
-            controlNav: false,
-            animationLoop: true,
-            slideshow: true,
-            sync: "#carousel"
-        });
         var RatePrin = $("#rateYo").attr("data-rating");
 
         var recuperar = $("#comentario_proveedor_nota").attr("value");
@@ -311,7 +280,17 @@
 
         if( /Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             if ( /Android|iPhone|iPod/i.test(navigator.userAgent) ){
+                $('.variable-width').slick({
+                    arrows:false,
+                    dots: true,
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 1,
+                    centerMode: true,
+                    variableWidth: true,
+                    adaptiveHeight: true
 
+                });
             }else{
 
                 $(window).on("orientationchange",function(){
@@ -330,6 +309,17 @@
         }else
         {
             $('.card-prov').fixTo('body');
+            $('.variable-width').slick({
+                arrows:true,
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                centerMode: true,
+                variableWidth: true,
+                adaptiveHeight: true
+
+            });
         }
 
 

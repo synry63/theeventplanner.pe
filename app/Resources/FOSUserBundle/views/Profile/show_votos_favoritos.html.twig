@@ -36,10 +36,11 @@
         <div class="container profile-detail">
             <div class="col-sm-4 col-xs-12">
                 {% if app.user.profile is not null %}
-                    <img class="img-circle" width="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                    <img class="img-circle" width="40px" height="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
                 {% else %}
                     <img class="img-circle" width="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                {% endif %}            </div>
+                {% endif %}
+            </div>
 
         </div>
     </div>
@@ -49,15 +50,18 @@
         <div class="col-md-4 menu_profile">
             {{ knp_menu_render('AppBundle:Builder:menuProfile',{ 'template': 'knp_menu.html.twig'}) }}
         </div>
-        <div class="col-md-7 col-xs-12  profile-content">
+        <div class="col-md-8  profile-content">
                 <section id="demo">
                     {% for v in votos  %}
                         <article class="white-panel">
 
-                            <h1><a class="popup-with-zoom-anim" href="{{ '#small-dialog'}}">{{ v.voto.nombre }}</a></h1>
-                            <p >"{{ v.voto.description }}"</p>
+                            <h1><a class="popup-with-zoom-anim" href="{{ '#small-dialog'~v.voto.id}}">{{ v.voto.nombre }}</a></h1>
+                            <a style="text-decoration: none; color: rgba(0,0,0,.7);" class="popup-with-zoom-anim" href="{{ '#small-dialog'~v.voto.id}}">
+                                <p >"{{ v.voto.description }}"</p>
+                            </a>
 
-                            <div id="{{ 'small-dialog'}}"  class="popupvoto col-md-4 col-md-offset-4 white-popup mfp-hide">
+
+                            <div id="{{ 'small-dialog'~v.voto.id}}"  class="popupvoto col-md-4 col-md-offset-4 white-popup mfp-hide">
                                 <h1>{{ v.voto.nombre }}</h1>
                                 <p >"{{ v.voto.description }}"</p>
                             </div>

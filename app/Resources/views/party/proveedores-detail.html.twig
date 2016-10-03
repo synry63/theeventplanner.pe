@@ -203,17 +203,7 @@
             active: false,
             collapsible: true
         });
-        $('.variable-width').slick({
-            dots: true,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 1,
-            centerMode: true,
 
-            variableWidth: true,
-            adaptiveHeight: true
-
-        });
         var coment_r = $("#coment-alert").attr("data-coment");
 
         if(coment_r!=undefined)
@@ -308,7 +298,17 @@
 
         if( /Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             if ( /Android|iPhone|iPod/i.test(navigator.userAgent) ){
+                $('.variable-width').slick({
+                    arrows:false,
+                    dots: true,
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 1,
+                    centerMode: true,
+                    variableWidth: true,
+                    adaptiveHeight: true
 
+                });
             }else{
 
                 $(window).on("orientationchange",function(){
@@ -327,6 +327,17 @@
         }else
         {
             $('.card-prov').fixTo('body');
+            $('.variable-width').slick({
+                arrows:true,
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                centerMode: true,
+                variableWidth: true,
+                adaptiveHeight: true
+
+            });
         }
 
 

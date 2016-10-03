@@ -3,7 +3,7 @@
 {% for noti in noticias_related %}
     <div class="row">
         <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noti.noticia.slug}) }}" class="news-rel">
-            <div class="col-md-6">
+            <div class="col-md-6 col-xs-6">
                 <img  width="100%" src="{{ vich_uploader_asset(noti.noticia, 'imgFile') }}" alt="">
             </div>
             <div class="col-md-6">

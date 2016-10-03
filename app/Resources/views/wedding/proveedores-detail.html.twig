@@ -114,6 +114,7 @@
                                     <h3>{{ p.titulo }}</h3>
                                     <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
                                 </div>
+
                                 <div style="margin-top: 25px; margin-bottom: 5px" class="rateYo_comments" data-rating="{{ p.nota }}"></div>
                                 <span>{{ p.user.nombres }} {{ p.user.apellidos }}</span>
                                 <p style="margin-top: 0">
@@ -251,17 +252,7 @@
             }, function(response){});
         });
 
-        $('.variable-width').slick({
-            arrows:true,
-            dots: true,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 1,
-            centerMode: true,
-            variableWidth: true,
-            adaptiveHeight: true
 
-        });
 
 
 
@@ -286,15 +277,6 @@
 
 
 
-        $('#slider').flexslider({
-            animation: "slide",
-            controlNav: false,
-            smoothHeight:true,
-            //itemWidth:750,
-            animationLoop: true,
-            slideshow: true,
-            sync: "#carousel"
-        });
         var RatePrin = $("#rateYo").attr("data-rating");
 
         var recuperar = $("#comentario_proveedor_nota").attr("value");
@@ -331,9 +313,19 @@
 
         if( /Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             if ( /Android|iPhone|iPod/i.test(navigator.userAgent) ){
+                $('.variable-width').slick({
+                    arrows:false,
+                    dots: true,
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 1,
+                    centerMode: true,
+                    variableWidth: true,
+                    adaptiveHeight: true
+
+                });
 
             }else{
-
                 $(window).on("orientationchange",function(){
                     if(window.orientation == 0) // Portrait
                     {
@@ -345,11 +337,25 @@
 
                     }
                 });
+
+
             }
 
         }else
         {
             $('.card-prov').fixTo('body');
+            $('.variable-width').slick({
+                arrows:true,
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                centerMode: true,
+                variableWidth: true,
+                adaptiveHeight: true
+
+            });
+
         }
 
 

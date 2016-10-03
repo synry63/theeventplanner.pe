@@ -271,6 +271,30 @@ Nav bar
 /*=============
 GLOBAL
 ===============*/
+
+
+.animationload {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999999;
+    background-color: #fff;
+}
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -100px;
+    width: 200px;
+    height: 200px;
+    background-image: url("../images/logo_header.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
 .container-sin{
     min-height: 387px;
 }
@@ -1383,7 +1407,30 @@ Negocios
     color: #fff;
     opacity: 1;
 }
-
+.negocios2 a{
+    left: 0px;
+    top: 250px;
+    text-rendering: optimizeLegibility;
+    position: fixed;
+    z-index: 2;
+    font-size: 15px;
+    background: #d12768;
+    background: -moz-linear-gradient(top, #d12768 0%, #a50045 100%);
+    background: -webkit-linear-gradient(top, #d12768 0%,#a50045 100%);
+    background: linear-gradient(to bottom, #d12768 0%,#a50045 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d12768', endColorstr='#a50045',GradientType=0 );
+    padding: 10px;
+    opacity: .5;
+    color: rgba(255,255,255,.5);
+    transform: rotate(270deg);
+    transform-origin: left top 0;
+    transition: all .5s;
+}
+.negocios2 a:hover, .negocios2 a:focus{
+    text-decoration: none;
+    color: #fff;
+    opacity: 1;
+}
 /*=============
 Profile Popup
 ===============*/
@@ -1409,15 +1456,11 @@ Profile
 }
 
 .menu_profile{
-    width: auto;
-    margin: 50px;
-    z-index: 200;
-    padding: 0;
-    float: left;
-    box-shadow: 2px 2px 5px rgba(0,0,0,.2);
+
 }
 .menu_profile ul{
-    margin: 0;
+    margin: 20px auto;
+    width: 250px;
 }
 .menu_profile span{
     margin: 0 auto;
@@ -1455,19 +1498,14 @@ Profile
 .profile-detail span{
     font-weight: bold;
 }
-.profile-detail{
-    text-align: center;
-    position: absolute;
-    top: 80px;
-    left: 12%;
-}
+
 .fos_user_user_show{
     padding: 25px;
 }
 .profile-detail img{
     width: 100px;
     height: 100px;
-    margin: 10px auto;
+    margin: 25px auto;
 }
 .profile-content{
     position: relative;
@@ -1488,7 +1526,7 @@ Profile
     padding: 10px;
     width: 250px;
     text-align: center;
-    margin:100px auto;
+    margin: 15% auto;
 }
 .user_show h1{
     color: #d12768;
@@ -1523,8 +1561,23 @@ Profile
     top: 25%;
     left: 26%;
 }
+.caja-content{
+    margin-top: 20px;
+}
+.caja-content .panel-heading{
+    line-height: 30px;
+    padding-left: 35px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #d12768;
+    background: -moz-linear-gradient(top, #d12768 0%, #a50045 100%);
+    background: -webkit-linear-gradient(top, #d12768 0%,#a50045 100%);
+    background: linear-gradient(to bottom, #d12768 0%,#a50045 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d12768', endColorstr='#a50045',GradientType=0 );
+}
+
 #cropContainerMinimal{
-    margin: 150px auto;
+    margin: 50px auto;
     background-color: rgba(0,0,0,.1);
 }
 
@@ -2992,10 +3045,10 @@ News Blog
 .news-list .thumbnail{
     position: relative;
 }
-.news-list .thumbnail .caption .ver-mas-button{
+.news-list .thumbnail .ver-mas-button{
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 5px;
+    right: 5px;
 }
 
 .news-list .thumbnail .caption a:hover{
@@ -3121,6 +3174,12 @@ Zona de Negocio
     text-align: right;
     color: #fff;
     float: right;
+}
+.frase-negocio p{
+    padding-left: 150px;
+    text-align: right;
+    font-size: 15px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,.5);
 }
 .frase-negocio h2{
     font-weight: 600;
@@ -3455,11 +3514,7 @@ Boton Sesión
     opacity: .5;
     text-decoration: none;
 }
-.boton-session a i{
-    font-size: 20px;
-    position: absolute;
-    left: 10px;
-}
+
 .boton-session a:hover{
     right: 0;
     opacity: 1;
@@ -3856,6 +3911,19 @@ BREADCUMPD
 .breadcrumbs-dinner ol li a:hover{
     color: #0E6970;
 }
+
+.links-socials{
+    display: inline-block;
+}
+
+.links-socials2{
+    display: inline;
+}
+.boton-session i{
+    position: absolute;
+    left: 10px;
+    font-size: 20px;
+}
 /*=============
 MÓVILES RESPONSIVE
 ===============*/
@@ -4165,9 +4233,6 @@ MÓVILES RESPONSIVE
 }
 @media only screen and (min-width : 768px) and (max-width : 1024px){
 
-    .profile-content #grid {
-        margin-top: 70%;
-    }
 
     .profile-content .comment-detail .img-responsive{
         width: 50%;
@@ -4473,6 +4538,146 @@ MÓVILES RESPONSIVE
 
 /* iPhone in portrait */
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : portrait) {
+    .frase-negocio p{
+        padding-left: 0px;
+        text-align: right;
+        font-size: 15px;
+        text-shadow: 1px 1px 5px rgba(0,0,0,.5);
+    }
+    .boton-session i{
+        position: relative;
+        left: inherit;
+        font-size: 14px;
+    }
+    .links-socials2{
+        display: inline;
+        padding: 40px;
+    }
+    .links-socials{
+        margin-top: 10px;
+        margin-right: 50px;
+    }
+    .comments-new .media-body-wedding p, .comments-new .media-body-kids p, .comments-new .media-body-party p, .comments-new .media-body-dinner p{
+        margin-top: 24px;
+    }
+    .dropdown-categorias-wedding,.dropdown-categorias-kids, .dropdown-categorias-party,.dropdown-categorias-dinner{
+        width: auto;
+        transform: none;
+    }
+    .dropdown-categorias-wedding, .dropdown-categorias-kids, .dropdown-categorias-party, .dropdown-categorias-dinner{
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+    .footer .socials a{
+        margin: 0 2px;
+    }
+    .proveedor-detail-page div.row > div:last-child{
+        top: 10px;
+    }
+    .news-list .thumbnail .ver-mas-button{
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        width: 90%;
+    }
+    .negocios a{
+        left: 0px;
+        width: 51%;
+        top: initial;
+        transform: none;
+        opacity: 1;
+        text-align: center;
+        bottom: 0;
+        text-rendering: optimizeLegibility;
+        position: fixed;
+        z-index: 2;
+        font-size: 14px;
+        border: solid 1px rgba(0,0,0,.05);
+        background: #fff;
+        padding: 10px;
+
+        transition: all .5s;
+    }
+    .negocios.a-wedding a{
+        color: #35b3b4;
+    }
+    .negocios.a-kids a{
+        color: #a70c77;
+    }
+    .negocios.a-party a{
+        color: #95c11f;
+    }
+    .negocios.a-dinner a{
+        color: #0e6970;
+    }
+
+
+    .negocios2 a{
+        left: 0px;
+        width: 100%;
+        top: initial;
+        transform: none;
+        opacity: 1;
+        text-align: center;
+        bottom: 0;
+        text-rendering: optimizeLegibility;
+        position: fixed;
+        z-index: 2;
+        font-size: 14px;
+        border: solid 1px rgba(0,0,0,.05);
+        background: #fff;
+        padding: 10px;
+        color: rgba(0, 0, 0, .5);
+        transition: all .5s;
+    }
+    .negocios2.a-wedding a{
+        color: #35b3b4;
+    }
+    .negocios2.a-kids a{
+        color: #a70c77;
+    }
+    .negocios2.a-party a{
+        color: #95c11f;
+    }
+    .negocios2.a-dinner a{
+        color: #0e6970;
+    }
+
+
+
+
+    .boton-session a{
+        color: rgba(0,0,0,.3);
+        border: solid 1px rgba(0,0,0,.05);
+        background: #fff;
+        width: 51%;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        right: 0;
+        opacity: 1;
+        bottom: 0;
+        transition: all .5s;
+        z-index: 999;
+        text-decoration: none;
+    }
+
+    .boton-session.b-wedding a{
+        color: #35b3b4;
+    }
+    .boton-session.b-kids a{
+        color: #a70c77;
+    }
+    .boton-session.b-party a{
+        color: #95c11f;
+    }
+    .boton-session.b-dinner a{
+        color: #0e6970;
+    }
+
     .dropdown-categorias-wedding ul,.dropdown-categorias-kids ul,.dropdown-categorias-party ul,.dropdown-categorias-dinner ul{
         -webkit-column-count: 1;
         -moz-column-count: 1;
@@ -4508,7 +4713,15 @@ MÓVILES RESPONSIVE
     }
 
     .footer{
-        height: 200px;
+        height: auto;
+        bottom: 20px;
+    }
+
+    .footer .menu-footer li{
+        width: 100%;
+    }
+    .footer .menu-footer li a{
+        color: #fff;
     }
     .news-list .thumbnail a{
         width: 100%;
@@ -4780,6 +4993,181 @@ MÓVILES RESPONSIVE
 /* iPhone in landscape */
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : landscape) {
+    .boton-session i{
+        position: relative;
+        left: inherit;
+        font-size: 14px;
+    }
+    .comments-new .media-body-wedding p, .comments-new .media-body-kids p, .comments-new .media-body-party p, .comments-new .media-body-dinner p{
+        margin-top: 24px;
+    }
+    .card-prov{
+        padding: 20px 170px;
+    }
+    .proveedor-detail-page div.row > div:last-child{
+        top: 5px;
+    }
+    .proveedores{
+        padding: 0 140px;
+    }
+    .proveedores2{
+        padding: 0 140px;
+    }
+    .categorias{
+        padding: 0 140px 20px 140px;
+    }
+    .dropdown-categorias-wedding{
+        width: 100%;
+        transform: none;
+    }
+    .dropdown-categorias-kids{
+        width: 100%;
+        transform: none;
+    }
+    .dropdown-categorias-party{
+        width: 100%;
+        transform: none;
+    }
+    .dropdown-categorias-dinner{
+        width: 100%;
+        transform: none;
+    }
+
+
+
+
+    .negocios a{
+        left: 0px;
+        width: 51%;
+        top: initial;
+        transform: none;
+        opacity: 1;
+        text-align: center;
+        bottom: 0;
+        text-rendering: optimizeLegibility;
+        position: fixed;
+        z-index: 2;
+
+        font-size: 14px;
+        border: solid 1px rgba(0,0,0,.05);
+        background: #fff;
+        padding: 10px;
+
+        transition: all .5s;
+    }
+    .negocios.a-wedding a{
+        color: #35b3b4;
+    }
+    .negocios.a-kids a{
+        color: #a70c77;
+    }
+    .negocios.a-party a{
+        color: #95c11f;
+    }
+    .negocios.a-dinner a{
+        color: #0e6970;
+    }
+
+    .negocios2 a{
+        left: 0px;
+        width: 100%;
+        top: initial;
+        transform: none;
+        opacity: 1;
+        text-align: center;
+        bottom: 0;
+        text-rendering: optimizeLegibility;
+        position: fixed;
+        z-index: 2;
+        font-size: 14px;
+        color: rgba(0,0,0,.5);
+        border: solid 1px rgba(0,0,0,.05);
+        background: #fff;
+        padding: 10px;
+
+        transition: all .5s;
+    }
+    .negocios2.a-wedding a{
+        color: #35b3b4;
+    }
+    .negocios2.a-kids a{
+        color: #a70c77;
+    }
+    .negocios2.a-party a{
+        color: #95c11f;
+    }
+    .negocios2.a-dinner a{
+        color: #0e6970;
+    }
+
+
+    .boton-session a{
+        color: rgba(0,0,0,.3);
+        border: solid 1px rgba(0,0,0,.05);
+        background: #fff;
+        width: 51%;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        right: 0;
+        opacity: 1;
+        bottom: 0;
+        transition: all .5s;
+        z-index: 999;
+        text-decoration: none;
+    }
+
+    .boton-session.b-wedding a{
+        color: #35b3b4;
+    }
+    .boton-session.b-kids a{
+        color: #a70c77;
+    }
+    .boton-session.b-party a{
+        color: #95c11f;
+    }
+    .boton-session.b-dinner a{
+        color: #0e6970;
+    }
+    .white-popup{
+        margin: 20px auto;
+    }
+    .list_categorias-wedding ul, .list_categorias-kids ul, .list_categorias-party ul,.list_categorias-dinner ul{
+        height: auto;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+    .footer{
+        height: auto;
+        bottom: 25px;
+    }
+    .footer .menu-footer li a{
+        color: #fff;
+    }
+    .list_categorias-wedding li, .list_categorias-kids li, .list_categorias-party li, .list_categorias-dinner li{
+        width: 100% !important;
+    }
+    .news-list .thumbnail .ver-mas-button{
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        width: 90%;
+    }
+    .news-list .thumbnail img{
+        width: 100%;
+    }
+    .home-slicks .slick_wedding img{
+        width: 100%;
+    }
+    .home-slicks2 a{
+        height: auto;
+    }
+    .news-list>div{
+        padding: 0 140px;
+    }
     div.two{
         margin-left: -15%;
     }
@@ -4833,6 +5221,7 @@ MÓVILES RESPONSIVE
     }
     .tittle_base img{
         width: 50%;
+        margin: 0 auto;
     }
     .navbar-default{
         height: auto;

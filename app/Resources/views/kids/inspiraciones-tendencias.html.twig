@@ -30,27 +30,7 @@
         </div>
         <section id="demo">
             {% for t in tendencias  %}
-                <a href="{{ path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug}) }}">
-                    <article class="white-panel">
-                        <img src="{{ asset('images/tendencias/'~t.img) }}" alt="">
-                        <div class="boton-share-tendencias">
-                            <a data-src="" href="javascript:void(0);" class="shareBtnFacebook">
-                                <span class="fa-stack fa-lg">
-                                  <i class="fa fa-circle fa-stack-2x"></i>
-                                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                            <a data-src="" href="javascript:void(0);">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                            </a>
-                        </div>
-                        <h1><a href="{{ path('inspiraciones_fotos',{'slug_site': app.request.get('slug_site'),"tendencia_slug":t.slug}) }}">{{ t.nombre }}</a></h1>
-                        <p>"{{ t.description }}"</p>
-                    </article>
-                </a>
+                {{ include('comun_includes/tendencias_list.html.twig')}}
             {% endfor %}
 
         </section>
@@ -71,7 +51,19 @@
             margin_bottom: 50,
             single_column_breakpoint: 700
         });
-
+        $( ".shareBtnFacebook" ).click(function() {
+            FB.ui({
+                method: 'share',
+                href: $(this).attr('data-src'),
+            }, function(response){});
+        });
+        $( ".pinterest" ).click(function() {
+            PinUtils.pinOne({
+                media: $(this).attr('data-src'),
+                description:$(this).attr('data-description'),
+                url:$(this).attr('data-url')
+            });
+        });
     </script>
 {% endblock %}
 
