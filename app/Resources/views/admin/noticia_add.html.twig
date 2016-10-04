@@ -15,11 +15,7 @@
 
 <div class="container">
     <div class="col-md-10 body-dashboard ">
-        {% for label, flash in app.session.flashbag.get('success') %}
-            <div class="alert alert-success">
-                {{ flash }}
-            </div>
-        {% endfor %}
+
         <h1 class="admin_h1">Agregar Nueva Noticia</h1>
         {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
         <div class="form-group">

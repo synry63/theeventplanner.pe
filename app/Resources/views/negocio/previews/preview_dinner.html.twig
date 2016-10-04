@@ -119,9 +119,7 @@
                         <p style="margin-top: 0">
                             Que les puedo decir, aparte de que tomaron las mejores fotos del mundo en el día de mi Boda, ahora siendo wedding planner de Boda Inolvidable, los recomiendo a todas mis novias, no solo por el profesionalismo si no que tbm por el talento que tienen.
                         </p>
-                        <div class="col-md-11 respuesta">
-                            <p>Estamos para servirte. que bueno que te gusto nuestro servicio</p>
-                        </div>
+
                     </div>
                 </div>
 
@@ -177,6 +175,36 @@
 
     });
     $('.card-prov').fixTo('body');
+    if(window.innerHeight > window.innerWidth){
+        $('.card-prov').fixTo('destroy');
+    }
+    if( /Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        if ( /Android|iPhone|iPod/i.test(navigator.userAgent) ){
+            $('.card-prov').fixTo('destroy');
+            if(window.innerHeight > window.innerWidth){
+                $('.card-prov').fixTo('destroy');
+            }
+        }else{
+            $(window).on("orientationchange",function(){
+                if(window.orientation == 0) // Portrait
+                {
+                    $('.card-prov').fixTo('destroy');
+                }
+                else // Landscape
+                {
+                    $('.card-prov').fixTo('body');
+
+                }
+            });
+
+
+        }
+
+    }else
+    {
+        $('.card-prov').fixTo('body');
+
+    }
 
 
 

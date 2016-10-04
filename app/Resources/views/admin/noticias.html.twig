@@ -28,6 +28,12 @@
         </ul>
     </div>
 
+    {% for label, flash in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flash }}
+        </div>
+    {% endfor %}
+
     <div class="news-blog">
         {% for n in noticias  %}
             <div class="col-md-8 col-md-offset-2">

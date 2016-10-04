@@ -285,12 +285,15 @@ GLOBAL
 .loader {
     position: absolute;
     top: 50%;
-    left: 50%;
-    margin: -100px 0 0 -100px;
-    width: 200px;
-    height: 200px;
-    background-image: url("../images/logo_header.png");
+    transform: translatey(-100px);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    background-image: url("../images/loader_logo.png");
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -3504,7 +3507,7 @@ Boton Sesión
     background: -webkit-linear-gradient(top,  #d12768 0%,#a50045 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom,  #d12768 0%,#a50045 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d12768', endColorstr='#a50045',GradientType=0 ); /* IE6-9 */
-
+    top: 90px;
     padding: 10px;
     position: fixed;
     right: -95px;
@@ -3924,6 +3927,7 @@ BREADCUMPD
     left: 10px;
     font-size: 20px;
 }
+
 /*=============
 MÓVILES RESPONSIVE
 ===============*/
@@ -4276,6 +4280,15 @@ MÓVILES RESPONSIVE
 
 /* iPad in portrait */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+    .music-container>div, .music-container-kids>div, .music-container-party>div, .music-container-dinner>div{
+        padding: 0 180px;
+        margin-bottom: 30px;
+    }
+
+    .footer{
+        height: auto;
+    }
     .nav-zonaneg .navbar-collapse li{
         width: 20%;
         height: 50px;
@@ -4296,7 +4309,7 @@ MÓVILES RESPONSIVE
         position: absolute;
         right: 45px;
         top: 50px;
-        bottom: 0px;
+        bottom: 0;
     }
 
     .nav-zonaneg .navbar-collapse .navbar-right li{
@@ -4310,7 +4323,7 @@ MÓVILES RESPONSIVE
         position: absolute;
         right: 45px;
         top: 50px;
-        bottom: 0px;
+        bottom: 0;
     }
 
     .pic_foto .negocio-form{
@@ -4321,18 +4334,27 @@ MÓVILES RESPONSIVE
         float: none;
         width: 300px;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: 170px;
+    }
+    .frase-negocio p{
+        padding-left: 0;
     }
     .boton-session a{
         opacity: 1;
     }
-    .negocios a{
+    .negocios a {
         opacity: 1;
-        z-index: 1;
         color: #fff;
+        z-index: 999;
+        left: -5px;
     }
-    .negocios a{
-        opacity: 1;
+    .categorias, .categorias_dinner, .categorias_kids, .categorias_party {
+        width: 100%;
+        padding: 0 140px 20px 140px;
+    }
+    .dropdown-categorias-wedding, .dropdown-categorias-kids, .dropdown-categorias-party, .dropdown-categorias-dinner{
+        transform: none;
+        width: 100%;
     }
     .contactenos-formu{
         margin-top: 50px;
@@ -4352,9 +4374,12 @@ MÓVILES RESPONSIVE
         margin: 0 auto 40px;
     }
 
+
     .breadcrumbs-wedding ol, .breadcrumbs-kids ol, .breadcrumbs-party ol, .breadcrumbs-dinner ol{
         margin-top: 70px;
+        margin-bottom: 10px;
         text-align: center;
+
     }
 
     .dashboard .fotos_galery{
@@ -4389,11 +4414,15 @@ MÓVILES RESPONSIVE
     .menu-principal .navbar-default{
         margin-top:12%;
     }
-    .image-effect{
+
+    .news-list .thumbnail{
+        min-height: 440px;
+    }
+    .news-list .thumbnail .image-effect img{
         width: 100%;
     }
-    .news-list .thumbnail{
-        min-height: 380px;
+    .home-slicks2 a{
+        height: auto;
     }
     .placa{
         top: 182.5px;
@@ -4406,7 +4435,7 @@ MÓVILES RESPONSIVE
         padding: 10px 0;
     }
     .menu-principal .navbar-default{
-        margin: 12% auto;
+        margin: 12% auto 0;
         width: 460px;
         display: block;
         float: none;
@@ -4423,6 +4452,20 @@ MÓVILES RESPONSIVE
 }
 /* iPad in landscape */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    .boton-share-music {
+        padding: 0 10px 0 0;
+        z-index: 2;
+        text-align: center;
+        left: 50%;
+        position: absolute;
+        bottom: -40px;
+    }
+    .boton-share-music:after, .boton-share-music:before{
+        content: none;
+    }
+    .music-container>div, .music-container-kids>div, .music-container-party>div,.music-container-dinner>div{
+        margin: 10px 10px;
+    }
     .nav-zonaneg .navbar-collapse li{
         width: 20%;
         text-align: center;
@@ -4473,7 +4516,7 @@ MÓVILES RESPONSIVE
         margin-top: 45px;
     }
     .menu-principal .navbar-default{
-        margin: 7% auto;
+        margin: 7% auto 0;
         width: 460px;
         display: block;
         float: none;
@@ -4616,7 +4659,7 @@ MÓVILES RESPONSIVE
 
 
     .negocios2 a{
-        left: 0px;
+        left: 0;
         width: 100%;
         top: initial;
         transform: none;

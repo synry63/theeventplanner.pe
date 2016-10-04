@@ -309,7 +309,19 @@
                     adaptiveHeight: true
 
                 });
+
             }else{
+                $('.variable-width').slick({
+                    arrows:false,
+                    dots: true,
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 1,
+                    centerMode: true,
+                    variableWidth: true,
+                    adaptiveHeight: true
+
+                });
 
                 $(window).on("orientationchange",function(){
                     if(window.orientation == 0) // Portrait
@@ -322,6 +334,8 @@
 
                     }
                 });
+
+
             }
 
         }else
@@ -338,6 +352,7 @@
                 adaptiveHeight: true
 
             });
+
         }
 
 

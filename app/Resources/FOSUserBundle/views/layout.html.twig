@@ -39,147 +39,144 @@
         #}
 
     {% endblock flashbag %}
-
-
     {% block content %}
 
-    <div class="container total-container">
-
-            <nav class="navbar navbar-default">
-
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse menu-principal">
-
-                        {% block selloimage %}
-
-                        {% endblock selloimage %}
-
-
-                        {% block menuprincipal %}
-                            {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
-                        {% endblock menuprincipal %}
-
-                        {% block user_login %}
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <div class="user-login-responsive">
-                                    <div class="col-xs-8">
-                                        <a href="{{ path('fos_user_profile_show') }}">
-                                            <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                {% if app.user.profile is not null %}
-                                                    <img class="img-circle" width="40px"  height="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
-                                                {% else %}
-                                                    <img class="img-circle" width="40px"  height="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                                                {% endif %}
-                                                <span style="text-transform: capitalize">{{app.user.nombres}}</span>
-                                            </button>
-                                        </a>
-                                    </div>
-
-
-
-                                    <div class="col-xs-4">
-                                        <a href="{{ path('fos_user_security_logout') }}">
-                                            <button type="button" class="btn btn-entrar">
-                                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                            </button>
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="btn-group btn-login btn_login_responsive">
-
-                                    <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {% if app.user.profile is not null %}
-                                            <img class="img-circle" width="40px" height="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
-                                        {% else %}
-                                            <img class="img-circle" width="40px" height="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                                        {% endif %}
-                                        <span>{{app.user.nombres}}</span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-user">
-                                        <div class="col-md-4">
-                                            {% if app.user.profile is not null %}
-                                                <img class="img-circle" width="90px" height="90px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
-                                            {% else %}
-                                                <img class="img-circle" width="90px" height="90px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
-                                            {% endif %}
-                                        </div>
-                                        <div class="col-md-8 named">
-                                            <strong>{{app.user.nombres}} {{app.user.apellidos}}</strong>
-                                            <br>
-                                            {{app.user.email}}
-                                            <br>
-                                            <a href="{{ path('fos_user_profile_show') }}">
-                                                <button type="button" class="btn btn-entrar">
-                                                    Mi Perfil
-                                                </button>
-                                            </a>
-                                            <a href="{{ path('fos_user_security_logout') }}">
-                                                <button type="button" class="btn btn-entrar">
-                                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                                </button>
-                                            </a>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            {% else %}
-                                {#
-                                <ul class="principal nav navbar-nav navbar-right">
-                                    <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
-                                    <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
-                                </ul>
-                                #}
-
-                            {% endif %}
-                        {% endblock user_login %}
-
-                    </div>
-
-            </nav>
-    </div>
-
-
-
-
+        <div class="container total-container">
             <div class="animationload">
                 <div class="loader"></div>
             </div>
 
 
 
-        {% if app.user is not null %}
-            <div class="negocios2 a-{{ app.request.get('slug_site') }}">
-                <a href="{{ path('negocio_zona') }}">
-                    <i class="fa fa-briefcase" aria-hidden="true"></i>&nbsp Área Proveedores
-                </a>
-            </div>
+            {% if app.user is not null %}
+                <div class="negocios2 a-{{ app.request.get('slug_site') }}">
+                    <a href="{{ path('negocio_zona') }}">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>&nbsp Área Proveedores
+                    </a>
+                </div>
 
 
-        {% else %}
-            <div class="negocios a-{{ app.request.get('slug_site') }}">
-                <a href="{{ path('negocio_zona') }}">
-                    <i class="fa fa-briefcase" aria-hidden="true"></i>&nbsp Área Proveedores
-                </a>
-            </div>
-            <div class="boton-session b-{{ app.request.get('slug_site') }}">
-                <a href="{{ path('fos_user_security_login') }}" class="ajax-popup-link">
-                    <i class="fa fa-user" aria-hidden="true"></i> Iniciar Sesión
-                </a>
-            </div>
-        {% endif %}
+            {% else %}
+                <div class="negocios a-{{ app.request.get('slug_site') }}">
+                    <a href="{{ path('negocio_zona') }}">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>&nbsp Área Proveedores
+                    </a>
+                </div>
+                <div class="boton-session b-{{ app.request.get('slug_site') }}">
+                    <a href="{{ path('fos_user_security_login') }}" class="ajax-popup-link">
+                        <i class="fa fa-user" aria-hidden="true"></i> Iniciar Sesión
+                    </a>
+                </div>
+            {% endif %}
+
+
+
+
+            <nav class="navbar navbar-default">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse menu-principal">
+
+                    {% block selloimage %}
+
+                    {% endblock selloimage %}
+
+
+                    {% block menuprincipal %}
+                        {{ knp_menu_render('AppBundle:Builder:mainMenuWedding',{ 'template': 'knp_menu.html.twig'}) }}
+                    {% endblock menuprincipal %}
+
+                    {% block user_login %}
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <div class="user-login-responsive">
+                                <div class="col-xs-8">
+                                    <a href="{{ path('fos_user_profile_show') }}">
+                                        <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {% if app.user.profile is not null %}
+                                                <img class="img-circle" width="40px"  height="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                            {% else %}
+                                                <img class="img-circle" width="40px"  height="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                                            {% endif %}
+                                            <span style="text-transform: capitalize">{{app.user.nombres}}</span>
+                                        </button>
+                                    </a>
+                                </div>
+
+
+
+                                <div class="col-xs-4">
+                                    <a href="{{ path('fos_user_security_logout') }}">
+                                        <button type="button" class="btn btn-entrar">
+                                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                        </button>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="btn-group btn-login btn_login_responsive">
+
+                                <button type="button" class="user-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% if app.user.profile is not null %}
+                                        <img class="img-circle" width="40px" height="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                    {% else %}
+                                        <img class="img-circle" width="40px" height="40px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                                    {% endif %}
+                                    <span>{{app.user.nombres}}</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-user">
+                                    <div class="col-md-4">
+                                        {% if app.user.profile is not null %}
+                                            <img class="img-circle" width="90px" height="90px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                        {% else %}
+                                            <img class="img-circle" width="90px" height="90px" alt="user icon" src="{{ asset('images/user_icon.png') }}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-8 named">
+                                        <strong>{{app.user.nombres}} {{app.user.apellidos}}</strong>
+                                        <br>
+                                        {{app.user.email}}
+                                        <br>
+                                        <a href="{{ path('fos_user_profile_show') }}">
+                                            <button type="button" class="btn btn-entrar">
+                                                Mi Perfil
+                                            </button>
+                                        </a>
+                                        <a href="{{ path('fos_user_security_logout') }}">
+                                            <button type="button" class="btn btn-entrar">
+                                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                            </button>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% else %}
+                            {#
+                            <ul class="principal nav navbar-nav navbar-right">
+                                <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                                <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                            </ul>
+                            #}
+
+                        {% endif %}
+                    {% endblock user_login %}
+
+                </div>
+
+            </nav>
+        </div>
+
 
 
     {% endblock content %}
-
 
 
 {% endblock body %}

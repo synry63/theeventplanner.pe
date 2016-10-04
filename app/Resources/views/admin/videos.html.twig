@@ -27,6 +27,11 @@
 
     <div class="col-md-10 body-dashboard" style="padding: 20px 0">
 
+        {% for label, flash in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flash }}
+            </div>
+        {% endfor %}
         {% for v in videos %}
             <div class="col-md-6">
                 <a class="admin_edit" href="{{ path('admin_video_edit', {'id': v.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>

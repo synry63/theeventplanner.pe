@@ -51,7 +51,7 @@
     {% endfor %}
 
 
-    <div class="col-md-6 col-md-offset-3" style="margin-top: 40px">
+    <div class="col-md-6 col-md-offset-3 negocio_reg" style="margin-top: 40px">
 
 
         <a class="tendencias_return" href="{{ path('negocio_zona_faq') }}" style="margin-bottom: 20px; display: block">
@@ -59,28 +59,37 @@
                 <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Preguntas frecuentes
             </button>
         </a>
-
-
         {% for label, flash in app.session.flashbag.get('success') %}
             <div class="alert alert-success">
                 {{ flash }}
             </div>
         {% endfor %}
-        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-        <div class="form-group">
-            {{ form_label(form.pregunta,'Pregunta') }}
-            {{ form_errors(form.pregunta) }}
-            {{ form_widget(form.pregunta,{ 'attr': {'class': 'form-control'}}) }}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-question-circle" aria-hidden="true"></i> Editar Pregunta Frecuente
+            </div>
+            <div class="panel-body">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                <div class="form-group">
+                    {{ form_label(form.pregunta,'Pregunta') }}
+                    {{ form_errors(form.pregunta) }}
+                    {{ form_widget(form.pregunta,{ 'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.respuesta,'Respuesta') }}
+                    {{ form_errors(form.respuesta) }}
+                    {{ form_widget(form.respuesta,{ 'attr': {'class': 'form-control','rows':'10'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+
         </div>
-        <div class="form-group">
-            {{ form_label(form.respuesta,'Respuesta') }}
-            {{ form_errors(form.respuesta) }}
-            {{ form_widget(form.respuesta,{ 'attr': {'class': 'form-control','rows':'10'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-entrar'},'label': 'Enviar'}) }}
-        </div>
-        {{ form_end(form) }}
+
+
+
     </div>
 
 

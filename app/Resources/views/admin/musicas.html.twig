@@ -28,6 +28,11 @@
 
     <div class="col-md-10 body-dashboard" style="margin-top: 30px">
 
+        {% for label, flash in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flash }}
+            </div>
+        {% endfor %}
         {% for m in musicas %}
             <div class=" col-md-4 col-xs-12" style="margin: 5px 0;padding: 5px">
                 <a onclick="return confirm('¿Estas seguro de eliminar este playlist?');" class="admin_delete3" href="{{ path('admin_musica_delete', {'id': m.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
