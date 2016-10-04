@@ -1736,7 +1736,7 @@ New Comments
 }
 .comments-new .media-body-wedding p, .comments-new .media-body-kids p, .comments-new .media-body-party p, .comments-new .media-body-dinner p{
     text-align: justify;
-
+    margin-top: 25px;
 }
 .media-body-wedding .edit-button a{
     color: #35B3B4;
@@ -3916,7 +3916,7 @@ BREADCUMPD
 }
 
 .links-socials{
-    display: inline-block;
+    display: inline;
 }
 
 .links-socials2{
@@ -4597,6 +4597,7 @@ MÓVILES RESPONSIVE
         padding: 40px;
     }
     .links-socials{
+        display: block;
         margin-top: 10px;
         margin-right: 50px;
     }
@@ -4699,6 +4700,7 @@ MÓVILES RESPONSIVE
         width: 51%;
         text-align: center;
         padding: 10px;
+        top: inherit;
         position: fixed;
         right: 0;
         opacity: 1;
@@ -5151,6 +5153,7 @@ MÓVILES RESPONSIVE
         width: 51%;
         text-align: center;
         padding: 10px;
+        top: inherit;
         position: fixed;
         right: 0;
         opacity: 1;
