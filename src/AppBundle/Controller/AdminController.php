@@ -713,7 +713,7 @@ class AdminController extends Controller
         );
     }
     /**
-     * @Route("/admin/musicas/sort", name="admin_videos_sort")
+     * @Route("/admin/musicas/sort", name="admin_musicas_sort")
      */
     public function adminMusicasSortAction(Request $request){
         if($request->isXmlHttpRequest()) {
