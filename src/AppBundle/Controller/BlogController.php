@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class BlogController extends Controller
 {
     /**
-     * @Route("/{slug_site}/noticias", name="noticias_start",defaults={"page" = 1},requirements={
+     * @Route("/{slug_site}/blog", name="noticias_start",defaults={"page" = 1},requirements={
      *     "page": "\d+",
      *     "slug_site": "wedding|dinner|kids|party"
      * })
@@ -29,7 +29,7 @@ class BlogController extends Controller
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem($slug_site, $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
-        $breadcrumbs->addItem("Noticias", $this->get("router")->generate("noticias_start",array('slug_site'=>$slug_site)));
+        $breadcrumbs->addItem("Blog", $this->get("router")->generate("noticias_start",array('slug_site'=>$slug_site)));
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -59,7 +59,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/{slug_site}/noticia/{slug_noticia}", name="noticia_start",requirements={
+     * @Route("/{slug_site}/blog/{slug_noticia}", name="noticia_start",requirements={
      *     "slug_site": "wedding|dinner|kids|party"
      * })
      */
@@ -72,7 +72,7 @@ class BlogController extends Controller
 
             $breadcrumbs = $this->get("white_october_breadcrumbs");
             $breadcrumbs->addItem($slug_site, $this->get("router")->generate("site_start",array('slug_site'=>$slug_site)));
-            $breadcrumbs->addItem("Noticias", $this->get("router")->generate("noticias_start",array('slug_site'=>$slug_site)));
+            $breadcrumbs->addItem("Blog", $this->get("router")->generate("noticias_start",array('slug_site'=>$slug_site)));
             $breadcrumbs->addItem($noticia->getNombre(), $this->get("router")->generate("noticia_start",
                 array('slug_site'=>$slug_site,'slug_noticia'=>$slug_noticia)
 
