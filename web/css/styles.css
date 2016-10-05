@@ -521,7 +521,7 @@ GLOBAL
     text-align: center;
 }
 .register-logo img{
-    width:55%;
+    width:80%;
 }
 .modal{
     display: inline-block;
@@ -4617,7 +4617,7 @@ MÓVILES RESPONSIVE
         margin: 0 2px;
     }
     .proveedor-detail-page div.row > div:last-child{
-        top: 10px;
+        top: 15px;
     }
     .news-list .thumbnail .ver-mas-button{
         position: absolute;
