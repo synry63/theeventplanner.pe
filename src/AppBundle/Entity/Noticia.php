@@ -39,6 +39,12 @@ class Noticia
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
+     */
+    private $author;
+
+    /**
+     * @ORM\Column(type="string", length=100)
      */
     private $slug;
 
@@ -79,6 +85,22 @@ class Noticia
      * @ORM\OneToMany(targetEntity="ComentarioNoticia", mappedBy="noticia")
      */
     private $comentarios;
+
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param mixed $author
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
 
     /**
      * @return mixed
