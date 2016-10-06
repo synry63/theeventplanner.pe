@@ -178,7 +178,7 @@
                             {% if myc is not null %}
 
                             {% else %}
-                                <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
+                                <a class="ajax-popup-link rese-{{ app.request.get('slug_site') }}" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
                             {% endif %}
                         </p>
                     </span>
@@ -197,6 +197,9 @@
                 {% endif %}
 
 
+                {{ render(controller('AppBundle:Proveedor:proveedoresRelated',{'site':app.request.get('slug_site'),'proveedor':proveedor})) }}
+
+
             </div>
 
         </div>
@@ -204,7 +207,9 @@
     </div>
 
 
-{{ render(controller('AppBundle:Proveedor:proveedoresRelated',{'site':app.request.get('slug_site'),'proveedor':proveedor})) }}
+
+
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -295,7 +300,16 @@
             readOnly: true
         });
 
+        var related=$(".rateYoRelated").attr("data-rating")
 
+        $(".rateYoRelated").rateYo({
+            rating: related,
+            ratedFill: color,
+            starWidth: "18px",
+            spacing: "2px",
+            normalFill: "#A0A0A0",
+            readOnly: true
+        });
 
 
         $( ".rateYo_comments" ).each(function( index ) {

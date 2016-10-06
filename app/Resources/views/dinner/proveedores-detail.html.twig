@@ -1,5 +1,21 @@
 {% extends 'dinner/layout.html.twig' %}
 {% block title %}{{ proveedor.nombre }}{% endblock %}
+{% block metaFacebook %}
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="{{ proveedor.nombre }}" />
+    <meta property="og:description"   content="{{ proveedor.description |nl2br }}" />
+    {#
+        {% if proveedor.fotos|length > 0 %}
+            <meta property="og:image"         content="{{ app.request.getUriForPath(vich_uploader_asset(proveedor.fotos[0], 'imgFile')) }}" />
+        {% endif %}
+    #}
+    {% if proveedor.logo is not null %}
+        <meta property="og:image"         content="{{ vich_uploader_asset(proveedor.logo, 'logoFile')|imagine_filter('logo_thumb') }}" />
+    {% endif %}
+
+    <meta property="fb:app_id"        content="286482508388833">
+    <meta property="og:url"           content={{ app.request.uri }}>
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
@@ -141,7 +157,7 @@
                             {% if myc is not null %}
 
                             {% else %}
-                                <a class="ajax-popup-link" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
+                                <a class="ajax-popup-link rese-{{ app.request.get('slug-site') }}" href="{{ path('proveedor_me_comentar', {'slug_site':app.request.get('slug_site'),'slug_proveedor':proveedor.slug}) }}">Escribir una reseña</a>
                             {% endif %}
                         </p>
                     </span>

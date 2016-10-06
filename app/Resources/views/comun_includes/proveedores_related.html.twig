@@ -1,1 +1,27 @@
-{{ dump(proveedores) }}
+
+{% if proveedores|length >= 4 %}
+    Aqui va el codigo
+{% endif %}
+<hr/>
+<h1 class="title-heading tittle-slicks2">Proveedores Relacionados</h1>
+<div class="negocios-relacionados">
+
+    {% for p in proveedores %}
+        <div class="negocio-rel ">
+            <a  class="image" href="">
+                {% if p.proveedor.fotoListado is not null %}
+                    <img  class="prov-foto" src="{{ vich_uploader_asset(p.proveedor.fotoListado, 'imgFile')| imagine_filter('thumb_proveedor') }}" alt="{{ p.proveedor.nombre }}">
+                {% else %}
+                    <img src="http://placehold.it/350x150" alt=""/>
+                {% endif %}
+            </a>
+            <div class="rateYoRelated"  data-rating="{{ p.mymoy }}"></div>
+            <a class="name name-{{ app.request.get('site') }}" href="">
+                {{ p.proveedor.nombre }}
+            </a>
+        </div>
+
+    {% endfor %}
+
+</div>
+
