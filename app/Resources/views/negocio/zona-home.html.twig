@@ -57,16 +57,16 @@
         <div class="row">
 
             <div class="col-md-4 best_pics negocio_reg">
+
+
                     <div class="col-md-12 moy2">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <i class="fa fa-mouse-pointer" aria-hidden="true"></i> Clicks en Cotizar
                             </div>
                             <div class="panel-body">
-
-
                                 <span id="countCotizar" data-total="{{app.user.countCotizar}}">0</span>
-
+                                <p class="desde">Desde el {{ app.user.registeredAt|date("d F, Y") }} </p>
                             </div>
                         </div>
                     </div>
@@ -77,6 +77,7 @@
                             </div>
                             <div class="panel-body">
                                 <span id="countVerTelefono" data-total="{{ app.user.countVerTelefono }}">0</span>
+                                <p class="desde">Desde el {{ app.user.registeredAt|date("d F, Y") }} </p>
                             </div>
                         </div>
                     </div>
@@ -131,6 +132,7 @@
                     </div>
 
                 </div>
+
             </div>
 
             <div class="col-md-4 comments-negocio negocio_reg">

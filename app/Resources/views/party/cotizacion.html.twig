@@ -1,8 +1,8 @@
 
 <div class="col-md-4 col-md-offset-4 cotizacion-form-partys">
-    <h1>Solicitar Cotización</h1>
+    <h1>Contactar Empresa</h1>
     {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-    <p>* Campos Obligatorios</p>
+
     <div id="error-form">
 
     </div>
@@ -36,7 +36,7 @@
     <div class="form-group">
         {{ form_widget(form.send, { 'label': 'Enviar', 'attr':{'class':'btn btn-party-entrar'} } ) }}
     </div>
-
+    <p>* Campos Obligatorios</p>
     {{ form_end(form) }}
 </div>
 <script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>

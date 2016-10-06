@@ -522,6 +522,7 @@ GLOBAL
 }
 .register-logo img{
     width:80%;
+    margin-bottom: 15px;
 }
 .modal{
     display: inline-block;
@@ -3170,6 +3171,56 @@ Zona de Negocio
     max-width: 390px;
     box-shadow: 0 0 10px rgba(0,0,0,.5);
 }
+
+/* Temporal */
+
+    .login-flex{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .content-login:first-child{
+        width: 30%;
+    }
+    .content-login:last-child{
+        width: 40%;
+        height: 100%;
+        padding: 0 10px;
+        background: rgba(0,0,0,.09);
+        align-items: center;
+        display: flex;
+    }
+    .login-negocio{
+        background: #fff;
+        padding: 50px 30px;
+        box-shadow: 0 0 10px rgba(0,0,0,.3);
+    }
+    .login-negocio label{
+        color: #C70052;
+    }
+    .text-content{
+        text-align: right;
+        color: #fff;
+        padding: 0 40px;
+    }
+    .text-negocio .text-content p{
+        text-align: right;
+        font-size: 15px;
+        text-shadow: 1px 1px 5px rgba(0,0,0,.5);
+    }
+    .text-negocio .text-content h2{
+        font-weight: 600;
+        font-size: 40px;
+        text-shadow: 2px 2px 10px rgba(0,0,0,.3);
+    }
+    .text-negocio .text-content h1{
+        font-weight: 600;
+        font-size: 60px;
+        text-shadow: 2px 2px 10px rgba(0,0,0,.3);
+    }
+/* Fin de Temporal */
+
+
 .frase-negocio{
     margin-top: -8px;
     margin-right: 60px;
@@ -3178,22 +3229,14 @@ Zona de Negocio
     color: #fff;
     float: right;
 }
-.frase-negocio p{
-    padding-left: 150px;
-    text-align: right;
-    font-size: 15px;
-    text-shadow: 1px 1px 5px rgba(0,0,0,.5);
-}
-.frase-negocio h2{
-    font-weight: 600;
-    font-size: 40px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,.3);
-}
-.frase-negocio h1{
-    font-weight: 600;
-    font-size: 60px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,.3);
-}
+
+
+
+
+
+
+
+
 .dashboard-section-icons{
     position: absolute;
     background: #D12768;
@@ -3244,6 +3287,10 @@ Zona de Negocio
     display: block;
     text-align: center;
 }
+.moy2 .desde{
+    text-align: center;
+}
+
 .dashboard .moy .panel-body  span{
     font-size: 90px;
     display: block;
@@ -3479,12 +3526,12 @@ Registrar Negocio
     background: #d12768;
     border:none;
     border-radius: 3px;
-    color: #fff;
+    color: rgba(255,255,255,.5);
     font-size: 16px;
     transition: all .5s;
 }
-.frase-negocio .btn-registro:hover{
-    color: #fff;
+.btn-registro:hover{
+    color: #fff !important;
     background:rgb(173, 1, 70);
 }
 

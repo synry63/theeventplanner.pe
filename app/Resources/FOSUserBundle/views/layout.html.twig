@@ -42,6 +42,7 @@
     {% block content %}
 
         <div class="container total-container">
+
             <div class="animationload">
                 <div class="loader"></div>
             </div>
@@ -196,8 +197,10 @@
     <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
     <script>
+
         $(".loader").delay(400).fadeOut();
         $(".animationload").delay(400).fadeOut("fast");
+
 
         $(".two").flip({
             axis: 'y',
