@@ -507,6 +507,10 @@ class AdminController extends Controller
                 $src->setTendencia($tendencia);
             }
 
+            foreach ($tendencia->getLinksCategorias() as $link) {
+                $link->setTendencia($tendencia);
+            }
+
             //$logo->setProveedor($proveedor);
             $em->persist($tendencia);
             $em->flush();
@@ -587,6 +591,11 @@ class AdminController extends Controller
         foreach ($tendencia->getSources() as $s) {
             $originalSource->add($s);
         }
+
+        $originalLinks = new ArrayCollection();
+        foreach ($tendencia->getLinksCategorias() as $l) {
+            $originalLinks->add($l);
+        }
         $form_tendencia = $this->createForm(new TendenciaType(), $tendencia);
         $form_tendencia->handleRequest($request);
         if ($form_tendencia->isSubmitted() && $form_tendencia->isValid()) {
@@ -598,10 +607,18 @@ class AdminController extends Controller
                     //$s->setTendencia(null);
                 }
             }
+            foreach ($originalLinks as $l) {
+                if (false === $tendencia->getSources()->contains($l)) {
+                    $em->remove($l);
+                    //$s->setTendencia(null);
+                }
+            }
             foreach ($tendencia->getSources() as $src) {
                 $src->setTendencia($tendencia);
             }
-
+            foreach ($tendencia->getLinksCategorias() as $l) {
+                $l->setTendencia($tendencia);
+            }
             $slug = $this->slugify($tendencia->getNombre());
             $tendencia->setSlug($slug);
             $tendencia->setUpdatedAt(new \DateTime('now'));

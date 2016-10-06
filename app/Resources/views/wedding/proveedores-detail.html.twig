@@ -204,7 +204,7 @@
     </div>
 
 
-
+{{ render(controller('AppBundle:Proveedor:proveedoresRelated',{'site':app.request.get('slug_site'),'proveedor':proveedor})) }}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

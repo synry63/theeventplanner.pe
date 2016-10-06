@@ -41,9 +41,6 @@ class TendenciaType extends AbstractType
         $builder->add('description');
         $builder->add('sort');
 
-        $builder->add('masNombre');
-        $builder->add('masUrl','Symfony\Component\Form\Extension\Core\Type\UrlType');
-
         $builder->add('sources', 'Symfony\Component\Form\Extension\Core\Type\CollectionType', array(
             // each entry in the array will be an "source" field
             'entry_type'   => 'AppBundle\Form\Type\SourceType',
@@ -53,6 +50,14 @@ class TendenciaType extends AbstractType
             'by_reference' => false
         ));
 
+        $builder->add('linksCategorias', 'Symfony\Component\Form\Extension\Core\Type\CollectionType', array(
+            // each entry in the array will be an "source" field
+            'entry_type'   => 'AppBundle\Form\Type\LinkCategoriaType',
+            // these options are passed to each "email" type
+            'allow_add'=>true,
+            'allow_delete'=>true,
+            'by_reference' => false
+        ));
 
         if($entity->getId()==NULL){ // so new one
             $builder->add('imgFile', 'file',array(

@@ -982,4 +982,29 @@ class ProveedorController extends Controller
             return $response;
         }
     }
+    public function proveedoresRelatedAction($site,$proveedor)
+    {
+
+        $session = $this->getRequest()->getSession();
+        $cate_slug = $session->get('categoria');
+
+        if(!empty($cate_slug)){
+            $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$cate_slug));
+        }
+        else{
+            foreach ($proveedor->getCategoriasListado() as $c){
+                if($c->getParent()->getSlug()==$site){
+                    $categoria = $c;
+                    break;
+                }
+            }
+        }
+        $proveedores = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresRelatedByCategory($categoria,$proveedor->getId());
+
+        return $this->render(
+            'comun_includes/proveedores_related.html.twig',array(
+                'proveedores'=>$proveedores
+            )
+        );
+    }
 }

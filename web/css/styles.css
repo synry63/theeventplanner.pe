@@ -3525,12 +3525,12 @@ Boton Sesión
 /*=============
 SOURCES
 ===============*/
-#tendencia_sources > div > label{
+#tendencia_sources > div > label,#tendencia_linksCategorias > div > label{
     display: none;
 }
 
 
-#tendencia_sources input{
+#tendencia_sources input,#tendencia_linksCategorias input{
     display: block;
     width: 100%;
     height: 34px;
@@ -3557,7 +3557,7 @@ SOURCES
     margin: 10px 0;
     border-radius: 5px;
 }
-#tendencia_sources > div > div + a{
+#tendencia_sources > div > div + a,#tendencia_linksCategorias > div > div + a{
     background: #C30050;
     padding: 5px 13px;
     text-decoration: none;
@@ -3566,7 +3566,7 @@ SOURCES
     margin: 10px 0;
     border-radius: 5px;
 }
-#tendencia_sources > div{
+#tendencia_sources > div,#tendencia_linksCategorias > div{
     border: solid 1px rgba(35, 40, 45,.5);
     border-radius: 5px;
     padding: 10px;

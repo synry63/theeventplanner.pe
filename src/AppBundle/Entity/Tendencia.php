@@ -88,48 +88,29 @@ class Tendencia
      * @ORM\OneToMany(targetEntity="Source", mappedBy="tendencia",cascade={"persist","remove"})
      **/
     private $sources;
-
     /**
-     * @ORM\Column(type="string",nullable=true, length=255)
-     */
-    private $masUrl;
-
-    /**
-     * @ORM\Column(type="string",nullable=true, length=255)
-     */
-    private $masNombre;
+     * @Assert\Valid
+     * @ORM\OneToMany(targetEntity="LinkCategoria", mappedBy="tendencia",cascade={"persist","remove"})
+     **/
+    private $linksCategorias;
 
     /**
      * @return mixed
      */
-    public function getMasUrl()
+    public function getLinksCategorias()
     {
-        return $this->masUrl;
+        return $this->linksCategorias;
     }
 
     /**
-     * @param mixed $masUrl
+     * @param mixed $linksCategorias
      */
-    public function setMasUrl($masUrl)
+    public function setLinksCategorias($linksCategorias)
     {
-        $this->masUrl = $masUrl;
+        $this->linksCategorias = $linksCategorias;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMasNombre()
-    {
-        return $this->masNombre;
-    }
 
-    /**
-     * @param mixed $masNombre
-     */
-    public function setMasNombre($masNombre)
-    {
-        $this->masNombre = $masNombre;
-    }
     public function removeSource(Source $s)
     {
         $this->sources->removeElement($s);

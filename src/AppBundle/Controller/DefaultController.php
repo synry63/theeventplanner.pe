@@ -52,7 +52,7 @@ class DefaultController extends Controller
 
         $ultimas_noticias = $this->getDoctrine()->getRepository('AppBundle:Noticia')->getNoticiasWithCountComments($slug_site,4);
 
-        $best_inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->getLastInspiraciones($slug_site);
+        $best_inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->getLastInspiraciones($slug_site,8);
 
 
         return $this->render(

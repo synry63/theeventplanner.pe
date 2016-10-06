@@ -58,14 +58,8 @@
             {{ form_widget(form_tendencia.description,{ 'attr': {'class': 'form-control','rows':'8'}}) }}
         </div>
         <div class="form-group">
-            {{ form_label(form_tendencia.masNombre,'Encuentra Mas Nombre') }}
-            {{ form_errors(form_tendencia.masNombre) }}
-            {{ form_widget(form_tendencia.masNombre,{ 'attr': {'class': 'form-control','placeholder':'ej : Catering'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form_tendencia.masUrl,'Encuentra Mas Enlace') }}
-            {{ form_errors(form_tendencia.masUrl) }}
-            {{ form_widget(form_tendencia.masUrl,{ 'attr': {'class': 'form-control','placeholder':'ej : http://theeventplanner.pe/wedding/proveedores/catering-w'}}) }}
+            {{ form_row(form_tendencia.linksCategorias) }}
+            <a class="btn btn-success" href="#" id="add-another-link"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro Link</a>
         </div>
         <div class="form-group">
             {{ form_label(form_tendencia.sort,'Sort') }}
@@ -150,6 +144,17 @@
             $tagFormLi.remove();
         });
     }
+    function addTagFormDeleteLinkMas($tagFormLi) {
+        var $removeFormA = $('<a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar este Link</a>');
+        $tagFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+            // remove the div for the tag form
+            $tagFormLi.remove();
+        });
+    }
 
     new AnimOnScroll( document.getElementById( 'grid' ), {
         minDuration : 0.4,
@@ -157,6 +162,40 @@
         viewportFactor : 0.2
     } );
 
+
+    // links
+    jQuery('#tendencia_linksCategorias > div').each(function() {
+        addTagFormDeleteLinkMas($(this));
+    });
+
+    var linkCount = '{{ form_tendencia.linksCategorias | length }}';
+    jQuery('#add-another-link').click(function() {
+        linksList = jQuery('#tendencia_linksCategorias');
+
+        // grab the prototype template
+        var newWidget = linksList.attr('data-prototype');
+        // replace the "$$name$$" used in the id and name of the prototype
+        // with a number that's unique to our emails
+        // end name attribute looks like name="contact[emails][2]"
+        newWidget = newWidget.replace(/\_\_name\_\_/g, linkCount);
+
+        //var $removeFormA = '<a href="#">delete this tag</a>';
+        //newWidget+= $removeFormA;
+        linkCount++;
+        //alert(newWidget);
+        // create a new list element and add it to our list
+        //var newLi = jQuery('<li></li>').html(newWidget);
+        //newLi.appendTo(jQuery('#email-fields-list'));
+        jQuery('#tendencia_linksCategorias').append(newWidget);
+
+        jQuery('#tendencia_linksCategorias > div:last').each(function() {
+            addTagFormDeleteLinkMas($(this));
+        });
+
+        return false;
+    });
+
+    // start source
     var sourceList = jQuery('#tendencia_sources');
 
     jQuery('#tendencia_sources > div').each(function() {

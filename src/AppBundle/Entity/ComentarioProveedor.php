@@ -51,6 +51,10 @@ class ComentarioProveedor
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      max = 15,
+     *      maxMessage = "El titulo no puede tener más de {{ limit }} caracteres"
+     * )
      */
     private $titulo;
 
