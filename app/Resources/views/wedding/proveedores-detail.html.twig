@@ -300,16 +300,18 @@
             readOnly: true
         });
 
-        var related=$(".rateYoRelated").attr("data-rating")
 
-        $(".rateYoRelated").rateYo({
-            rating: related,
-            ratedFill: color,
-            starWidth: "18px",
-            spacing: "2px",
-            normalFill: "#A0A0A0",
-            readOnly: true
+        $( ".rateYoRelated" ).each(function( index ) {
+            $(this).rateYo({
+                rating: $(this).attr("data-rating"),
+                starWidth: "18px",
+                readOnly: true,
+                ratedFill: color,
+                normalFill: "#A0A0A0"
+            });
         });
+
+
 
 
         $( ".rateYo_comments" ).each(function( index ) {

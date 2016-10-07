@@ -42,6 +42,11 @@
                 {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control'}}) }}
             </div>
             <div class="form-group">
+                {{ form_label(form.author,'Autor') }}
+                {{ form_errors(form.author) }}
+                {{ form_widget(form.author,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
 
                 {{ form_label(form.imgFile,'Imagen Principal') }}
                 <img style="display: block;margin: 5px 0" width="20%" src="{{ vich_uploader_asset(noticia, 'imgFile') }}" alt="">

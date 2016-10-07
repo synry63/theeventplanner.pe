@@ -170,7 +170,7 @@
 
                 {% endif %}
 
-
+                {{ render(controller('AppBundle:Proveedor:proveedoresRelated',{'site':app.request.get('slug_site'),'proveedor':proveedor})) }}
             </div>
 
         </div>
@@ -268,6 +268,16 @@
             spacing: "2px",
             normalFill: "#A0A0A0",
             readOnly: true
+        });
+
+        $( ".rateYoRelated" ).each(function( index ) {
+            $(this).rateYo({
+                rating: $(this).attr("data-rating"),
+                starWidth: "18px",
+                readOnly: true,
+                ratedFill: color,
+                normalFill: "#A0A0A0"
+            });
         });
 
 

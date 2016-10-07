@@ -1942,6 +1942,68 @@ New Comments
 }
 
 
+.boton-share-noti{
+    padding: 0 10px;
+    position: absolute;
+    z-index: 2;
+    top: 15px;
+    width: 45px;
+    right: 15px;
+    transition: all .5s;
+}
+.boton-share-noti:hover{
+    opacity: 1;
+}
+.boton-share-noti i.fa-circle{
+    font-size: 2em;
+}
+.boton-share-noti i.fa-facebook{
+    font-size: 17px;
+}
+.boton-share-noti i.fa-twitter{
+    font-size: 19px;
+}
+.boton-share-noti a{
+    color: #3b5998;
+    text-decoration: none;
+}
+
+.boton-share-noti a:last-child{
+    color: #4099FF;
+    text-decoration: none;
+}
+
+
+
+
+.boton-share-noti2 span{
+    display: inline-block;
+}
+.boton-share-noti2:hover{
+    opacity: 1;
+}
+.boton-share-noti2 i.fa-circle{
+    font-size: 2em;
+}
+.boton-share-noti2 i.fa-facebook{
+    font-size: 17px;
+}
+.boton-share-noti2 i.fa-twitter{
+    font-size: 19px;
+}
+.boton-share-noti2 a{
+    color: #3b5998;
+    text-decoration: none;
+}
+
+.boton-share-noti2 a:last-child{
+    color: #4099FF;
+    text-decoration: none;
+}
+
+
+
+
 .boton-megusta_wedding{
     padding: 0 10px;
     position: absolute;
@@ -2950,6 +3012,12 @@ Inspiraciones
     padding: 20px;
     font-size: 20px;
 }
+
+.inspiraciones_vermas_wedding a:after , .inspiraciones_vermas_kids a:after, .inspiraciones_vermas_party a:after, .inspiraciones_vermas_dinner a:after{
+    content: " /";
+    color: rgba(0,0,0,.5);
+}
+
 .inspiraciones_vermas_wedding a{
     text-decoration: none;
     color: #35B3B4;
@@ -3023,6 +3091,16 @@ News Blog
 .news-relacionadas  .news-rel .title-wedding{
     color: #35B3B4;
 }
+.news-relacionadas  .news-rel .title-kids{
+    color: #a70c77;
+}
+.news-relacionadas  .news-rel .title-party{
+    color: #cad538;
+}
+.news-relacionadas  .news-rel .title-dinner{
+    color: #0e6970;
+}
+
 .news-relacionadas  .news-rel p{
     margin: 0;
     font-size: 12px;
@@ -3108,6 +3186,19 @@ News Blog
     color: #35B3B4;
     text-transform: uppercase;
 }
+.new-principal .title-kids{
+    color: #a70c77;
+    text-transform: uppercase;
+}
+.new-principal .title-party{
+    color: #cad538;
+    text-transform: uppercase;
+}
+.new-principal .title-dinner{
+    color: #0e6970;
+    text-transform: uppercase;
+}
+
 .new-principal{
     padding:0;
     margin-bottom: 20px;
@@ -4007,10 +4098,10 @@ Negocios relacionados
 }
 .negocio-rel{
     width: 40%;
-    border: 1px solid rgba(0,0,0,.1);
+    border: 1px solid rgba(0,0,0,.2);
     margin: 10px;
     text-align: center;
-    min-height: 266px;
+    min-height: 250px;
 }
 
 .negocio-rel .image{
@@ -4032,11 +4123,38 @@ Negocios relacionados
     display: inline-block;
     color: rgba(0, 0, 0, .7);
     margin: 7px 0 0 0;
-    font-size: 16px;
+    font-size: 13px;
     text-transform: uppercase;
     font-weight: bold;
     transition: all .5s ease;
 }
+.negocio-rel .name-wedding:hover{
+    color: #35b4b3;
+}
+.negocio-rel .name-kids:hover{
+    color: #a70c77;
+}
+.negocio-rel .name-party:hover{
+    color: #cad538;
+}
+.negocio-rel .name-dinner:hover{
+    color: #0e6970;
+}
+
+.negocio-rel.nego-wedding{
+    border-bottom: 2px solid #35b4b3;
+}
+.negocio-rel.nego-kids{
+    border-bottom: 2px solid #a70c77;
+}
+.negocio-rel.nego-party{
+    border-bottom: 2px solid #cad538;
+
+}
+.negocio-rel.nego-dinner{
+    border-bottom: 2px solid #0e6970;
+}
+
 .negocio-rel .rateYoRelated{
     margin: 5px auto;
 }
@@ -4693,6 +4811,9 @@ MÓVILES RESPONSIVE
 
 /* iPhone in portrait */
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : portrait) {
+    .negocio-rel{
+        width: 90%;
+    }
     .frase-negocio p{
         padding-left: 0px;
         text-align: right;

@@ -115,12 +115,18 @@
             {% endfor %}
         </div>
     {% endif %}
+    {% if tendencia.linksCategorias is not null %}
+        <div class="container inspiraciones_vermas_{{ app.request.get('slug_site') }}">
+            <hr>
+            Encuentra más proveedores de :
 
-    <div class="container inspiraciones_vermas_{{ app.request.get('slug_site') }}">
-        <hr>
-        Encuentra más proveedores de: <a href="javascript:void(0)"><strong> Catering</strong></a>
-        <hr>
-    </div>
+            {% for ts in tendencia.linksCategorias %}
+                <a href="{{ ts.url }}"><strong>{{ ts.nombre }}</strong></a>
+            {% endfor %}
+
+            <hr>
+        </div>
+    {% endif %}
 
 {% endblock %}
 {% block javascripts %}

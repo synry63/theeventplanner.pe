@@ -1,13 +1,15 @@
 
 {% if proveedores|length >= 4 %}
-    Aqui va el codigo
+
 {% endif %}
+
+
 <hr/>
 <h1 class="title-heading tittle-slicks2">Proveedores Relacionados</h1>
 <div class="negocios-relacionados">
 
     {% for p in proveedores %}
-        <div class="negocio-rel ">
+        <div class="negocio-rel nego-{{ app.request.get('site') }}" >
             <a  class="image" href="">
                 {% if p.proveedor.fotoListado is not null %}
                     <img  class="prov-foto" src="{{ vich_uploader_asset(p.proveedor.fotoListado, 'imgFile')| imagine_filter('thumb_proveedor') }}" alt="{{ p.proveedor.nombre }}">
@@ -20,8 +22,6 @@
                 {{ p.proveedor.nombre }}
             </a>
         </div>
-
     {% endfor %}
 
 </div>
-

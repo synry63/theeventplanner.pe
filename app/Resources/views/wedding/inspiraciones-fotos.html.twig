@@ -49,14 +49,24 @@
         </div>
     {% endif %}
 
-
-    {% if tendencia.masNombre is not null and tendencia.masUrl is not null %}
+    {% if tendencia.linksCategorias is not null %}
         <div class="container inspiraciones_vermas_{{ app.request.get('slug_site') }}">
             <hr>
-                Encuentra más proveedores de : <a href="{{ tendencia.masUrl }}"><strong> {{ tendencia.masNombre }}</strong></a>
+
+            Encuentra más proveedores de :
+            {% for ts in  tendencia.linksCategorias %}
+                <a href="{{ ts.url }}"><strong>{{ ts.nombre }}</strong></a>
+            {% endfor %}
+
+
             <hr>
         </div>
     {% endif %}
+
+
+
+
+
 
 
 {% endblock %}
