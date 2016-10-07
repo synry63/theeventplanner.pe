@@ -10,7 +10,7 @@
 
     {% for p in proveedores %}
         <div class="negocio-rel nego-{{ app.request.get('site') }}" >
-            <a  class="image" href="">
+            <a  class="image" href="{{ path('proveedor_detail', {'slug_site': app.request.get('site'),'slug_proveedor': p.proveedor.slug}) }}">
                 {% if p.proveedor.fotoListado is not null %}
                     <img  class="prov-foto" src="{{ vich_uploader_asset(p.proveedor.fotoListado, 'imgFile')| imagine_filter('thumb_proveedor') }}" alt="{{ p.proveedor.nombre }}">
                 {% else %}
@@ -18,7 +18,7 @@
                 {% endif %}
             </a>
             <div class="rateYoRelated"  data-rating="{{ p.mymoy }}"></div>
-            <a class="name name-{{ app.request.get('site') }}" href="">
+            <a class="name name-{{ app.request.get('site') }}" href="{{ path('proveedor_detail', {'slug_site': app.request.get('site'),'slug_proveedor': p.proveedor.slug}) }}">
                 {{ p.proveedor.nombre }}
             </a>
         </div>
