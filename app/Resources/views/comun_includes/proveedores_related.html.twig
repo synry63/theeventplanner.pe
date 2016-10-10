@@ -1,27 +1,67 @@
 
-{% if proveedores|length >= 4 %}
+{% if proveedores|length >= 3 %}
+    <h1 class="title-heading tittle-slicks2">Proveedores Relacionados</h1>
 
+
+    <div class="negocios-relacionados">
+
+        {% for p in proveedores %}
+            <div class="col-sm-6 col-md-4 detail-prov">
+
+
+                <a href="{{ path('proveedor_detail', {'slug_site': app.request.get('site') ,'slug_proveedor': p.proveedor.slug}) }}">
+
+                    <div class="image-prov">
+                        {% if p.proveedor.fotoListado is not null %}
+                            <div style="text-align: center; background: rgba(0,0,0,.06)" class="prov-foto-{{ app.request.get('site') }}">
+                                <img  class="prov-foto" src="{{ vich_uploader_asset(p.proveedor.fotoListado, 'imgFile')| imagine_filter('thumb_proveedor') }}" alt="{{ p.proveedor.nombre }}">
+                            </div>
+                        {% else %}
+                            <div class="img-default prov-foto-{{ app.request.get('site') }}">
+                                {% if p.proveedor.logo is not null %}
+                                    <img class="prov-foto" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
+                                {% else %}
+                                    <img src="{{ asset('images/logo_default.jpg') }}" alt="">
+                                {% endif %}
+                            </div>
+                        {% endif %}
+
+                        <div class="logo_tag">
+                            {% if p.proveedor.logo is not null %}
+                                <img class="img-circle prov-foto" src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
+                            {% else %}
+                                <img class="img-circle" src="{{ asset('images/logo_default.jpg') }}" alt="">
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </a>
+
+
+            </div>
+        {% endfor %}
+
+
+        {#
+        {% for p in proveedores %}
+            <div class="negocio-rel nego-{{ app.request.get('site') }}" >
+                <a  class="image" href="{{ path('proveedor_detail', {'slug_site': app.request.get('site'),'slug_proveedor': p.proveedor.slug}) }}">
+                    {% if p.proveedor.fotoListado is not null %}
+                        <img  class="prov-foto" src="{{ vich_uploader_asset(p.proveedor.fotoListado, 'imgFile')| imagine_filter('thumb_proveedor') }}" alt="{{ p.proveedor.nombre }}">
+                    {% else %}
+                        <img src="http://placehold.it/350x150" alt=""/>
+                    {% endif %}
+                </a>
+                <div class="rateYoRelated"  data-rating="{{ p.mymoy }}"></div>
+                <a class="name name-{{ app.request.get('site') }}" href="{{ path('proveedor_detail', {'slug_site': app.request.get('site'),'slug_proveedor': p.proveedor.slug}) }}">
+                    {{ p.proveedor.nombre }}
+                </a>
+            </div>
+        {% endfor %}
+        #}
+
+
+    </div>
 {% endif %}
 
 
-<hr/>
-<h1 class="title-heading tittle-slicks2">Proveedores Relacionados</h1>
-<div class="negocios-relacionados">
-
-    {% for p in proveedores %}
-        <div class="negocio-rel nego-{{ app.request.get('site') }}" >
-            <a  class="image" href="{{ path('proveedor_detail', {'slug_site': app.request.get('site'),'slug_proveedor': p.proveedor.slug}) }}">
-                {% if p.proveedor.fotoListado is not null %}
-                    <img  class="prov-foto" src="{{ vich_uploader_asset(p.proveedor.fotoListado, 'imgFile')| imagine_filter('thumb_proveedor') }}" alt="{{ p.proveedor.nombre }}">
-                {% else %}
-                    <img src="http://placehold.it/350x150" alt=""/>
-                {% endif %}
-            </a>
-            <div class="rateYoRelated"  data-rating="{{ p.mymoy }}"></div>
-            <a class="name name-{{ app.request.get('site') }}" href="{{ path('proveedor_detail', {'slug_site': app.request.get('site'),'slug_proveedor': p.proveedor.slug}) }}">
-                {{ p.proveedor.nombre }}
-            </a>
-        </div>
-    {% endfor %}
-
-</div>

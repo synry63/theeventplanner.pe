@@ -722,7 +722,7 @@ GLOBAL
     margin: 0 auto;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
-    height: 400px;
+    height: 460px;
 }
 
 
@@ -1389,6 +1389,9 @@ Proveedores-List
 .proveedores2 a:hover .logo_tag>img{
     transform: scale(1.2);
 }
+.negocios-relacionados a:hover .logo_tag>img{
+    transform: scale(1.2);
+}
 .logo_tag{
     position: absolute;
     bottom: -45px;
@@ -1399,7 +1402,7 @@ Proveedores-List
     width: 100px;
     height: 100px!important;
     box-shadow: 0 0 10px rgba(0,0,0,.3);
-    transition: all .5s;
+    transition: all .5s ease;
 }
 
 
@@ -1963,7 +1966,7 @@ New Comments
     z-index: 2;
     top: 15px;
     width: 45px;
-    right: 15px;
+    left: 0;
     transition: all .5s;
 }
 .boton-share-noti:hover{
@@ -1987,6 +1990,12 @@ New Comments
     color: #4099FF;
     text-decoration: none;
 }
+
+
+
+
+
+
 
 
 
@@ -2017,6 +2026,35 @@ New Comments
 }
 
 
+
+
+.boton-share-noti-detail{
+    padding: 0 10px;
+    display: inline-block;
+    float: right;
+}
+
+.boton-share-noti-detail i.fa-circle{
+    font-size: 2em;
+}
+.boton-share-noti-detail i.fa-facebook{
+    font-size: 17px;
+}
+.boton-share-noti-detail i.fa-twitter{
+    font-size: 19px;
+}
+.boton-share-noti-detail a{
+    color: #3b5998;
+    text-decoration: none;
+}
+.boton-share-noti-detail a:nth-child(2){
+    color: #4099FF;
+    text-decoration: none;
+}
+.boton-share-noti-detail a:nth-child(3){
+    color: #FFC956;
+    text-decoration: none;
+}
 
 
 .boton-megusta_wedding{
@@ -3078,6 +3116,40 @@ Animates
 /*=============
 News Blog
 ===============*/
+.new-principal .body-noti{
+    text-align: justify;
+}
+.description-noti{
+    margin: 20px 0;
+    display: inline-block;
+    width: 100%;
+}
+.author-info{
+    text-align: left;
+}
+
+.author-info .avatar{
+    width: 50px;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+}
+.author-info .info-name{
+    display: inline-block;
+}
+.author-info .info-name p{
+    margin: 0;
+    line-height: 25px;
+}
+.author-info .info-name p:first-child{
+    font-weight: bold;
+    font-size: 15px;
+}
+.author-info .info-name p:last-child{
+    font-size: 12px;
+}
+
+
 #comentario_noticia_comentario{
     resize: none;
 }
@@ -3195,7 +3267,8 @@ News Blog
 }
 .new-principal h1{
     font-family: 'Bree Serif', serif;
-    font-size: 24px;
+    font-size: 28px;
+    margin-bottom: 25px;
 }
 .new-principal .title-wedding{
     color: #35B3B4;
@@ -3639,7 +3712,7 @@ Registrar Negocio
     background: #d12768;
     border:none;
     border-radius: 3px;
-    color: rgba(255,255,255,.5);
+    color: rgb(255,255,255);
     font-size: 16px;
     transition: all .5s;
 }
@@ -4112,7 +4185,7 @@ Negocios relacionados
     flex-wrap: wrap;
 }
 .negocio-rel{
-    width: 40%;
+    width: 23%;
     border: 1px solid rgba(0,0,0,.2);
     margin: 10px;
     text-align: center;
@@ -4142,6 +4215,7 @@ Negocios relacionados
     text-transform: uppercase;
     font-weight: bold;
     transition: all .5s ease;
+    padding: 5px;
 }
 .negocio-rel .name-wedding:hover{
     color: #35b4b3;

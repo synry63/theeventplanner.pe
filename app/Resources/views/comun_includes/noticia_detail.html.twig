@@ -2,38 +2,64 @@
 
     <div class="col-md-8 new-principal" style="position: relative">
 
-        <div class="boton-share-noti">
-            <a href="javascript:void(0);" class="shareBtnFacebook">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                </span>
-            </a>
 
-            <a href="javascript:void(0);" target="_blank" data-show-count="false">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-            </a>
 
-        </div>
 
-        <img width="100%" src="{{ vich_uploader_asset(noticia, 'imgFile') }}" alt="">
         <h1 class="title-{{ slug_site }}">{{ noticia.nombre }}</h1>
-        <span>Escrito por: <strong>{{ noticia.author }}</strong> el <strong>{{ noticia.adedAt|date("d F, Y") }}</strong> | </span>
-        <a href="#coments" style="color: rgba(0,0,0,.7);"><span style="padding: 0 5px"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ comentarios|length }})</span></a>
-        <div class="links-socials">
-            {#
-             <span style="padding: 0 5px">
-                <div class="fb-share-button"
-                     data-href="{{ app.request.uri }}"
-                     data-layout="button">
-                </div>
-            </span>
-            #}
+        <div>
+            <img width="100%" src="{{ vich_uploader_asset(noticia, 'imgFile') }}" alt="">
+        </div>
+        <div class="description-noti">
+            <div class="col-md-6">
+                <div class="author-info">
+                    <div class="avatar">
+                        <img class="img-circle" src="http://placehold.it/50x50" alt=""/>
+                    </div>
+                    <div class="info-name">
+                        <p>
+                            {{ noticia.author }}
+                        </p>
+                        <p>
+                            {{ noticia.adedAt|date("d F, Y") }}
+                        </p>
+                    </div>
 
-            <span style="padding: 0 5px">
+                </div>
+
+
+
+            </div>
+            <div class="col-md-6" style="padding: 0;">
+                <div class="boton-share-noti-detail">
+                    <a href="javascript:void(0);" class="shareBtnFacebook">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <a href="javascript:void(0);" target="_blank" data-show-count="false">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <a href="#coments" target="_blank" data-show-count="false">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-comments fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                    <div class="links-socials">
+                        {#
+                         <span style="padding: 0 5px">
+                            <div class="fb-share-button"
+                                 data-href="{{ app.request.uri }}"
+                                 data-layout="button">
+                            </div>
+                        </span>
+                        #}
+
+                        <span style="padding: 0 5px">
                 <div class="fb-like"
                      data-href="{{ app.request.uri }}"
                      data-layout="button_count"
@@ -41,25 +67,33 @@
                      data-show-faces="false">
                 </div>
             </span>
-            {#
-            <span style="position: absolute;display: inline-block;padding-left: 10px;">
-                    <a href="{{ 'https://twitter.com/share?text=' ~ noticia.nombre ~' : '~noticia.parafos[0].description }}" class="twitter-share-button" data-show-count="false" target="_blank">Tweet</a>
-             </span>
-            #}
+                        {#
+                        <span style="position: absolute;display: inline-block;padding-left: 10px;">
+                                <a href="{{ 'https://twitter.com/share?text=' ~ noticia.nombre ~' : '~noticia.parafos[0].description }}" class="twitter-share-button" data-show-count="false" target="_blank">Tweet</a>
+                         </span>
+                        #}
 
+                    </div>
+                </div>
+            </div>
         </div>
 
         <br>
-        <br>
 
-        {% for p in noticia.parafos %}
-            <p>{{ p.description }}</p>
-            {% if p.img is not null %}
-                <img width="80%" style="margin-bottom: 20px" src="{{ vich_uploader_asset(p, 'imgFile') }}" alt=""/>
-            {% endif %}
+        <div class="body-noti">
+            {% for p in noticia.parafos %}
+                <p>{{ p.description }}</p>
+                {% if p.img is not null %}
+                    <img width="80%" style="margin: 10px auto;display: inherit" src="{{ vich_uploader_asset(p, 'imgFile') }}" alt=""/>
+                {% endif %}
 
-        {% endfor %}
+            {% endfor %}
+        </div>
 
+
+
+
+        {# Inicio Commentarios#}
 
         {% if comentarios is not null  %}
             <hr id="coments">

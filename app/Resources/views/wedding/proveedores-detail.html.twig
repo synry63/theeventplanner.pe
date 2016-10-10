@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="col-md-8 col-md-pull-4">
+            <div class="col-md-8 col-md-pull-4 content-detail">
 
                 <!-- Slider Section -->
 
@@ -197,9 +197,13 @@
                 {% endif %}
 
 
+
+
+
+            </div>
+
+            <div class="col-md-12" style="margin-top: 30px;border-top: 1px solid rgba(0,0,0,.2)">
                 {{ render(controller('AppBundle:Proveedor:proveedoresRelated',{'site':app.request.get('slug_site'),'proveedor':proveedor})) }}
-
-
             </div>
 
         </div>
@@ -361,7 +365,7 @@
                     }
                     else // Landscape
                     {
-                        $('.card-prov').fixTo('body');
+                        $('.card-prov').fixTo('.content-detail');
 
                     }
                 });
@@ -371,7 +375,8 @@
 
         }else
         {
-            $('.card-prov').fixTo('body');
+            $('.card-prov').fixTo('.content-detail');
+
             $('.variable-width').slick({
                 arrows:true,
                 dots: true,
@@ -383,6 +388,8 @@
                 adaptiveHeight: true
 
             });
+
+
 
         }
 
