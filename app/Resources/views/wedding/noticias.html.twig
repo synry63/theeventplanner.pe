@@ -27,14 +27,13 @@
         <div class="col-md-8 col-md-offset-2 new-principal">
 
             <div class="boton-share-noti">
-                <a href="javascript:void(0);" class="shareBtnFacebook">
+                <a href="javascript:void(0);" data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}" class="shareBtnFacebook">
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                 </span>
                 </a>
-
-                <a href="javascript:void(0);" target="_blank" data-show-count="false">
+                <a href="{{ 'https://twitter.com/share?text=' ~ noticias[0].noticia.nombre ~' : '~noticias[0].noticia.parafos[0].description }}" target="_blank" data-show-count="false">
                 <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
