@@ -102,14 +102,13 @@
                             </div></span>
                         <p>{{ n.noticia.parafos[0].description }}</p>
                         <div class="boton-share-noti2">
-                            <a href="javascript:void(0);" class="shareBtnFacebook">
+                            <a href="javascript:void(0);" data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug})) }}" class="shareBtnFacebook">
                                 <span class="fa-stack fa-lg">
                                   <i class="fa fa-circle fa-stack-2x"></i>
                                   <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
-
-                            <a href="javascript:void(0);" target="_blank" data-show-count="false">
+                            <a href="{{ 'https://twitter.com/share?text=' ~ n.noticia.nombre ~' : '~n.noticia.parafos[0].description }}" target="_blank" data-show-count="false">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -133,4 +132,13 @@
 {% block javascripts %}
     {{ parent() }}
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script>
+        $( ".shareBtnFacebook" ).click(function() {
+            FB.ui({
+                method: 'share',
+                mobile_iframe: true,
+                href: $(this).attr('data-href')
+            }, function(response){});
+        });
+    </script>
 {% endblock %}
