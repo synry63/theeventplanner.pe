@@ -1,11 +1,15 @@
 <div class="aprobe-buttons">
     <ul>
-        <li>
-            <a class="btn btn-danger" href="{{ path('admin_negocios_espera') }}">Negocios en Espera</a>
+        <li style="display: inline-block;padding:0 10px">
+            <a class="btn btn-primary" href="{{ path('admin_negocios') }}"><i class="fa fa-eye" aria-hidden="true"></i> Ver Todos</a>
         </li>
-        <li>
-            <a class="btn btn-success" href="{{ path('admin_negocios_acceptados') }}">Negocios Aceptados</a>
+        <li style="display: inline-block;padding:0 10px ">
+            <a class="btn btn-danger" href="{{ path('admin_negocios_espera') }}"><i class="fa fa-hand-paper-o" aria-hidden="true"></i> Negocios en Espera</a>
         </li>
+        <li style="display: inline-block;padding:0 10px">
+            <a class="btn btn-success" href="{{ path('admin_negocios_acceptados') }}"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Negocios Aceptados</a>
+        </li>
+
     </ul>
 </div>
 

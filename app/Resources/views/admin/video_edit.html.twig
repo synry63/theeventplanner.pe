@@ -50,7 +50,10 @@
             {{ form_errors(form.nombre) }}
             {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control','rows':'8'}}) }}
         </div>
-
+        <div class="form-group group-sources">
+            {{ form_row(form.sources) }}
+            <a class="btn btn-success" href="#" id="add-another-source"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro Source</a>
+        </div>
         <div class="form-group">
             {{ form_label(form.url,'Url Embed del Video') }}
             {{ form_errors(form.url) }}
@@ -76,6 +79,55 @@
 
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+<script>
+
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar este Source</a>');
+        $tagFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+            // remove the div for the tag form
+            $tagFormLi.remove();
+        });
+    }
+
+    // start source
+    var sourceList = jQuery('#video_sources');
+
+    jQuery('#video_sources > div').each(function() {
+        addTagFormDeleteLink($(this));
+    });
+
+    var sourceCount = '{{ form.sources | length }}';
+    jQuery('#add-another-source').click(function() {
+        sourceList = jQuery('#video_sources');
+
+        // grab the prototype template
+        var newWidget = sourceList.attr('data-prototype');
+        // replace the "$$name$$" used in the id and name of the prototype
+        // with a number that's unique to our emails
+        // end name attribute looks like name="contact[emails][2]"
+        newWidget = newWidget.replace(/\_\_name\_\_/g, sourceCount);
+
+        //var $removeFormA = '<a href="#">delete this tag</a>';
+        //newWidget+= $removeFormA;
+        sourceCount++;
+        //alert(newWidget);
+        // create a new list element and add it to our list
+        //var newLi = jQuery('<li></li>').html(newWidget);
+        //newLi.appendTo(jQuery('#email-fields-list'));
+        jQuery('#video_sources').append(newWidget);
+
+        jQuery('#video_sources > div:last').each(function() {
+            addTagFormDeleteLink($(this));
+        });
+
+        return false;
+    });
+
+</script>
 
 
 </body>

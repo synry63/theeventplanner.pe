@@ -32,6 +32,13 @@
 
         {{ include('admin/buttons_proveedores.html.twig')}}
 
+        <div class="filter-alfa">
+            {{ include('admin/includes/filter_letters.html.twig',{'state':state})}}
+
+        </div>
+
+
+
         {% for p in proveedores %}
             {{ include('comun_includes/listado_proveedores.html.twig', { 'p': p,'slug_site':'wedding','admin':true})}}
         {% endfor %}

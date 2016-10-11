@@ -67,13 +67,16 @@
                 </ul>
 
             </div>
-            <div class="form-group">
-                {{ form_widget(form.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
+
+            <a href="#" class="btn btn-success" id="add-another-parafo"><i class="fa fa-plus" aria-hidden="true"></i> Agregar Nuevo Párrafo</a>
+
+            <div class="form-group" style="margin-top: 15px">
+                {{ form_widget(form.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-primary'} } ) }}
             </div>
 
         {{ form_end(form) }}
 
-        <a href="#" class="btn btn-success" id="add-another-parafo"><i class="fa fa-plus" aria-hidden="true"></i> Agregar Nuevo Párrafo</a>
+
 
         <div id="preview">
             <h1 class="admin_h1">Vista Previa Noticia</h1>

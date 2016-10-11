@@ -13,11 +13,14 @@
             <div class="col-md-6">
                 <div class="author-info">
                     <div class="avatar">
-                        <img class="img-circle" src="http://placehold.it/50x50" alt=""/>
+
+                        <img class="img-circle" width="50px" src="{{ vich_uploader_asset(noticia.author, 'imgFile') }}" alt=""/>
+
                     </div>
                     <div class="info-name">
                         <p>
-                            {{ noticia.author }}
+                            {{ noticia.author.nombre }}
+
                         </p>
                         <p>
                             {{ noticia.adedAt|date("d F, Y") }}

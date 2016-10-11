@@ -28,17 +28,22 @@
         </ul>
     </div>
 
-    {% for label, flash in app.session.flashbag.get('success') %}
-        <div class="alert alert-success">
-            {{ flash }}
-        </div>
-    {% endfor %}
 
     <div class="news-blog">
+
+
+
+
         {% for n in noticias  %}
             <div class="col-md-8 col-md-offset-2">
+                {% for label, flash in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ flash }}
+                    </div>
+                {% endfor %}
                 <div class="row new">
                     <div class="col-md-5 col-xs-5 col-sm-5 foto-new">
+                        <a onclick="return confirm('¿Estas seguro de eliminar esta Noticia?');" class="admin_delete3" href="{{ path('admin_noticia_delete', {'id': n.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
                         <a class="admin_edit" href="{{ path('admin_noticia_edit', {'id': n.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
                         <a href="javascript:void(0)">
                             <img width="100%" src="{{ vich_uploader_asset(n, 'imgFile') }}" alt="">

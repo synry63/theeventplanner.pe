@@ -15,6 +15,12 @@
 
 <div class="container">
     <div class="col-md-10 body-dashboard" style="margin-top: 30px">
+
+        <a class="tendencias_return" href="{{ path('admin_autores') }}">
+            <button class="btn btn-entrar">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar a Lista de Autores
+            </button>
+        </a>
         {% for label, flash in app.session.flashbag.get('success') %}
             <div class="alert alert-success">
                 {{ flash }}
@@ -22,29 +28,28 @@
         {% endfor %}
 
 
-        <h1 class="admin_h1">Lista de Autores</h1>
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-        <div class="row">
-            {% for a in autores %}
-                <div class="col-md-2 autores">
-                    <div>
-                        <img class="img-circle" width="100px" src="{{ vich_uploader_asset(a, 'imgFile') }}" alt=""/>
-                    </div>
-                    <p>
-                        {{ a.nombre }}
-                    </p>
-                    <span><a href="{{ path('admin_author_edit',{'id':a.id}) }}">Editar</a></span>
-                    <span>|</span>
-                    <span><a onclick="return confirm('¿Estas seguro de eliminar este Autor?');" href="{{ path('admin_autor_delete',{'id':a.id}) }}">Eliminar</a></span>
-                </div>
-            {% endfor %}
+        <h1 class="admin_h1">Editar Autor</h1>
 
+        <div class="form-group">
+            {{ form_label(form.nombre,'Nombre') }}
+            {{ form_errors(form.nombre) }}
+            {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control'}}) }}
         </div>
 
+        <div class="form-group">
+            {{ form_label(form.imgFile,'Elija Una Foto') }}
+            {{ form_errors(form.imgFile) }}
+            {{ form_widget(form.imgFile,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.submit, { 'label': 'Guardar', 'attr':{'class':'btn btn-entrar'} } ) }}
+        </div>
 
+        {{ form_end(form) }}
     </div>
 </div>
-
 
 
 
@@ -54,8 +59,3 @@
 </body>
 
 </html>
-
-
-
-
-

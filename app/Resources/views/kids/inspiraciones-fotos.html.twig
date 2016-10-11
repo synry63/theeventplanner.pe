@@ -106,24 +106,26 @@
 
     </div>
     {% if tendencia.sources|length >0 %}
-        <div class="container sources-{{ app.request.get('slug_site') }}">
+        <div class="container">
             <strong>Fuentes: </strong>
             {% for sour in tendencia.sources %}
-                <a href="{{ sour.url }}">{{ sour.nombre }}</a>,
+                <span class="sour sources-{{ app.request.get('slug_site') }}">
+                    <a href="{{ sour.url }}">{{ sour.nombre }}</a>
+                </span>
             {% endfor %}
+
         </div>
     {% endif %}
 
-    {% if tendencia.linksCategorias is not null %}
-        <div class="container inspiraciones_vermas_{{ app.request.get('slug_site') }}">
-            <hr>
+
+    {% if tendencia.linksCategorias |length >0 %}
+        <div class="container inspiraciones_vermas_{{ app.request.get('slug_site') }} ">
             Encuentra más proveedores de :
-
-            {% for ts in tendencia.linksCategorias %}
-                <a href="{{ ts.url }}"><strong>{{ ts.nombre }}</strong></a>
+            {% for ts in  tendencia.linksCategorias %}
+                <span class="sour-link-{{ app.request.get('slug_site') }}">
+                    <a href="{{ ts.url }}"><strong>{{ ts.nombre }}</strong></a>
+                </span>
             {% endfor %}
-
-            <hr>
         </div>
     {% endif %}
 

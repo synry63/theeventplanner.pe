@@ -25,15 +25,35 @@
         <div class="row">
             {% for v in videos %}
                 <div class="col-md-6">
-
                     <div class="embed-responsive embed-responsive-16by9 video-general">
                         <iframe class="embed-responsive-item" src="{{ v.url }}"></iframe>
+
                     </div>
 
                 </div>
             {% endfor %}
 
         </div>
+
+
+
     </div>
+
+    <div class="container">
+        <strong>Fuentes: </strong>
+        {% for v in videos %}
+            {% if v.sources|length >0 %}
+                <span class="sour sources-{{ app.request.get('slug_site') }}" style="margin: 5px 0">
+                    {% for sour in v.sources %}
+                        <a href="{{ sour.url }}" target="_blank">{{ sour.nombre }}</a>
+                    {% endfor %}
+                </span>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+
+
 {% endblock %}
 

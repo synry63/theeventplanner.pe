@@ -1,0 +1,70 @@
+<div>
+
+    {% if state == 'all' %}
+        {% for letter in 'a'..'z' %}
+
+            {% if letra is defined %}
+                {% set foo = '' %}
+
+                {% if letra==letter %}
+                    {% set foo = 'active' %}
+                {% endif %}
+
+                <a class="{{ foo }}" href="{{ path('admin_negocios_letra',{'page':1, 'letra':letter}) }}">{{ letter }}</a>
+
+            {% else %}
+                <a href="{{ path('admin_negocios_letra',{'page':1, 'letra':letter}) }}">{{ letter }}</a>
+            {% endif %}
+
+        {% endfor %}
+
+
+
+
+    {% endif %}
+
+    {% if state == 'en-espera' %}
+
+        {% for letter in 'a'..'z' %}
+
+            {% if letra is defined %}
+                {% set foo = '' %}
+
+                {% if letra==letter %}
+                    {% set foo = 'active' %}
+                {% endif %}
+
+                <a class="{{ foo }}"  href="{{ path('admin_negocios_espera_letra',{'page':1, 'letra':letter}) }}">{{ letter }}</a>
+
+            {% else %}
+                <a  href="{{ path('admin_negocios_espera_letra',{'page':1, 'letra':letter}) }}">{{ letter }}</a>
+            {% endif %}
+
+        {% endfor %}
+
+
+    {% endif %}
+
+    {% if state == 'acceptados' %}
+
+        {% for letter in 'a'..'z' %}
+
+            {% if letra is defined %}
+                {% set foo = '' %}
+
+                {% if letra==letter %}
+                    {% set foo = 'active' %}
+                {% endif %}
+
+                <a class="{{ foo }}" href="{{ path('admin_negocios_acceptados_letra',{'page':1, 'letra':letter}) }}">{{ letter }}</a>
+
+            {% else %}
+                <a  href="{{ path('admin_negocios_acceptados_letra',{'page':1, 'letra':letter}) }}">{{ letter }}</a>
+            {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+</div>
+<hr/>
