@@ -102,7 +102,10 @@ vich_uploader:
                 uri_prefix:         /images/blog
                 upload_destination: %kernel.root_dir%/../web/images/blog
                 namer:              vich_uploader.namer_uniqid
-
+            author_image:
+                uri_prefix:         /images/blog/author
+                upload_destination: %kernel.root_dir%/../web/images/blog/author
+                namer:              vich_uploader.namer_uniqid
 fos_user:
     from_email:
         address:        sistema@theeventplanner.pe

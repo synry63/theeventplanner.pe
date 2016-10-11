@@ -37,7 +37,16 @@ class NoticiaType extends AbstractType
             ),
         ));
         $builder->add('nombre');
-        $builder->add('author');
+        $builder->add('author','entity', array(
+            'class' => 'AppBundle:Author',
+            'placeholder' => '',
+            'choice_label' => 'nombre',
+            'constraints' => array(
+                new NotBlank(),
+
+            )
+        ));
+
         if($entity->getId()==NULL) { // so new one
             $builder->add('imgFile', 'file',array(
                 'constraints' => array(

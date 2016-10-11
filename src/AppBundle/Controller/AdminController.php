@@ -8,12 +8,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Author;
 use AppBundle\Entity\Inspiracion;
 use AppBundle\Entity\Musica;
 use AppBundle\Entity\Noticia;
 use AppBundle\Entity\Tendencia;
 use AppBundle\Entity\Video;
 use AppBundle\Entity\Voto;
+use AppBundle\Form\Type\AuthorType;
 use AppBundle\Form\Type\InspiracionType;
 use AppBundle\Form\Type\MusicaType;
 use AppBundle\Form\Type\NoticiaType;
@@ -315,6 +317,46 @@ class AdminController extends Controller
             array(
                 'videos'=>$videos,
                 'seccion' => $this->menuSelected('videos')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/autor/add", name="admin_autor_add")
+     */
+    public function adminAuthorAddAction(Request $request){
+        $a = new Author();
+        $form = $this->createForm(new AuthorType(), $a);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            //$logo->setProveedor($proveedor);
+            $em->persist($a);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Su autor fue guardado !');
+            return $this->redirectToRoute('admin_autores');
+        }
+
+        return $this->render(
+            'admin/autor_add.html.twig',
+            array(
+                'form' => $form->createView(),
+                'seccion' => $this->menuSelected('noticias')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/autores", name="admin_autores")
+     */
+    public function adminAuthorAction(Request $request){
+        $autores = $this->getDoctrine()->getRepository('AppBundle:Author')->findBy(
+            array()
+        );
+        return $this->render(
+            'admin/autores.html.twig',
+            array(
+                'autores'=>$autores,
+                'seccion' => $this->menuSelected('noticias')
             )
         );
     }
@@ -896,9 +938,10 @@ class AdminController extends Controller
     }
     /**
      * @Route("/admin/negocios/acceptados/{page}", name="admin_negocios_acceptados", defaults={"page" = 1})
+     * @Route("/admin/negocios/acceptados/{page}/letra/{letra}", name="admin_negocios_acceptados_letra")
      */
-    public function adminNegociosAcceptadosShowAction(Request $request,$page){
-        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByState(true);
+    public function adminNegociosAcceptadosShowAction(Request $request,$page,$letra = null){
+        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByState(true,$letra);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -911,15 +954,17 @@ class AdminController extends Controller
         return $this->render(
             'admin/negocios.html.twig',array(
                 'proveedores'=>$pagination,
+                'state'=>'acceptados',
                 'seccion'=>$this->menuSelected('negocios')
             )
         );
     }
     /**
      * @Route("/admin/negocios/en-espera/{page}", name="admin_negocios_espera", defaults={"page" = 1})
+     * @Route("/admin/negocios/en-espera/{page}/letra/{letra}", name="admin_negocios_espera_letra")
      */
-    public function adminNegociosEnEsperaShowAction(Request $request,$page){
-        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByState(false);
+    public function adminNegociosEnEsperaShowAction(Request $request,$page,$letra = null){
+        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresByState(false,$letra);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -932,17 +977,18 @@ class AdminController extends Controller
         return $this->render(
             'admin/negocios.html.twig',array(
                 'proveedores'=>$pagination,
+                'state'=>'en-espera',
                 'seccion'=>$this->menuSelected('negocios')
             )
         );
     }
     /**
      * @Route("/admin/negocios/{page}", name="admin_negocios", defaults={"page" = 1})
+     * @Route("/admin/negocios/{page}/letra/{letra}", name="admin_negocios_letra")
      */
-    public function adminNegociosShowAction(Request $request,$page){
+    public function adminNegociosShowAction(Request $request,$page,$letra = null){
 
-
-        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresOrderBy('alfa');
+        $proveedores_query = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getProveedoresOrderBy('alfa',$letra);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -951,12 +997,16 @@ class AdminController extends Controller
             6
         //array('wrap-queries'=>true)
         );
-
+        $renderOut = array(
+            'proveedores'=>$pagination,
+            'state'=>'all',
+            'seccion'=>$this->menuSelected('negocios')
+        );
+        if($letra!=NULL){
+            $renderOut['letra'] = $letra;
+        }
         return $this->render(
-            'admin/negocios.html.twig',array(
-                'proveedores'=>$pagination,
-                'seccion'=>$this->menuSelected('negocios')
-            )
+            'admin/negocios.html.twig',$renderOut
         );
 
     }

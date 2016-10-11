@@ -38,8 +38,9 @@ class Noticia
     private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="Author",cascade={"persist","detach"})
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     * @Assert\Valid
      */
     private $author;
 

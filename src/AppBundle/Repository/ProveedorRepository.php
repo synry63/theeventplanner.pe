@@ -37,7 +37,7 @@ class ProveedorRepository extends EntityRepository
 
         return $query->getResult();
     }
-    public function getProveedoresByState($state){
+    public function getProveedoresByState($state,$letra = NULL){
         $qb = $this->createQueryBuilder('p')
             ->where('p.isAccepted = :state')
             ->setParameters(array(
@@ -45,6 +45,10 @@ class ProveedorRepository extends EntityRepository
             ))
             ->orderBy('p.nombre', 'ASC');
         ;
+        if($letra!=NULL){
+            $qb->andWhere($qb->expr()->like('p.nombre', ':search'))
+                ->setParameter('search', $letra . '%');
+        }
         $query = $qb->getQuery();
 
         return $query;
@@ -92,7 +96,7 @@ class ProveedorRepository extends EntityRepository
 
         return $query->getResult();
     }
-    public function getProveedoresOrderBy($order){
+    public function getProveedoresOrderBy($order,$letra = NULL){
 
         if($order=="date"){
             $qb = $this->createQueryBuilder('p')
@@ -102,13 +106,15 @@ class ProveedorRepository extends EntityRepository
             $qb = $this->createQueryBuilder('p')
                 ->orderBy('p.nombre', 'ASC');
         }
-
-
+        if($letra!=NULL){
+            $qb->where($qb->expr()->like('p.nombre', ':search'))
+                ->setParameter('search', $letra . '%');
+        }
         $query = $qb->getQuery();
 
         return $query;
     }
-    public function getProveedoresRelatedByCategory($cate,$id,$limit = 8){
+    public function getProveedoresRelatedByCategory($cate,$id,$limit = 3){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
         $qb->select('p as proveedor,avg(cp.nota) as mymoy')
