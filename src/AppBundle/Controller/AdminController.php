@@ -214,8 +214,22 @@ class AdminController extends Controller
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->find($id);
         $form_video = $this->createForm(new VideoType(), $video);
         $form_video->handleRequest($request);
+        $originalSource = new ArrayCollection();
+        foreach ($video->getSources() as $s) {
+            $originalSource->add($s);
+        }
         if ($form_video->isSubmitted() && $form_video->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            foreach ($originalSource as $src) {
+                if (false === $video->getSources()->contains($src)) {
+                    $em->remove($src);
+                    //$s->setTendencia(null);
+                }
+            }
+            foreach ($video->getSources() as $src) {
+                $src->setVideo($video);
+            }
             $em->persist($video);
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'Su video fue guardada !');
@@ -251,6 +265,10 @@ class AdminController extends Controller
         $form_video = $this->createForm(new VideoType(), $video);
         $form_video->handleRequest($request);
         if ($form_video->isSubmitted() && $form_video->isValid()) {
+            foreach ($video->getSources() as $src) {
+                $src->setVideo($video);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($video);
             $em->flush();
@@ -339,6 +357,41 @@ class AdminController extends Controller
 
         return $this->render(
             'admin/autor_add.html.twig',
+            array(
+                'form' => $form->createView(),
+                'seccion' => $this->menuSelected('noticias')
+            )
+        );
+    }
+    /**
+     * @Route("/admin/autor/delete/{id}", name="admin_autor_delete")
+     */
+    public function adminAuthorDeleteAction(Request $request,$id){
+        $a = $this->getDoctrine()->getRepository('AppBundle:Author')->find($id);
+        if($a!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($a);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su autor fue borrada !');
+            return $this->redirectToRoute('admin_autores');
+        }
+    }
+    /**
+     * @Route("/admin/author/{id}", name="admin_author_edit")
+     */
+    public function adminAuthorEditAction(Request $request,$id){
+        $a = $this->getDoctrine()->getRepository('AppBundle:Author')->find($id);
+        $form = $this->createForm(new AuthorType(), $a);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($a);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su autor fue guardada !');
+            return $this->redirectToRoute('admin_author_edit',array('id'=>$id));
+        }
+        return $this->render(
+            'admin/autor_edit.html.twig',
             array(
                 'form' => $form->createView(),
                 'seccion' => $this->menuSelected('noticias')
@@ -950,13 +1003,16 @@ class AdminController extends Controller
             6
         //array('wrap-queries'=>true)
         );
-
+        $renderOut = array(
+            'proveedores'=>$pagination,
+            'state'=>'acceptados',
+            'seccion'=>$this->menuSelected('negocios')
+        );
+        if($letra!=NULL){
+            $renderOut['letra'] = $letra;
+        }
         return $this->render(
-            'admin/negocios.html.twig',array(
-                'proveedores'=>$pagination,
-                'state'=>'acceptados',
-                'seccion'=>$this->menuSelected('negocios')
-            )
+            'admin/negocios.html.twig',$renderOut
         );
     }
     /**
@@ -973,13 +1029,16 @@ class AdminController extends Controller
             6
         //array('wrap-queries'=>true)
         );
-
+        $renderOut = array(
+            'proveedores'=>$pagination,
+            'state'=>'en-espera',
+            'seccion'=>$this->menuSelected('negocios')
+        );
+        if($letra!=NULL){
+            $renderOut['letra'] = $letra;
+        }
         return $this->render(
-            'admin/negocios.html.twig',array(
-                'proveedores'=>$pagination,
-                'state'=>'en-espera',
-                'seccion'=>$this->menuSelected('negocios')
-            )
+            'admin/negocios.html.twig',$renderOut
         );
     }
     /**

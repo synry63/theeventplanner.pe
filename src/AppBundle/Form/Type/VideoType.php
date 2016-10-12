@@ -41,6 +41,15 @@ class VideoType extends AbstractType
             ),
         ));
 
+        $builder->add('sources', 'Symfony\Component\Form\Extension\Core\Type\CollectionType', array(
+            // each entry in the array will be an "source" field
+            'entry_type'   => 'AppBundle\Form\Type\SourceVideoType',
+            // these options are passed to each "email" type
+            'allow_add'=>true,
+            'allow_delete'=>true,
+            'by_reference' => false
+        ));
+
         $builder->add('url');
         $builder->add('nombre');
         $builder->add('sort');

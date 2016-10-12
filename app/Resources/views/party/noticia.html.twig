@@ -48,6 +48,13 @@
     <script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
+        $( ".shareBtnFacebook" ).click(function() {
+            FB.ui({
+                method: 'share',
+                mobile_iframe: true,
+                href: '{{ app.request.uri }}'
+            }, function(response){});
+        });
         $('.news-relacionadas').fixTo('body');
 
         $(function() {

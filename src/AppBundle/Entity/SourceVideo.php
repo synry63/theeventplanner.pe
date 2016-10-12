@@ -14,9 +14,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="videos")
+ * @ORM\Table(name="sources_videos")
  */
-class Video
+class SourceVideo
 {
     /**
      * @ORM\Column(type="integer")
@@ -37,81 +37,45 @@ class Video
      */
     private $url;
 
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     */
-    private $player;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
-     * @Assert\GreaterThan(value = 0)
-     */
-    private $sort;
-
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     */
-    private $type;
-
-    /**
-     * @Assert\Valid
-     * @ORM\OneToMany(targetEntity="SourceVideo", mappedBy="video",cascade={"persist","remove"})
+    @ORM\ManyToOne(targetEntity="Video",inversedBy="sources")
+    @ORM\JoinColumn(name="video_id", referencedColumnName="id",nullable=false)
      **/
-    private $sources;
+    private $video;
 
     /**
      * @return mixed
      */
-    public function getSources()
+    public function getVideo()
     {
-        return $this->sources;
+        return $this->video;
     }
 
     /**
-     * @param mixed $sources
+     * @param mixed $video
      */
-    public function setSources($sources)
+    public function setVideo($video)
     {
-        $this->sources = $sources;
+        $this->video = $video;
     }
 
 
+
+    /**
+     * @param mixed $tendencia
+     */
+    public function setTendencia($tendencia)
+    {
+        $this->tendencia = $tendencia;
+    }
 
     /**
      * @return mixed
      */
-    public function getPlayer()
+    public function getTendencia()
     {
-        return $this->player;
-    }
-
-    /**
-     * @param mixed $player
-     */
-    public function setPlayer($player)
-    {
-        $this->player = $player;
-    }
-
-
-
-    /**
-     * @param mixed $sort
-     */
-    public function setSort($sort)
-    {
-        $this->sort = $sort;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
+        return $this->tendencia;
     }
 
     /**
@@ -144,22 +108,6 @@ class Video
     public function getNombre()
     {
         return $this->nombre;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSort()
-    {
-        return $this->sort;
     }
 
     /**
