@@ -1756,6 +1756,7 @@ New Comments
 }
 .comments-new .media-body-wedding small, .comments-new .media-body-kids small, .comments-new .media-body-party small, .comments-new .media-body-dinner small{
     float: right;
+
 }
 .new-principal .media-body-wedding p, .new-principal .media-body-kids p, .new-principal .media-body-party p, .new-principal .media-body-dinner p{
     margin-top: 25px;
@@ -2020,7 +2021,7 @@ New Comments
     text-decoration: none;
 }
 
-.boton-share-noti2 a:last-child{
+.boton-share-noti2 a:nth-child(2){
     color: #4099FF;
     text-decoration: none;
 }
@@ -3540,6 +3541,7 @@ Zona de Negocio
 .dashboard .btn-responder{
     float: right;
     margin: 5px;
+    background: #c1c1c1;
     transition: all .5s;
 }
 .dashboard .btn-responder:hover{
@@ -5209,7 +5211,7 @@ MÓVILES RESPONSIVE
     }
     .links-socials2{
         display: inline;
-        padding: 40px;
+        padding: 10px;
     }
 
     .comments-new .media-body-wedding p, .comments-new .media-body-kids p, .comments-new .media-body-party p, .comments-new .media-body-dinner p{
@@ -5365,7 +5367,7 @@ MÓVILES RESPONSIVE
         font-size: 15px;
     }
     .new span{
-        display: block;
+        display: inline-block;
     }
 
     .footer{
@@ -5858,6 +5860,9 @@ MÓVILES RESPONSIVE
     }
     div.two{
         margin-left: -15%;
+    }
+    .new span{
+        display: inline-block;
     }
     #dropdownMenu1 a{
         font-size: 16px;

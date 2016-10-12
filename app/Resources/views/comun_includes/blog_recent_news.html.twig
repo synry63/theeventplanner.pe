@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-6">
                 <h2 class="title-{{ app.request.get('slug_site') }}">{{ noti.noticia.nombre }}</h2>
-                <p>{{ noti.noticia.adedAt|date("d F, Y") }}</p>
+                <p style="text-transform: capitalize;">{{ noti.noticia.adedAt|date("m/d/Y")| localizeddate('long', 'none', app.request.locale ) }}</p>
                 <p><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ noti.total }})</p>
             </div>
         </a>

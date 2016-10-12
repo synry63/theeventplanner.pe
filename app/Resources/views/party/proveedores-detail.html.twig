@@ -107,7 +107,7 @@
                             <div class="media-body media-body-{{ app.request.get('slug_site') }}">
                                 <div>
                                     <h3>{{ p.titulo }}</h3>
-                                    <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
+                                    <small class="date">{{ p.adedAt|date("d F, Y")| localizeddate('long', 'none', app.request.locale ) }}</small>
                                 </div>
                                 <div style="margin-top: 25px; margin-bottom: 5px" class="rateYo_comments" data-rating="{{ p.nota }}"></div>
                                 <span>{{ p.user.nombres }} {{ p.user.apellidos }}</span>

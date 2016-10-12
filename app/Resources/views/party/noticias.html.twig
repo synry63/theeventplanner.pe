@@ -47,7 +47,7 @@
             <div class="tittle-principal">
 
                 <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}"><h1>{{ noticias[0].noticia.nombre }}</h1></a>
-                <span>{{ noticias[0].noticia.adedAt|date("d F, Y") }}</span>
+                <span>{{ noticias[0].noticia.adedAt|date("m/d/Y")| localizeddate('long', 'none', app.request.locale ) }}</span>
                 <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ noticias[0].noticia.comentarios|length }})</span>
                 <span><div class="fb-like"
                            data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}"
@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-md-7 col-xs-7 col-sm-7">
                         <a class="titulo-noti-{{ app.request.get('slug_site') }}" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug}) }}"><h1>{{ n.noticia.nombre }}</h1></a>
-                        <span>{{ n.noticia.adedAt|date("d F, Y") }}</span>
+                        <span style="text-transform: capitalize">{{ n.noticia.adedAt|date("m/d/Y")| localizeddate('long', 'none', app.request.locale ) }}</span>
                         <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ n.noticia.comentarios|length }})</span>
                         <span><div class="fb-like"
                                    data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug})) }}"

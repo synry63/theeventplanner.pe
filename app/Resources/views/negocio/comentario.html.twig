@@ -91,7 +91,7 @@
                         <div class="media-body media-body-wedding">
                             <div>
                                 <h3>{{ comentario.titulo }}</h3>
-                                <small class="date">{{ comentario.adedAt|date("d F, Y") }}</small>
+                                <small class="date">{{ comentario.adedAt|date("d F, Y")| localizeddate('long', 'none', app.request.locale ) }}</small>
                             </div>
                             <div style="margin-top: 25px; margin-bottom: 5px" class="rateYo_comments" data-rating="{{ comentario.nota }}"></div>
                             <span>{{ comentario.user.nombres }} {{ comentario.user.apellidos }}</span>

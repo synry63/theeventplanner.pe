@@ -66,7 +66,7 @@
                             </div>
                             <div class="panel-body">
                                 <span id="countCotizar" data-total="{{app.user.countCotizar}}">0</span>
-                                <p class="desde">Desde el {{ app.user.registeredAt|date("d F, Y") }} </p>
+                                <p class="desde" >Desde el {{ app.user.registeredAt|date("d F, Y")| localizeddate('long', 'none', app.request.locale ) }} </p>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                             </div>
                             <div class="panel-body">
                                 <span id="countVerTelefono" data-total="{{ app.user.countVerTelefono }}">0</span>
-                                <p class="desde">Desde el {{ app.user.registeredAt|date("d F, Y") }} </p>
+                                <p class="desde" >Desde el {{ app.user.registeredAt|date("d F, Y")| localizeddate('long', 'none', app.request.locale ) }} </p>
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                                         <div class="media-body media-body-wedding">
                                             <div>
                                                 <h3>{{ p.titulo }}</h3>
-                                                <small class="date">{{ p.adedAt|date("d F, Y") }}</small>
+                                                <small class="date">{{ p.adedAt|date("d F, Y")| localizeddate('long', 'none', app.request.locale ) }}</small>
                                             </div>
                                             <div style="margin-top: 25px; margin-bottom: 5px" class="rateYo_comments" data-rating="{{ p.nota }}"></div>
                                             <span>{{ p.user.nombres }} {{ p.user.apellidos }}</span>
