@@ -4849,7 +4849,14 @@ MÓVILES RESPONSIVE
 
 /* iPad in portrait */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-
+    .author-info{
+        float: left;
+    }
+    .links-socials{
+        display: inline-block;
+        margin-top: 0;
+        margin-right: 0;
+    }
     .music-container>div, .music-container-kids>div, .music-container-party>div, .music-container-dinner>div{
         padding: 0 180px;
         margin-bottom: 30px;
@@ -5021,6 +5028,11 @@ MÓVILES RESPONSIVE
 }
 /* iPad in landscape */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    .links-socials{
+        display: inline-block;
+        margin-top: 0;
+        margin-right: 0;
+    }
     .boton-share-music {
         padding: 0 10px 0 0;
         z-index: 2;
