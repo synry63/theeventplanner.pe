@@ -212,15 +212,16 @@ class AdminController extends Controller
      */
     public function adminVideoEditAction(Request $request,$id){
         $video = $this->getDoctrine()->getRepository('AppBundle:Video')->find($id);
-        $form_video = $this->createForm(new VideoType(), $video);
-        $form_video->handleRequest($request);
+
         $originalSource = new ArrayCollection();
         foreach ($video->getSources() as $s) {
             $originalSource->add($s);
         }
+
+        $form_video = $this->createForm(new VideoType(), $video);
+        $form_video->handleRequest($request);
         if ($form_video->isSubmitted() && $form_video->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
             foreach ($originalSource as $src) {
                 if (false === $video->getSources()->contains($src)) {
                     $em->remove($src);
@@ -1139,6 +1140,8 @@ class AdminController extends Controller
             }
         }
 
+        if(empty($slug_site)) $slug_site='wedding';
+
         // end get first
         return $this->redirectToRoute('admin_negocio_preview_seccion',array('slug_site'=>$slug_site,'id'=>$id));
 
@@ -1340,6 +1343,8 @@ class AdminController extends Controller
                 break;
             }
         }
+
+        if(empty($seccions_site)) $seccions_site = 'wedding';
 
         return $this->render(
             'admin/negocio_profile.html.twig',
