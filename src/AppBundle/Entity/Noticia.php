@@ -40,7 +40,6 @@ class Noticia
     /**
      * @ORM\ManyToOne(targetEntity="Author",cascade={"persist","detach"})
      * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
-     * @Assert\Valid
      */
     private $author;
 

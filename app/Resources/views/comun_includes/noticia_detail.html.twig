@@ -12,21 +12,23 @@
         <div class="description-noti">
             <div class="col-md-6">
                 <div class="author-info">
-                    <div class="avatar">
+                    {% if noticia.author is not null %}
+                        <div class="avatar">
 
-                        <img class="img-circle" width="50px" src="{{ vich_uploader_asset(noticia.author, 'imgFile') }}" alt=""/>
 
-                    </div>
-                    <div class="info-name">
-                        <p>
-                            {{ noticia.author.nombre }}
+                                <img class="img-circle" width="50px" src="{{ vich_uploader_asset(noticia.author, 'imgFile') }}" alt=""/>
 
-                        </p>
-                        <p style="text-transform: capitalize;">
-                            {{ noticia.adedAt|date("d F, Y")| localizeddate('long', 'none', app.request.locale ) }}
-                        </p>
-                    </div>
+                        </div>
+                        <div class="info-name">
+                            <p>
+                                {{ noticia.author.nombre }}
 
+                            </p>
+                            <p style="text-transform: capitalize;">
+                                {{ noticia.adedAt|date("d F, Y")| localizeddate('long', 'none', app.request.locale ) }}
+                            </p>
+                        </div>
+                    {% endif %}
                 </div>
 
 

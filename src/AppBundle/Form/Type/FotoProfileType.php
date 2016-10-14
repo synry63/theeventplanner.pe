@@ -24,7 +24,7 @@ class FotoProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('profileFile', 'file');
-        $builder->add('update', SubmitType::class);
+        $builder->add('update', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -191,9 +191,9 @@ class DefaultController extends Controller
     {
         if ($request->isXmlHttpRequest()) {
             $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('slug'=>$slug_proveedor));
-
+            $cotizar_count = $proveedor->getCountCotizar();
             // count cotizar
-            if (empty($proveedor->getCountCotizar())) {
+            if (empty($cotizar_count)) {
                 $proveedor->setCountCotizar(1);
             } else {
                 $proveedor->setCountCotizar($proveedor->getCountCotizar() + 1);

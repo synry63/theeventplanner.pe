@@ -623,7 +623,7 @@ class AdminController extends Controller
         );
     }
     /**
-     * @Route("/admin/voto/{id}", name="admin_voto_edit")
+     * @Route("/admin/voto/edit/{id}", name="admin_voto_edit")
      */
     public function adminVotoEditAction(Request $request,$id){
         $voto = $this->getDoctrine()->getRepository('AppBundle:Voto')->find($id);
@@ -649,7 +649,7 @@ class AdminController extends Controller
         );
     }
     /**
-     * @Route("/admin/inspiracion/{id}", name="admin_inspiracion_edit")
+     * @Route("/admin/inspiracion/edit/{id}", name="admin_inspiracion_edit")
      */
     public function adminInspiracionEditAction(Request $request,$id){
         $inspiracion = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->find($id);
@@ -917,7 +917,6 @@ class AdminController extends Controller
      * @Route("/admin/inspiracion/sort", name="admin_tendencia_inpiracion_sort")
      */
     public function adminTendenciaInspiracionSortAction(Request $request){
-
         if($request->isXmlHttpRequest()) {
             $sort_string = $request->request->get('sort');
             $arr = explode('&',$sort_string);

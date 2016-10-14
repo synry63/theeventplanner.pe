@@ -87,12 +87,13 @@
                                 <i class="fa fa-picture-o" aria-hidden="true"></i> Foto destacada
                             </div>
                             <div class="panel-body foto_best" >
-
-                                <img width="100%" src="{{ vich_uploader_asset(mejores_fotos[0].foto, 'imgFile')}}" alt="">
-                                <div class="cant">
-                                    <p>{{ mejores_fotos[0].number }}</p>
-                                    <p>Me gusta</p>
-                                </div>
+                                {% if mejores_fotos|length > 0 %}
+                                    <img width="100%" src="{{ vich_uploader_asset(mejores_fotos[0].foto, 'imgFile')}}" alt="">
+                                    <div class="cant">
+                                        <p>{{ mejores_fotos[0].number }}</p>
+                                        <p>Me gusta</p>
+                                    </div>
+                                {% endif %}
 
                             </div>
                         </div>

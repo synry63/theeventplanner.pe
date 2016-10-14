@@ -967,7 +967,8 @@ class ProveedorController extends Controller
         if($request->isXmlHttpRequest()) {
             $id_p = $request->request->get('negocio');
             $proveedor = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(array('id' => $id_p));
-            if (empty($proveedor->getCountVerTelefono())) {
+            $telefono_count = $proveedor->getCountVerTelefono();
+            if (empty($telefono_count)) {
                 $proveedor->setCountVerTelefono(1);
             } else {
                 $proveedor->setCountVerTelefono($proveedor->getCountVerTelefono() + 1);
