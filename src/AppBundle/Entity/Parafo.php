@@ -47,6 +47,11 @@ class Parafo
     private $img;
 
     /**
+     * @ORM\Column(type="string", length=64,nullable=true)
+     */
+    private $title;
+
+    /**
     @ORM\ManyToOne(targetEntity="Noticia",inversedBy="parafos")
     @ORM\JoinColumn(name="noticia_id", referencedColumnName="id")
      **/
@@ -139,6 +144,22 @@ class Parafo
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**

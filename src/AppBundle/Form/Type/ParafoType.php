@@ -26,6 +26,7 @@ class ParafoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('description');
+        $builder->add('title');
         $builder->add('imgFile','file');
         //$builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
