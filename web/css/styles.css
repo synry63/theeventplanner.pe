@@ -143,7 +143,29 @@ nuevo buscador
     border-radius: 3px;
     text-decoration: none;
 }
-
+#buscador2 .fondo{
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    z-index: 2;
+    display: inline-block;
+    background-color: rgba(0,0,0,.3);
+}
+.nuevo-buscador2 select{
+    background: #fff;
+    width: 100%;
+    font-weight: 400;
+    line-height: 50px;
+    height: 50px;
+    font-size: 16px;
+    padding-left: 60px;
+    -webkit-appearance: none;
+    display: inline-block;
+    color: rgba(0,0,0,.7);
+    border: 0;
+    border-radius: 3px;
+    text-decoration: none;
+}
 .list_categorias-wedding{
     top: 72px;
     width: 700px;
@@ -226,6 +248,28 @@ nuevo buscador
 .chevron-dinner{
     color: rgb(14, 105, 112);
 }
+
+.chevron2-wedding,.chevron2-kids,.chevron2-party,.chevron2-dinner{
+    position: absolute;
+    right: 22%;
+    top: 50%;
+    transform: translate(50%,-50%);
+}
+
+.chevron2-wedding{
+    color: rgb(53, 179, 180);
+}
+.chevron2-kids{
+    color: #A70C77;
+}
+.chevron2-party{
+    color: rgb(149, 193, 31);
+}
+.chevron2-dinner{
+
+    color: rgb(14, 105, 112);
+}
+
 
 /*=============
 Nav bar
@@ -1171,6 +1215,15 @@ GLOBAL
     max-width: 500px;
     /*margin: 20px auto;*/
 }
+.white-popup2 {
+    position: relative;
+    background: #FFF;
+    padding: 20px;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
 .flash-success{
     position: absolute;
     background: #C90051;
@@ -1751,7 +1804,7 @@ New Comments
     color: #0E6970;
 }
 .comments-new .media-body-wedding, .comments-new .media-body-kids,.comments-new .media-body-party, .comments-new .media-body-dinner{
-    border: solid 1px #f1f1f1;
+    border: solid 1px rgba(0,0,0,.1);
     padding: 10px;
 }
 .comments-new .media-body-wedding small, .comments-new .media-body-kids small, .comments-new .media-body-party small, .comments-new .media-body-dinner small{
@@ -2030,7 +2083,7 @@ New Comments
 
 
 .boton-share-noti-detail{
-    padding: 0 10px;
+    padding: 5px 10px;
     display: inline-block;
     float: right;
 }
@@ -3115,11 +3168,18 @@ Animates
 /*=============
 News Blog
 ===============*/
+.news-relacionadas{
+    border: 1px solid rgba(0,0,0,.1);
+    width: 350px;
+    margin: 0 10px;
+}
 .new-principal .body-noti{
     text-align: justify;
 }
 .description-noti{
-    margin: 20px 0;
+    border: 1px solid rgba(0,0,0,.1);
+    margin: 10px 0;
+    padding: 10px;
     display: inline-block;
     width: 100%;
 }
@@ -3155,21 +3215,23 @@ News Blog
 .news-relacionadas hr:last-child{
     display: none;
 }
-.news-relacionadas hr{
+.news-relacionadas .news-rel{
     margin-bottom: 10px;
-    margin-top: 10px;
+    display: inline-block;
 }
 .news-relacionadas h1{
     text-align: center;
-    margin: 10px 0 20px 0;
+    margin: 20px 0 20px 0;
+    padding-bottom: 17px;
+    border-bottom: solid 1px rgba(0,0,0,.1);
     font-size: 18px;
     font-family: 'Bree Serif', serif;
 }
 .news-relacionadas  .news-rel h2{
     font-size: 15px;
     text-transform: lowercase;
-    margin:0;
-    margin-bottom: 10px;
+    margin: 0;
+    margin-bottom: 5px;
 }
 .news-relacionadas  .news-rel h2:first-letter{
     text-transform: uppercase;
@@ -3190,7 +3252,7 @@ News Blog
 .news-relacionadas  .news-rel p{
     margin: 0;
     font-size: 12px;
-    font-style: italic;
+    color: rgba(0,0,0,.5);
 }
 .new-detalle h1{
     font-size: 26px;
@@ -3265,25 +3327,32 @@ News Blog
     margin-top: 7px;
 }
 .new-principal h1{
+    margin-top: 0;
+    margin-bottom: 15px;
     font-family: 'Bree Serif', serif;
+    text-transform: lowercase;
     font-size: 28px;
-    margin-bottom: 25px;
 }
+
+.new-principal .title-wedding:first-letter,.new-principal .title-kids:first-letter,.new-principal .title-party:first-letter,.new-principal .title-dinner:first-letter{
+    text-transform: uppercase;
+}
+
 .new-principal .title-wedding{
     color: #35B3B4;
-    text-transform: uppercase;
+    text-align: left;
 }
 .new-principal .title-kids{
     color: #a70c77;
-    text-transform: uppercase;
+    text-align: left;
 }
 .new-principal .title-party{
     color: #cad538;
-    text-transform: uppercase;
+    text-align: left;
 }
 .new-principal .title-dinner{
     color: #0e6970;
-    text-transform: uppercase;
+    text-align: left;
 }
 
 .new-principal{
@@ -4105,6 +4174,9 @@ Dashboard Admin
     display: none;
 }
 
+
+
+
 .acordion-default .admin_edit2{
     font-size: 20px;
     color: #fff;
@@ -4315,6 +4387,16 @@ Negocios relacionados
 .negocio-rel .rateYoRelated{
     margin: 5px auto;
 }
+.profile-responsive{
+    display: none;
+}
+#buscador2{
+    display: none;
+    position: relative;
+}
+.nuevo-buscador2{
+    display: none;
+}
 /*=============
 MÓVILES RESPONSIVE
 ===============*/
@@ -4412,7 +4494,7 @@ MÓVILES RESPONSIVE
         position: fixed;
         z-index: 2;
         font-size: 14px;
-        border: solid 1px rgba(0,0,0,.05);
+        border: solid 1px rgba(0,0,0,.2);
         background: #fff;
         padding: 10px;
 
@@ -4853,6 +4935,10 @@ MÓVILES RESPONSIVE
 
 /* iPad in portrait */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .news-relacionadas{
+        width: 350px;
+        margin: 0 auto ;
+    }
     .author-info{
         float: left;
     }
@@ -5029,6 +5115,7 @@ MÓVILES RESPONSIVE
     .btn-login{
         top:76%;
     }
+
 }
 /* iPad in landscape */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
@@ -5160,12 +5247,67 @@ MÓVILES RESPONSIVE
         top: 42%;
     }
 
+    .news-relacionadas{
+        width: 290px;
+    }
 }
 
 
 
 /* iPhone in portrait */
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : portrait) {
+    .buttons-home{
+        color:rgba(0,0,0,.6);
+        text-align: center;
+        padding: 13px;
+        border-bottom: solid 1px rgba(0,0,0,.1);
+    }
+    .buttons-home:nth-child(2){
+        border-right: solid 1px rgba(0,0,0,.1);
+    }
+    .buttons-home i{
+        font-size: 23px;
+        position: absolute;
+        left: 10%;
+        color: #0e6970;
+    }
+    .nuevo-buscador2{
+        display: block;
+        padding: 10px;
+        border: solid 1px #fff;
+        border-radius: 5px;
+        position: absolute;
+        z-index: 2;
+        width: 90%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    #buscador{
+        display: none;
+    }
+    #buscador2{
+        display: block;
+    }
+    #responsive-button{
+        position: absolute;
+        top: -60px;
+        left: -5px;
+    }
+    .profile-responsive{
+        display: block;
+        position: absolute;
+        top: -52px;
+        right: -5px;
+    }
+    .tittle_base{
+        width: 70%;
+        margin: 0 auto;
+    }
+    .news-relacionadas{
+        width: 100%;
+        margin: 0;
+    }
     .nav-zonaneg #bs-example-navbar-collapse-1{
         margin: 30px 0;
     }
@@ -5257,23 +5399,27 @@ MÓVILES RESPONSIVE
         position: fixed;
         z-index: 2;
         font-size: 14px;
-        border: solid 1px rgba(0,0,0,.05);
+        border: solid 1px rgba(0,0,0,.2);
         background: #fff;
         padding: 10px;
 
         transition: all .5s;
     }
     .negocios.a-wedding a{
-        color: #35b3b4;
+        background-color: #35b3b4;
+        color: #fff;
     }
     .negocios.a-kids a{
-        color: #a70c77;
+        background-color:  #a70c77;
+        color: #fff;
     }
     .negocios.a-party a{
-        color: #95c11f;
+        background-color: #95c11f;
+        color: #fff;
     }
     .negocios.a-dinner a{
-        color: #0e6970;
+        background-color: #0e6970;
+        color: #fff;
     }
 
 
@@ -5289,7 +5435,7 @@ MÓVILES RESPONSIVE
         position: fixed;
         z-index: 2;
         font-size: 14px;
-        border: solid 1px rgba(0,0,0,.05);
+        border: solid 1px rgba(0,0,0,.2);
         background: #fff;
         padding: 10px;
         color: rgba(0, 0, 0, .5);
@@ -5313,7 +5459,7 @@ MÓVILES RESPONSIVE
 
     .boton-session a{
         color: rgba(0,0,0,.3);
-        border: solid 1px rgba(0,0,0,.05);
+        border: solid 1px rgba(0,0,0,.2);
         background: #fff;
         width: 51%;
         text-align: center;
@@ -5329,16 +5475,20 @@ MÓVILES RESPONSIVE
     }
 
     .boton-session.b-wedding a{
-        color: #35b3b4;
+        background-color: #35b3b4;
+        color: #fff;
     }
     .boton-session.b-kids a{
-        color: #a70c77;
+        background-color: #a70c77;
+        color: #fff;
     }
     .boton-session.b-party a{
-        color: #95c11f;
+        background-color: #95c11f;
+        color: #fff;
     }
     .boton-session.b-dinner a{
-        color: #0e6970;
+        background-color: #0e6970;
+        color: #fff;
     }
 
     .dropdown-categorias-wedding ul,.dropdown-categorias-kids ul,.dropdown-categorias-party ul,.dropdown-categorias-dinner ul{
@@ -5411,12 +5561,17 @@ MÓVILES RESPONSIVE
     #test{
         display: none;
     }
+
+
     .nuevo-buscador{
         display: block;
         position: relative;
         border: solid 1px #f1f1f1;
         width: 80%;
         margin-top: 45px;
+    }
+    .nuevo-buscador{
+        display: none;
     }
 
     li#center-image{
@@ -5655,6 +5810,10 @@ MÓVILES RESPONSIVE
 
 /* iPhone in landscape */
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : landscape) {
+    .news-relacionadas{
+        width: 80%;
+        margin: 0 auto ;
+    }
     .nav-zonaneg #bs-example-navbar-collapse-1{
         margin: 30px 0;
     }
@@ -5800,7 +5959,7 @@ MÓVILES RESPONSIVE
 
     .boton-session a{
         color: rgba(0,0,0,.3);
-        border: solid 1px rgba(0,0,0,.05);
+        border: solid 1px rgba(0,0,0,.2);
         background: #fff;
         width: 51%;
         text-align: center;

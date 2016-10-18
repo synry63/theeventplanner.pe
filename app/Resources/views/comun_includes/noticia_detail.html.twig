@@ -6,9 +6,6 @@
 
 
         <h1 class="title-{{ slug_site }}">{{ noticia.nombre }}</h1>
-        <div>
-            <img width="100%" src="{{ vich_uploader_asset(noticia, 'imgFile') }}" alt="">
-        </div>
         <div class="description-noti">
             <div class="col-md-6">
                 <div class="author-info">
@@ -16,16 +13,16 @@
                         <div class="avatar">
 
 
-                                <img class="img-circle" width="50px" src="{{ vich_uploader_asset(noticia.author, 'imgFile') }}" alt=""/>
+                            <img class="img-circle" width="50px" src="{{ vich_uploader_asset(noticia.author, 'imgFile') }}" alt=""/>
 
                         </div>
                         <div class="info-name">
                             <p>
-                                {{ noticia.author.nombre }}
+                                <i class="fa fa-pencil" aria-hidden="true"></i> {{ noticia.author.nombre }}
 
                             </p>
                             <p style="text-transform: capitalize;">
-                                {{ noticia.adedAt|date("d F, Y")| localizeddate('long', 'none', app.request.locale ) }}
+                                <i class="fa fa-calendar" aria-hidden="true"></i> {{ noticia.adedAt|date("d F, Y")| localizeddate('long', 'none', app.request.locale ) }}
                             </p>
                         </div>
                     {% endif %}
@@ -82,6 +79,10 @@
                 </div>
             </div>
         </div>
+
+
+
+
 
         <br>
 
@@ -177,7 +178,7 @@
 
     </div>
 
-    <div class="col-md-4 news-relacionadas">
+    <div class="col-md-3 news-relacionadas">
         {{ render(controller('AppBundle:Blog:relatedNoticias',{'type': noticia.type,'id':noticia.id,'slug_site':slug_site })) }}
     </div>
 
