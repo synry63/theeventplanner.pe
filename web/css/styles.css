@@ -145,7 +145,7 @@ nuevo buscador
 }
 #buscador2 .fondo{
     width: 100%;
-    height: 200px;
+    height: 100%;
     position: absolute;
     z-index: 2;
     display: inline-block;
@@ -155,10 +155,10 @@ nuevo buscador
     background: #fff;
     width: 100%;
     font-weight: 400;
-    line-height: 50px;
-    height: 50px;
+    line-height: 40px;
+    height: 40px;
     font-size: 16px;
-    padding-left: 60px;
+    padding-left: 45px;
     -webkit-appearance: none;
     display: inline-block;
     color: rgba(0,0,0,.7);
@@ -248,26 +248,35 @@ nuevo buscador
 .chevron-dinner{
     color: rgb(14, 105, 112);
 }
-
+.fa-chevron-down:before{
+    line-height: 40px;
+}
 .chevron2-wedding,.chevron2-kids,.chevron2-party,.chevron2-dinner{
     position: absolute;
-    right: 22%;
+    right: 30px;
+    border-radius: 0 3px 3px 0;
     top: 50%;
     transform: translate(50%,-50%);
+    width: 50px;
+    height: 40px;
+    text-align: center;
 }
 
 .chevron2-wedding{
-    color: rgb(53, 179, 180);
+    background: #35b3b4;
+    color: #fff;
 }
 .chevron2-kids{
-    color: #A70C77;
+    background-color: #a70c77;
+    color: #fff;
 }
 .chevron2-party{
-    color: rgb(149, 193, 31);
+    background-color: #95c11f;
+    color: #fff;
 }
 .chevron2-dinner{
-
-    color: rgb(14, 105, 112);
+    background-color: #0e6970;
+    color: #fff;
 }
 
 
@@ -476,9 +485,7 @@ GLOBAL
     width: 250px; /* MOI */
     height: 250px; /* MOI */
 }
-.home-slicks .subtittle-slick{
-    margin-bottom:3px;
-}
+
 .home-slicks2{
     box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
     background: #F7F6F5;
@@ -4397,6 +4404,60 @@ Negocios relacionados
 .nuevo-buscador2{
     display: none;
 }
+.buttons-home{
+    display: none;
+}
+/*=============
+Mejores Proveedores
+===============*/
+.slick-new a{
+    margin: 0 8px;
+    height: 260px;
+    padding: 0 5px;
+}
+.proveedor-box{
+    position: relative;
+}
+.proveedor-box .superior{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 0 0 5px 5px;
+}
+.proveedor-box .logo{
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.proveedor-box .logo img{
+    width:  100px;
+    border-radius: 50%;
+    box-shadow: 0 0 7px rgba(0,0,0,.3);
+}
+
+.superior-wedding{
+    border-bottom: solid 3px #35b3b4;
+}
+
+.superior-kids{
+    border-bottom: solid 3px #a70c77;
+}
+
+.superior-party{
+    border-bottom: solid 3px #cad538;
+}
+
+.superior-dinner{
+    border-bottom: solid 3px #0e6970;
+}
+
+
+.responsive-noti{
+    display: none;
+}
+
+
 /*=============
 MÓVILES RESPONSIVE
 ===============*/
@@ -5256,31 +5317,105 @@ MÓVILES RESPONSIVE
 
 /* iPhone in portrait */
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : portrait) {
-    .buttons-home{
-        color:rgba(0,0,0,.6);
+    .responsive-noti{
+        display: block;
+    }
+    .no-responsive-noti{
+        display: none;
+    }
+    .responsive-noti .slick_noti{
+        padding: 0 20px;
+    }
+    .total-container .navbar{
+        margin-top: -45px;
+    }
+
+    #resp-home-title{
+        position: absolute;
+        width: 100%;
+        margin: 0;
         text-align: center;
-        padding: 13px;
+        top: 19%;
+        z-index: 3;
+        color: #fff;
+        line-height: 70px;
+        font-weight: 100;
+        font-size: 48px;
+        font-family: "ModestyFresh", serif;
+    }
+    .descripcion{
+        display: none;
+    }
+    .tittle-slicks{
+        width: 100%;
+        font-size: 20px;
+        margin: 20px 0;
+    }
+    .home-slicks2 a img:hover{
+        transform: scale(1);
+    }
+    #resp-home-title:after{
+        content: " ";
+        display: inline-block;
+        width: 20px;
+        margin-left: 5px;
+        border-top: solid 1px;
+        padding-top: 10px;
+    }
+    #resp-home-title:before{
+        content: " ";
+        display: inline-block;
+        width: 20px;
+        margin-right: 5px;
+        border-top: solid 1px;
+        padding-top: 10px;
+    }
+
+
+
+    .buttons-home{
+        display: block;
+        color: rgba(0,0,0,.6);
+        line-height: 53px;
+        text-align: center;
         border-bottom: solid 1px rgba(0,0,0,.1);
     }
-    .buttons-home:nth-child(2){
+    .buttons-content .second{
         border-right: solid 1px rgba(0,0,0,.1);
     }
     .buttons-home i{
-        font-size: 23px;
-        position: absolute;
-        left: 10%;
+        font-size: 25px;
+        position: relative;
+        right: 5%;
+        top: 4px;
+    }
+    .bh-wedding i{
+        color: #35b3b4;
+    }
+    .bh-kids i{
+        color: #a70c77;
+    }
+    .bh-party i{
+        color: #cad538;
+    }
+    .bh-dinner i{
         color: #0e6970;
     }
+
+
+
+
+
     .nuevo-buscador2{
         display: block;
-        padding: 10px;
+        padding: 6px;
         border: solid 1px #fff;
         border-radius: 5px;
         position: absolute;
         z-index: 2;
-        width: 90%;
+        width: 80%;
         left: 50%;
-        top: 50%;
+        top: 70%;
         transform: translate(-50%,-50%);
     }
     #buscador{
@@ -5291,15 +5426,18 @@ MÓVILES RESPONSIVE
     }
     #responsive-button{
         position: absolute;
-        top: -60px;
+        top: -7px;
         left: -5px;
     }
     .profile-responsive{
         display: block;
         position: absolute;
-        top: -52px;
         right: -5px;
     }
+    .total-container .navbar-default .navbar-collapse, .navbar-default .navbar-form{
+        margin-top: 55px;
+    }
+
     .tittle_base{
         width: 70%;
         margin: 0 auto;
@@ -5423,6 +5561,9 @@ MÓVILES RESPONSIVE
     }
 
 
+
+
+
     .negocios2 a{
         left: 0;
         width: 100%;
@@ -5442,18 +5583,25 @@ MÓVILES RESPONSIVE
         transition: all .5s;
     }
     .negocios2.a-wedding a{
-        color: #35b3b4;
+        background-color: #35b3b4;
+        color: #fff;
     }
     .negocios2.a-kids a{
-        color: #a70c77;
+        background-color: #a70c77;
+        color: #fff;
     }
     .negocios2.a-party a{
-        color: #95c11f;
+        background-color: #95c11f;
+        color: #fff;
     }
     .negocios2.a-dinner a{
-        color: #0e6970;
+        background-color: #0e6970;
+        color: #fff;
     }
-
+    .negocios2.a- a{
+        background-color: #C50051;
+        color: #fff;
+    }
 
 
 
@@ -5810,6 +5958,127 @@ MÓVILES RESPONSIVE
 
 /* iPhone in landscape */
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : landscape) {
+    .responsive-noti{
+        display: block;
+    }
+    .no-responsive-noti{
+        display: none;
+    }
+    .responsive-noti .slick_noti{
+        padding: 0 20px;
+    }
+    .total-container .navbar{
+        margin-top: -45px;
+    }
+
+    #resp-home-title{
+        position: absolute;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        top: 19%;
+        z-index: 3;
+        color: #fff;
+        line-height: 70px;
+        font-weight: 100;
+        font-size: 48px;
+        font-family: "ModestyFresh", serif;
+    }
+    .descripcion{
+        display: none;
+    }
+    .tittle-slicks{
+        width: 100%;
+        font-size: 20px;
+        margin: 20px 0;
+    }
+    .home-slicks2 a img:hover{
+        transform: scale(1);
+    }
+    #resp-home-title:after{
+        content: " ";
+        display: inline-block;
+        width: 20px;
+        margin-left: 5px;
+        border-top: solid 1px;
+        padding-top: 10px;
+    }
+    #resp-home-title:before{
+        content: " ";
+        display: inline-block;
+        width: 20px;
+        margin-right: 5px;
+        border-top: solid 1px;
+        padding-top: 10px;
+    }
+
+
+
+    .buttons-home{
+        display: block;
+        color: rgba(0,0,0,.6);
+        line-height: 53px;
+        text-align: center;
+        border-bottom: solid 1px rgba(0,0,0,.1);
+    }
+    .buttons-content .second{
+        border-right: solid 1px rgba(0,0,0,.1);
+    }
+    .buttons-home i{
+        font-size: 25px;
+        position: relative;
+        right: 5%;
+        top: 4px;
+    }
+    .bh-wedding i{
+        color: #35b3b4;
+    }
+    .bh-kids i{
+        color: #a70c77;
+    }
+    .bh-party i{
+        color: #cad538;
+    }
+    .bh-dinner i{
+        color: #0e6970;
+    }
+
+    .nuevo-buscador2{
+        display: block;
+        padding: 6px;
+        border: solid 1px #fff;
+        border-radius: 5px;
+        position: absolute;
+        z-index: 2;
+        width: 80%;
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%,-50%);
+    }
+    #buscador{
+        display: none;
+    }
+    #buscador2{
+        display: block;
+        height: 200px;
+        overflow: hidden;
+    }
+    #responsive-button{
+        position: absolute;
+        top: -7px;
+        left: -5px;
+    }
+    .profile-responsive{
+        display: block;
+        position: absolute;
+        right: -5px;
+    }
+    .total-container .navbar-default .navbar-collapse, .navbar-default .navbar-form{
+        margin-top: 55px;
+    }
+
+
+
     .news-relacionadas{
         width: 80%;
         margin: 0 auto ;
@@ -5912,16 +6181,20 @@ MÓVILES RESPONSIVE
         transition: all .5s;
     }
     .negocios.a-wedding a{
-        color: #35b3b4;
+        background-color: #35b3b4;
+        color: #fff;
     }
     .negocios.a-kids a{
-        color: #a70c77;
+        background-color: #a70c77;
+        color: #fff;
     }
     .negocios.a-party a{
-        color: #95c11f;
+        background-color: #95c11f;
+        color: #fff;
     }
     .negocios.a-dinner a{
-        color: #0e6970;
+        background-color: #0e6970;
+        color: #fff;
     }
 
     .negocios2 a{
@@ -5934,7 +6207,7 @@ MÓVILES RESPONSIVE
         bottom: 0;
         text-rendering: optimizeLegibility;
         position: fixed;
-        z-index: 2;
+        z-index: 4;
         font-size: 14px;
         color: rgba(0,0,0,.5);
         border: solid 1px rgba(0,0,0,.05);
@@ -5944,22 +6217,26 @@ MÓVILES RESPONSIVE
         transition: all .5s;
     }
     .negocios2.a-wedding a{
-        color: #35b3b4;
+        background-color: #35b3b4;
+        color: #fff;
     }
     .negocios2.a-kids a{
-        color: #a70c77;
+        background-color: #a70c77;
+        color: #fff;
     }
     .negocios2.a-party a{
-        color: #95c11f;
+        background-color: #95c11f;
+        color: #fff;
     }
     .negocios2.a-dinner a{
-        color: #0e6970;
+        background-color: #0e6970;
+        color: #fff;
     }
 
 
     .boton-session a{
         color: rgba(0,0,0,.3);
-        border: solid 1px rgba(0,0,0,.2);
+        border: solid 1px rgba(0,0,0,.1);
         background: #fff;
         width: 51%;
         text-align: center;
@@ -5975,16 +6252,20 @@ MÓVILES RESPONSIVE
     }
 
     .boton-session.b-wedding a{
-        color: #35b3b4;
+        background-color: #35b3b4;
+        color: #fff;
     }
     .boton-session.b-kids a{
-        color: #a70c77;
+        background-color: #a70c77;
+        color: #fff;
     }
     .boton-session.b-party a{
-        color: #95c11f;
+        background-color: #95c11f;
+        color: #fff;
     }
     .boton-session.b-dinner a{
-        color: #0e6970;
+        background-color: #0e6970;
+        color: #fff;
     }
     .white-popup{
         margin: 20px auto;
@@ -6067,7 +6348,7 @@ MÓVILES RESPONSIVE
         display: none;
     }
     .nuevo-buscador{
-        display: block;
+        display: none;
         position: relative;
         border: solid 1px #f1f1f1;
         width: 80%;

@@ -44,6 +44,7 @@
     <div class="container-fluid">
         <div class="row">
             <div id="buscador2" class="flexslider2">
+                <h1 id="resp-home-title">Make it Happen</h1>
                 <div class="fondo">
 
                 </div>
@@ -71,13 +72,7 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 buttons-home"><i class="fa fa-users" aria-hidden="true"></i> Proveedores</div>
-            <div class="col-xs-6 buttons-home"><i class="fa fa-book" aria-hidden="true"></i> Blog</div>
-            <div class="col-xs-6 buttons-home"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Inspiraciones</div>
-        </div>
-    </div>
+    {{ include('comun_includes/buttons_responsive.html.twig')}}
 
 
     <div class="container-fluid">
@@ -107,23 +102,37 @@
     </div>
 
 
-    <div class="container-fluid home-slicks">
+    <div class="container-fluid slick-new">
         <div class="container">
             <div class="row">
                 <h1 class="tittle-slicks">Proveedores Más Buscados</h1>
                 <!--
                 <h3 class="subtittle-slick">Esperando por tí</h3>
                 -->
-                <div class="slick_wedding">
+                <div class="slick_dinner">
                     {% for p in mejores_proveedores %}
                         <a href="{{ path('proveedor_detail', {'slug_site': 'dinner','slug_proveedor': p.proveedor.slug}) }}">
-                            {% if p.proveedor.logo is not null %}
-                                <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo') | imagine_filter('logo_thumb')}}" alt="{{ p.proveedor.nombre }}" />
-                            {% else %}
-                                <img src="{{ asset('images/logo_default.jpg') }}" alt="">
-                            {% endif %}
+                            <div class="proveedor-box">
+                                <div class="superior superior-{{ app.request.get('slug_site') }}">
+                                    {% if p.proveedor.fotoListado is not null %}
+                                        <img  class="prov-foto" src="{{ vich_uploader_asset(p.proveedor.fotoListado, 'imgFile')| imagine_filter('thumb_proveedor') }}" alt="{{ p.proveedor.nombre }}">
+                                    {% else %}
+                                        {% if p.proveedor.logo is not null %}
+                                            <img src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
+                                        {% else %}
+                                            <img src="{{ asset('images/logo_default.jpg') }}" alt="">
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                                <div class="logo">
+                                    {% if p.proveedor.logo is not null %}
+                                        <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo') | imagine_filter('logo_thumb')}}" alt="{{ p.proveedor.nombre }}" />
+                                    {% else %}
+                                        <img src="{{ asset('images/logo_default.jpg') }}" alt="">
+                                    {% endif %}
+                                </div>
+                            </div>
                         </a>
-
                     {% endfor %}
 
                 </div>
@@ -146,10 +155,12 @@
         </div>
     </div>
 
+
     {% if ultimas_noticias is not null %}
-        <div class="container-fluid news-list">
+        <div class="container-fluid news-list no-responsive-noti">
             <div class="container">
                 <h1 class="tittle-slicks">The Event Planner Blog</h1>
+
                 {% for un in ultimas_noticias %}
                     <div class="col-sm-6 col-md-3">
                         <div class="thumbnail">
@@ -165,67 +176,41 @@
                         </div>
                     </div>
                 {% endfor %}
+
+
+
             </div>
         </div>
     {% endif %}
 
-    {#<div class="container-fluid news-list">
-        <div class="container">
-            <h1 class="tittle-slicks" style="margin-bottom: 20px">The Event Planner Blog</h1>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a class="image-effect" href=""><img src="{{ asset('images/blog_dinner1.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Todo listo para una barbacoa en el jardín con amigos</h3>
-                        </a>
-                        <p>En este post les quiero mostrar la mesa que montamos con unos Palets para una "Hamburguesada" en una barbacoa que hicimos en el jardín de casa con amigos...
-                            <a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_dinner2.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Un desayuno campestre: Inspiración e ideas para una mesa natural</h3>
-                        </a>
-                        <p>Tengo el Blog algo olvidado y es que estos últimos meses no me ha sido fácil escribir con el ritmo que estaba acostumbrada....<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
 
+    {% if ultimas_noticias is not null %}
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_dinner3.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Decora tus bebidas este verano DIY</h3>
-                        </a>
-                        <p>Absolutamente genial este DIY de el Blog A Joyful Riot ! La nueva tendencia de decorar con globos y papel nos tiene chifladas...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
+        <div class="container-fluid news-list responsive-noti">
+            <div class="container">
+                <h1 class="tittle-slicks ">The Event Planner Blog</h1>
 
+                <div class="slick_noti">
+                    {% for un in ultimas_noticias %}
+                        <div class="thumbnail">
+                            <a class="image-effect" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><img src="{{ vich_uploader_asset(un.noticia, 'imgFile') }}" alt="..."></a>
+                            <div class="caption">
+                                <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}">
+                                    <h3>{{ un.noticia.nombre }}</h3>
+                                </a>
+                                <p>{{ un.noticia.parafos[0].description| truncate(150)}}
+                                </p>
+                            </div>
+                            <a style="color: #fff;" class="ver-mas-button btn btn-{{ app.request.get('slug_site') }}-entrar" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><i class="fa fa-plus" aria-hidden="true"></i> Ver Más</a>
+                        </div>
+                    {% endfor %}
+                </div>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a   class="image-effect" href=""><img src="{{ asset('images/blog_dinner4.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Ideas originales para cocktails en una boda o fiesta</h3>
-                        </a>
-                        <p>Decorar una zona de bar en una boda o una fiesta de celebración para adultos de una forma original es muy divertido.<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>#}
 
 
+    {% endif %}
 
 
 {% endblock %}
@@ -279,6 +264,48 @@
         });
 
 
+        $('.slick_dinner').slick({
+            arrows: true,
+            autoplay: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll:1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1.05,
+                        slidesToScroll: 1,
+                        arrows: false
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+
+
         $('.slick_wedding').slick({
             arrows: true,
             autoplay: true,
@@ -303,6 +330,48 @@
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2,
+                        arrows: false,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+
+
+        $('.slick_noti').slick({
+            arrows: true,
+            autoplay: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll:1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
                         arrows: false,
                         dots: false
                     }

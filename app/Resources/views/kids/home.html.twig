@@ -40,6 +40,44 @@
 
     </div>
 
+    {# Responsive Content #}
+    <div class="container-fluid">
+        <div class="row">
+            <div id="buscador2" class="flexslider2">
+                <h1 id="resp-home-title">Make it Happen</h1>
+                <div class="fondo">
+
+                </div>
+                <div class="nuevo-buscador2">
+                    <i class="fa fa-chevron-down chevron2-{{ app.request.get('slug_site') }}" aria-hidden="true"></i>
+                    <select>
+                        {% for c in categorias %}
+                            <option value="{{ c.slug }}">{{ c.nombre }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <ul class="slides">
+                    <li>
+                        <img src="{{ asset('images/kids/k_resp_banner1.png') }}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('images/kids/k_resp_banner2.png') }}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('images/kids/k_resp_banner3.png') }}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('images/kids/k_resp_banner4.png') }}" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {{ include('comun_includes/buttons_responsive.html.twig')}}
+    {# Fin Responsive Content #}
+
     <div class="container-fluid">
         <div class="row">
             <div id="buscador" class="flexslider">
@@ -71,24 +109,38 @@
         </div>
     </div>
 
-
-    <div class="container-fluid home-slicks">
+    {# Mejores Proveedores #}
+    <div class="container-fluid slick-new">
         <div class="container">
             <div class="row">
                 <h1 class="tittle-slicks">Proveedores Más Buscados</h1>
                 <!--
                 <h3 class="subtittle-slick">Esperando por tí</h3>
                 -->
-                <div class="slick_wedding">
+                <div class="slick_kids">
                     {% for p in mejores_proveedores %}
                         <a href="{{ path('proveedor_detail', {'slug_site': 'kids','slug_proveedor': p.proveedor.slug}) }}">
-                            {% if p.proveedor.logo is not null %}
-                                <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo') | imagine_filter('logo_thumb')}}" alt="{{ p.proveedor.nombre }}" />
-                            {% else %}
-                                <img src="{{ asset('images/logo_default.jpg') }}" alt="">
-                            {% endif %}
+                            <div class="proveedor-box">
+                                <div class="superior superior-{{ app.request.get('slug_site') }}">
+                                    {% if p.proveedor.fotoListado is not null %}
+                                        <img  class="prov-foto" src="{{ vich_uploader_asset(p.proveedor.fotoListado, 'imgFile')| imagine_filter('thumb_proveedor') }}" alt="{{ p.proveedor.nombre }}">
+                                    {% else %}
+                                        {% if p.proveedor.logo is not null %}
+                                            <img src="{{ asset('images/proveedores/logo/'~p.proveedor.logo.logoName)}}" alt="{{ p.proveedor.nombre }}">
+                                        {% else %}
+                                            <img src="{{ asset('images/logo_default.jpg') }}" alt="">
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                                <div class="logo">
+                                    {% if p.proveedor.logo is not null %}
+                                        <img src="{{ vich_uploader_asset(p.proveedor.logo, 'logoFile','AppBundle\\Entity\\Logo') | imagine_filter('logo_thumb')}}" alt="{{ p.proveedor.nombre }}" />
+                                    {% else %}
+                                        <img src="{{ asset('images/logo_default.jpg') }}" alt="">
+                                    {% endif %}
+                                </div>
+                            </div>
                         </a>
-
                     {% endfor %}
 
                 </div>
@@ -96,9 +148,10 @@
 
         </div>
     </div>
+    {# Fin Mejores Proveedores #}
 
 
-
+    {# Nuestras Tendencias #}
     <div class="container-fluid home-slicks2">
         <div class="container">
             <h1 class="tittle-slicks">Nuestras Tendencias</h1>
@@ -111,12 +164,14 @@
             </div>
         </div>
     </div>
+    {# Fin Tendencias #}
 
+
+    {# Blog #}
     {% if ultimas_noticias is not null %}
-        <div class="container-fluid news-list">
+        <div class="container-fluid news-list no-responsive-noti">
             <div class="container">
                 <h1 class="tittle-slicks">The Event Planner Blog</h1>
-
 
                 {% for un in ultimas_noticias %}
                     <div class="col-sm-6 col-md-3">
@@ -130,7 +185,6 @@
                                 </p>
                             </div>
                             <a style="color: #fff;" class="ver-mas-button btn btn-{{ app.request.get('slug_site') }}-entrar" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><i class="fa fa-plus" aria-hidden="true"></i> Ver Más</a>
-
                         </div>
                     </div>
                 {% endfor %}
@@ -141,64 +195,36 @@
         </div>
     {% endif %}
 
-    {#<div class="container-fluid news-list">
-        <div class="container">
-            <h1 class="tittle-slicks">The Event Planner Blog</h1>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a class="image-effect" href=""><img src="{{ asset('images/blog_kids1.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Fiestas maravillosas para bebés</h3>
-                        </a>
-                        <p>Este Post lo teníamos pendiente hace tiempo. En él que mostraremos una pequeña selección que hemos hecho de fiestas para Bebés, Bautizos o los famosos Baby Showers.
-                            <a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a>
-                        </p>
-                    </div>
+
+    {% if ultimas_noticias is not null %}
+
+        <div class="container-fluid news-list responsive-noti">
+            <div class="container">
+                <h1 class="tittle-slicks ">The Event Planner Blog</h1>
+
+                <div class="slick_noti">
+                    {% for un in ultimas_noticias %}
+                        <div class="thumbnail">
+                            <a class="image-effect" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><img src="{{ vich_uploader_asset(un.noticia, 'imgFile') }}" alt="..."></a>
+                            <div class="caption">
+                                <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}">
+                                    <h3>{{ un.noticia.nombre }}</h3>
+                                </a>
+                                <p>{{ un.noticia.parafos[0].description| truncate(150)}}
+                                </p>
+                            </div>
+                            <a style="color: #fff;" class="ver-mas-button btn btn-{{ app.request.get('slug_site') }}-entrar" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': un.noticia.slug}) }}"><i class="fa fa-plus" aria-hidden="true"></i> Ver Más</a>
+                        </div>
+                    {% endfor %}
                 </div>
+
             </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_kids2.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Sonny Angels. Las Muñequitas que causan furor, ¡ya están aquí!</h3>
-                        </a>
-                        <p>No se si ya conocéis a los Sonny Angels. Yo las llevo viendo hace unos meses coladas en las fotografías de Blogs y en cuentas de Instagram que sigo hace algún tiempo...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a  class="image-effect" href=""><img src="{{ asset('images/blog_kids3.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Globos gigantes tendencia en fiestas</h3>
-                        </a>
-                        <p>Nos fascinan los globos, inspiran diversión, libertad y alegría. llenan de color cualquier lugar, decoran una esquina y si son brillantes y muy grande mejor...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
-
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a   class="image-effect" href=""><img src="{{ asset('images/blog_kids4.jpg') }}" alt="..."></a>
-                    <div class="caption">
-                        <a href="">
-                            <h3>Una fiesta en tonos pastel</h3>
-                        </a>
-                        <p>Los colores pastel son de los más usados para una decorar una fiesta de primera comunión o una boda. La combinación de mint y rosa palo con blanco o el beige y el ...<a class="ver-mas-{{ app.request.get('slug_site') }}" href="">...ver más</a></p>
-
-
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>#}
+
+
+    {% endif %}
+
+    {# Fin Blog #}
 
 
 
@@ -211,6 +237,22 @@
     <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.smoothscroll.min.js') }}"></script>
     <script>
+
+        $('#buscador2 select').prepend($('<option>', {
+            value: 0,
+            text: 'Dinos lo que necesitas',
+            selected: 'selected'
+        }));
+
+
+
+        $("#buscador2 select").change(function()
+        {
+            document.location.href =  'proveedores/'+$(this).val();
+        });
+
+
+
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             // some code..
         }else
@@ -225,6 +267,56 @@
             directionNav: true,
             prevText: "Previous",
             nextText: "Next"
+        });
+
+        $('.flexslider2').flexslider({
+            animation: "slide",
+            controlNav: false,
+            directionNav: false,
+            prevText: "Previous",
+            nextText: "Next"
+        });
+
+
+        $('.slick_kids').slick({
+            arrows: true,
+            autoplay: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll:1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1.05,
+                        slidesToScroll: 1,
+                        arrows: false
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
         });
 
         $('.slick_wedding').slick({
@@ -251,6 +343,47 @@
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2,
+                        arrows: false,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+
+        $('.slick_noti').slick({
+            arrows: true,
+            autoplay: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll:1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
                         arrows: false,
                         dots: false
                     }
