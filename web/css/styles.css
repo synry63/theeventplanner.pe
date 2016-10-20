@@ -252,6 +252,7 @@ nuevo buscador
     line-height: 40px;
 }
 .chevron2-wedding,.chevron2-kids,.chevron2-party,.chevron2-dinner{
+    pointer-events: none;
     position: absolute;
     right: 30px;
     border-radius: 0 3px 3px 0;
@@ -359,9 +360,10 @@ GLOBAL
 .no-exist{
     text-align: center;
     position: absolute;
-    right: 0;
-    left: 0;
-    top:45%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: -2;
 }
 .img-default{
     width: 360px;
@@ -400,6 +402,16 @@ GLOBAL
 .navbar-default{
     height: 100px;
 }
+
+.leave-comment-box{
+    background-color: #fff;
+    padding: 20px 35px;
+    width: 462px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
 
 .comments-box .media-left img{
     width: 80px;
@@ -4457,7 +4469,9 @@ Mejores Proveedores
     display: none;
 }
 
-
+.nuevo-buscador3{
+    display: none;
+}
 /*=============
 MÓVILES RESPONSIVE
 ===============*/
@@ -4475,6 +4489,155 @@ MÓVILES RESPONSIVE
 
 /*Responsive Desktop*/
 @media only screen and (min-width : 320px) and (max-width : 736px){
+
+    .leave-comment-box{
+        width: 100%;
+    }
+    .responsive-noti{
+        display: block;
+    }
+    .no-responsive-noti{
+        display: none;
+    }
+    .responsive-noti .slick_noti{
+        padding: 0 20px;
+    }
+    .total-container .navbar{
+        margin-top: -45px;
+    }
+
+    #resp-home-title{
+        position: absolute;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        top: 19%;
+        z-index: 3;
+        color: #fff;
+        line-height: 70px;
+        font-weight: 100;
+        font-size: 48px;
+        font-family: "ModestyFresh", serif;
+    }
+    .descripcion{
+        display: none;
+    }
+    .tittle-slicks{
+        width: 100%;
+        font-size: 20px;
+        margin: 20px 0;
+    }
+    .home-slicks2 a img:hover{
+        transform: scale(1);
+    }
+    #resp-home-title:after{
+        content: " ";
+        display: inline-block;
+        width: 20px;
+        margin-left: 5px;
+        border-top: solid 1px;
+        padding-top: 10px;
+    }
+    #resp-home-title:before{
+        content: " ";
+        display: inline-block;
+        width: 20px;
+        margin-right: 5px;
+        border-top: solid 1px;
+        padding-top: 10px;
+    }
+
+
+
+    .buttons-home{
+        display: block;
+        color: rgba(0,0,0,.6);
+        line-height: 53px;
+        text-align: center;
+        border-bottom: solid 1px rgba(0,0,0,.1);
+    }
+    .buttons-content .second{
+        border-right: solid 1px rgba(0,0,0,.1);
+    }
+    .buttons-home i{
+        font-size: 25px;
+        position: relative;
+        right: 5%;
+        top: 4px;
+    }
+    .bh-wedding i{
+        color: #35b3b4;
+    }
+    .bh-kids i{
+        color: #a70c77;
+    }
+    .bh-party i{
+        color: #cad538;
+    }
+    .bh-dinner i{
+        color: #0e6970;
+    }
+
+
+
+
+
+    .nuevo-buscador2{
+        display: block;
+        padding: 6px;
+        border: solid 1px #fff;
+        border-radius: 5px;
+        position: absolute;
+        z-index: 2;
+        width: 80%;
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%,-50%);
+    }
+    #buscador{
+        display: none;
+    }
+    #buscador2{
+        display: block;
+    }
+    #responsive-button{
+        position: absolute;
+        top: -7px;
+        left: -5px;
+    }
+    .profile-responsive{
+        display: block;
+        position: absolute;
+        right: -5px;
+    }
+    .total-container .navbar-default .navbar-collapse, .navbar-default .navbar-form{
+        margin-top: 55px;
+        background: #fff;
+    }
+
+    .tittle_base{
+        width: 70%;
+        margin: 0 auto;
+    }
+    .news-relacionadas{
+        width: 100%;
+        margin: 0;
+    }
+    .nav-zonaneg #bs-example-navbar-collapse-1{
+        margin: 30px 0;
+    }
+    .boton-share-noti-detail{
+        margin-top: 16px;
+    }
+    .author-info{
+        float: left;
+    }
+
+    .links-socials{
+        display: inline-block;
+        margin-top: 0;
+        margin-right: 50px;
+    }
 
     .login-flex{
         width: 100%;
@@ -4510,13 +4673,9 @@ MÓVILES RESPONSIVE
     }
     .links-socials2{
         display: inline;
-        padding: 40px;
+        padding: 10px;
     }
-    .links-socials{
-        display: block;
-        margin-top: 10px;
-        margin-right: 50px;
-    }
+
     .comments-new .media-body-wedding p, .comments-new .media-body-kids p, .comments-new .media-body-party p, .comments-new .media-body-dinner p{
         margin-top: 24px;
     }
@@ -4562,17 +4721,24 @@ MÓVILES RESPONSIVE
         transition: all .5s;
     }
     .negocios.a-wedding a{
-        color: #35b3b4;
+        background-color: #35b3b4;
+        color: #fff;
     }
     .negocios.a-kids a{
-        color: #a70c77;
+        background-color:  #a70c77;
+        color: #fff;
     }
     .negocios.a-party a{
-        color: #95c11f;
+        background-color: #95c11f;
+        color: #fff;
     }
     .negocios.a-dinner a{
-        color: #0e6970;
+        background-color: #0e6970;
+        color: #fff;
     }
+
+
+
 
 
     .negocios2 a{
@@ -4587,31 +4753,38 @@ MÓVILES RESPONSIVE
         position: fixed;
         z-index: 2;
         font-size: 14px;
-        border: solid 1px rgba(0,0,0,.05);
+        border: solid 1px rgba(0,0,0,.2);
         background: #fff;
         padding: 10px;
         color: rgba(0, 0, 0, .5);
         transition: all .5s;
     }
     .negocios2.a-wedding a{
-        color: #35b3b4;
+        background-color: #35b3b4;
+        color: #fff;
     }
     .negocios2.a-kids a{
-        color: #a70c77;
+        background-color: #a70c77;
+        color: #fff;
     }
     .negocios2.a-party a{
-        color: #95c11f;
+        background-color: #95c11f;
+        color: #fff;
     }
     .negocios2.a-dinner a{
-        color: #0e6970;
+        background-color: #0e6970;
+        color: #fff;
     }
-
+    .negocios2.a- a{
+        background-color: #C50051;
+        color: #fff;
+    }
 
 
 
     .boton-session a{
         color: rgba(0,0,0,.3);
-        border: solid 1px rgba(0,0,0,.05);
+        border: solid 1px rgba(0,0,0,.2);
         background: #fff;
         width: 51%;
         text-align: center;
@@ -4627,16 +4800,20 @@ MÓVILES RESPONSIVE
     }
 
     .boton-session.b-wedding a{
-        color: #35b3b4;
+        background-color: #35b3b4;
+        color: #fff;
     }
     .boton-session.b-kids a{
-        color: #a70c77;
+        background-color: #a70c77;
+        color: #fff;
     }
     .boton-session.b-party a{
-        color: #95c11f;
+        background-color: #95c11f;
+        color: #fff;
     }
     .boton-session.b-dinner a{
-        color: #0e6970;
+        background-color: #0e6970;
+        color: #fff;
     }
 
     .dropdown-categorias-wedding ul,.dropdown-categorias-kids ul,.dropdown-categorias-party ul,.dropdown-categorias-dinner ul{
@@ -4670,7 +4847,7 @@ MÓVILES RESPONSIVE
         font-size: 15px;
     }
     .new span{
-        display: block;
+        display: inline-block;
     }
 
     .footer{
@@ -4709,12 +4886,17 @@ MÓVILES RESPONSIVE
     #test{
         display: none;
     }
+
+
     .nuevo-buscador{
         display: block;
         position: relative;
         border: solid 1px #f1f1f1;
         width: 80%;
         margin-top: 45px;
+    }
+    .nuevo-buscador{
+        display: none;
     }
 
     li#center-image{
@@ -4953,42 +5135,136 @@ MÓVILES RESPONSIVE
 
 /*Responsive Desktop Small screen*/
 @media only screen and (min-width : 768px) and (max-width : 1024px){
-
-    .profile-content .comment-detail .img-responsive{
-        width: 50%;
+    .links-socials{
+        display: inline-block;
+        margin-top: 0;
+        margin-right: 0;
     }
-    .cropcontain p{
-        top: -25px;
-        left: 21%;
+    .boton-share-music {
+        padding: 0 10px 0 0;
+        z-index: 2;
+        text-align: center;
+        left: 50%;
+        position: absolute;
+        bottom: -40px;
+    }
+    .boton-share-music:after, .boton-share-music:before{
+        content: none;
+    }
+    .music-container>div, .music-container-kids>div, .music-container-party>div,.music-container-dinner>div{
+        margin: 10px 10px;
+    }
+    .nav-zonaneg .navbar-collapse li{
+        width: 20%;
+        text-align: center;
+        border-right: 1px solid rgba(255,255,255,.2);
+        border-bottom: 1px solid rgba(255,255,255,.2);
+    }
+    .nav-zonaneg .navbar-collapse li.current{
+        background: rgba(0,0,0,.1);
+    }
+    .nav-zonaneg .navbar-collapse .navbar-right{
+        position: absolute;
+        right: 45px;
+        top: 50px;
+        bottom: 0px;
+    }
+    .nav-zonaneg .navbar-collapse .navbar-right li{
+        width: 172px;
+    }
+
+
+
+
+    .pic_foto .negocio-form{
+        margin-left: 130px;
+    }
+    .negocios a{
+        opacity: 1;
+        z-index: 1;
+        color: #fff;
+    }
+    .boton-session a{
+        opacity: 1;
+    }
+    .contactenos-formu{
+        margin-top: 30px;
+    }
+    .image-contact-wedding{
+        margin-top: 30px;
+    }
+    .foto-new a img{
+        width: 100%;
+    }
+    #buscador{
+        margin-top: 60px;
+    }
+    .breadcrumbs-wedding ol, .breadcrumbs-kids ol, .breadcrumbs-party ol, .breadcrumbs-dinner ol{
+        text-align: center;
+        margin-top: 45px;
+    }
+    .menu-principal .navbar-default{
+        margin: 7% auto 0;
+        width: 460px;
+        display: block;
+        float: none;
     }
     div.two{
         position: absolute !important;
-        margin-top: 12%;
+        margin-top: 7%;
+        margin-left: 18%;
     }
-    .menu-principal .navbar-default{
-        margin-top:12%;
+
+    .nav-zonaneg #bs-example-navbar-collapse-1{
+        margin-top: 0;
+    }
+    .nav-zonaneg .current{
+        border-bottom: 0;
+    }
+    .prov-foto-party img.prov-foto{
+        width: 100%;
+    }
+    .prov-foto-kids img.prov-foto{
+        width: 100%;
+    }
+    .prov-foto-dinner img.prov-foto{
+        width: 100%;
+    }
+    .prov-foto-wedding img.prov-foto{
+        width: 100%;
+    }
+    .image-contact-wedding{
+        width: 400px;
+    }
+    .image-contact-kids{
+        width: 400px;
+    }
+    .image-contact-party{
+        width: 400px;
+    }
+    .image-contact-dinner{
+        width: 400px;
+    }
+    #center-image{
+        left: 54%;
+        transform: translate(-50%);
+    }
+    #center-image a img{
+        width: 350px;
     }
     .image-effect{
         width: 100%;
     }
-    .news-list .thumbnail{
-        min-height: 380px;
-    }
-    .placa{
-        display: none;
+    #test{
+        padding: 10px;
+        top:28%;
     }
     .nuevo-buscador{
-        top:45%;
+        top: 42%;
     }
-    #test{
-        display: none;
-    }
-    #center-image{
-        position: absolute;
-        left: 24%;
-    }
-    .btn-login{
-        top:76%;
+
+    .news-relacionadas{
+        width: 290px;
     }
 }
 
@@ -5317,6 +5593,10 @@ MÓVILES RESPONSIVE
 
 /* iPhone in portrait */
 @media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : portrait) {
+
+    .leave-comment-box{
+        width: 100%;
+    }
     .responsive-noti{
         display: block;
     }
@@ -5403,9 +5683,6 @@ MÓVILES RESPONSIVE
     }
 
 
-
-
-
     .nuevo-buscador2{
         display: block;
         padding: 6px;
@@ -5418,6 +5695,40 @@ MÓVILES RESPONSIVE
         top: 70%;
         transform: translate(-50%,-50%);
     }
+
+    .categorias,.categorias_kids,.categorias_party,.categorias_dinner{
+        display: none;
+    }
+
+    .nuevo-buscador3{
+        display: inline-block;
+        border-radius: 5px;
+        position: relative;
+        z-index: 2;
+        width: 80%;
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%,-17%);
+    }
+
+    .nuevo-buscador3 select{
+        background: #fff;
+        width: 98%;
+        font-weight: 400;
+        line-height: 40px;
+        height: 40px;
+        font-size: 16px;
+        padding-left: 10px;
+        -webkit-appearance: none;
+        display: inline-block;
+        color: rgba(0,0,0,.7);
+        border: 0;
+        border: solid 1px rgba(0,0,0,.1);
+        border-radius: 3px;
+        text-decoration: none;
+    }
+
+
     #buscador{
         display: none;
     }

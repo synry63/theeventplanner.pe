@@ -1,5 +1,5 @@
 
-<div class="leave-comment-box" style="background-color: #fff; padding: 20px 35px; width: 462px; margin: 0 auto;    position: relative;">
+<div class="leave-comment-box">
 
     <div class="row">
 
@@ -95,31 +95,66 @@
         });
 
     }
+    if(color==undefined)
+        var color= "#b28500";
+
+    var rating;
+    if($("#comentario_proveedor_nota").val()==""){
+        rating = 0;
+    }
+    else{
+        rating = $("#comentario_proveedor_nota").val();
+    }
 
 
-    $("#rateYo2").rateYo({
-                rating: recuperar,
-                ratedFill: color,
-                normalFill: "#A0A0A0",
-                starWidth: "60px",
-                onChange: function (rating, rateYoInstance) {
-                    $(this).next().text(rating);
-                }
+    if( /Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $("#rateYo2").rateYo({
+            rating: rating,
+            ratedFill: color,
+            normalFill: "#A0A0A0",
+            starWidth: "60px",
+            onChange: function (rating, rateYoInstance) {
+                $(this).next().text(rating);
+            }
 
-            })
-            .on("rateyo.set", function (e, data) {
-                $("#comentario_proveedor_nota").val(data.rating);
-                $("#rateYo2").rateYo("option", "readOnly", true);
-                $("#rateYo2").rateYo("option", "ratedFill", "#dea600");
-            });
+        })
+                .on("rateyo.set", function (e, data) {
+                    $("#comentario_proveedor_nota").val(data.rating);
+                    $("#rateYo2").rateYo("option", "ratedFill", "#dea600");
+                });
+
+        $("#rateYo2").mouseleave(function(){
+            $("#rateYo2").rateYo("option", "readOnly", false);
+        });
+        $("#rateYo2").mouseenter(function(){
+            $("#rateYo2").rateYo("option", "ratedFill", color);
+        });
+    }
+    else {
+        $("#rateYo2").rateYo({
+            rating: rating,
+            ratedFill: color,
+            normalFill: "#A0A0A0",
+            starWidth: "60px",
+            onChange: function (rating, rateYoInstance) {
+                $(this).next().text(rating);
+            }
+
+        })
+                .on("rateyo.set", function (e, data) {
+                    $("#comentario_proveedor_nota").val(data.rating);
+                    $("#rateYo2").rateYo("option", "readOnly", true);
+                    $("#rateYo2").rateYo("option", "ratedFill", "#dea600");
+                });
 
 
-    $("#rateYo2").mouseleave(function(){
-        $("#rateYo2").rateYo("option", "readOnly", false);
-    });
-    $("#rateYo2").mouseenter(function(){
-        $("#rateYo2").rateYo("option", "ratedFill", color);
-    });
+        $("#rateYo2").mouseleave(function(){
+            $("#rateYo2").rateYo("option", "readOnly", false);
+        });
+        $("#rateYo2").mouseenter(function(){
+            $("#rateYo2").rateYo("option", "ratedFill", color);
+        });
+    }
 
 
 
