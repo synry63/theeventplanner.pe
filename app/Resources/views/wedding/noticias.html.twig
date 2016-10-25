@@ -24,65 +24,88 @@
         {{ wo_render_breadcrumbs() }}
     </div>
     <div class="container news-blog" >
-        <div class="col-md-8 col-md-offset-2 new-principal">
 
-            <div class="boton-share-noti">
-                <a href="javascript:void(0);" data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}" class="shareBtnFacebook">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                </span>
+
+        <div class="row">
+            <div class="col-md-8 new-principal">
+
+                <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}">
+                    <img width="100%" src="{{ vich_uploader_asset(noticias[0].noticia, 'imgFile') }}" alt="">
                 </a>
-                <a href="{{ 'https://twitter.com/share?text=' ~ noticias[0].noticia.nombre ~' : '~noticias[0].noticia.parafos[0].description }}" target="_blank" data-show-count="false">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-                </a>
-
-            </div>
-            <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}">
-                <img width="100%" src="{{ vich_uploader_asset(noticias[0].noticia, 'imgFile') }}" alt="">
-            </a>
-            <div class="tittle-principal">
-                <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}"><h1>{{ noticias[0].noticia.nombre }}</h1></a>
-                <div class="links-socials2">
-                    <span style="text-transform: capitalize">{{ noticias[0].noticia.adedAt|date("D F, Y")| localizeddate('long', 'none', app.request.locale ) }}</span>
-                    <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ noticias[0].noticia.comentarios|length }})</span>
-                <span>
-                    <div class="fb-like"
-                           data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}"
-                           data-layout="button_count"
-                           data-action="like"
-                           data-show-faces="false">
-                    </div>
-                </span>
-                {#
-                <span>
-                    <div class="fb-share-button"
-                           data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug})) }}"
-                           data-layout="button">
-                    </div>
-                </span>
-                #}
-
-                {#
-                <span style="position: absolute;display: inline-block;padding-left: 10px;">
-                    <a href="{{ 'https://twitter.com/share?text=' ~ noticias[0].noticia.nombre ~' : '~noticias[0].noticia.parafos[0].description }}" class="twitter-share-button" data-show-count="false" target="_blank">Tweet</a>
-                </span>
-                #}
-
+                <div class="fecha">
+                    <div class="dia">{{ noticias[0].noticia.adedAt|date("d") }}</div>
+                    <div class="mes">{{ noticias[0].noticia.adedAt|date("M") }}</div>
                 </div>
 
 
+                <div class="left-noti">
+                    <div class="detalle detalle-{{ app.request.get('slug_site') }}">{{ app.request.get('slug_site') }}</div>
+
+                    <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}"><h1 id="prin">{{ noticias[0].noticia.nombre }}</h1></a>
+
+                    <div class="autor-prin">Por: {{ noticias[0].noticia.author.nombre }}</div>
+                </div>
+
+
+
+                <div class="tittle-principal">
+
+
+                </div>
+
             </div>
+            <div class="col-md-4 new-secundaria">
+
+                <div class="noti-small n-top">
+                    <a  href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[1].noticia.slug}) }}">
+                        <img width="auto" height="100%" src="{{ vich_uploader_asset(noticias[1].noticia, 'imgFile') }}" alt="">
+                    </a>
+                    <div class="left-noti2">
+                        <div class="detalle detalle-{{ app.request.get('slug_site') }}">{{ app.request.get('slug_site') }}</div>
+
+                        <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[1].noticia.slug}) }}"><h1 class="prin">{{ noticias[1].noticia.nombre }}</h1></a>
+
+                        <div class="autor-prin">Por: {{ noticias[1].noticia.author.nombre }} - {{ noticias[2].noticia.adedAt|date("m/d/Y")| localizeddate('long', 'none', app.request.locale ) }}</div>
+                    </div>
+
+                    <div class="tittle-principal2">
 
 
-            <hr>
+                    </div>
+                </div>
+
+                <div class="noti-small n-bottom" >
+                    <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[2].noticia.slug}) }}">
+                        <img width="auto" height="100%" src="{{ vich_uploader_asset(noticias[2].noticia, 'imgFile') }}" alt="">
+                    </a>
+                    <div class="left-noti2">
+                        <div class="detalle detalle-{{ app.request.get('slug_site') }}">{{ app.request.get('slug_site') }}</div>
+
+                        <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[2].noticia.slug}) }}"><h1 class="prin">{{ noticias[2].noticia.nombre }}</h1></a>
+
+                        <div class="autor-prin">Por: {{ noticias[2].noticia.author.nombre }} - {{ noticias[2].noticia.adedAt|date("m/d/Y")| localizeddate('long', 'none', app.request.locale ) }}</div>
+                    </div>
+                    <div class="tittle-principal2">
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
         </div>
 
-        {% for n in noticias[1:] %}
-            <div class="col-md-8 col-md-offset-2">
+
+
+
+
+        <div class="row">
+        {% for n in noticias[3:] %}
+
+
+
+            <div class="col-md-8" style="margin-top: 30px">
                 <div class="row new">
                     <div class="col-md-5 col-xs-5 col-sm-5 foto-new">
                         <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug}) }}">
@@ -121,7 +144,7 @@
                 <hr>
             </div>
         {% endfor %}
-
+        </div>
     </div>
 
 
