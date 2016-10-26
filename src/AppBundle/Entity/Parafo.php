@@ -177,8 +177,6 @@ class Parafo
      */
     public function setImg2($img)
     {
-        var_dump('here');
-        exit;
         $this->img2 = $img;
     }
     /**
