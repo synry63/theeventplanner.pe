@@ -59,9 +59,15 @@
                 <label class="required">Parafos</label>
                 <ul id="noticia_parafos" data-prototype="{{ form_widget(form.parafos.vars.prototype)|e('html_attr') }}">
                 {% for key,p in form.parafos %}
-                    <li>{{ form_row(p.description) }}
+                    <li>
+                        {{ form_row(p.title) }}
+                        {{ form_row(p.description) }}
                         <img width="50" height="50" style="float: right" src="{{ vich_uploader_asset(noticia.parafos[key], 'imgFile') }}" alt=""/>
                         {{ form_row(p.imgFile) }}
+                        <img width="50" height="50" style="float: right" src="{{ vich_uploader_asset(noticia.parafos[key], 'imgFile2') }}" alt=""/>
+                        {{ form_row(p.imgFile2) }}
+                        <img width="50" height="50" style="float: right" src="{{ vich_uploader_asset(noticia.parafos[key], 'imgFile3') }}" alt=""/>
+                        {{ form_row(p.imgFile3) }}
                     </li>
                 {% endfor %}
                 </ul>

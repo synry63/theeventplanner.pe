@@ -574,6 +574,19 @@ class AdminController extends Controller
         );
     }
     /**
+     * @Route("/admin/noticia/delete/parafo/{id}/image/{index}", name="admin_noticia_parafo_image_delete")
+     */
+    public function adminNoticiaParafoImageDeleteAction(Request $request,$id,$index){
+        $parafo = $this->getDoctrine()->getRepository('AppBundle:Parafo')->find($id);
+        $function = 'setImg'.$index;
+        $parafo->$function(NULL);
+        $em = $this->getDoctrine()->getManager();
+        $em->merge();
+        $em->flush();
+
+        return $this->redirectToRoute('admin_noticia_edit',array('id'=>$parafo->getNoticia()->getId()));
+    }
+    /**
      * @Route("/admin/noticia/delete/{id}", name="admin_noticia_delete")
      */
     public function adminNoticiaDeleteAction(Request $request,$id){
