@@ -2,23 +2,32 @@
 
 <div class="container buttons-content">
     <div class="row">
+        {#
         <a href="{{ path('site_categorias',{'slug_site':app.request.get('slug_site')}) }}">
             <div class="col-xs-12 buttons-home bh-{{ app.request.get('slug_site') }}">
                 <i class="fa fa-users" aria-hidden="true"></i> Proveedores
             </div>
         </a>
+        #}
+        <a href="{{ path('site_categorias',{'slug_site':app.request.get('slug_site')}) }}">
+            <div class="second col-xs-6 buttons-home bh-{{ app.request.get('slug_site') }}">
+                <i class="fa fa-users" aria-hidden="true"></i> Proveedores
+            </div>
+        </a>
+        {#
         <a href="{{ path('noticias_start',{'slug_site':app.request.get('slug_site')}) }}">
             <div class="second col-xs-6 buttons-home bh-{{ app.request.get('slug_site') }}">
                 <i class="fa fa-book" aria-hidden="true"></i> Blog
             </div>
         </a>
+        #}
         <a href="{{ path('inspiraciones_start',{'slug_site':app.request.get('slug_site')}) }}">
             <div class="col-xs-6 buttons-home bh-{{ app.request.get('slug_site') }}">
                 <i class="fa fa-lightbulb-o" aria-hidden="true"></i> Inspiraciones
             </div>
         </a>
 
-    </div>
+</div>
 </div>
 
 {# Fin Buttons Responsive #}

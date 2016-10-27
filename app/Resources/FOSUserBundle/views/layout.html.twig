@@ -42,12 +42,9 @@
     {% block content %}
 
         <div class="container total-container">
-
             <div class="animationload">
                 <div class="loader"></div>
             </div>
-
-
 
             {% if app.user is not null %}
                 <div class="negocios2 a-{{ app.request.get('slug_site') }}">
@@ -69,9 +66,6 @@
                     </a>
                 </div>
             {% endif %}
-
-
-
 
             <nav class="navbar navbar-default">
 
@@ -191,8 +185,6 @@
 
             </nav>
         </div>
-
-
 
     {% endblock content %}
 

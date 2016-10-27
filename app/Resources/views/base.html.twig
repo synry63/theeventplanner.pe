@@ -31,22 +31,37 @@
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-{% if home is defined %}
-<body id="home">
-{% else %}
-<body>
-{% endif %}
 
-        {% block body %}{% endblock %}
+    {% if home is defined %}
 
-{% block footer %}
+    <body id="home">
 
-{% endblock %}
-{% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-{% endblock %}
+    {% else %}
 
-</body>
+    <body>
 
+    {% endif %}
+
+    <div id="wrap">
+        {% block body %}
+        {% endblock %}
+    </div>
+
+
+
+    <div id="footer-master">
+        {% block footer %}
+
+        {% endblock %}
+    </div>
+
+
+
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    {% endblock %}
+
+    </body>
 
 </html>
+

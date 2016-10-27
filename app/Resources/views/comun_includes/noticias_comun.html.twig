@@ -1,0 +1,155 @@
+
+<div class="pagina-enconstruccion con-{{ app.request.get('slug_site') }}">
+
+    <p>
+        <img width="100px" src="{{ asset('images/svg_icons/'~app.request.get('slug_site')~'_corona.svg') }}" alt=""/>
+            Muy Pronto...
+
+    </p>
+</div>
+
+
+
+{#Oculto#}
+
+{% if noticias|length >=10 %}
+    <div class="row ocult">
+        <div class="col-md-8 new-principal prin-new">
+
+            <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}">
+                <img width="100%" src="{{ vich_uploader_asset(noticias[0].noticia, 'imgFile') }}" alt="">
+            </a>
+            <div class="fecha">
+                <div class="dia">{{ noticias[0].noticia.adedAt|date("d") }}</div>
+                <div class="mes">{{ noticias[0].noticia.adedAt|date("M") }}</div>
+            </div>
+
+
+            <div class="left-noti">
+                <div class="detalle detalle-{{ app.request.get('slug_site') }}">{{ app.request.get('slug_site') }}</div>
+
+                <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[0].noticia.slug}) }}"><h1 id="prin">{{ noticias[0].noticia.nombre }}</h1></a>
+
+                <div class="autor-prin">Por: {{ noticias[0].noticia.author.nombre }}</div>
+            </div>
+
+
+
+            <div class="tittle-principal">
+
+
+            </div>
+
+        </div>
+        <div class="col-md-4 new-secundaria">
+
+            <div class="noti-small n-top">
+                <a  href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[1].noticia.slug}) }}">
+                    <img width="auto" height="100%" src="{{ vich_uploader_asset(noticias[1].noticia, 'imgFile') }}" alt="">
+                </a>
+                <div class="left-noti2">
+                    <div class="detalle detalle-{{ app.request.get('slug_site') }}">{{ app.request.get('slug_site') }}</div>
+
+                    <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[1].noticia.slug}) }}"><h1 class="prin">{{ noticias[1].noticia.nombre }}</h1></a>
+
+                    <div class="autor-prin">Por: {{ noticias[1].noticia.author.nombre }} - {{ noticias[2].noticia.adedAt|date("m/d/Y")| localizeddate('long', 'none', app.request.locale ) }}</div>
+                </div>
+
+                <div class="tittle-principal2">
+
+
+                </div>
+            </div>
+
+            <div class="noti-small n-bottom" >
+                <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[2].noticia.slug}) }}">
+                    <img width="auto" height="100%" src="{{ vich_uploader_asset(noticias[2].noticia, 'imgFile') }}" alt="">
+                </a>
+                <div class="left-noti2">
+                    <div class="detalle detalle-{{ app.request.get('slug_site') }}">{{ app.request.get('slug_site') }}</div>
+
+                    <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': noticias[2].noticia.slug}) }}"><h1 class="prin">{{ noticias[2].noticia.nombre }}</h1></a>
+
+                    <div class="autor-prin">Por: {{ noticias[2].noticia.author.nombre }} - {{ noticias[2].noticia.adedAt|date("m/d/Y")| localizeddate('long', 'none', app.request.locale ) }}</div>
+                </div>
+                <div class="tittle-principal2">
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="row ocult">
+        <div class="col-md-8">
+            {% for n in noticias[3:] %}
+                <div class="col-md-12" style="margin-top: 30px; position: relative">
+                    <div class="row new">
+                        <div class="col-md-5 col-xs-5 col-sm-5 foto-new">
+                            <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug}) }}">
+                                <img src="{{ vich_uploader_asset(n.noticia, 'imgFile') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-7 col-xs-7 col-sm-7">
+                            <a class="titulo-noti-{{ app.request.get('slug_site') }}" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug}) }}"><h1>{{ n.noticia.nombre }}</h1></a>
+                            <span style="text-transform: capitalize">{{ n.noticia.adedAt|date("m/d/Y")| localizeddate('long', 'none', app.request.locale ) }}</span>
+                            <span><i class="fa fa-comments" aria-hidden="true"></i> Comentarios ({{ n.noticia.comentarios|length }})</span>
+
+                            <p style="min-height: 80px">{{ n.noticia.parafos[0].description }}</p>
+
+
+
+                            {#<div class="boton-share-noti2">#}
+                            {#<a href="javascript:void(0);" data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug})) }}" class="shareBtnFacebook">#}
+                            {#<span class="fa-stack fa-lg">#}
+                            {#<i class="fa fa-circle fa-stack-2x"></i>#}
+                            {#<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>#}
+                            {#</span>#}
+                            {#</a>#}
+                            {#<a href="{{ 'https://twitter.com/share?text=' ~ n.noticia.nombre ~' : '~n.noticia.parafos[0].description }}" target="_blank" data-show-count="false">#}
+                            {#<span class="fa-stack fa-lg">#}
+                            {#<i class="fa fa-circle fa-stack-2x"></i>#}
+                            {#<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>#}
+                            {#</span>#}
+                            {#</a>#}
+                            {#<span  style="display: inline-block;"><div class="fb-like"#}
+                            {#data-href="{{ app.request.getUriForPath(path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug})) }}"#}
+                            {#data-layout="button_count"#}
+                            {#data-action="like"#}
+                            {#data-show-faces="false">#}
+                            {#</div></span>#}
+
+                            {#</div>#}
+                        </div>
+                        <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug}) }}" class="btn seguir seguir-{{ app.request.get('slug_site') }}">
+                            Seguir Leyendo
+                        </a>
+                    </div>
+                    <hr>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4" style="margin-top: 30px">
+            {% for n in noticias[3:] %}
+                <div class="col-md-12" style="margin-bottom: 10px;padding: 0">
+                    <div class="col-md-5 col-xs-5 col-sm-5 foto-new" style="padding: 0;">
+                        <a href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug}) }}">
+                            <img width="100%" src="{{ vich_uploader_asset(n.noticia, 'imgFile') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-7 col-xs-7 col-sm-7" style="padding:0 10px;">
+                        <a class="titulo-noti-{{ app.request.get('slug_site') }} right-news-title" href="{{ path('noticia_start',{'slug_site':app.request.get('slug_site'),'slug_noticia': n.noticia.slug}) }}"><h1>{{ n.noticia.nombre }}</h1></a>
+                        <p class="detail-name">Por: {{ n.noticia.author.nombre }}</p>
+                        <p class="detail-name" style="text-transform: capitalize">{{ n.noticia.adedAt|date("m/d/Y")| localizeddate('long', 'none', app.request.locale ) }}</p>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{#Oculto#}

@@ -36,6 +36,22 @@ body#home{
     margin: auto;
     max-width: 750px;
 }*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+#wrap {
+    min-height: 100%;
+    padding-top: 0;
+    padding-bottom: 190px;
+}
+#footer-master{
+    height: 234px;
+    margin-top: -150px;
+}
+
+
 hr{
     border-top: 1px solid rgba(0,0,0,.2);
 }
@@ -61,7 +77,7 @@ nuevo buscador
 ===============*/
 .placa{
     width: 100%;
-    top:120px;
+    top:20px;
     height: 320px;
     left: 50%;
     pointer-events: none;
@@ -71,12 +87,21 @@ nuevo buscador
     z-index: 1;
     transform: translate(-50%);
 }
-#test{
+
+#content-slider{
     position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%,-50%);
+}
+
+#title-desktop{
+    /*position: absolute;
     top: 35%;
     left: 50%;
     transform: translate(-50%, -35%);
-    /* text-shadow: 1px 1px 5px rgba(0,0,0,.8); */
+     text-shadow: 1px 1px 5px rgba(0,0,0,.8); */
     z-index: 1;
     color: #fff;
     font-weight: 100;
@@ -85,7 +110,7 @@ nuevo buscador
     /* text-transform: uppercase; */
     font-family: "ModestyFresh", serif;
 }
-#test:after{
+#title-desktop:after{
     content: " ";
     display: inline-block;
     width: 30px;
@@ -93,7 +118,7 @@ nuevo buscador
     border-top: solid 2px ;
     padding-top: 10px;
 }
-#test:before{
+#title-desktop:before{
     content: " ";
     display: inline-block;
     width: 30px;
@@ -120,16 +145,18 @@ nuevo buscador
     width: 400px;
     border-radius: 5px;
     padding: 10px;
-    font-family: "OpenSans-Light", serif;
-    position: absolute;
     text-align: center;
     font-size: 20px;
     border: solid 1px rgb(255,255, 255);
     /* background: rgba(255,255,255,.8); */
     z-index: 2;
+    font-family: "OpenSans-Light", serif;
+   /*
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    */
 }
 .nuevo-buscador #dropdownMenu1{
     background: #fff;
@@ -167,7 +194,7 @@ nuevo buscador
     text-decoration: none;
 }
 .list_categorias-wedding{
-    top: 72px;
+    top: 160px;
     width: 700px;
     height: 395px;
     left: -37%;
@@ -175,7 +202,7 @@ nuevo buscador
     border: solid 2px rgba(53, 179, 180,.6);
 }
 .list_categorias-kids{
-    top: 72px;
+    top: 160px;
     width: 700px;
     height: auto;
     left: -37%;
@@ -183,7 +210,7 @@ nuevo buscador
     border: solid 2px rgba(167, 12, 119,.6);
 }
 .list_categorias-party{
-    top: 72px;
+    top: 160px;
     width: 700px;
     height: auto;
     left: -37%;
@@ -191,7 +218,7 @@ nuevo buscador
     border: solid 2px rgba(149, 193, 31,.6);
 }
 .list_categorias-dinner{
-    top: 72px;
+    top: 160px;
     width: 700px;
     height: auto;
     left: -37%;
@@ -288,7 +315,7 @@ Nav bar
     margin-bottom:0;
 }
 .menu-principal .navbar-default{
-    margin-left: 5% ;
+    margin-left: 11% ;
 }
 .menu-principal .navbar-default li{
     text-transform: uppercase;
@@ -320,7 +347,7 @@ Nav bar
     position: relative;
     top: -30px;
     padding-top: 15px;
-    left: 19px;
+    left: -10px;
 }
 
 
@@ -3375,7 +3402,13 @@ News Blog
 .new-principal{
     padding:0;
     text-align: center;
+
 }
+.prin-new{
+    height: 513px;
+    overflow: hidden;
+}
+
 .tittle-principal{
     position: absolute;
     bottom: 0;
@@ -3409,9 +3442,15 @@ News Blog
 }
 
 
+.right-news-title h1{
+    font-size: 16px;
+    margin: 0;
+}
 
-
-
+.detail-name{
+    margin: 5px 0;
+    font-size: 13px;
+}
 .left-noti{
     width: 80%;
     position: absolute;
@@ -3443,6 +3482,25 @@ News Blog
     border-radius: 20px;
 }
 .left-noti .detalle-wedding{
+    background: #35B3B4;
+}
+
+.btn:hover, .btn:focus, .btn.focus{
+    color: #fff;
+
+}
+.seguir{
+    padding: 10px 20px;
+    color: #fff;
+    margin-bottom: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    text-transform: capitalize;
+    border-radius: 20px;
+}
+
+.seguir-wedding{
     background: #35B3B4;
 }
 .left-noti .autor-prin{
@@ -3618,12 +3676,6 @@ Zona de Negocio
     color: #fff;
     float: right;
 }
-
-
-
-
-
-
 
 
 .dashboard-section-icons{
@@ -4588,6 +4640,38 @@ Mejores Proveedores
 .nuevo-buscador3{
     display: none;
 }
+.ocult{
+    display: none;
+}
+
+.pagina-enconstruccion{
+    font-family: "ModestyFresh", sans-serif;
+    font-size: 100px;
+}
+.pagina-enconstruccion p{
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.pagina-enconstruccion p img{
+    display: block;
+    margin: 0 auto;
+}
+.con-wedding{
+    color: #35b3b4;
+}
+.con-kids{
+    color: #a70c77 ;
+}
+.con-party{
+    color: #95c11f;
+}
+.con-dinner{
+    color: #0e6970;
+}
+
 /*=============
 MÓVILES RESPONSIVE
 ===============*/
@@ -4999,7 +5083,7 @@ MÓVILES RESPONSIVE
     .placa{
         display: none;
     }
-    #test{
+    #title-desktop{
         display: none;
     }
 
@@ -5371,7 +5455,7 @@ MÓVILES RESPONSIVE
     .image-effect{
         width: 100%;
     }
-    #test{
+    #title-desktop{
         padding: 10px;
         top:28%;
     }
@@ -5388,6 +5472,7 @@ MÓVILES RESPONSIVE
 
 /* iPad in portrait */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
     .news-relacionadas{
         width: 350px;
         margin: 0 auto ;
@@ -5549,7 +5634,7 @@ MÓVILES RESPONSIVE
     .nuevo-buscador{
         top:28%;
     }
-    #test{
+    #title-desktop{
         top:23%;
         padding: 10px 0;
     }
@@ -5611,14 +5696,20 @@ MÓVILES RESPONSIVE
     }
 
 
-
+    .placa{
+        top: 0;
+    }
 
     .pic_foto .negocio-form{
         margin-left: 130px;
     }
+   .btn-login{
+       z-index: 9;
+       top: 0;
+   }
     .negocios a{
         opacity: 1;
-        z-index: 1;
+        z-index: 4;
         color: #fff;
     }
     .boton-session a{
@@ -5634,22 +5725,28 @@ MÓVILES RESPONSIVE
         width: 100%;
     }
     #buscador{
-        margin-top: 60px;
+        margin-top: 0px;
+        width: 100% !important;
     }
     .breadcrumbs-wedding ol, .breadcrumbs-kids ol, .breadcrumbs-party ol, .breadcrumbs-dinner ol{
         text-align: center;
         margin-top: 45px;
     }
+
+    .menu-principal .navbar-default li a{
+        font-size: 12px;
+    }
+
     .menu-principal .navbar-default{
-        margin: 7% auto 0;
-        width: 460px;
+        margin: 0 auto;
+        width: 100%;
         display: block;
         float: none;
     }
     div.two{
         position: absolute !important;
-        margin-top: 7%;
-        margin-left: 18%;
+        margin-top: 0%;
+        margin-left: -8%;
     }
 
     .nav-zonaneg #bs-example-navbar-collapse-1{
@@ -5683,16 +5780,16 @@ MÓVILES RESPONSIVE
         width: 400px;
     }
     #center-image{
-        left: 54%;
-        transform: translate(-50%);
+        left: 17px;
+        transform: translate(0);
     }
     #center-image a img{
-        width: 350px;
+        width: 290px;
     }
     .image-effect{
         width: 100%;
     }
-    #test{
+    #title-desktop{
         padding: 10px;
         top:28%;
     }
@@ -5704,6 +5801,8 @@ MÓVILES RESPONSIVE
         width: 290px;
     }
 }
+
+
 
 
 
@@ -5942,7 +6041,7 @@ MÓVILES RESPONSIVE
         margin: 0 2px;
     }
     .proveedor-detail-page div.row > div:last-child{
-        top: 15px;
+        top: 30px;
     }
     .news-list .thumbnail .ver-mas-button{
         position: absolute;
@@ -5951,6 +6050,9 @@ MÓVILES RESPONSIVE
         left: 0;
         margin: 0 auto;
         width: 90%;
+    }
+    .variable-width img{
+        max-width: 600px;
     }
     .negocios a{
         left: 0px;
@@ -6113,6 +6215,13 @@ MÓVILES RESPONSIVE
     }
     .news-list .thumbnail a{
         width: 100%;
+        overflow: hidden;
+    }
+    .home-slicks2 a{
+        height: auto;
+    }
+    .news-list .thumbnail{
+        margin: 0 5px;
     }
     .list_categorias-wedding ul li, .list_categorias-kids ul li, .list_categorias-party ul li, .list_categorias-dinner ul li{
         width: 100%;
@@ -6133,7 +6242,7 @@ MÓVILES RESPONSIVE
     .placa{
         display: none;
     }
-    #test{
+    #title-desktop{
         display: none;
     }
 
@@ -6771,7 +6880,7 @@ MÓVILES RESPONSIVE
     .placa{
         display: none;
     }
-    #test{
+    #title-desktop{
         display: none;
     }
     .nuevo-buscador{
