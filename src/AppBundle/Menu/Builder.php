@@ -200,12 +200,12 @@ class Builder implements ContainerAwareInterface
                 'routeParameters' => array('slug_site' => $key)
             )
         );
-        $menu->addChild('noticias',array(
+        /*$menu->addChild('noticias',array(
                 'route' => 'noticias_start',
                 'label' => 'Blog',
                 'routeParameters' => array('slug_site' => $key)
             )
-        );
+        );*/
         $menu->addChild('center-image', array(
             'uri' => '#',
             'label' => '',
@@ -255,12 +255,12 @@ class Builder implements ContainerAwareInterface
                 'routeParameters' => array('slug_site' => $key)
             )
         );
-        $menu->addChild('noticias',array(
+        /*$menu->addChild('noticias',array(
                 'route' => 'noticias_start',
                 'label' => 'Blog',
                 'routeParameters' => array('slug_site' => $key)
             )
-        );
+        );*/
         //$menu->addChild('Proveedores');
         //$menu['Proveedores']->setUri('#');
 
@@ -316,12 +316,12 @@ class Builder implements ContainerAwareInterface
                 'routeParameters' => array('slug_site' => $key)
             )
         );
-        $menu->addChild('noticias',array(
+        /*$menu->addChild('noticias',array(
                 'route' => 'noticias_start',
                 'label' => 'Blog',
                 'routeParameters' => array('slug_site' => $key)
             )
-        );
+        );*/
         //$menu->addChild('Proveedores');
         //$menu['Proveedores']->setUri('#');
 
@@ -376,12 +376,12 @@ class Builder implements ContainerAwareInterface
                 'routeParameters' => array('slug_site' => $key)
             )
         );
-        $menu->addChild('noticias',array(
+        /*$menu->addChild('noticias',array(
                 'route' => 'noticias_start',
                 'label' => 'Blog',
                 'routeParameters' => array('slug_site' => $key)
             )
-        );
+        );*/
         //$menu->addChild('Proveedores');
         //$menu['Proveedores']->setUri('#');
 
@@ -436,12 +436,12 @@ class Builder implements ContainerAwareInterface
                 'routeParameters' => array('slug_site' => $key)
             )
         );
-        $menu->addChild('noticias',array(
+        /*$menu->addChild('noticias',array(
                 'route' => 'noticias_start',
                 'label' => 'Blog',
                 'routeParameters' => array('slug_site' => $key)
             )
-        );
+        );*/
         //$menu->addChild('Proveedores');
         //$menu['Proveedores']->setUri('#');
 
@@ -517,12 +517,12 @@ class Builder implements ContainerAwareInterface
                 'routeParameters' => array('slug_site' => $key)
             )
         );
-        $menu->addChild('noticias',array(
+        /*$menu->addChild('noticias',array(
                 'route' => 'noticias_start',
                 'label' => 'Blog',
                 'routeParameters' => array('slug_site' => $key)
             )
-        );
+        );*/
 
         $menu->addChild('inspiraciones',array(
                 'route' => 'inspiraciones_start',

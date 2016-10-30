@@ -177,3 +177,9 @@ hwi_oauth:
                   profilepicture: picture.data.url
                 #options:
                 #    display: popup #dialog is optimized for popup window
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
