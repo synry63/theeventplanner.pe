@@ -86,6 +86,11 @@
     <script type="text/javascript" src="{{ asset('js/DiagonalSlider.js') }}"></script>
 
     <script>
+
+
+        $('body #wrap').removeAttr('id');
+        $('body #footer-master').removeAttr('id');
+
         $(document).ready(function() {
             $.fn.preload = function() {
                 this.each(function(){

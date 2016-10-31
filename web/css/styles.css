@@ -6041,7 +6041,7 @@ MÓVILES RESPONSIVE
         margin: 0 2px;
     }
     .proveedor-detail-page div.row > div:last-child{
-        top: 30px;
+        /*top: 30px;*/
     }
     .news-list .thumbnail .ver-mas-button{
         position: absolute;
@@ -6288,7 +6288,7 @@ MÓVILES RESPONSIVE
         margin: 30px 15px;
     }
     .slider-section{
-        margin: 20px 0;
+        margin: 50px 0;
     }
     .pic_foto .negocio-form{
         margin: 10px auto;
@@ -6335,6 +6335,13 @@ MÓVILES RESPONSIVE
     .image-prov{
         margin: 20px 0 55px 0;
     }
+    .image-prov .prov-foto-wedding, .image-prov .prov-foto-dinner, .image-prov .prov-foto-party, .image-prov .prov-foto-kids{
+        height: auto;
+    }
+    .prov-foto{
+        width: 100%;
+    }
+
     .menu-principal .navbar-right{
         position: initial;
         text-align: center;
@@ -6489,6 +6496,32 @@ MÓVILES RESPONSIVE
         padding: 10px 15px;
         border-radius: 100px;
         transition: all .5s;
+    }
+    .login-flex .content-login:last-child{
+        height: auto;
+    }
+    .text-negocio .text-content{
+        padding:20px 0;
+    }
+    
+    .text-negocio .text-content p{
+        text-align: right;
+        padding: 20px 0;
+        font-size: 14px;
+        text-shadow: 1px 1px 5px rgba(0,0,0,.5);
+    }
+    .text-negocio .text-content h2{
+        font-weight: 600;
+        font-size: 35px;
+        text-shadow: 2px 2px 10px rgba(0,0,0,.3);
+    }
+    .text-negocio .text-content h1{
+        font-weight: 600;
+        font-size: 50px;
+        text-shadow: 2px 2px 10px rgba(0,0,0,.3);
+    }
+    .content-login{
+        
     }
 }
 
