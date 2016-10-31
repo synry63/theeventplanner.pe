@@ -50,7 +50,7 @@ class DefaultController extends Controller
 
         $best_fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->getBestFotos($categoria);
 
-        $ultimas_noticias = $this->getDoctrine()->getRepository('AppBundle:Noticia')->getNoticiasWithCountComments($slug_site,4);
+        $ultimas_noticias = null;//$this->getDoctrine()->getRepository('AppBundle:Noticia')->getNoticiasWithCountComments($slug_site,4);
 
         $best_inspiraciones = $this->getDoctrine()->getRepository('AppBundle:Inspiracion')->getLastInspiraciones($slug_site,8);
 
