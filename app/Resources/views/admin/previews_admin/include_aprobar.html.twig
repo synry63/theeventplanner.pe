@@ -2,6 +2,11 @@
     <li>
         <a class="btn btn-default" style="position: absolute;left: 60px; width: 140px; text-align: right;padding-right: 30px" href="{{ path('admin_negocios') }}"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Atrás</a>
     </li>
+    {% if proveedor.email is defined %}
+        <li>
+            <a style="text-transform:lowercase;" href="{{ 'mailto:'~proveedor.email }}">{{ proveedor.email }}</a>
+        </li>
+    {% endif %}
     <li>
         <a class="btn btn-danger" onclick="return confirm('¿Estas seguro de eliminar este proveedor y todas sus asociaciones?');" href="{{ path('admin_negocio_delete', {'id': proveedor.id}) }}">BORRAR NEGOCIO</a>
     </li>
