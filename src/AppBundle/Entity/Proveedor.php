@@ -42,6 +42,10 @@ class Proveedor implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
+     * @Assert\Regex(
+     *     pattern="/\040/",
+     *     match=false,
+     *     message="El usuario no puede contener espacios en blanco.")
      *
      */
     private $username;
