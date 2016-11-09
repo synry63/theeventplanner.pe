@@ -3489,6 +3489,15 @@ News Blog
     color: #fff;
 
 }
+
+
+.categorias2.btn:hover,.categorias2.btn:focus, .categorias2.btn.focus{
+    color: #000;
+
+}
+
+
+
 .seguir{
     padding: 10px 20px;
     color: #fff;
