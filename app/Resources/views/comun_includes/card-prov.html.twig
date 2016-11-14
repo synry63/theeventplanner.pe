@@ -25,12 +25,7 @@
         </span>
         <span>|</span>
     {% endif %}
-    {% if proveedor.web is null %}
-        <div class="links-proveedores l{{ app.request.get('slug_site') }}">
-            <a id="telefono-link" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Teléfono</a>
-            <a id="telefono" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> {{ proveedor.telefono }}</a>
-        </div>
-    {% else %}
+    {% if proveedor.telefono is not null %}
         <span class="links-proveedores l{{ app.request.get('slug_site') }}">
             <a id="telefono-link" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Teléfono</a>
             <a id="telefono" href="javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> {{ proveedor.telefono }}</a>
